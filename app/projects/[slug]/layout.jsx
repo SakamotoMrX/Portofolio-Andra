@@ -1,19 +1,19 @@
-import jsonData from "@/json/data.json";
+import projectsData from "@/json/data.json";
 
 export async function generateMetadata({ params }) {
 	const { slug } = await params;
-	const project = jsonData.Projects.find((item) => item.slug === slug);
+	const project = projectsData.Projects.find((p) => p.slug === slug);
 
 	if (!project) {
-		return { title: "Not Found | Alvalens" };
+		return { title: "Not Found | Andra" };
 	}
 
 	return {
-		title: `${project.title} | Alvalens`,
-		description: project.desc[0]?.slice(0, 160),
+		title: `${project.title} | Andra`,
+		description: Array.isArray(project.desc) ? project.desc[0] : project.desc,
 	};
 }
 
-export default function Layout({ children }) {
-	return children;
+export default function ProjectDetailLayout({ children }) {
+	return <>{children}</>;
 }

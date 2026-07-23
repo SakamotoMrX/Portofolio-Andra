@@ -1,131 +1,75 @@
-# Alvalens Portfolio
+# Andra Portfolio (Next.js, Vercel-Ready, Neofetch Style)
 
-![visitor badge](https://visitor-badge.laobi.icu/badge?page_id=aleph-discord-bot.visitor-badge)
+Personal portfolio website built with **Next.js 15 (App Router)**, **TailwindCSS**, **Framer Motion**, and a custom **Neofetch Terminal** section.
 
-Personal portfolio website built with Next.js 15, featuring fullpage scrolling, Framer Motion animations, and Tailwind CSS. The site showcases projects from a JSON data source and includes Spotify integration, real-time chat, and structured SEO.
+---
 
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+## 🚀 Features
 
-## Features
+- **Hero & About Sections**: Rebranded for **Andra (SakamotoMrX)** — Junior DevOps based in Bogor, Indonesia.
+- **Neofetch Section**: Linux terminal-inspired card component (`components/Neofetch.jsx`) driven by `data/neofetch.js` with monospace dot-leaders and category accent styling.
+- **Projects Showcase**: Dynamic JSON-driven project cards from `json/data.json`.
+- **Responsive Layout**: Full-page snap scroll navigation for desktop & seamless mobile layout.
+- **SEO & Metadata**: OpenGraph, Twitter Cards, and JSON-LD Person structured data.
+- **Vercel Ready**: Zero-config deployment with env var guards for optional services (Spotify, Chat).
 
-- **Fullpage Scrolling** — Section-based navigation on the home page with sidebar active indicator
-- **Smooth Page Transitions** — Fade + scale animation between routes via Framer Motion
-- **Scroll Animations** — Staggered entrance animations on skills, experience, and project sections
-- **Dynamic Project Data** — Projects loaded from a JSON file with category filtering and detail pages
-- **Skeleton & Blur Loading** — Project images load with blur placeholder and skeleton overlay
-- **Spotify Widget** — Real-time "now playing" display on the About page
-- **Chat Widget** — Intelliticks integration with deferred loading for performance
-- **SEO** — Per-page metadata, OpenGraph tags, and JSON-LD Person structured data
-- **Responsive** — Scales smoothly across browser zoom levels (100%–150%)
+---
 
-## Tech Stack
+## 🛠️ Tech Stack & System Specs
 
-- **Framework:** Next.js 15 (App Router)
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Scrolling:** @alvalens/react-fullpage-snap
-- **Fonts:** Poppins, Jost (self-hosted via next/font)
-- **Analytics:** Vercel Analytics
-- **Deployment:** Vercel
+- **Role**: Junior DevOps
+- **Location**: Bogor, Indonesia
+- **Tech Journey**: 15 years 5 months
+- **OS**: macOS, Linux, Windows
+- **IDEs & Tools**: Antigravity IDE, Vim, Nvim, Lazygit, Arduino IDE
+- **Languages**: Bash, YAML, Indonesian, English
+- **Skills**: Linux SysAdmin, Virtual Machines, Containerization, Git & GitHub, Deploying, SDLC & Agile
+- **Hobbies**: Larping Linux (software), Arduino (hardware)
 
-## Getting Started
+---
 
-### Prerequisites
+## 💻 Local Development
 
-- [Node.js](https://nodejs.org/) 18+
-- [pnpm](https://pnpm.io/)
+1. **Install dependencies**:
+   ```bash
+   pnpm install
+   ```
 
-### Installation
+2. **Run dev server**:
+   ```bash
+   pnpm dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-```bash
-git clone https://github.com/Alvalens/Alvalens-porto-2-nextJs.git
-cd Alvalens-porto-2-nextJs
-pnpm install
-```
+3. **Build for production**:
+   ```bash
+   pnpm build
+   ```
 
-### Environment Variables
+---
 
-Copy `.env.example` to `.env.local` and fill in the values:
+## 🖼️ Replacing Photo Placeholders
 
-```
-NEXT_PUBLIC_SPOTIFY_CLIENT_ID=
-NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET=
-NEXT_PUBLIC_SPOTIFY_REFRESH_TOKEN=
-```
+Refer to `public/image/README.md` for full dimensions and component mappings. Simply replace these files in `public/image/`:
 
-For Spotify API setup, see [leerob.io/blog/spotify-api-nextjs](https://leerob.io/blog/spotify-api-nextjs).
+- `hero.jpg` (400x550 px) — Main portrait
+- `about-1.jpg`, `about-2.jpg`, `about-3.jpg` (400x500 px) — "Who Am I" collage
+- `education-1.jpg`, `education-2.jpg`, `education-3.jpg` (400x300 px) — Milestones cover photos
+- `og-image.png` (1200x630 px) — Social media link preview banner
 
-### Development
+---
 
-```bash
-pnpm dev
-```
+## ☁️ Deploying to Vercel
 
-### Production Build
+1. Push your repository to GitHub:
+   ```bash
+   git remote add origin https://github.com/<YOUR_USERNAME>/andra-portfolio.git
+   git branch -M main
+   git push -u origin main
+   ```
 
-```bash
-pnpm build
-pnpm start
-```
-
-## Project Structure
-
-```
-app/
-├── layout.jsx          # Root layout (Navbar, Chat, Analytics, JSON-LD)
-├── globals.css         # Global styles and Tailwind
-├── (root)/             # Home page with fullpage sections
-│   ├── layout.jsx      # FullPageProvider + Sidebar
-│   └── page.jsx        # Hero, About, Projects, Contact sections
-├── about/              # About page
-│   └── components/     # Skills, Experience, Education, Quote, Spotify
-├── projects/           # Projects listing with filtering
-│   ├── [slug]/         # Dynamic project detail pages
-│   └── archive/        # Full project archive
-components/             # Shared UI (Navbar, Sidebar, Footer, Button, etc.)
-json/data.json          # Project data source
-public/image/           # Static images
-```
-
-## Pages
-
-### Home
-
-Introduction with fullpage scroll sections — Hero, About preview, Projects preview, and Contact with social links. Includes a scroll indicator on first load.
-
-### About
-
-Detailed bio, skills with category filtering, work experience timeline, education, and Spotify widget.
-
-### Projects
-
-Filterable project grid (Web, AI/ML, Other). Each project links to a detail page with full description, tech stack, links, and image gallery.
-
-### Contact
-
-Email and social links (GitHub, Instagram, LinkedIn, Discord).
-
-## Customization
-
-### Chat Widget
-
-Update the Intelliticks script in `components/Chat.jsx` with your own widget code.
-
-### Project Data
-
-Edit `json/data.json` to add or modify projects. See [CLAUDE.md](CLAUDE.md) for the data schema.
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have suggestions, feel free to open an issue or submit a pull request.
-
-## Inspiration
-
-- [frans.my.id](https://www.frans.my.id/)
-- [kuon-yagi-portfolio](https://kuon-yagi-portfolio.netlify.app/)
-
-## License
-
-This project is licensed under the GPL-3.0 License — see the [LICENSE](LICENSE) file for details.
-
-Copyright (C) 2025 Alvalen Shafelbilyunazra
+2. Go to [vercel.com](https://vercel.com) → Click **Add New Project**.
+3. Import your `andra-portfolio` GitHub repository.
+4. Next.js App Router will be auto-detected.
+5. *(Optional)* Add environment variables from `.env.example` if using Spotify or Chat.
+6. Click **Deploy**!

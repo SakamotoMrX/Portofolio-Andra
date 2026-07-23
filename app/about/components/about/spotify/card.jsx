@@ -8,47 +8,55 @@ import Image from "next/image";
 const Card = () => {
 	const [loading, setLoading] = useState(true);
 	const [result, setResult] = useState({});
+	const isEnabled = process.env.NEXT_PUBLIC_SPOTIFY_ENABLED === "true";
 
-useEffect(() => {
-	const fetchData = async () => {
-		const results = await Promise.all([getNowPlayingItem()]);
-		console.log(results);
-		setResult(results[0]);
-		setLoading(false);
-	};
-	fetchData(); // Fetch data immediately on component mount
+	useEffect(() => {
+		if (!isEnabled) {
+			setLoading(false);
+			return;
+		}
 
-	const intervalId = setInterval(fetchData, 60 * 1000); // ! Fetch data every minute: temporary 
+		const fetchData = async () => {
+			try {
+				const results = await Promise.all([getNowPlayingItem()]);
+				setResult(results[0] || {});
+			} catch (e) {
+				console.error("Spotify fetch error", e);
+			} finally {
+				setLoading(false);
+			}
+		};
+		fetchData();
 
-	return () => clearInterval(intervalId); 
-}, []);
+		const intervalId = setInterval(fetchData, 60 * 1000);
+		return () => clearInterval(intervalId);
+	}, [isEnabled]);
+
+	if (!isEnabled) return null;
 
 	return (
 		<div className="mt-3 flex justify-center w-full">
 			{loading ? (
 				<div className="flex justify-center mb-8">
-					{/* Replace this with your own loading spinner */}
 					<div className="loader ease-linear rounded-full border-4 border-t-4 border-black h-12 w-12 mb-4"></div>
 				</div>
 			) : (
-				<div className="relative w-full mb-8 grid grid-cols-2  gap-2 border-2 border-gray-500 p-4 rounded-lg backdrop-filter backdrop-blur-lg bg-white bg-opacity-30">
+				<div className="relative w-full mb-8 grid grid-cols-2 gap-2 border-2 border-gray-500 p-4 rounded-lg backdrop-filter backdrop-blur-lg bg-white bg-opacity-30">
 					{result.isPlaying && (
-					<Image
-						src={result.albumImageUrl}
-						alt="backgroundImage"
-						fill
-						className="z-0 opacity-20 absolute object-cover"
-					/>
+						<Image
+							src={result.albumImageUrl}
+							alt="backgroundImage"
+							fill
+							className="z-0 opacity-20 absolute object-cover"
+						/>
 					)}
-					<div className="z-10  flex items-center">
+					<div className="z-10 flex items-center">
 						<FontAwesomeIcon
 							icon={faSpotify}
 							className="text-black text-5xl me-5 md:me-1 xl:me-8"
 						/>
 						<p className="font-semibold me-5 md:me-1 xl:me-7">
-							{result.isPlaying
-								? "Now playing"
-								: "Currently offline"}
+							{result.isPlaying ? "Now playing" : "Currently offline"}
 						</p>
 						{result.isPlaying && <PlayingAnimation />}
 					</div>

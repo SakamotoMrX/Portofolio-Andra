@@ -1,12 +1,12 @@
 import "./globals.css";
-import { Poppins, Jost } from "next/font/google";
+import { Poppins, Jost, Fira_Code } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 import { Analytics } from "@vercel/analytics/react";
-import Chat from "@/components/Chat";
 import ClientTopProgressBar from "@/components/ClientTopProgressBar";
+import ChatConditional from "@/components/ChatConditional";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -23,70 +23,91 @@ const jost = Jost({
 	variable: "--font-jost",
 });
 
+export const firaCode = Fira_Code({
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
+	display: "swap",
+	variable: "--font-fira-code",
+});
+
+const SITE_URL =
+	process.env.NEXT_PUBLIC_SITE_URL || "https://andra-portfolio.vercel.app";
+
 export const metadata = {
-	metadataBase: new URL("https://www.alvalens.my.id"),
-	title: "Alvalens | Portofolio",
+	metadataBase: new URL(SITE_URL),
+	title: "Andra | Junior DevOps",
 
 	description:
-		"Alvalen, Product-Minded Software Engineer specializing in Next.js, Spring Boot, and AI Solutions. Founder & CTO of Intervyou.",
+		"Andra (SakamotoMrX) — Junior DevOps based in Bogor, Indonesia. Linux SysAdmin, Containerization, Git & GitHub enthusiast, and open-source tinkerer.",
 
-	author: "Alvalen Shafelbilyunazra",
-	siteUrl: "https://www.alvalens.my.id",
-	applicationName: "Alvalens",
+	author: "Andra",
+	siteUrl: SITE_URL,
+	applicationName: "Andra | Portfolio",
 
 	keywords: [
-		"alvalens",
-		"alvalen",
-		"alvalen shafel",
-		"shafel",
-		"alvalen shafelbilyunazra",
-		"alvalen shafel bilyunazra",
-		"bloodfallen",
-		"alvalen porto",
-		"alvalen um",
+		"andra",
+		"sakamotomrx",
+		"junior devops",
+		"linux sysadmin",
+		"devops",
+		"containerization",
+		"bogor",
+		"indonesia",
+		"portfolio",
+		"bash",
+		"yaml",
+		"git",
 	],
 
 	openGraph: {
 		type: "website",
-		url: "https://www.alvalens.my.id",
-		title: "Alvalens | Portofolio",
-		siteName: "Alvalens | Portofolio",
-		description: "My name is Alvalens, This is my portofolio website.",
+		url: SITE_URL,
+		title: "Andra | Junior DevOps",
+		siteName: "Andra | Portfolio",
+		description:
+			"Andra (SakamotoMrX) — Junior DevOps based in Bogor, Indonesia. Linux SysAdmin, Containerization, and open-source tinkerer.",
 		images: [
 			{
-				url: "/og-image-rev.png",
-				alt: "Alvalens Portofolio",
+				url: "/og-image.png",
+				alt: "Andra Portfolio",
 				width: 1200,
 				height: 630,
 			},
 		],
+	},
+
+	twitter: {
+		card: "summary_large_image",
+		title: "Andra | Junior DevOps",
+		description:
+			"Andra (SakamotoMrX) — Junior DevOps based in Bogor, Indonesia.",
+		images: ["/og-image.png"],
 	},
 };
 
 const jsonLd = {
 	"@context": "https://schema.org",
 	"@type": "Person",
-	name: "Alvalen Shafelbilyunazra",
-	url: "https://www.alvalens.my.id",
-	jobTitle: "Full Stack Software Engineer",
-	worksFor: [
-		{ "@type": "Organization", name: "MGG Software" },
-		{ "@type": "Organization", name: "Intervyou" },
-	],
-	alumniOf: {
-		"@type": "CollegeOrUniversity",
-		name: "Universitas Negeri Malang",
+	name: "Andra",
+	url: SITE_URL,
+	jobTitle: "Junior DevOps",
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: "Bogor",
+		addressCountry: "ID",
 	},
 	sameAs: [
-		"https://github.com/Alvalens",
-		"https://www.linkedin.com/in/alvalen-shafel-8a081a254/",
-		"https://www.instagram.com/alvalens_/",
+		"https://github.com/SakamotoMrX",
+		"https://www.instagram.com/andrahijati/",
+		"https://web.facebook.com/andra.nugroho.921",
 	],
 };
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en" className={`${poppins.variable} ${jost.variable}`}>
+		<html
+			lang="en"
+			className={`${poppins.variable} ${jost.variable} ${firaCode.variable}`}>
 			<body>
 				<script
 					type="application/ld+json"
@@ -95,7 +116,7 @@ export default function RootLayout({ children }) {
 				<ClientTopProgressBar />
 				<Navbar />
 				{children}
-				<Chat />
+				<ChatConditional />
 				<Analytics />
 			</body>
 		</html>

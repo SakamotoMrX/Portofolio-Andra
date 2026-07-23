@@ -2,7 +2,7 @@ const projects = require("./json/data.json");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-	siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.alvalens.my.id",
+	siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://andra-portfolio.vercel.app",
 	generateRobotsTxt: true,
 	generateIndexSitemap: false,
 	exclude: ["/404", "/500"],
@@ -12,7 +12,6 @@ module.exports = {
 			{ path: "/", priority: 1.0, changefreq: "daily" },
 			{ path: "/about", priority: 0.9, changefreq: "weekly" },
 			{ path: "/projects", priority: 0.9, changefreq: "weekly" },
-			{ path: "/projects/archive", priority: 0.7, changefreq: "monthly" },
 		];
 		const projectPages = projects.Projects.map((project) => ({
 			path: `/projects/${project.slug}`,
@@ -47,9 +46,6 @@ module.exports = {
 		} else if (path === "/about" || path === "/projects") {
 			priority = 0.9;
 			changefreq = "weekly";
-		} else if (path === "/projects/archive") {
-			priority = 0.7;
-			changefreq = "monthly";
 		} else if (path.startsWith("/projects/")) {
 			priority = 0.8;
 			changefreq = "weekly";

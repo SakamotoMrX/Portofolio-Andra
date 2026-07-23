@@ -52,7 +52,9 @@ const NavItems = ({ isNavOpen, setIsNavOpen }) => {
 	return (
 		<>
 			<motion.div
-				className={`fixed z-[45] w-full h-screen flex items-center justify-center overflow-hidden`}
+				className={`fixed z-[45] w-full h-screen flex items-center justify-center overflow-hidden ${
+					isNavOpen ? "pointer-events-auto" : "pointer-events-none"
+				}`}
 				variants={navVariant}
 				animate={isNavOpen ? "open" : "closed"}
 				initial={false}>
@@ -136,17 +138,17 @@ const Navbar = () => {
 		<>
 			<nav
 				ref={navRef}
-				className={`navbar px-5 md:px-24 w-screen fixed transition-colors ease duration-500 ${
+				className={`navbar px-5 md:px-24 w-screen fixed top-0 left-0 right-0 transition-colors ease duration-500 ${
 					isNavOpen
 						? "backdrop-filter backdrop-blur-md bg-gray-700 bg-opacity-50"
 						: "backdrop-filter backdrop-blur-md"
-				} inset-0  bg-opacity-50 flex flex-row justify-between items-center h-16 z-50 `}>
+				} bg-opacity-50 flex flex-row justify-between items-center h-16 z-50 `}>
 				<div>
 					<h1
 						className={`text-2xl ml-2 md:ml-0 transition-colors ease duration-500 ${
 							isNavOpen ? "text-white" : ""
 						}`}>
-						Alvalens
+						Andra
 					</h1>
 				</div>
 				<div className="flex flex-row items-center">

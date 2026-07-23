@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Card from "./spotify/card";
 import { motion } from "framer-motion";
-import Me1 from "@/public/image/me1.jpg";
-import Me2 from "@/public/image/me2.jpg";
-import Me3 from "@/public/image/me3.jpg";
+import Me1 from "@/public/image/about-1.jpg";
+import Me2 from "@/public/image/about-2.jpg";
+import Me3 from "@/public/image/about-3.jpg";
 import Hr from "@/components/Hr";
 
 function Title() {
@@ -21,75 +21,72 @@ export default function About() {
 	return (
 		<>
 			<Title />
-			<div className="relative mx-auto container gap-4 px-10 grid grid-cols-1 md:grid-cols-2 mb-10">
-				<div className="flex justify-center items-start flex-col mb-5 ">
-					<div className="images relative w-full  aspect-square">
-						<div className="absolute top-28 left-10 w-[50%]  aspect-square grayscale hover:grayscale-0 transition-all ease duration-300">
+			<div className="relative mx-auto container gap-8 px-6 sm:px-10 grid grid-cols-1 md:grid-cols-2 mb-16 md:mb-24">
+				<div className="flex justify-center items-center flex-col mb-8 md:mb-0">
+					<div className="images relative w-full h-[360px] sm:h-[440px] max-w-md mx-auto">
+						<div className="absolute top-6 left-4 w-[52%] aspect-square grayscale hover:grayscale-0 transition-all ease duration-300 z-10 shadow-lg rounded-lg overflow-hidden border-2 border-white">
 							<motion.div
-								initial={{ opacity: 0, scale: 0.5, x: 100 }}
+								initial={{ opacity: 0, scale: 0.8, y: 20 }}
 								whileInView={{
 									opacity: 1,
 									scale: 1,
-									x: 0,
+									y: 0,
 								}}
 								className="relative w-full h-full">
 								<Image
 									src={Me1}
-									alt="Alvalens"
+									alt="Andra photo 1"
 									fill
-									sizes="(max-width: 768px) 80vw, 40vw"
+									sizes="(max-width: 768px) 50vw, 25vw"
 									className="object-cover"
-									placeholder="blur"
 								/>
 							</motion.div>
 						</div>
-						<div className="absolute top-16 right-28 w-[30%]  aspect-square grayscale hover:grayscale-0 transition-all ease duration-300">
+						<div className="absolute top-2 right-4 w-[40%] aspect-square grayscale hover:grayscale-0 transition-all ease duration-300 z-0 shadow-md rounded-lg overflow-hidden border-2 border-white">
 							<motion.div
 								initial={{
 									opacity: 0,
-									scale: 0.5,
-									x: -100,
+									scale: 0.8,
+									x: 20,
 								}}
 								whileInView={{
 									opacity: 1,
 									scale: 1,
 									x: 0,
 								}}
-								transition={{ delay: 0.3 }}
+								transition={{ delay: 0.2 }}
 								className="relative w-full h-full">
 								<Image
 									src={Me2}
-									alt="Alvalens"
+									alt="Andra photo 2"
 									fill
-									sizes="(max-width: 768px) 60vw, 25vw"
+									sizes="(max-width: 768px) 40vw, 20vw"
 									className="object-cover"
-									placeholder="blur"
 								/>
 							</motion.div>
 						</div>
-						<div className="absolute bottom-16 right-20 w-[40%]  aspect-square grayscale hover:grayscale-0 transition-all ease duration-300">
+						<div className="absolute bottom-4 right-10 w-[48%] aspect-square grayscale hover:grayscale-0 transition-all ease duration-300 z-20 shadow-xl rounded-lg overflow-hidden border-2 border-white">
 							<motion.div
 								initial={{
 									opacity: 0,
-									scale: 0.5,
-									x: -100,
+									scale: 0.8,
+									y: 20,
 								}}
 								whileInView={{
 									opacity: 1,
 									scale: 1,
-									x: 0,
+									y: 0,
 								}}
 								transition={{
-									delay: 0.5,
+									delay: 0.4,
 								}}
 								className="relative w-full h-full">
 								<Image
 									src={Me3}
-									alt="Alvalens"
+									alt="Andra photo 3"
 									fill
-									sizes="(max-width: 768px) 80vw, 35vw"
+									sizes="(max-width: 768px) 45vw, 22vw"
 									className="object-cover"
-									placeholder="blur"
 								/>
 							</motion.div>
 						</div>
@@ -107,53 +104,32 @@ export default function About() {
 					}}
 					transition={{
 						delay: 0.5,
-
 						type: "spring",
 					}}>
 					<h2 className="text-2xl font-bold tracking-wider mb-3">
-						Alvalen Shafelbilyunazra
+						Andra (SakamotoMrX)
 					</h2>
 					<p className="text-gray-600 text-justify title text-lg leading-relaxed">
 						I am a{" "}
 						<span className="text-black font-medium">
-							Product-Minded Software Engineer{" "}
+							Junior DevOps practitioner & Linux enthusiast{" "}
 						</span>
-						specialized in bridging the gap between{" "}
+						based in{" "}
 						<span className="text-black font-medium">
-							Modern Web Ecosystems and Enterprise Architectures
+							Bogor, Indonesia
 						</span>
-						. A Computer Science graduate from{" "}
+						. Over the course of 15 years and 5 months of hands-on technological exploration, my core focus has centered on{" "}
 						<span className="text-black font-medium">
-							Universitas Negeri Malang
+							Linux System Administration, Virtualization, and Containerization
 						</span>
-						, my professional journey is defined by high-stakes
-						projects, ranging from robust government-scale
-						microservices to sophisticated{" "}
-						<span className="text-black font-medium">
-							RAG-powered SaaS products{" "}
-						</span>
-						designed to bring the power of Generative AI to
-						end-users.
+						.
 						<br />
 						<br />
-						Currently, I engineer large-scale enterprise systems at{" "}
+						My daily toolkit revolves around{" "}
 						<span className="text-black font-medium">
-							MGG Software
+							Antigravity IDE, Vim, Nvim, Lazygit, and Arduino IDE
 						</span>
-						, ensuring strict data compliance and high availability
-						for international clients. Simultaneously, I lead the
-						technical vision as the{" "}
-						<span className="text-black font-medium">
-							CTO of Intervyou
-						</span>
-						, an AI-driven platform supported by the{" "}
-						<span className="text-black font-medium">
-							Google for Startups Cloud Program and NVIDIA
-							Inception
-						</span>
-						. I remain dedicated to delivering measurable business
-						value at the intersection of web technologies and
-						artificial intelligence.
+						. When I&rsquo;m not crafting Bash scripts or YAML environment configurations, I spend my time Larping Linux (software) and working with Arduino microcontrollers (hardware).
 					</p>
 					<Card />
 				</motion.div>

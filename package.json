@@ -1,12 +1,11 @@
 {
-  "name": "alvalen-portfolio-website",
+  "name": "andra-portfolio",
   "author": {
-    "name": "Alvalen Shafelbilyunazra",
-    "email": "alvalen.shafel04@gmail.com",
-    "url": "https://alvalens.my.id"
+    "name": "Andra",
+    "email": "andrahijati@gmail.com",
+    "url": "https://github.com/SakamotoMrX"
   },
   "license": "GPL-3.0",
-  "copyright": "Copyright (C) 2025 Alvalen Shafelbilyunazra",
   "version": "1.0.0",
   "private": true,
   "scripts": {

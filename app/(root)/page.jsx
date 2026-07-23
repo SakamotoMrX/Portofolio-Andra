@@ -1,7 +1,4 @@
-// Copyright (C) 2025 Alvalen Bilyunazra
-// This file is part of Alvalens-porto-2-nextJs.
-// Licensed under the GNU GPL v3.0. See LICENSE for details.
-
+// Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -11,17 +8,15 @@ import { FullPageWrapper, Section, useFullPage } from "@alvalens/react-fullpage-
 
 // components
 import Button from "@/components/Button";
-import Me from "@/public/image/alvalen-front.webp";
-import MeAbout from "@/public/image/me2.jpg";
+import Me from "@/public/image/hero.jpg";
+import MeAbout from "@/public/image/about-1.jpg";
 import Setup from "@/public/image/setup.jpg";
 import ProjectAll from "@/public/image/projects.png";
 import Hr from "@/components/Hr";
+
 // icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faDiscord } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faInstagram, faFacebook, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 function ScrollIndicator() {
@@ -36,7 +31,7 @@ function ScrollIndicator() {
 		<AnimatePresence>
 			{activeIndex === 0 && !dismissed && (
 				<motion.div
-					className="fixed bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3"
+					className="fixed bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 pointer-events-none"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1, transition: { duration: 0.6, delay: 1.2 } }}
 					exit={{ opacity: 0, transition: { duration: 0.4 } }}>
@@ -65,8 +60,9 @@ function ScrollIndicator() {
 const MyPage = () => {
 	return (
 		<FullPageWrapper>
+			{/* Section 1: Hero */}
 			<Section>
-				<div className="mx-auto w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-4 p-10 overflow-hidden">
+				<div className="mx-auto w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-4 p-10 overflow-hidden relative z-20">
 					<motion.div
 						className="col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start"
 						initial={{ x: -100, opacity: 0 }}
@@ -75,26 +71,25 @@ const MyPage = () => {
 							type: "spring",
 						}}>
 						<div className="block md:hidden col-span-1 mx-auto my-10">
-							<div className="bg-slate-500 rounded-full h-60 w-60 grayscale hover:grayscale-0 transition-all ease duration-300">
+							<div className="bg-slate-500 rounded-full h-72 w-72 grayscale hover:grayscale-0 transition-all ease duration-300 shadow-xl overflow-hidden">
 								<Image
 									src={Me}
-									width={500}
-									height={500}
-									className="rounded-full w-full h-full object-cover "
-									alt="Alvalens"
-									placeholder="blur"
+									width={600}
+									height={600}
+									className="rounded-full w-full h-full object-cover"
+									alt="Andra"
 								/>
 							</div>
 						</div>
 						<motion.h3
-							className="uppercase text-xl mb-3 font-normal text tracking-[.5rem] text-gray-500"
+							className="uppercase text-xl mb-3 font-normal tracking-[.5rem] text-gray-500"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{
 								delay: 0.2,
 								type: "spring",
 							}}>
-							Alvalen Shafel
+							Andra (SakamotoMrX)
 						</motion.h3>
 						<motion.h1
 							className="text-black text-4xl md:text-6xl lg:text-6xl 2xl:text-8xl font-bold my-2 md:my-5"
@@ -104,7 +99,7 @@ const MyPage = () => {
 								delay: 0.3,
 								type: "spring",
 							}}>
-							Full Stack Software Engineer
+							Junior DevOps
 						</motion.h1>
 						<motion.p
 							className="title text-md 2xl:text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem]"
@@ -114,90 +109,51 @@ const MyPage = () => {
 								delay: 0.4,
 								type: "spring",
 							}}>
-							Hi! I&rsquo;am Alvalen, A fullstack software
-							engineer specializing in modern Web Development with
-							a growing focus on Artificial Intelligence. I
-							architect scalable, production-ready engines—from
-							high-traffic Java microservices to RAG-powered SaaS
-							platforms.
+							Hi! I&rsquo;m Andra, a Junior DevOps based in Bogor, Indonesia with over 15 years 5 months of hands-on technology exploration. Specialized in Linux SysAdmin, Virtual Machines, Containerization, Bash scripting, and open-source systems.
 						</motion.p>
 						<motion.div
-							className="buttons flex flex-row justify-center items-center space-x-4 mt-10"
+							className="buttons flex flex-row justify-center items-center space-x-4 mt-10 z-30 relative"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{
 								delay: 0.5,
 								type: "spring",
 							}}>
-							<Button variation="primary">
-								<Link
-									href={"/docs/cv.pdf"}
-									target="_blank"
-									rel="noopener noreferrer"
-									download>
-									Download CV
-								</Link>
+							<Button variation="primary" href="/about">
+								About Me
 							</Button>
-							<Button variation="secondary">
-								<a href="#contact">Contact Me</a>
+							<Button variation="secondary" href="#contact">
+								Contact Me
 							</Button>
 						</motion.div>
 					</motion.div>
 					<motion.div
-						className="hidden md:flex col-span-1 mx-auto justify-center items-center "
+						className="hidden md:flex col-span-1 mx-auto justify-center items-center"
 						initial={{ x: 100, opacity: 0 }}
 						whileInView={{ x: 0, opacity: 1 }}
 						transition={{
 							delay: 0.7,
 							type: "spring",
 						}}>
-						<div className="rounded-full h-auto w-auto max-w-[26vw] lg:px-12 grayscale hover:grayscale-0 transition-all ease duration-300">
+						<div className="rounded-full h-auto w-auto max-w-[34vw] lg:px-4 grayscale hover:grayscale-0 transition-all ease duration-300 shadow-2xl">
 							<Image
 								src={Me}
-								width={400}
-								height={550}
-								placeholder="blur"
-								alt="Alvalens"
+								width={600}
+								height={750}
+								alt="Andra"
 								className="rounded-full w-full h-full object-cover"
 							/>
 						</div>
 					</motion.div>
 				</div>
 			</Section>
+
+			{/* Section 2: About Overview */}
 			<Section>
-				<div className="relative md:h-screen w-screen gap-4 flex justify-center items-center flex-col overflow-hidden">
-					<div className="z-0 mb-48 md:mb-0  md:absolute md:top-1/2  md:right-[10%] md:-translate-y-1/2">
-						<motion.div
-							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[60vh] w-[80vw] md:w-[30vw] grayscale hover:grayscale-0"
-							initial={{
-								x: 300,
-								opacity: 0,
-								z: -100,
-							}}
-							whileInView={{
-								x: 0,
-								opacity: 1,
-								z: 0,
-							}}
-							transition={{
-								delay: 0.5,
-								type: "spring",
-								stiffness: 100,
-								damping: 20,
-							}}>
-							<Image
-								src={MeAbout}
-								fill
-								sizes="(max-width: 768px) 80vw, 30vw"
-								className="object-cover"
-								alt="Alvalens"
-								placeholder="blur"
-							/>
-						</motion.div>
-					</div>
-					<div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 py-5">
+				<div className="mx-auto w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-8 p-10 overflow-hidden relative z-20 items-center">
+					<div className="col-span-2 flex flex-col justify-center items-start text-start">
 						<motion.h1
-							className="bg-white lg:bg-transparent bg-opacity-50 px-3 md-px-0 text-black text-5xl md:text-8xl font-bold"
+							className="text-black text-5xl md:text-8xl font-bold"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{
@@ -208,15 +164,14 @@ const MyPage = () => {
 						</motion.h1>
 						<Hr />
 						<motion.p
-							className="title  text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] mb-5"
+							className="title text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] mb-5 max-w-2xl"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{
 								delay: 0.2,
 								type: "spring",
 							}}>
-							A brief introduction my journey as a software
-							engineer.
+							Linux SysAdmin, Containerization, and hardware tinkering (Arduino). Check out my Fastfetch specs.
 						</motion.p>
 						<motion.div
 							initial={{ y: 40, opacity: 0 }}
@@ -225,47 +180,44 @@ const MyPage = () => {
 								delay: 0.3,
 								type: "spring",
 							}}>
-							<Button variation="primary">
-								<Link href="/about">Learn More</Link>
+							<Button variation="primary" href="/about">
+								Learn More & Fastfetch
 							</Button>
 						</motion.div>
 					</div>
-				</div>
-			</Section>
-			<Section>
-				<div className="relative md:h-screen w-screen gap-4 p-10 flex justify-center items-center flex-col overflow-hidden">
-					<div className="z-0 mb-48 md:mb-0  md:absolute md:top-1/2  md:right-[10%] md:-translate-y-1/2">
+					<div className="col-span-1 flex justify-center items-center">
 						<motion.div
-							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[60vh] w-[80vw] md:w-[30vw] grayscale hover:grayscale-0"
+							className="relative bg-slate-300 rounded-xl overflow-hidden h-[340px] md:h-[520px] w-full max-w-[500px] grayscale hover:grayscale-0 shadow-2xl transition-all"
 							initial={{
-								x: 300,
+								x: 100,
 								opacity: 0,
-								z: -100,
 							}}
 							whileInView={{
 								x: 0,
 								opacity: 1,
-								z: 0,
 							}}
 							transition={{
-								delay: 0.5,
+								delay: 0.4,
 								type: "spring",
-								stiffness: 100,
-								damping: 20,
 							}}>
 							<Image
-								src={ProjectAll}
+								src={MeAbout}
 								fill
 								sizes="(max-width: 768px) 80vw, 30vw"
 								className="object-cover"
-								alt="Alvalens Setup"
-								placeholder="blur"
+								alt="Andra DevOps"
 							/>
 						</motion.div>
 					</div>
-					<div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 py-5">
+				</div>
+			</Section>
+
+			{/* Section 3: Projects Preview */}
+			<Section>
+				<div className="mx-auto w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-8 p-10 overflow-hidden relative z-20 items-center">
+					<div className="col-span-2 flex flex-col justify-center items-start text-start">
 						<motion.h1
-							className="bg-white lg:bg-transparent bg-opacity-50 px-3 md-px-0 text-black text-5xl md:text-8xl font-bold"
+							className="text-black text-5xl md:text-8xl font-bold"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{
@@ -276,18 +228,14 @@ const MyPage = () => {
 						</motion.h1>
 						<Hr />
 						<motion.p
-							className="title  text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] mb-5"
+							className="title text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] mb-5 max-w-2xl"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{
 								delay: 0.2,
 								type: "spring",
 							}}>
-							Selected works that I&apos;ve built over the years.
-							<span className="bg-transparent md:bg-gray-100 bg-opacity-50 xl:bg-transparent">
-								{" "}
-								and currently working on.
-							</span>
+							Server automation tools, Linux scripts, and IoT experiments.
 						</motion.p>
 						<motion.div
 							initial={{ y: 40, opacity: 0 }}
@@ -296,47 +244,44 @@ const MyPage = () => {
 								delay: 0.3,
 								type: "spring",
 							}}>
-							<Button variation="primary">
-								<Link href="/projects">Learn More</Link>
+							<Button variation="primary" href="/projects">
+								Explore Projects
 							</Button>
 						</motion.div>
 					</div>
-				</div>
-			</Section>
-			<Section>
-				<div className="relative md:h-screen w-screen  gap-4 p-10 flex justify-center items-center flex-col overflow-hidden">
-					<div className="z-0 mb-48 md:mb-0  md:absolute md:top-1/2  md:right-[10%] md:-translate-y-1/2">
+					<div className="col-span-1 flex justify-center items-center">
 						<motion.div
-							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[60vh] w-[80vw] md:w-[30vw] grayscale hover:grayscale-0"
+							className="relative bg-slate-300 rounded-xl overflow-hidden h-[340px] md:h-[520px] w-full max-w-[500px] grayscale hover:grayscale-0 shadow-2xl transition-all"
 							initial={{
-								x: 300,
+								x: 100,
 								opacity: 0,
-								z: -100,
 							}}
 							whileInView={{
 								x: 0,
 								opacity: 1,
-								z: 0,
 							}}
 							transition={{
-								delay: 0.5,
+								delay: 0.4,
 								type: "spring",
-								stiffness: 100,
-								damping: 20,
 							}}>
 							<Image
-								src={Setup}
+								src={ProjectAll}
 								fill
 								sizes="(max-width: 768px) 80vw, 30vw"
 								className="object-cover"
-								alt="Alvalens Setup"
-								placeholder="blur"
+								alt="Projects"
 							/>
 						</motion.div>
 					</div>
-					<div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 overflow-hidden">
+				</div>
+			</Section>
+
+			{/* Section 4: Contact */}
+			<Section>
+				<div className="mx-auto w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-8 p-10 overflow-hidden relative z-20 items-center">
+					<div className="col-span-2 flex flex-col justify-center items-start text-start">
 						<motion.h1
-							className="bg-white lg:bg-transparent bg-opacity-50 px-3 md-px-0 text-black text-5xl md:text-8xl font-bold mb-3"
+							className="text-black text-5xl md:text-8xl font-bold mb-3"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{
@@ -347,17 +292,14 @@ const MyPage = () => {
 						</motion.h1>
 						<Hr />
 						<motion.p
-							className="title text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] md:mb-5"
+							className="title text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] md:mb-5 max-w-2xl"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{
 								delay: 0.2,
 								type: "spring",
 							}}>
-							Feel free to contact me if you have any{" "}
-							<span className="bg-transparent md:bg-gray-100 bg-opacity-50 xl:bg-transparent">
-								questions or just want to say hi.
-							</span>
+							Feel free to connect or collaborate on Linux SysAdmin & DevOps projects.
 						</motion.p>
 						<motion.p
 							className="title text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] mb-5"
@@ -367,14 +309,14 @@ const MyPage = () => {
 								delay: 0.3,
 								type: "spring",
 							}}>
-							<a href="mailto:Alvalen.shafel04@gmail.com?subject=Hello&body=Hello Alvalens,">
-								alvalen.shafel04@gmail.com
+							<a href="mailto:andrahijati@gmail.com?subject=Hello%20Andra">
+								andrahijati@gmail.com
 							</a>
 						</motion.p>
-						{/* icons */}
-						<div className="flex justify-center items-center space-x-4">
+						{/* Social Icons */}
+						<div className="flex justify-center items-center space-x-4 mb-5">
 							<motion.a
-								href="mailto:Alvalen.shafel04@gmail.com?subject=Hello&body=Hello Alvalens,"
+								href="mailto:andrahijati@gmail.com?subject=Hello%20Andra"
 								aria-label="Send email"
 								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
 								initial={{ y: 40, opacity: 0 }}
@@ -383,14 +325,11 @@ const MyPage = () => {
 									y: { delay: 0.1 },
 									opacity: { delay: 0.2 },
 								}}>
-								<FontAwesomeIcon
-									icon={faEnvelope}
-									className="text-3xl"
-								/>
+								<FontAwesomeIcon icon={faEnvelope} className="text-3xl" />
 							</motion.a>
 
 							<motion.a
-								href="https://github.com/Alvalens"
+								href="https://github.com/SakamotoMrX"
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label="GitHub profile"
@@ -401,13 +340,11 @@ const MyPage = () => {
 									y: { delay: 0.2 },
 									opacity: { delay: 0.3 },
 								}}>
-								<FontAwesomeIcon
-									icon={faGithub}
-									className="text-3xl"
-								/>
+								<FontAwesomeIcon icon={faGithub} className="text-3xl" />
 							</motion.a>
+
 							<motion.a
-								href="https://www.instagram.com/alvalens_/"
+								href="https://www.instagram.com/andrahijati"
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label="Instagram profile"
@@ -418,16 +355,14 @@ const MyPage = () => {
 									y: { delay: 0.3 },
 									opacity: { delay: 0.4 },
 								}}>
-								<FontAwesomeIcon
-									icon={faInstagram}
-									className="text-3xl"
-								/>
+								<FontAwesomeIcon icon={faInstagram} className="text-3xl" />
 							</motion.a>
+
 							<motion.a
-								href="https://www.linkedin.com/in/alvalen-shafel-8a081a254/"
+								href="https://web.facebook.com/andra.nugroho.921"
 								target="_blank"
 								rel="noopener noreferrer"
-								aria-label="LinkedIn profile"
+								aria-label="Facebook profile"
 								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
 								initial={{ opacity: 0, y: 40 }}
 								whileInView={{ opacity: 1, y: 0 }}
@@ -435,16 +370,14 @@ const MyPage = () => {
 									y: { delay: 0.4 },
 									opacity: { delay: 0.5 },
 								}}>
-								<FontAwesomeIcon
-									icon={faLinkedin}
-									className="text-3xl"
-								/>
+								<FontAwesomeIcon icon={faFacebook} className="text-3xl" />
 							</motion.a>
+
 							<motion.a
-								href="https://discordapp.com/users/bloody#6118"
+								href="https://discord.com/users/legacyy5030"
 								target="_blank"
 								rel="noopener noreferrer"
-								aria-label="Discord profile"
+								aria-label="Discord profile (legacyy5030)"
 								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
 								initial={{ opacity: 0, y: 40 }}
 								whileInView={{ opacity: 1, y: 0 }}
@@ -452,12 +385,33 @@ const MyPage = () => {
 									y: { delay: 0.5 },
 									opacity: { delay: 0.6 },
 								}}>
-								<FontAwesomeIcon
-									icon={faDiscord}
-									className="text-3xl"
-								/>
+								<FontAwesomeIcon icon={faDiscord} className="text-3xl" />
 							</motion.a>
 						</div>
+					</div>
+					<div className="col-span-1 flex justify-center items-center">
+						<motion.div
+							className="relative bg-slate-300 rounded-xl overflow-hidden h-[340px] md:h-[520px] w-full max-w-[500px] grayscale hover:grayscale-0 shadow-2xl transition-all"
+							initial={{
+								x: 100,
+								opacity: 0,
+							}}
+							whileInView={{
+								x: 0,
+								opacity: 1,
+							}}
+							transition={{
+								delay: 0.4,
+								type: "spring",
+							}}>
+							<Image
+								src={Setup}
+								fill
+								sizes="(max-width: 768px) 80vw, 30vw"
+								className="object-cover"
+								alt="Andra Workspace Setup"
+							/>
+						</motion.div>
 					</div>
 				</div>
 			</Section>

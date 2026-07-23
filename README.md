@@ -1,75 +1,30 @@
-# Andra Portfolio (Next.js, Vercel-Ready, Neofetch Style)
+# Andra Portfolio
 
-Personal portfolio website built with **Next.js 15 (App Router)**, **TailwindCSS**, **Framer Motion**, and a custom **Neofetch Terminal** section.
+Personal portfolio website for Andra, a Junior DevOps based in Bogor, Indonesia.
 
----
+Built with Next.js, Tailwind CSS, Framer Motion, and a small Neofetch-inspired terminal section. Project data is managed in `json/data.json`.
 
-## 🚀 Features
+## Run locally
 
-- **Hero & About Sections**: Rebranded for **Andra (SakamotoMrX)** — Junior DevOps based in Bogor, Indonesia.
-- **Neofetch Section**: Linux terminal-inspired card component (`components/Neofetch.jsx`) driven by `data/neofetch.js` with monospace dot-leaders and category accent styling.
-- **Projects Showcase**: Dynamic JSON-driven project cards from `json/data.json`.
-- **Responsive Layout**: Full-page snap scroll navigation for desktop & seamless mobile layout.
-- **SEO & Metadata**: OpenGraph, Twitter Cards, and JSON-LD Person structured data.
-- **Vercel Ready**: Zero-config deployment with env var guards for optional services (Spotify, Chat).
+```bash
+pnpm install
+pnpm dev
+```
 
----
+Open http://localhost:3000.
 
-## 🛠️ Tech Stack & System Specs
+To create a production build:
 
-- **Role**: Junior DevOps
-- **Location**: Bogor, Indonesia
-- **Tech Journey**: 15 years 5 months
-- **OS**: macOS, Linux, Windows
-- **IDEs & Tools**: Antigravity IDE, Vim, Nvim, Lazygit, Arduino IDE
-- **Languages**: Bash, YAML, Indonesian, English
-- **Skills**: Linux SysAdmin, Virtual Machines, Containerization, Git & GitHub, Deploying, SDLC & Agile
-- **Hobbies**: Larping Linux (software), Arduino (hardware)
+```bash
+pnpm build
+pnpm start
+```
 
----
+## Main folders
 
-## 💻 Local Development
+- `app/` contains pages and layouts.
+- `components/` contains reusable UI components.
+- `json/data.json` contains project information.
+- `public/image/` contains images used by the site.
 
-1. **Install dependencies**:
-   ```bash
-   pnpm install
-   ```
-
-2. **Run dev server**:
-   ```bash
-   pnpm dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-3. **Build for production**:
-   ```bash
-   pnpm build
-   ```
-
----
-
-## 🖼️ Replacing Photo Placeholders
-
-Refer to `public/image/README.md` for full dimensions and component mappings. Simply replace these files in `public/image/`:
-
-- `hero.jpg` (400x550 px) — Main portrait
-- `about-1.jpg`, `about-2.jpg`, `about-3.jpg` (400x500 px) — "Who Am I" collage
-- `education-1.jpg`, `education-2.jpg`, `education-3.jpg` (400x300 px) — Milestones cover photos
-- `og-image.png` (1200x630 px) — Social media link preview banner
-
----
-
-## ☁️ Deploying to Vercel
-
-1. Push your repository to GitHub:
-   ```bash
-   git remote add origin https://github.com/<YOUR_USERNAME>/andra-portfolio.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-2. Go to [vercel.com](https://vercel.com) → Click **Add New Project**.
-3. Import your `andra-portfolio` GitHub repository.
-4. Next.js App Router will be auto-detected.
-5. *(Optional)* Add environment variables from `.env.example` if using Spotify or Chat.
-6. Click **Deploy**!
+The project can be deployed directly to Vercel. Optional services such as chat and Spotify are controlled through environment variables.

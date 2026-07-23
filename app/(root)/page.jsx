@@ -220,8 +220,8 @@ const MyPage = () => {
 
 			{/* Section 3: Projects Preview */}
 			<Section id="projects">
-				<div className="mx-auto w-[94%] max-w-[1800px] grid grid-cols-1 md:grid-cols-3 gap-8 p-10 overflow-hidden relative z-20 items-center">
-					<div className="col-span-2 flex flex-col justify-center items-start text-start">
+				<div className="mx-auto w-[94%] max-w-[1800px] grid grid-cols-1 md:grid-cols-2 gap-10 p-10 overflow-hidden relative z-20 items-center">
+					<div className="col-span-1 flex flex-col justify-center items-start text-start">
 						<motion.h1
 							className="text-black text-5xl md:text-8xl font-bold"
 							initial={{ x: -100, opacity: 0 }}
@@ -255,9 +255,9 @@ const MyPage = () => {
 							</Button>
 						</motion.div>
 					</div>
-					<div className="col-span-1 flex justify-center items-center">
+					<div className="col-span-1 flex justify-center items-center w-full">
 						<motion.div
-							className="relative bg-slate-300 rounded-xl overflow-hidden h-[340px] md:h-[520px] w-full max-w-[500px] grayscale hover:grayscale-0 shadow-2xl transition-all"
+							className="relative aspect-[16/9] w-full max-w-[760px] bg-slate-300 rounded-xl overflow-hidden grayscale hover:grayscale-0 shadow-2xl transition-all"
 							initial={{
 								x: 100,
 								opacity: 0,

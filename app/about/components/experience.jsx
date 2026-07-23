@@ -6,7 +6,7 @@ import { useState } from "react";
 const experiences = [
 	{
 		id: 1,
-		startDate: "2024",
+		startDate: "2025",
 		endDate: "Present",
 		company: "Independent DevOps Lab",
 		position: "Junior DevOps & Systems Administrator",
@@ -18,8 +18,8 @@ const experiences = [
 	},
 	{
 		id: 2,
-		startDate: "2020",
-		endDate: "2024",
+		startDate: "2025",
+		endDate: "",
 		company: "Hardware & Software Lab",
 		position: "Embedded Systems & Linux Tinkerer",
 		type: "Self-Directed",
@@ -41,6 +41,9 @@ const experiences = [
 		skills: ["macOS", "Linux", "Windows", "SDLC & Agile"],
 	},
 ];
+
+const formatDateRange = ({ startDate, endDate }) =>
+	endDate ? `${startDate} - ${endDate}` : startDate;
 
 function Title() {
 	return (
@@ -72,7 +75,7 @@ export default function Experience() {
 									: "bg-white/20 text-gray-700 border-gray-300/30 hover:bg-white/40"
 							}`}>
 							<div className="text-xs opacity-75 font-mono">
-								{exp.startDate} - {exp.endDate}
+								{formatDateRange(exp)}
 							</div>
 							<div className="font-bold text-base mt-1">{exp.position}</div>
 							<div className="text-xs opacity-90">{exp.company}</div>
@@ -102,7 +105,7 @@ export default function Experience() {
 											<span className="inline-block px-3 py-1 bg-gray-200 text-gray-800 text-xs font-mono rounded-full">
 												{exp.location}
 											</span>
-											<p className="text-xs text-gray-500 mt-1 font-mono">{exp.startDate} - {exp.endDate}</p>
+							<p className="text-xs text-gray-500 mt-1 font-mono">{formatDateRange(exp)}</p>
 										</div>
 									</div>
 

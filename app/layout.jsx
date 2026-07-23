@@ -43,6 +43,10 @@ export const metadata = {
 	author: "Andra",
 	siteUrl: SITE_URL,
 	applicationName: "Andra | Portfolio",
+	icons: {
+		icon: "/icon.png",
+		shortcut: "/icon.png",
+	},
 
 	keywords: [
 		"andra",

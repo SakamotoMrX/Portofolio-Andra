@@ -6,7 +6,7 @@ import Button from "@/components/Button";
 import Image from "next/image";
 
 // images
-import ProjectAll from "@/public/image/projects.png";
+import ProjectAll from "@/public/image/projects-showcase.png";
 
 import Hr from "@/components/Hr";
 import ProjectCard from "./components/ProjectCard";

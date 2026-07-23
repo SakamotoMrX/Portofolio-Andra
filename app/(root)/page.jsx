@@ -1,17 +1,15 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { FullPageWrapper, Section, useFullPage } from "@alvalens/react-fullpage-snap";
+import { motion } from "framer-motion";
 
 // components
 import Button from "@/components/Button";
 import Me from "@/public/image/hero.jpg";
 import MeAbout from "@/public/image/about-1.jpg";
 import Setup from "@/public/image/setup.jpg";
-import ProjectAll from "@/public/image/projects.png";
+import ProjectAll from "@/public/image/projects-showcase.png";
 import Hr from "@/components/Hr";
 
 // icons
@@ -19,49 +17,57 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faInstagram, faFacebook, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-function ScrollIndicator() {
-	const { activeIndex } = useFullPage();
-	const [dismissed, setDismissed] = useState(false);
-
-	useEffect(() => {
-		if (activeIndex !== 0) setDismissed(true);
-	}, [activeIndex]);
-
-	return (
-		<AnimatePresence>
-			{activeIndex === 0 && !dismissed && (
-				<motion.div
-					className="fixed bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 pointer-events-none"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1, transition: { duration: 0.6, delay: 1.2 } }}
-					exit={{ opacity: 0, transition: { duration: 0.4 } }}>
-					<span className="text-[10px] uppercase tracking-[4px] text-gray-500 font-medium">
-						Scroll
-					</span>
-					<motion.div
-						className="w-[1.5px] h-14 bg-gray-500 origin-top"
-						animate={{
-							scaleY: [0, 1, 1],
-							opacity: [0, 1, 0],
-						}}
-						transition={{
-							duration: 2,
-							repeat: Infinity,
-							ease: "easeInOut",
-							times: [0, 0.5, 1],
-						}}
-					/>
-				</motion.div>
-			)}
-		</AnimatePresence>
-	);
-}
+const Section = ({ id, children }) => <section id={id} className="section">{children}</section>;
 
 const MyPage = () => {
+	useEffect(() => {
+		const sectionIds = ["home", "about", "projects", "contact"];
+		const sections = sectionIds.map((id) => document.getElementById(id));
+		let locked = false;
+		let unlockTimer;
+
+		document.documentElement.classList.add("home-snap");
+
+		const getCurrentIndex = () => {
+			const scrollPosition = window.scrollY + window.innerHeight / 2;
+			return sections.reduce(
+				(current, section, index) =>
+					section && section.offsetTop <= scrollPosition ? index : current,
+				0
+			);
+		};
+
+		const moveOneSection = (event) => {
+			if (Math.abs(event.deltaY) < 8) return;
+			event.preventDefault();
+
+			if (locked) return;
+			const currentIndex = getCurrentIndex();
+			const nextIndex = Math.max(
+				0,
+				Math.min(sectionIds.length - 1, currentIndex + (event.deltaY > 0 ? 1 : -1))
+			);
+
+			if (nextIndex === currentIndex) return;
+			locked = true;
+			sections[nextIndex]?.scrollIntoView({ behavior: "smooth", block: "start" });
+			unlockTimer = window.setTimeout(() => {
+				locked = false;
+			}, 850);
+		};
+
+		window.addEventListener("wheel", moveOneSection, { passive: false });
+		return () => {
+			document.documentElement.classList.remove("home-snap");
+			window.removeEventListener("wheel", moveOneSection);
+			window.clearTimeout(unlockTimer);
+		};
+	}, []);
+
 	return (
-		<FullPageWrapper>
+		<div>
 			{/* Section 1: Hero */}
-			<Section>
+			<Section id="home">
 				<div className="mx-auto w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-4 p-10 overflow-hidden relative z-20">
 					<motion.div
 						className="col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start"
@@ -149,7 +155,7 @@ const MyPage = () => {
 			</Section>
 
 			{/* Section 2: About Overview */}
-			<Section>
+			<Section id="about">
 				<div className="mx-auto w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-8 p-10 overflow-hidden relative z-20 items-center">
 					<div className="col-span-2 flex flex-col justify-center items-start text-start">
 						<motion.h1
@@ -213,8 +219,8 @@ const MyPage = () => {
 			</Section>
 
 			{/* Section 3: Projects Preview */}
-			<Section>
-				<div className="mx-auto w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-8 p-10 overflow-hidden relative z-20 items-center">
+			<Section id="projects">
+				<div className="mx-auto w-[94%] max-w-[1800px] grid grid-cols-1 md:grid-cols-3 gap-8 p-10 overflow-hidden relative z-20 items-center">
 					<div className="col-span-2 flex flex-col justify-center items-start text-start">
 						<motion.h1
 							className="text-black text-5xl md:text-8xl font-bold"
@@ -277,9 +283,9 @@ const MyPage = () => {
 			</Section>
 
 			{/* Section 4: Contact */}
-			<Section>
-				<div className="mx-auto w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-8 p-10 overflow-hidden relative z-20 items-center">
-					<div className="col-span-2 flex flex-col justify-center items-start text-start">
+			<Section id="contact">
+				<div className="mx-auto w-[94%] max-w-[1800px] grid grid-cols-1 md:grid-cols-2 gap-10 p-10 overflow-hidden relative z-20 items-center">
+					<div className="col-span-1 flex flex-col justify-center items-start text-start">
 						<motion.h1
 							className="text-black text-5xl md:text-8xl font-bold mb-3"
 							initial={{ x: -100, opacity: 0 }}
@@ -389,9 +395,9 @@ const MyPage = () => {
 							</motion.a>
 						</div>
 					</div>
-					<div className="col-span-1 flex justify-center items-center">
+					<div className="col-span-1 flex justify-center items-center w-full">
 						<motion.div
-							className="relative bg-slate-300 rounded-xl overflow-hidden h-[340px] md:h-[520px] w-full max-w-[500px] grayscale hover:grayscale-0 shadow-2xl transition-all"
+							className="relative aspect-[16/9] w-full max-w-[760px] bg-slate-300 rounded-xl overflow-hidden grayscale hover:grayscale-0 shadow-2xl transition-all"
 							initial={{
 								x: 100,
 								opacity: 0,
@@ -415,8 +421,7 @@ const MyPage = () => {
 					</div>
 				</div>
 			</Section>
-			<ScrollIndicator />
-		</FullPageWrapper>
+		</div>
 	);
 };
 

@@ -2,6 +2,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const navVariant = {
 	open: {
@@ -144,12 +145,9 @@ const Navbar = () => {
 						: "backdrop-filter backdrop-blur-md"
 				} bg-opacity-50 flex flex-row justify-between items-center h-16 z-50 `}>
 				<div>
-					<h1
-						className={`text-2xl ml-2 md:ml-0 transition-colors ease duration-500 ${
-							isNavOpen ? "text-white" : ""
-						}`}>
-						Andra
-					</h1>
+					<Link href="/#home" aria-label="Andra home">
+						<Image src="/image/andra-logo.png" alt="Andra logo" width={42} height={42} className="h-10 w-10 object-contain mix-blend-multiply" />
+					</Link>
 				</div>
 				<div className="flex flex-row items-center">
 					<button

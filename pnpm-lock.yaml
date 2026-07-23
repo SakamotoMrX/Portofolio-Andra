@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@alvalens/react-fullpage-snap':
-        specifier: ^1.0.2
-        version: 1.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@fortawesome/fontawesome-svg-core':
         specifier: ^6.7.2
         version: 6.7.2
@@ -90,12 +87,6 @@ packages:
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
-
-  '@alvalens/react-fullpage-snap@1.0.2':
-    resolution: {integrity: sha512-xI1s5CAILzuNqUcvXqK0eZ/9ldkgCHfVYZt2cLbJfdEsnVp/dyxjBgQQjIQCPgvlHcjIthywXYAGeBh54AZncw==}
-    peerDependencies:
-      react: ^18.0.0 || ^19.0.0
-      react-dom: ^18.0.0 || ^19.0.0
 
   '@corex/deepmerge@4.0.43':
     resolution: {integrity: sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==}
@@ -1980,11 +1971,6 @@ packages:
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
-
-  '@alvalens/react-fullpage-snap@1.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
-    dependencies:
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
 
   '@corex/deepmerge@4.0.43': {}
 

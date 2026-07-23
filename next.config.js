@@ -39,6 +39,23 @@ module.exports = withBundleAnalyzer({
 						key: "X-XSS-Protection",
 						value: "1; mode=block",
 					},
+					{
+						key: "Referrer-Policy",
+						value: "strict-origin-when-cross-origin",
+					},
+					{
+						key: "Permissions-Policy",
+						value: "camera=(), microphone=(), geolocation=(), payment=()",
+					},
+					{
+						key: "Strict-Transport-Security",
+						value: "max-age=63072000; includeSubDomains; preload",
+					},
+					{
+						key: "Content-Security-Policy",
+						value:
+							"default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://cdn-v1.intelliticks.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://i.scdn.co; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com https://api.spotify.com https://accounts.spotify.com https://*.intelliticks.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
+					},
 				],
 			},
 		];

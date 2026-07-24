@@ -5,7 +5,7 @@ import { neofetchData } from "@/data/neofetch";
 
 function FastfetchAsciiLogo() {
 	return (
-		<div className="flex flex-col items-center justify-center select-none font-mono">
+		<div className="flex flex-col items-center justify-center select-none">
 			<pre className="font-bold leading-tight tracking-tight text-[11px] sm:text-xs text-left text-cyan-400">
 {`                     ..'
                  ,xNMM.
@@ -31,7 +31,7 @@ function FastfetchAsciiLogo() {
 
 function FastfetchRow({ label, value }) {
 	return (
-		<div className="flex flex-col sm:flex-row sm:items-baseline w-full font-mono text-xs sm:text-sm py-0.5 gap-0.5 sm:gap-0 overflow-hidden">
+		<div className="flex flex-col sm:flex-row sm:items-baseline w-full text-xs sm:text-sm py-0.5 gap-0.5 sm:gap-0 overflow-hidden">
 			<span className="font-bold shrink-0 text-yellow-400/90">{label}</span>
 			<span className="hidden sm:inline-block flex-1 border-b border-dotted border-white/10 mx-1.5 min-w-[8px] translate-y-[-3px]"></span>
 			<span className="shrink sm:shrink-0 font-medium text-white/80 sm:text-right break-words min-w-0">{value}</span>
@@ -53,9 +53,9 @@ export default function Neofetch() {
 	};
 
 	return (
-		<section className="w-full py-12 px-4 sm:px-8 max-w-5xl mx-auto font-['SFMonoTerminal-Regular','SFMono-Regular','Menlo',monospace]">
+		<section className="w-full py-12 px-4 sm:px-8 max-w-5xl mx-auto font-['JetBrainsMonoNL_Nerd_Font','JetBrainsMono_Nerd_Font','MesloLGS_Nerd_Font','FiraCode_Nerd_Font',monospace]">
 			<motion.div
-				className="glass-static relative font-mono scanline p-5 sm:p-8"
+				className="glass-static relative scanline p-5 sm:p-8"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"
@@ -68,7 +68,7 @@ export default function Neofetch() {
 						<span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
 						<span className="w-3 h-3 rounded-full bg-[#27c93f]" />
 					</div>
-					<div className="text-xs text-white/40 font-mono tracking-wide">
+					<div className="text-xs text-white/40 tracking-wide">
 						fastfetch — andra@SakamotoMrX
 					</div>
 					<div className="w-12" />
@@ -82,20 +82,20 @@ export default function Neofetch() {
 						style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
 						variants={itemVariants}>
 						<FastfetchAsciiLogo />
-						<div className="mt-4 text-[11px] text-white/30 font-mono tracking-widest uppercase">
+						<div className="mt-4 text-[11px] text-white/30 tracking-widest uppercase">
 							MacBook Air (M1, 2020)
 						</div>
 					</motion.div>
 
 					{/* Right: Spec Output */}
 					<motion.div className="md:col-span-7 flex flex-col space-y-1" variants={itemVariants}>
-						<div className="font-mono text-sm sm:text-base font-bold pb-1">
+						<div className="text-sm sm:text-base font-bold pb-1">
 							<span className="text-yellow-400">{data.user}</span>
 							<span className="text-white/80">@</span>
 							<span className="text-yellow-400">{data.host}</span>
 						</div>
 
-						<div className="text-white/20 font-mono text-xs sm:text-sm tracking-tighter pb-2 border-b border-white/10 mb-2">
+						<div className="text-white/20 text-xs sm:text-sm tracking-tighter pb-2 border-b border-white/10 mb-2">
 							----------------------------------------
 						</div>
 

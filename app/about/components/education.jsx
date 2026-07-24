@@ -29,79 +29,79 @@ export default function Education() {
 			<Title />
 			<div className="mx-auto container px-10 mb-20">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-					{/* Card 1 */}
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5 }}
-						className="bg-white/40 border border-gray-300/40 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-						<div className="relative h-64 sm:h-72 w-full bg-slate-300">
+						className="glass overflow-hidden">
+						<div className="relative h-64 sm:h-72 w-full">
 							<Image
 								src={Edu1}
 								alt="Education 1"
 								fill
-								className="object-cover"
+								className="object-cover opacity-80"
 							/>
+							<div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e]/80 via-transparent to-transparent" />
 						</div>
 						<div className="p-6 space-y-3">
-							<div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center">
+							<div className="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 flex items-center justify-center">
 								<FontAwesomeIcon icon={faGraduationCap} />
 							</div>
-							<h3 className="text-xl font-bold text-black">Linux System Administration</h3>
-							<p className="text-xs text-gray-500 font-mono">Btech Academy Certificate</p>
-							<p className="text-gray-600 text-sm leading-relaxed">
+							<h3 className="text-xl font-bold text-white">Linux System Administration</h3>
+							<p className="text-xs text-white/40 font-mono">Btech Academy Certificate</p>
+							<p className="text-white/60 text-sm leading-relaxed">
 								Certificate of Achievement in Linux System Administration from Btech Academy, demonstrating core Linux CLI, user management, and systems administration.
 							</p>
 						</div>
 					</motion.div>
 
-					{/* Card 2 */}
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5, delay: 0.2 }}
-						className="bg-white/40 border border-gray-300/40 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-						<div className="relative h-64 sm:h-72 w-full bg-slate-300">
+						className="glass overflow-hidden">
+						<div className="relative h-64 sm:h-72 w-full">
 							<Image
 								src={Edu2}
 								alt="Docker & Containerization"
 								fill
-								className="object-cover"
+								className="object-cover opacity-80"
 							/>
+							<div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e]/80 via-transparent to-transparent" />
 						</div>
 						<div className="p-6 space-y-3">
-							<div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center">
+							<div className="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 flex items-center justify-center">
 								<FontAwesomeIcon icon={faTerminal} />
 							</div>
-							<h3 className="text-xl font-bold text-black">Docker & Containerization</h3>
-							<p className="text-xs text-gray-500 font-mono">Managing Container Lifecycles</p>
-							<p className="text-gray-600 text-sm leading-relaxed">
+							<h3 className="text-xl font-bold text-white">Docker & Containerization</h3>
+							<p className="text-xs text-white/40 font-mono">Managing Container Lifecycles</p>
+							<p className="text-white/60 text-sm leading-relaxed">
 								Hands-on management of Docker CLI, container lifecycles, image tagging, volume mounting, and containerized environment deployments.
 							</p>
 						</div>
 					</motion.div>
 
-					{/* Card 3 */}
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5, delay: 0.4 }}
-						className="bg-white/40 border border-gray-300/40 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-						<div className="relative h-64 sm:h-72 w-full bg-slate-300">
+						className="glass overflow-hidden">
+						<div className="relative h-64 sm:h-72 w-full">
 							<Image
 								src={Edu3}
 								alt="Arduino & Microcontrollers"
 								fill
-								className="object-cover"
+								className="object-cover opacity-80"
 							/>
+							<div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e]/80 via-transparent to-transparent" />
 						</div>
 						<div className="p-6 space-y-3">
-							<div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center">
+							<div className="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 flex items-center justify-center">
 								<FontAwesomeIcon icon={faAward} />
 							</div>
-							<h3 className="text-xl font-bold text-black">Arduino & Microcontrollers</h3>
-							<p className="text-xs text-gray-500 font-mono">Hardware Prototyping & Telemetry</p>
-							<p className="text-gray-600 text-sm leading-relaxed">
+							<h3 className="text-xl font-bold text-white">Arduino & Microcontrollers</h3>
+							<p className="text-xs text-white/40 font-mono">Hardware Prototyping & Telemetry</p>
+							<p className="text-white/60 text-sm leading-relaxed">
 								Embedded hardware experiments, servo motor actuation, telemetry data interfaces, and Arduino C++ code prototyping.
 							</p>
 						</div>

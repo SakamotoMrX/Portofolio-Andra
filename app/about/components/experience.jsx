@@ -63,28 +63,26 @@ export default function Experience() {
 		<>
 			<Title />
 			<div className="relative mx-auto container gap-4 px-10 grid grid-cols-1 md:grid-cols-12 mb-20">
-				{/* Tab Navigation */}
 				<div className="md:col-span-4 flex flex-col space-y-2 mb-6 md:mb-0">
 					{experiences.map((exp) => (
 						<button
 							key={exp.id}
 							onClick={() => setActiveTab(exp.id)}
-							className={`text-left p-4 rounded-xl transition-all duration-300 border ${
+							className={`text-left p-4 rounded-xl transition-all duration-300 ${
 								activeTab === exp.id
-									? "bg-black text-white border-black shadow-lg translate-x-2"
-									: "bg-white/20 text-gray-700 border-gray-300/30 hover:bg-white/40"
+									? "glass !border-cyan-400/40 !shadow-cyan-500/10 translate-x-2"
+									: "glass hover:!border-white/20"
 							}`}>
-							<div className="text-xs opacity-75 font-mono">
+							<div className="text-xs text-white/50 font-mono">
 								{formatDateRange(exp)}
 							</div>
-							<div className="font-bold text-base mt-1">{exp.position}</div>
-							<div className="text-xs opacity-90">{exp.company}</div>
+							<div className="font-bold text-base mt-1 text-white">{exp.position}</div>
+							<div className="text-xs text-white/40">{exp.company}</div>
 						</button>
 					))}
 				</div>
 
-				{/* Detail Display */}
-				<div className="md:col-span-8 bg-white/40 border border-gray-300/40 rounded-2xl p-6 sm:p-8 backdrop-blur-sm">
+				<div className="md:col-span-8 glass-static p-6 sm:p-8">
 					<AnimatePresence mode="wait">
 						{experiences
 							.filter((exp) => exp.id === activeTab)
@@ -96,30 +94,30 @@ export default function Experience() {
 									exit={{ opacity: 0, y: -15 }}
 									transition={{ duration: 0.3 }}
 									className="space-y-4">
-									<div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-300/50 pb-4 gap-2">
+									<div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/10 pb-4 gap-2">
 										<div>
-											<h3 className="text-2xl font-bold text-black">{exp.position}</h3>
-											<p className="text-gray-700 font-medium">{exp.company} &bull; <span className="text-gray-500 text-sm">{exp.type}</span></p>
+											<h3 className="text-2xl font-bold text-white">{exp.position}</h3>
+											<p className="text-white/60 font-medium">{exp.company} &bull; <span className="text-white/40 text-sm">{exp.type}</span></p>
 										</div>
 										<div className="text-right sm:text-right">
-											<span className="inline-block px-3 py-1 bg-gray-200 text-gray-800 text-xs font-mono rounded-full">
+											<span className="inline-block px-3 py-1 bg-white/10 text-white/70 text-xs font-mono rounded-full border border-white/10">
 												{exp.location}
 											</span>
-							<p className="text-xs text-gray-500 mt-1 font-mono">{formatDateRange(exp)}</p>
+											<p className="text-xs text-white/40 mt-1 font-mono">{formatDateRange(exp)}</p>
 										</div>
 									</div>
 
-									<p className="text-gray-700 leading-relaxed text-justify text-base pt-2">
+									<p className="text-white/70 leading-relaxed text-justify text-base pt-2">
 										{exp.description}
 									</p>
 
 									<div className="pt-4">
-										<h4 className="text-xs uppercase font-bold text-gray-500 tracking-wider mb-3">Skills & Domain Focus</h4>
+										<h4 className="text-xs uppercase font-bold text-white/40 tracking-wider mb-3">Skills & Domain Focus</h4>
 										<div className="flex flex-wrap gap-2">
 											{exp.skills.map((skill) => (
 												<span
 													key={skill}
-													className="px-3 py-1 bg-black/80 text-white rounded-md text-xs font-medium">
+													className="glass-tag !bg-cyan-500/15 !border-cyan-400/30 !text-cyan-300 !text-xs">
 													{skill}
 												</span>
 											))}

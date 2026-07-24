@@ -24,15 +24,11 @@ export default function About() {
 			<div className="relative mx-auto container gap-8 px-6 sm:px-10 grid grid-cols-1 md:grid-cols-2 mb-16 md:mb-24">
 				<div className="flex justify-center items-center flex-col mb-8 md:mb-0">
 					<div className="images relative w-full h-[360px] sm:h-[440px] max-w-md mx-auto">
-						<div className="absolute top-6 left-4 w-[52%] aspect-square grayscale hover:grayscale-0 transition-all ease duration-300 z-10 shadow-lg rounded-lg overflow-hidden border-2 border-white">
+						<div className="absolute top-6 left-4 w-[52%] aspect-square grayscale hover:grayscale-0 transition-all ease duration-300 z-10 overflow-hidden border border-white/20">
 							<motion.div
 								initial={{ opacity: 0, scale: 0.8, y: 20 }}
-								whileInView={{
-									opacity: 1,
-									scale: 1,
-									y: 0,
-								}}
-								className="relative w-full h-full">
+								whileInView={{ opacity: 1, scale: 1, y: 0 }}
+								className="glass-static relative w-full h-full">
 								<Image
 									src={Me1}
 									alt="Andra photo 1"
@@ -42,20 +38,12 @@ export default function About() {
 								/>
 							</motion.div>
 						</div>
-						<div className="absolute top-2 right-4 w-[40%] aspect-square grayscale hover:grayscale-0 transition-all ease duration-300 z-0 shadow-md rounded-lg overflow-hidden border-2 border-white">
+						<div className="absolute top-2 right-4 w-[40%] aspect-square grayscale hover:grayscale-0 transition-all ease duration-300 z-0 overflow-hidden border border-white/20">
 							<motion.div
-								initial={{
-									opacity: 0,
-									scale: 0.8,
-									x: 20,
-								}}
-								whileInView={{
-									opacity: 1,
-									scale: 1,
-									x: 0,
-								}}
+								initial={{ opacity: 0, scale: 0.8, x: 20 }}
+								whileInView={{ opacity: 1, scale: 1, x: 0 }}
 								transition={{ delay: 0.2 }}
-								className="relative w-full h-full">
+								className="glass-static relative w-full h-full">
 								<Image
 									src={Me2}
 									alt="Andra photo 2"
@@ -65,22 +53,12 @@ export default function About() {
 								/>
 							</motion.div>
 						</div>
-						<div className="absolute bottom-4 right-10 w-[48%] aspect-square grayscale hover:grayscale-0 transition-all ease duration-300 z-20 shadow-xl rounded-lg overflow-hidden border-2 border-white">
+						<div className="absolute bottom-4 right-10 w-[48%] aspect-square grayscale hover:grayscale-0 transition-all ease duration-300 z-20 overflow-hidden border border-white/20">
 							<motion.div
-								initial={{
-									opacity: 0,
-									scale: 0.8,
-									y: 20,
-								}}
-								whileInView={{
-									opacity: 1,
-									scale: 1,
-									y: 0,
-								}}
-								transition={{
-									delay: 0.4,
-								}}
-								className="relative w-full h-full">
+								initial={{ opacity: 0, scale: 0.8, y: 20 }}
+								whileInView={{ opacity: 1, scale: 1, y: 0 }}
+								transition={{ delay: 0.4 }}
+								className="glass-static relative w-full h-full">
 								<Image
 									src={Me3}
 									alt="Andra photo 3"
@@ -94,39 +72,30 @@ export default function About() {
 				</div>
 				<motion.div
 					className="flex justify-center items-start flex-col mb-5 md:px-10"
-					initial={{
-						opacity: 0,
-						x: 200,
-					}}
-					whileInView={{
-						opacity: 1,
-						x: 0,
-					}}
-					transition={{
-						delay: 0.5,
-						type: "spring",
-					}}>
-					<h2 className="text-2xl font-bold tracking-wider mb-3">
+					initial={{ opacity: 0, x: 200 }}
+					whileInView={{ opacity: 1, x: 0 }}
+					transition={{ delay: 0.5, type: "spring" }}>
+					<h2 className="text-2xl font-bold tracking-wider mb-3 text-white">
 						Andra (SakamotoMrX)
 					</h2>
-					<p className="text-gray-600 text-justify title text-lg leading-relaxed">
+					<p className="text-white/70 text-justify title text-lg leading-relaxed">
 						I am a{" "}
-						<span className="text-black font-medium">
+						<span className="text-cyan-300 font-medium">
 							Junior DevOps practitioner & Linux enthusiast{" "}
 						</span>
 						based in{" "}
-						<span className="text-black font-medium">
+						<span className="text-cyan-300 font-medium">
 							Bogor, Indonesia
 						</span>
 						. Over the course of 15 years and 5 months of hands-on technological exploration, my core focus has centered on{" "}
-						<span className="text-black font-medium">
+						<span className="text-cyan-300 font-medium">
 							Linux System Administration, Virtualization, and Containerization
 						</span>
 						.
 						<br />
 						<br />
 						My daily toolkit revolves around{" "}
-						<span className="text-black font-medium">
+						<span className="text-cyan-300 font-medium">
 							Antigravity IDE, Vim, Nvim, Lazygit, and Arduino IDE
 						</span>
 						. When I&rsquo;m not crafting Bash scripts or YAML environment configurations, I spend my time Larping Linux (software) and working with Arduino microcontrollers (hardware).

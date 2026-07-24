@@ -3,8 +3,8 @@ import Link from "next/link";
 const Button = ({ children, variation, href, onClick, className = "", ...props }) => {
 	const baseStyles = `inline-block cursor-pointer title mr-3 px-8 py-2.5 shadow-md transition duration-300 ease-in-out text-center select-none ${
 		variation === "primary"
-			? "glass-btn text-teal-300 hover:text-white"
-			: "glass-btn-outline text-white/80 hover:text-white"
+			? "glass-btn"
+			: "glass-btn-outline"
 	} ${className}`;
 
 	if (href) {

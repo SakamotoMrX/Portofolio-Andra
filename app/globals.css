@@ -146,37 +146,38 @@ a[title]:hover:after {
 }
 
 .glass-btn {
-  background: rgba(20, 184, 166, 0.12);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(20, 184, 166, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 14px;
-  color: var(--accent);
+  color: #fff;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .glass-btn:hover {
-  background: rgba(20, 184, 166, 0.2);
-  border-color: rgba(20, 184, 166, 0.35);
-  box-shadow: 0 0 20px rgba(20, 184, 166, 0.12);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.08);
   transform: translateY(-2px);
 }
 
 .glass-btn-outline {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
-  color: var(--text-primary);
+  color: rgba(255, 255, 255, 0.7);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .glass-btn-outline:hover {
-  background: var(--glass-bg-hover);
-  border-color: var(--glass-border-hover);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
   transform: translateY(-2px);
 }
 

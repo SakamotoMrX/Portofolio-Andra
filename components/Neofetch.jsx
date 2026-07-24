@@ -6,24 +6,24 @@ import { neofetchData } from "@/data/neofetch";
 function FastfetchAsciiLogo() {
 	return (
 		<div className="flex flex-col items-center justify-center select-none font-mono">
-			<pre className="font-bold leading-tight tracking-tight text-[10px] sm:text-[11px] text-left">
-				<span className="text-amber-400">{`                     ..\n`}</span>
-				<span className="text-yellow-400">{`                 ,xNMM.\n`}</span>
-				<span className="text-yellow-300">{`               .OMMMMo\n`}</span>
-				<span className="text-lime-400">{`               lMM"\n`}</span>
-				<span className="text-green-400">{`     .;loddo:.  .olloddol;.\n`}</span>
-				<span className="text-teal-400">{`   cKMMMMMMMMMMNWMMMMMMMMMM0:\n`}</span>
-				<span className="text-cyan-400">{` .KMMMMMMMMMMMMMMMMMMMMMMMWd.\n`}</span>
-				<span className="text-sky-400">{` XMMMMMMMMMMMMMMMMMMMMMMMX.\n`}</span>
-				<span className="text-blue-400">{`;MMMMMMMMMMMMMMMMMMMMMMMM:\n`}</span>
-				<span className="text-blue-300">{`:MMMMMMMMMMMMMMMMMMMMMMMM:\n`}</span>
-				<span className="text-indigo-400">{`.MMMMMMMMMMMMMMMMMMMMMMMMX.\n`}</span>
-				<span className="text-indigo-300">{` kMMMMMMMMMMMMMMMMMMMMMMMMWd.\n`}</span>
-				<span className="text-purple-400">{` 'XMMMMMMMMMMMMMMMMMMMMMMMMMMk\n`}</span>
-				<span className="text-purple-300">{`  'XMMMMMMMMMMMMMMMMMMMMMMMMK.\n`}</span>
-				<span className="text-fuchsia-400">{`    kMMMMMMMMMMMMMMMMMMMMMMd\n`}</span>
-				<span className="text-pink-400">{`     ;KMMMMMMMWXXWMMMMMMMk.\n`}</span>
-				<span className="text-rose-400">{`       "cooc*"    "*coo'"`}</span>
+			<pre className="font-bold leading-tight tracking-tight text-[11px] sm:text-xs text-left text-cyan-400">
+{`                     ..'
+                 ,xNMM.
+               .OMMMMo
+               lMM"
+     .;loddo:.  .olloddol;.
+   cKMMMMMMMMMMNWMMMMMMMMMM0:
+ .KMMMMMMMMMMMMMMMMMMMMMMMWd.
+ XMMMMMMMMMMMMMMMMMMMMMMMX.
+;MMMMMMMMMMMMMMMMMMMMMMMM:
+:MMMMMMMMMMMMMMMMMMMMMMMM:
+.MMMMMMMMMMMMMMMMMMMMMMMMX.
+ kMMMMMMMMMMMMMMMMMMMMMMMMWd.
+ 'XMMMMMMMMMMMMMMMMMMMMMMMMMMk
+  'XMMMMMMMMMMMMMMMMMMMMMMMMK.
+    kMMMMMMMMMMMMMMMMMMMMMMd
+     ;KMMMMMMMWXXWMMMMMMMk.
+       "cooc*"    "*coo'"`}
 			</pre>
 		</div>
 	);

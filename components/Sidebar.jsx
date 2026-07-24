@@ -35,11 +35,11 @@ const Sidebar = () => {
 
 	return (
 		<div className="fixed z-40 max-md:hidden"
-			style={{ top: "50%", left: "2vw", transform: "translateY(-50%)" }}>
+			style={{ top: "50%", left: "1vw", transform: "translateY(-50%)" }}>
 			<div className="flex flex-col items-center px-3 rounded-full"
 				style={{
 					height: "45vh",
-					background: "rgba(255, 255, 255, 0.06)",
+					background: "rgba(255, 255, 255, 0.03)",
 					backdropFilter: "blur(32px)",
 					WebkitBackdropFilter: "blur(32px)",
 					boxShadow: "0 0 40px rgba(255,255,255,0.04), 0 20px 60px rgba(0,0,0,0.3)",

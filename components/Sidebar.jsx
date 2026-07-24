@@ -48,8 +48,8 @@ const Sidebar = () => {
 									layoutId="sidebar-active"
 									className="absolute inset-0 rounded-xl"
 									style={{
-										background: "rgba(20, 184, 166, 0.15)",
-										border: "1px solid rgba(20, 184, 166, 0.2)",
+										background: "rgba(255, 255, 255, 0.08)",
+										border: "1px solid rgba(255, 255, 255, 0.15)",
 									}}
 									transition={{ type: "spring", stiffness: 350, damping: 30 }}
 								/>
@@ -58,7 +58,7 @@ const Sidebar = () => {
 								icon={item.icon}
 								className={`relative z-10 text-xl transition-all duration-300 ${
 									activeAnchor === item.anchor
-										? "scale-110 text-teal-400"
+										? "scale-110 text-white"
 										: "scale-100 text-white/50 hover:text-white/80"
 								}`}
 							/>

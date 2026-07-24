@@ -35,47 +35,41 @@ const Sidebar = () => {
 	}, []);
 
 	return (
-		<div className="hidden md:flex fixed z-40 h-auto w-14 flex-col justify-between items-center py-5 px-3 left-4 top-1/2 -translate-y-1/2 rounded-[24px] shadow-2xl"
+		<div className="hidden md:flex fixed z-40 left-4 top-1/2 -translate-y-1/2 flex-col items-center gap-5 py-5 px-3 rounded-full shadow-2xl"
 			style={{
 				background: "rgba(255, 255, 255, 0.04)",
-				backdropFilter: "blur(20px)",
-				WebkitBackdropFilter: "blur(20px)",
+				backdropFilter: "blur(24px)",
+				WebkitBackdropFilter: "blur(24px)",
 				border: "1px solid rgba(255, 255, 255, 0.08)",
-				boxShadow: "0 8px 40px rgba(0,0,0,0.25), 0 0 60px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.06)",
+				boxShadow: "0 8px 40px rgba(0,0,0,0.3), 0 0 80px rgba(255,255,255,0.02), inset 0 1px 0 rgba(255,255,255,0.06)",
 			}}>
-			<ul id="sidebar" className="flex flex-col justify-evenly items-center h-full">
+			<ul id="sidebar" className="flex flex-col items-center gap-5">
 				{navItems.map((item) => (
-					<li key={item.anchor} data-menuanchor={item.anchor}>
+					<li key={item.anchor} data-menuanchor={item.anchor} className="relative">
 						<a
 							href={`/#${item.anchor}`}
 							aria-label={item.label}
 							className="relative flex items-center justify-center w-10 h-10">
-							{activeAnchor === item.anchor && (
-								<motion.div
-									layoutId="sidebar-active"
-									className="absolute inset-0 rounded-[14px]"
-									style={{
-										background: "rgba(255, 255, 255, 0.06)",
-										border: "1px solid rgba(255, 255, 255, 0.08)",
-									}}
-									transition={{ type: "spring", stiffness: 350, damping: 30 }}
-								/>
-							)}
-							<motion.div
-								className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
-								animate={{
-									opacity: activeAnchor === item.anchor ? 1 : 0,
-									scale: activeAnchor === item.anchor ? 1 : 0.3,
-									background: activeAnchor === item.anchor ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0)",
-								}}
-								transition={{ duration: 0.2 }}
+							<div
+								className={`absolute inset-0 rounded-xl transition-all duration-300 ${
+									activeAnchor === item.anchor
+										? "bg-white/10 border border-white/15"
+										: "bg-transparent border border-transparent"
+								}`}
+							/>
+							<div
+								className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full transition-all duration-300 ${
+									activeAnchor === item.anchor
+										? "opacity-100 scale-100 bg-white/60"
+										: "opacity-0 scale-0"
+								}`}
 							/>
 							<FontAwesomeIcon
 								icon={item.icon}
-								className={`relative z-10 text-lg transition-all duration-300 ${
+								className={`relative z-10 text-lg transition-all duration-200 ${
 									activeAnchor === item.anchor
 										? "text-white"
-										: "text-white/50 hover:text-white/80"
+										: "text-white/40 hover:text-white/70"
 								}`}
 							/>
 						</a>

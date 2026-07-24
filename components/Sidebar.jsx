@@ -1,11 +1,6 @@
 "use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faHome,
-	faUser,
-	faFolderOpen,
-	faEnvelope,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHome, faUser, faFolderOpen, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -32,7 +27,7 @@ const Sidebar = () => {
 					.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 				if (visible) setActiveAnchor(visible.target.id);
 			},
-				{ threshold: [0.45, 0.7] }
+			{ threshold: [0.45, 0.7] }
 		);
 
 		sections.forEach((section) => observer.observe(section));
@@ -40,11 +35,9 @@ const Sidebar = () => {
 	}, []);
 
 	return (
-		<div className="hidden md:flex fixed z-40 bg-gray-700 h-[50vh] w-14 flex-col justify-between items-center p-4 left-0 top-1/4 rounded-e-3xl">
-			<ul
-				id="sidebar"
-				className="flex flex-col justify-evenly items-center h-full text-gray-50">
-				{navItems.map((item, index) => (
+		<div className="hidden md:flex fixed z-40 h-[50vh] w-14 flex-col justify-between items-center p-4 left-0 top-1/4 rounded-e-3xl glass-static">
+			<ul id="sidebar" className="flex flex-col justify-evenly items-center h-full">
+				{navItems.map((item) => (
 					<li key={item.anchor} data-menuanchor={item.anchor}>
 						<a
 							href={`/#${item.anchor}`}
@@ -53,17 +46,21 @@ const Sidebar = () => {
 							{activeAnchor === item.anchor && (
 								<motion.div
 									layoutId="sidebar-active"
-									className="absolute inset-0 bg-gray-500 rounded-xl"
-									transition={{
-										type: "spring",
-										stiffness: 350,
-										damping: 30,
+									className="absolute inset-0 rounded-xl"
+									style={{
+										background: "rgba(20, 184, 166, 0.15)",
+										border: "1px solid rgba(20, 184, 166, 0.2)",
 									}}
+									transition={{ type: "spring", stiffness: 350, damping: 30 }}
 								/>
 							)}
 							<FontAwesomeIcon
 								icon={item.icon}
-								className={`relative z-10 text-xl transition-transform duration-300 ${activeAnchor === item.anchor ? "scale-110" : "scale-100"}`}
+								className={`relative z-10 text-xl transition-all duration-300 ${
+									activeAnchor === item.anchor
+										? "scale-110 text-teal-400"
+										: "scale-100 text-white/50 hover:text-white/80"
+								}`}
 							/>
 						</a>
 					</li>

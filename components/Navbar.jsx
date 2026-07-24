@@ -1,173 +1,121 @@
 "use client";
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
 const navVariant = {
 	open: {
 		clipPath: "circle(2000px at calc(100% - 40px) 40px)",
-		transition: {
-			type: "tween",
-			duration: 0.5,
-			ease: [0.22, 1, 0.36, 1],
-		},
+		transition: { type: "tween", duration: 0.5, ease: [0.22, 1, 0.36, 1] },
 	},
 	closed: {
 		clipPath: "circle(0px at calc(100% - 40px) 40px)",
-		transition: {
-			delay: 0.3,
-			type: "tween",
-			duration: 0.3,
-			ease: [0.4, 0, 1, 1],
-		},
+		transition: { delay: 0.3, type: "tween", duration: 0.3, ease: [0.4, 0, 1, 1] },
 	},
 };
 
 const itemVariants = {
 	open: (custom) => ({
-		opacity: 1,
-		x: 0,
-		transition: {
-			delay: custom,
-			type: "tween",
-			duration: 0.3,
-			ease: [0.22, 1, 0.36, 1],
-		},
+		opacity: 1, x: 0,
+		transition: { delay: custom, type: "tween", duration: 0.3, ease: [0.22, 1, 0.36, 1] },
 	}),
-	closed: {
-		opacity: 0,
-		x: -80,
-		transition: {
-			type: "tween",
-			duration: 0.2,
-		},
-	},
+	closed: { opacity: 0, x: -80, transition: { type: "tween", duration: 0.2 } },
 };
 
 const NavItems = ({ isNavOpen, setIsNavOpen }) => {
-	const handleItemClick = () => {
-		setIsNavOpen(false);
-	};
+	const handleItemClick = () => setIsNavOpen(false);
+
+	const links = [
+		{ href: "/#home", label: "Home" },
+		{ href: "/about", label: "About" },
+		{ href: "/projects", label: "Projects" },
+		{ href: "/#contact", label: "Contact" },
+	];
 
 	return (
-		<>
-			<motion.div
-				className={`fixed z-[45] w-full h-screen flex items-center justify-center overflow-hidden ${
-					isNavOpen ? "pointer-events-auto" : "pointer-events-none"
-				}`}
-				variants={navVariant}
-				animate={isNavOpen ? "open" : "closed"}
-				initial={false}>
-				<div className="relative opacity-95 flex flex-col items-center space-x-8 min-h-[100vh] bg-gray-700 min-w-[100vw] ">
-					<div className="flex flex-col items-center space-y-8 my-auto mx-0 z-50">
-						{/* title */}
-						<motion.h1
-							variants={itemVariants}
-							animate={isNavOpen ? "open" : "closed"}
-							className="text-6xl font-bold text-white ">
-							Menu
-						</motion.h1>
-						<Link href="/#home">
-							<div
-								className="text-2xl font-bold text-white"
-								onClick={handleItemClick}>
+		<motion.div
+			className={`fixed z-[45] w-full h-screen flex items-center justify-center overflow-hidden ${
+				isNavOpen ? "pointer-events-auto" : "pointer-events-none"
+			}`}
+			variants={navVariant}
+			animate={isNavOpen ? "open" : "closed"}
+			initial={false}>
+			<div className="relative opacity-95 flex flex-col items-center min-h-[100vh] min-w-[100vw] bg-[#0a0e27]/95 backdrop-blur-xl">
+				<div className="flex flex-col items-center space-y-8 my-auto z-50">
+					<motion.h1
+						variants={itemVariants}
+						animate={isNavOpen ? "open" : "closed"}
+						className="text-6xl font-bold text-white">
+						Menu
+					</motion.h1>
+					{links.map((link, i) => (
+						<Link key={link.href} href={link.href}>
+							<div onClick={handleItemClick} className="text-2xl font-bold">
 								<motion.h2
-									className="text-white"
+									className="text-white hover:text-teal-400 transition-colors"
 									variants={itemVariants}
 									animate={isNavOpen ? "open" : "closed"}
-									custom={0.1}>
-									Home
+									custom={(i + 1) * 0.1}>
+									{link.label}
 								</motion.h2>
 							</div>
 						</Link>
-						<Link href="/about">
-							<div
-								onClick={handleItemClick}
-								className="text-2xl font-bold text-white">
-								<motion.h2
-									className="text-white"
-									variants={itemVariants}
-									animate={isNavOpen ? "open" : "closed"}
-									custom={0.2}>
-									About
-								</motion.h2>
-							</div>
-						</Link>
-						<Link href="/projects">
-							<div
-								onClick={handleItemClick}
-								className="text-2xl font-bold text-white">
-								<motion.h2
-									className="text-white"
-									variants={itemVariants}
-									animate={isNavOpen ? "open" : "closed"}
-									custom={0.3}>
-									Projects
-								</motion.h2>
-							</div>
-						</Link>
-						<Link href="/#contact">
-							<div
-								onClick={handleItemClick}
-								className="text-2xl font-bold text-white">
-								<motion.h2
-									className="text-white"
-									variants={itemVariants}
-									animate={isNavOpen ? "open" : "closed"}
-									custom={0.4}>
-									Contact
-								</motion.h2>
-							</div>
-						</Link>
-					</div>
+					))}
 				</div>
-			</motion.div>
-		</>
+			</div>
+		</motion.div>
 	);
 };
 
 const Navbar = () => {
 	const navRef = useRef(null);
 	const [isNavOpen, setIsNavOpen] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
 
-	const toggleNav = () => {
-		setIsNavOpen(!isNavOpen);
-	};
+	useEffect(() => {
+		const handleScroll = () => setScrolled(window.scrollY > 20);
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
+	const toggleNav = () => setIsNavOpen(!isNavOpen);
 
 	return (
 		<>
 			<nav
 				ref={navRef}
-				className={`navbar px-5 md:px-24 w-screen fixed top-0 left-0 right-0 transition-colors ease duration-500 ${
-					isNavOpen
-						? "backdrop-filter backdrop-blur-md bg-gray-700 bg-opacity-50"
-						: "backdrop-filter backdrop-blur-md"
-				} bg-opacity-50 flex flex-row justify-between items-center h-16 z-50 `}>
-				<div>
+				className={`navbar px-5 md:px-24 w-screen fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+					scrolled || isNavOpen
+						? "glass-nav"
+						: "bg-transparent"
+				}`}>
+				<div className="flex flex-row justify-between items-center h-16">
 					<Link href="/#home" aria-label="Andra home">
-						<Image src="/image/andra-logo.png" alt="Andra logo" width={42} height={42} className="h-10 w-10 object-contain mix-blend-multiply" />
+						<Image
+							src="/image/andra-logo.png"
+							alt="Andra logo"
+							width={42}
+							height={42}
+							className="h-10 w-10 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+						/>
 					</Link>
-				</div>
-				<div className="flex flex-row items-center">
 					<button
 						aria-label={isNavOpen ? "Close menu" : "Open menu"}
-						className="burger button flex flex-col justify-center items-center space-y-1.5 "
+						className="glass-icon w-12 h-12 flex flex-col justify-center items-center space-y-1.5"
 						onClick={toggleNav}>
-						<div
-							className={`w-10 h-1 bg-black rounded-full transition-all ease duration-300 ${
-								isNavOpen ? "rotate-45   bg-white translate-y-[2px]" : ""
-							}`}></div>
-						<div
-							className={`w-10 h-1 bg-black rounded-full transition-all ease duration-300 ${
-								isNavOpen ? "-rotate-45 -translate-y-2 bg-white" : ""
-							}`}></div>
+						<div className={`w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${
+							isNavOpen ? "rotate-45 translate-y-[3px]" : ""
+						}`} />
+						<div className={`w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${
+							isNavOpen ? "-rotate-45 -translate-y-[3px]" : ""
+						}`} />
 					</button>
 				</div>
 			</nav>
-			{/* items */}
 			<NavItems isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
 		</>
 	);
 };
+
 export default Navbar;

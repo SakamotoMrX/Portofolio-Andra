@@ -36,10 +36,8 @@ const SITE_URL =
 export const metadata = {
 	metadataBase: new URL(SITE_URL),
 	title: "Andra | Junior DevOps",
-
 	description:
 		"Andra (SakamotoMrX) — Junior DevOps based in Bogor, Indonesia. Linux SysAdmin, Containerization, Git & GitHub enthusiast, and open-source tinkerer.",
-
 	author: "Andra",
 	siteUrl: SITE_URL,
 	applicationName: "Andra | Portfolio",
@@ -47,22 +45,11 @@ export const metadata = {
 		icon: "/icon.png",
 		shortcut: "/icon.png",
 	},
-
 	keywords: [
-		"andra",
-		"sakamotomrx",
-		"junior devops",
-		"linux sysadmin",
-		"devops",
-		"containerization",
-		"bogor",
-		"indonesia",
-		"portfolio",
-		"bash",
-		"yaml",
-		"git",
+		"andra", "sakamotomrx", "junior devops", "linux sysadmin",
+		"devops", "containerization", "bogor", "indonesia",
+		"portfolio", "bash", "yaml", "git",
 	],
-
 	openGraph: {
 		type: "website",
 		url: SITE_URL,
@@ -70,21 +57,12 @@ export const metadata = {
 		siteName: "Andra | Portfolio",
 		description:
 			"Andra (SakamotoMrX) — Junior DevOps based in Bogor, Indonesia. Linux SysAdmin, Containerization, and open-source tinkerer.",
-		images: [
-			{
-				url: "/og-image.png",
-				alt: "Andra Portfolio",
-				width: 1200,
-				height: 630,
-			},
-		],
+		images: [{ url: "/og-image.png", alt: "Andra Portfolio", width: 1200, height: 630 }],
 	},
-
 	twitter: {
 		card: "summary_large_image",
 		title: "Andra | Junior DevOps",
-		description:
-			"Andra (SakamotoMrX) — Junior DevOps based in Bogor, Indonesia.",
+		description: "Andra (SakamotoMrX) — Junior DevOps based in Bogor, Indonesia.",
 		images: ["/og-image.png"],
 	},
 };
@@ -95,11 +73,7 @@ const jsonLd = {
 	name: "Andra",
 	url: SITE_URL,
 	jobTitle: "Junior DevOps",
-	address: {
-		"@type": "PostalAddress",
-		addressLocality: "Bogor",
-		addressCountry: "ID",
-	},
+	address: { "@type": "PostalAddress", addressLocality: "Bogor", addressCountry: "ID" },
 	sameAs: [
 		"https://github.com/SakamotoMrX",
 		"https://www.instagram.com/andrahijati/",
@@ -109,17 +83,22 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
 	return (
-		<html
-			lang="en"
-			className={`${poppins.variable} ${jost.variable} ${firaCode.variable}`}>
-			<body>
+		<html lang="en" className={`${poppins.variable} ${jost.variable} ${firaCode.variable}`}>
+			<body className="relative">
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				/>
+				{/* Background blobs for glassmorphism light sources */}
+				<div className="bg-blobs" aria-hidden="true">
+					<div className="bg-blob-purple" />
+					<div className="bg-blob-teal" />
+				</div>
 				<ClientTopProgressBar />
 				<Navbar />
-				{children}
+				<div className="relative z-10">
+					{children}
+				</div>
 				<ChatConditional />
 				<Analytics />
 			</body>

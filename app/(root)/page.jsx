@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-// components
 import Button from "@/components/Button";
 import Me from "@/public/image/hero.jpg";
 import MeAbout from "@/public/image/about-1.jpg";
@@ -12,12 +11,19 @@ import Setup from "@/public/image/setup.jpg";
 import ProjectAll from "@/public/image/projects-showcase.png";
 import Hr from "@/components/Hr";
 
-// icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faInstagram, faFacebook, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const Section = ({ id, children }) => <section id={id} className="section">{children}</section>;
+
+const socialLinks = [
+	{ icon: faEnvelope, href: "mailto:andrahijati@gmail.com?subject=Hello%20Andra", label: "Send email" },
+	{ icon: faGithub, href: "https://github.com/SakamotoMrX", label: "GitHub profile" },
+	{ icon: faInstagram, href: "https://www.instagram.com/andrahijati", label: "Instagram profile" },
+	{ icon: faFacebook, href: "https://web.facebook.com/andra.nugroho.921", label: "Facebook profile" },
+	{ icon: faDiscord, href: "https://discord.com/users/legacyy5030", label: "Discord profile" },
+];
 
 const MyPage = () => {
 	useEffect(() => {
@@ -40,20 +46,16 @@ const MyPage = () => {
 		const moveOneSection = (event) => {
 			if (Math.abs(event.deltaY) < 8) return;
 			event.preventDefault();
-
 			if (locked) return;
 			const currentIndex = getCurrentIndex();
 			const nextIndex = Math.max(
 				0,
 				Math.min(sectionIds.length - 1, currentIndex + (event.deltaY > 0 ? 1 : -1))
 			);
-
 			if (nextIndex === currentIndex) return;
 			locked = true;
 			sections[nextIndex]?.scrollIntoView({ behavior: "smooth", block: "start" });
-			unlockTimer = window.setTimeout(() => {
-				locked = false;
-			}, 850);
+			unlockTimer = window.setTimeout(() => { locked = false; }, 850);
 		};
 
 		window.addEventListener("wheel", moveOneSection, { passive: false });
@@ -73,82 +75,51 @@ const MyPage = () => {
 						className="col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start"
 						initial={{ x: -100, opacity: 0 }}
 						whileInView={{ x: 0, opacity: 1 }}
-						transition={{
-							type: "spring",
-						}}>
+						transition={{ type: "spring" }}>
+						{/* Mobile avatar */}
 						<div className="block md:hidden col-span-1 mx-auto my-10">
-							<div className="bg-slate-500 rounded-full h-72 w-72 grayscale hover:grayscale-0 transition-all ease duration-300 shadow-xl overflow-hidden">
-								<Image
-									src={Me}
-									width={600}
-									height={600}
-									className="rounded-full w-full h-full object-cover"
-									alt="Andra"
-								/>
+							<div className="glass-static rounded-full h-72 w-72 overflow-hidden shadow-xl">
+								<Image src={Me} width={600} height={600} className="rounded-full w-full h-full object-cover" alt="Andra" />
 							</div>
 						</div>
 						<motion.h3
-							className="uppercase text-xl mb-3 font-normal tracking-[.5rem] text-gray-500"
+							className="uppercase text-xl mb-3 font-normal tracking-[.5rem] text-teal-400/70"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.2,
-								type: "spring",
-							}}>
+							transition={{ delay: 0.2, type: "spring" }}>
 							Andra (SakamotoMrX)
 						</motion.h3>
 						<motion.h1
-							className="text-black text-4xl md:text-6xl lg:text-6xl 2xl:text-8xl font-bold my-2 md:my-5"
+							className="text-4xl md:text-6xl lg:text-6xl 2xl:text-8xl font-bold my-2 md:my-5"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.3,
-								type: "spring",
-							}}>
+							transition={{ delay: 0.3, type: "spring" }}>
 							Junior DevOps
 						</motion.h1>
 						<motion.p
-							className="title text-md 2xl:text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem]"
+							className="title text-md 2xl:text-xl mt-4 tracking-wider leading-[1.7rem]"
+							style={{ color: "var(--text-secondary)" }}
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.4,
-								type: "spring",
-							}}>
+							transition={{ delay: 0.4, type: "spring" }}>
 							Hi! I&rsquo;m Andra, a Junior DevOps based in Bogor, Indonesia with over 15 years 5 months of hands-on technology exploration. Specialized in Linux SysAdmin, Virtual Machines, Containerization, Bash scripting, and open-source systems.
 						</motion.p>
 						<motion.div
 							className="buttons flex flex-row justify-center items-center space-x-4 mt-10 z-30 relative"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.5,
-								type: "spring",
-							}}>
-							<Button variation="primary" href="/about">
-								About Me
-							</Button>
-							<Button variation="secondary" href="#contact">
-								Contact Me
-							</Button>
+							transition={{ delay: 0.5, type: "spring" }}>
+							<Button variation="primary" href="/about">About Me</Button>
+							<Button variation="secondary" href="#contact">Contact Me</Button>
 						</motion.div>
 					</motion.div>
 					<motion.div
 						className="hidden md:flex col-span-1 mx-auto justify-center items-center"
 						initial={{ x: 100, opacity: 0 }}
 						whileInView={{ x: 0, opacity: 1 }}
-						transition={{
-							delay: 0.7,
-							type: "spring",
-						}}>
-						<div className="rounded-full h-auto w-auto max-w-[34vw] lg:px-4 grayscale hover:grayscale-0 transition-all ease duration-300 shadow-2xl">
-							<Image
-								src={Me}
-								width={600}
-								height={750}
-								alt="Andra"
-								className="rounded-full w-full h-full object-cover"
-							/>
+						transition={{ delay: 0.7, type: "spring" }}>
+						<div className="glass-static rounded-full h-auto w-auto max-w-[34vw] lg:px-4 overflow-hidden shadow-2xl">
+							<Image src={Me} width={600} height={750} alt="Andra" className="rounded-full w-full h-full object-cover" />
 						</div>
 					</motion.div>
 				</div>
@@ -159,60 +130,35 @@ const MyPage = () => {
 				<div className="mx-auto w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-8 p-10 overflow-hidden relative z-20 items-center">
 					<div className="col-span-2 flex flex-col justify-center items-start text-start">
 						<motion.h1
-							className="text-black text-5xl md:text-8xl font-bold"
+							className="text-5xl md:text-8xl font-bold"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.1,
-								type: "spring",
-							}}>
+							transition={{ delay: 0.1, type: "spring" }}>
 							About Me
 						</motion.h1>
 						<Hr />
 						<motion.p
-							className="title text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] mb-5 max-w-2xl"
+							className="title text-xl mt-4 tracking-wider leading-[1.7rem] mb-5 max-w-2xl"
+							style={{ color: "var(--text-secondary)" }}
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.2,
-								type: "spring",
-							}}>
+							transition={{ delay: 0.2, type: "spring" }}>
 							Linux SysAdmin, Containerization, and hardware tinkering (Arduino). Check out my Fastfetch specs.
 						</motion.p>
 						<motion.div
 							initial={{ y: 40, opacity: 0 }}
 							whileInView={{ y: 0, opacity: 1 }}
-							transition={{
-								delay: 0.3,
-								type: "spring",
-							}}>
-							<Button variation="primary" href="/about">
-								Learn More & Fastfetch
-							</Button>
+							transition={{ delay: 0.3, type: "spring" }}>
+							<Button variation="primary" href="/about">Learn More & Fastfetch</Button>
 						</motion.div>
 					</div>
 					<div className="col-span-1 flex justify-center items-center">
 						<motion.div
-							className="relative bg-slate-300 rounded-xl overflow-hidden h-[340px] md:h-[520px] w-full max-w-[500px] grayscale hover:grayscale-0 shadow-2xl transition-all"
-							initial={{
-								x: 100,
-								opacity: 0,
-							}}
-							whileInView={{
-								x: 0,
-								opacity: 1,
-							}}
-							transition={{
-								delay: 0.4,
-								type: "spring",
-							}}>
-							<Image
-								src={MeAbout}
-								fill
-								sizes="(max-width: 768px) 80vw, 30vw"
-								className="object-cover"
-								alt="Andra DevOps"
-							/>
+							className="relative glass-static rounded-2xl overflow-hidden h-[340px] md:h-[520px] w-full max-w-[500px] shadow-2xl"
+							initial={{ x: 100, opacity: 0 }}
+							whileInView={{ x: 0, opacity: 1 }}
+							transition={{ delay: 0.4, type: "spring" }}>
+							<Image src={MeAbout} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Andra DevOps" />
 						</motion.div>
 					</div>
 				</div>
@@ -223,60 +169,35 @@ const MyPage = () => {
 				<div className="mx-auto w-[94%] max-w-[1800px] grid grid-cols-1 md:grid-cols-2 gap-10 p-10 overflow-hidden relative z-20 items-center">
 					<div className="col-span-1 flex flex-col justify-center items-start text-start">
 						<motion.h1
-							className="text-black text-5xl md:text-8xl font-bold"
+							className="text-5xl md:text-8xl font-bold"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.1,
-								type: "spring",
-							}}>
+							transition={{ delay: 0.1, type: "spring" }}>
 							My Projects
 						</motion.h1>
 						<Hr />
 						<motion.p
-							className="title text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] mb-5 max-w-2xl"
+							className="title text-xl mt-4 tracking-wider leading-[1.7rem] mb-5 max-w-2xl"
+							style={{ color: "var(--text-secondary)" }}
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.2,
-								type: "spring",
-							}}>
+							transition={{ delay: 0.2, type: "spring" }}>
 							Server automation tools, Linux scripts, and IoT experiments.
 						</motion.p>
 						<motion.div
 							initial={{ y: 40, opacity: 0 }}
 							whileInView={{ y: 0, opacity: 1 }}
-							transition={{
-								delay: 0.3,
-								type: "spring",
-							}}>
-							<Button variation="primary" href="/projects">
-								Explore Projects
-							</Button>
+							transition={{ delay: 0.3, type: "spring" }}>
+							<Button variation="primary" href="/projects">Explore Projects</Button>
 						</motion.div>
 					</div>
 					<div className="col-span-1 flex justify-center items-center w-full">
 						<motion.div
-							className="relative aspect-[16/9] w-full max-w-[760px] bg-slate-300 rounded-xl overflow-hidden grayscale hover:grayscale-0 shadow-2xl transition-all"
-							initial={{
-								x: 100,
-								opacity: 0,
-							}}
-							whileInView={{
-								x: 0,
-								opacity: 1,
-							}}
-							transition={{
-								delay: 0.4,
-								type: "spring",
-							}}>
-							<Image
-								src={ProjectAll}
-								fill
-								sizes="(max-width: 768px) 80vw, 30vw"
-								className="object-cover"
-								alt="Projects"
-							/>
+							className="relative aspect-[16/9] w-full max-w-[760px] glass-static rounded-2xl overflow-hidden shadow-2xl"
+							initial={{ x: 100, opacity: 0 }}
+							whileInView={{ x: 0, opacity: 1 }}
+							transition={{ delay: 0.4, type: "spring" }}>
+							<Image src={ProjectAll} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Projects" />
 						</motion.div>
 					</div>
 				</div>
@@ -287,136 +208,59 @@ const MyPage = () => {
 				<div className="mx-auto w-[94%] max-w-[1800px] grid grid-cols-1 md:grid-cols-2 gap-10 p-10 overflow-hidden relative z-20 items-center">
 					<div className="col-span-1 flex flex-col justify-center items-start text-start">
 						<motion.h1
-							className="text-black text-5xl md:text-8xl font-bold mb-3"
+							className="text-5xl md:text-8xl font-bold mb-3"
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.1,
-								type: "spring",
-							}}>
+							transition={{ delay: 0.1, type: "spring" }}>
 							Get In Touch
 						</motion.h1>
 						<Hr />
 						<motion.p
-							className="title text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] md:mb-5 max-w-2xl"
+							className="title text-xl mt-4 tracking-wider leading-[1.7rem] md:mb-5 max-w-2xl"
+							style={{ color: "var(--text-secondary)" }}
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.2,
-								type: "spring",
-							}}>
+							transition={{ delay: 0.2, type: "spring" }}>
 							Feel free to connect or collaborate on Linux SysAdmin & DevOps projects.
 						</motion.p>
 						<motion.p
-							className="title text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem] mb-5"
+							className="title text-xl mt-4 tracking-wider leading-[1.7rem] mb-5"
+							style={{ color: "var(--accent)" }}
 							initial={{ x: -100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
-							transition={{
-								delay: 0.3,
-								type: "spring",
-							}}>
-							<a href="mailto:andrahijati@gmail.com?subject=Hello%20Andra">
+							transition={{ delay: 0.3, type: "spring" }}>
+							<a href="mailto:andrahijati@gmail.com?subject=Hello%20Andra" className="hover:underline">
 								andrahijati@gmail.com
 							</a>
 						</motion.p>
 						{/* Social Icons */}
 						<div className="flex justify-center items-center space-x-4 mb-5">
-							<motion.a
-								href="mailto:andrahijati@gmail.com?subject=Hello%20Andra"
-								aria-label="Send email"
-								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
-								initial={{ y: 40, opacity: 0 }}
-								whileInView={{ y: 0, opacity: 1 }}
-								transition={{
-									y: { delay: 0.1 },
-									opacity: { delay: 0.2 },
-								}}>
-								<FontAwesomeIcon icon={faEnvelope} className="text-3xl" />
-							</motion.a>
-
-							<motion.a
-								href="https://github.com/SakamotoMrX"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="GitHub profile"
-								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
-								initial={{ opacity: 0, y: 40 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{
-									y: { delay: 0.2 },
-									opacity: { delay: 0.3 },
-								}}>
-								<FontAwesomeIcon icon={faGithub} className="text-3xl" />
-							</motion.a>
-
-							<motion.a
-								href="https://www.instagram.com/andrahijati"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="Instagram profile"
-								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
-								initial={{ opacity: 0, y: 40 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{
-									y: { delay: 0.3 },
-									opacity: { delay: 0.4 },
-								}}>
-								<FontAwesomeIcon icon={faInstagram} className="text-3xl" />
-							</motion.a>
-
-							<motion.a
-								href="https://web.facebook.com/andra.nugroho.921"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="Facebook profile"
-								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
-								initial={{ opacity: 0, y: 40 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{
-									y: { delay: 0.4 },
-									opacity: { delay: 0.5 },
-								}}>
-								<FontAwesomeIcon icon={faFacebook} className="text-3xl" />
-							</motion.a>
-
-							<motion.a
-								href="https://discord.com/users/legacyy5030"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="Discord profile (legacyy5030)"
-								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
-								initial={{ opacity: 0, y: 40 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{
-									y: { delay: 0.5 },
-									opacity: { delay: 0.6 },
-								}}>
-								<FontAwesomeIcon icon={faDiscord} className="text-3xl" />
-							</motion.a>
+							{socialLinks.map((social, i) => (
+								<motion.a
+									key={social.label}
+									href={social.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={social.label}
+									className="glass-icon flex justify-center items-center w-14 h-14 text-white/70 hover:text-teal-400"
+									initial={{ y: 40, opacity: 0 }}
+									whileInView={{ y: 0, opacity: 1 }}
+									transition={{
+										y: { delay: 0.1 + i * 0.1 },
+										opacity: { delay: 0.2 + i * 0.1 },
+									}}>
+									<FontAwesomeIcon icon={social.icon} className="text-2xl" />
+								</motion.a>
+							))}
 						</div>
 					</div>
 					<div className="col-span-1 flex justify-center items-center w-full">
 						<motion.div
-							className="relative aspect-[16/9] w-full max-w-[760px] bg-slate-300 rounded-xl overflow-hidden grayscale hover:grayscale-0 shadow-2xl transition-all"
-							initial={{
-								x: 100,
-								opacity: 0,
-							}}
-							whileInView={{
-								x: 0,
-								opacity: 1,
-							}}
-							transition={{
-								delay: 0.4,
-								type: "spring",
-							}}>
-							<Image
-								src={Setup}
-								fill
-								sizes="(max-width: 768px) 80vw, 30vw"
-								className="object-cover"
-								alt="Andra Workspace Setup"
-							/>
+							className="relative aspect-[16/9] w-full max-w-[760px] glass-static rounded-2xl overflow-hidden shadow-2xl"
+							initial={{ x: 100, opacity: 0 }}
+							whileInView={{ x: 0, opacity: 1 }}
+							transition={{ delay: 0.4, type: "spring" }}>
+							<Image src={Setup} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Andra Workspace Setup" />
 						</motion.div>
 					</div>
 				</div>

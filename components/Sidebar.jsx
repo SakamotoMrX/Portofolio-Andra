@@ -34,17 +34,18 @@ const Sidebar = () => {
 	}, []);
 
 	return (
-		<div className="fixed z-40 left-4 max-md:hidden"
+		<div className="fixed z-40 left-6 max-md:hidden"
 			style={{ top: "50%", transform: "translateY(-50%)" }}>
-			<div className="flex flex-col items-center py-24 px-4 rounded-full shadow-2xl"
+			<div className="flex flex-col items-center px-3 rounded-full shadow-2xl"
 				style={{
+					height: "65vh",
 					background: "rgba(255, 255, 255, 0.04)",
 					backdropFilter: "blur(24px)",
 					WebkitBackdropFilter: "blur(24px)",
 					border: "1px solid rgba(255, 255, 255, 0.08)",
 					boxShadow: "0 8px 40px rgba(0,0,0,0.3), 0 0 80px rgba(255,255,255,0.02), inset 0 1px 0 rgba(255,255,255,0.06)",
 				}}>
-				<ul id="sidebar" className="flex flex-col items-center gap-12">
+				<ul id="sidebar" className="flex flex-col items-center justify-between h-full py-8">
 					{navItems.map((item) => (
 						<li key={item.anchor} data-menuanchor={item.anchor} className="relative">
 							<a

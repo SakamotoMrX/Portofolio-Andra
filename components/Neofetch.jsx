@@ -49,7 +49,7 @@ export default function Neofetch() {
 	return (
 		<section className="w-full py-12 px-4 sm:px-8 max-w-5xl mx-auto font-['Fira_Code',monospace]">
 			<motion.div
-				className="glass-static relative overflow-hidden font-mono scanline"
+				className="glass-static relative font-mono scanline p-5 sm:p-8"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"

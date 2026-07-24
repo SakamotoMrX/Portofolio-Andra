@@ -118,8 +118,10 @@ const MyPage = () => {
 						initial={{ x: 100, opacity: 0 }}
 						whileInView={{ x: 0, opacity: 1 }}
 						transition={{ delay: 0.7, type: "spring" }}>
-						<div className="glass-static rounded-full h-auto w-auto max-w-[34vw] lg:px-4 overflow-hidden shadow-2xl">
-							<Image src={Me} width={600} height={750} alt="Andra" className="rounded-full w-full h-full object-cover" />
+						<div className="glass-static rounded-full aspect-square w-[28vw] max-w-[340px] shadow-2xl flex items-center justify-center p-1">
+							<div className="rounded-full w-full h-full overflow-hidden">
+								<Image src={Me} width={600} height={750} alt="Andra" className="w-full h-full object-cover" />
+							</div>
 						</div>
 					</motion.div>
 				</div>

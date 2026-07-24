@@ -6,27 +6,27 @@ import { neofetchData } from "@/data/neofetch";
 function FastfetchAsciiLogo() {
 	return (
 		<div className="flex flex-col items-center justify-center select-none font-mono">
-			<pre className="font-bold leading-tight tracking-tight text-[11px] sm:text-xs text-left">
-				<span className="text-cyan-400">{`         ./o.         \n`}</span>
-				<span className="text-cyan-400">{`        ./sssso-       \n`}</span>
-				<span className="text-cyan-400">{`       \`:ossssss:\`     \n`}</span>
-				<span className="text-sky-400">{`     \`:+sssssssss+:\`   \n`}</span>
-				<span className="text-sky-400">{`    \`-/osssssssssss/   \n`}</span>
-				<span className="text-sky-400">{`  \`:+ssssssssssssssss+ \n`}</span>
-				<span className="text-blue-400">{` \`-ssyhhhhhhdhhhhhhys+ \n`}</span>
-				<span className="text-blue-400">{`   .osyyhhyyyyyyyyso.  \n`}</span>
-				<span className="text-indigo-400">{`     .osyyyyyyysso.    \n`}</span>
-				<span className="text-indigo-400">{`       .-/osssso/-.    \n`}</span>
-				<span className="text-indigo-400">{`          \`-\`-\`        `}</span>
+			<pre className="font-bold leading-tight tracking-tight text-[11px] sm:text-xs text-left text-cyan-400">
+{`         ./o.
+        ./sssso-
+       \`:ossssss:\`
+     \`:+sssssssss+:\`
+    \`-/osssssssssss/
+  \`:+ssssssssssssssss+
+ \`-ssyhhhhhhdhhhhhhys+
+   .osyyhhyyyyyyyyso.
+     .osyyyyyyysso.
+       .-/osssso/-.
+          \`-\`-\``}
 			</pre>
 		</div>
 	);
 }
 
-function FastfetchRow({ label, value, keyColor = "text-sky-400" }) {
+function FastfetchRow({ label, value }) {
 	return (
 		<div className="flex flex-col sm:flex-row sm:items-baseline w-full font-mono text-xs sm:text-sm py-0.5 gap-0.5 sm:gap-0 overflow-hidden">
-			<span className={`font-bold shrink-0 ${keyColor}`}>{label}</span>
+			<span className="font-bold shrink-0 text-cyan-400/90">{label}</span>
 			<span className="hidden sm:inline-block flex-1 border-b border-dotted border-white/10 mx-1.5 min-w-[8px] translate-y-[-3px]"></span>
 			<span className="shrink sm:shrink-0 font-medium text-white/80 sm:text-right break-words min-w-0">{value}</span>
 		</div>
@@ -84,62 +84,38 @@ export default function Neofetch() {
 					{/* Right: Spec Output */}
 					<motion.div className="md:col-span-8 flex flex-col space-y-1" variants={itemVariants}>
 						<div className="font-mono text-sm sm:text-base font-bold pb-1">
-							<span className="text-emerald-400">{data.user}</span>
+							<span className="text-cyan-400">{data.user}</span>
 							<span className="text-white/80">@</span>
-							<span className="text-emerald-400">{data.host}</span>
+							<span className="text-cyan-400">{data.host}</span>
 						</div>
 
 						<div className="text-white/20 font-mono text-xs sm:text-sm tracking-tighter pb-2 border-b border-white/10 mb-2">
 							----------------------------------------
 						</div>
 
-						<FastfetchRow label="OS" value={data.os} keyColor="text-sky-400" />
-						<FastfetchRow label="Host" value={data.location} keyColor="text-sky-400" />
-						<FastfetchRow label="Uptime" value={data.uptime} keyColor="text-sky-400" />
-						<FastfetchRow label="Shell" value={data.shell} keyColor="text-sky-400" />
-						<FastfetchRow label="IDE" value={data.ide.join(", ")} keyColor="text-sky-400" />
+						<FastfetchRow label="OS" value={data.os} />
+						<FastfetchRow label="Host" value={data.location} />
+						<FastfetchRow label="Uptime" value={data.uptime} />
+						<FastfetchRow label="Shell" value={data.shell} />
+						<FastfetchRow label="IDE" value={data.ide.join(", ")} />
 
 						<div className="pt-2" />
-						<FastfetchRow label="Languages.Scripting" value={data.languages.scripting.join(", ")} keyColor="text-cyan-400" />
-						<FastfetchRow label="Languages.Human" value={data.languages.human.join(", ")} keyColor="text-cyan-400" />
+						<FastfetchRow label="Languages.Scripting" value={data.languages.scripting.join(", ")} />
+						<FastfetchRow label="Languages.Human" value={data.languages.human.join(", ")} />
 
 						<div className="pt-2" />
-						<FastfetchRow label="Skills.System" value={data.skills.system.join(", ")} keyColor="text-teal-400" />
-						<FastfetchRow label="Skills.WebDev" value={data.skills.webdev.join(", ")} keyColor="text-teal-400" />
-						<FastfetchRow label="Skills.Process" value={data.skills.process.join(", ")} keyColor="text-teal-400" />
+						<FastfetchRow label="Skills.System" value={data.skills.system.join(", ")} />
+						<FastfetchRow label="Skills.WebDev" value={data.skills.webdev.join(", ")} />
+						<FastfetchRow label="Skills.Process" value={data.skills.process.join(", ")} />
 
 						<div className="pt-2" />
-						<FastfetchRow label="Hobbies" value={data.hobbies.join(" • ")} keyColor="text-amber-400" />
+						<FastfetchRow label="Hobbies" value={data.hobbies.join(" • ")} />
 
 						<div className="pt-2" />
-						<FastfetchRow label="Contact.Email" value={data.contact.email} keyColor="text-purple-400" />
-						<FastfetchRow label="Contact.Discord" value={data.contact.discord} keyColor="text-purple-400" />
-						<FastfetchRow label="Contact.Instagram" value={data.contact.instagram} keyColor="text-purple-400" />
-						<FastfetchRow label="Contact.Facebook" value={data.contact.facebook} keyColor="text-purple-400" />
-
-						{/* Color palette */}
-						<div className="pt-4 flex flex-col space-y-1 font-mono">
-							<div className="flex gap-1.5">
-								<span className="w-5 h-3 bg-[#1e222a] rounded-sm" />
-								<span className="w-5 h-3 bg-[#e06c75] rounded-sm" />
-								<span className="w-5 h-3 bg-[#98c379] rounded-sm" />
-								<span className="w-5 h-3 bg-[#d19a66] rounded-sm" />
-								<span className="w-5 h-3 bg-[#61afef] rounded-sm" />
-								<span className="w-5 h-3 bg-[#c678dd] rounded-sm" />
-								<span className="w-5 h-3 bg-[#56b6c2] rounded-sm" />
-								<span className="w-5 h-3 bg-[#abb2bf] rounded-sm" />
-							</div>
-							<div className="flex gap-1.5">
-								<span className="w-5 h-3 bg-[#5c6370] rounded-sm" />
-								<span className="w-5 h-3 bg-[#be5046] rounded-sm" />
-								<span className="w-5 h-3 bg-[#a5e075] rounded-sm" />
-								<span className="w-5 h-3 bg-[#e5c07b] rounded-sm" />
-								<span className="w-5 h-3 bg-[#4db5ff] rounded-sm" />
-								<span className="w-5 h-3 bg-[#de98f3] rounded-sm" />
-								<span className="w-5 h-3 bg-[#4cd4e0] rounded-sm" />
-								<span className="w-5 h-3 bg-[#ffffff] rounded-sm" />
-							</div>
-						</div>
+						<FastfetchRow label="Contact.Email" value={data.contact.email} />
+						<FastfetchRow label="Contact.Discord" value={data.contact.discord} />
+						<FastfetchRow label="Contact.Instagram" value={data.contact.instagram} />
+						<FastfetchRow label="Contact.Facebook" value={data.contact.facebook} />
 					</motion.div>
 				</div>
 			</motion.div>

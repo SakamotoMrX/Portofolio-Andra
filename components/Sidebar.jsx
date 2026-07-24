@@ -38,14 +38,14 @@ const Sidebar = () => {
 			style={{ top: "50%", transform: "translateY(-50%)" }}>
 			<div className="flex flex-col items-center px-3 rounded-full shadow-2xl"
 				style={{
-					height: "65vh",
+					height: "45vh",
 					background: "rgba(255, 255, 255, 0.04)",
-					backdropFilter: "blur(24px)",
-					WebkitBackdropFilter: "blur(24px)",
+					backdropFilter: "blur(28px)",
+					WebkitBackdropFilter: "blur(28px)",
 					border: "1px solid rgba(255, 255, 255, 0.08)",
-					boxShadow: "0 8px 40px rgba(0,0,0,0.3), 0 0 80px rgba(255,255,255,0.02), inset 0 1px 0 rgba(255,255,255,0.06)",
+					boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 4px 20px rgba(0,0,0,0.15), 0 0 80px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.06)",
 				}}>
-				<ul id="sidebar" className="flex flex-col items-center justify-between h-full py-8">
+				<ul id="sidebar" className="flex flex-col items-center justify-center gap-6 h-full py-14">
 					{navItems.map((item) => (
 						<li key={item.anchor} data-menuanchor={item.anchor} className="relative">
 							<a

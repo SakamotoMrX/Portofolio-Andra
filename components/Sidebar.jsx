@@ -35,7 +35,14 @@ const Sidebar = () => {
 	}, []);
 
 	return (
-		<div className="hidden md:flex fixed z-40 h-[50vh] w-14 flex-col justify-between items-center p-4 left-0 top-1/4 rounded-e-3xl glass-static">
+		<div className="hidden md:flex fixed z-40 h-auto w-14 flex-col justify-between items-center py-5 px-3 left-4 top-1/2 -translate-y-1/2 rounded-[24px] shadow-2xl"
+			style={{
+				background: "rgba(255, 255, 255, 0.04)",
+				backdropFilter: "blur(20px)",
+				WebkitBackdropFilter: "blur(20px)",
+				border: "1px solid rgba(255, 255, 255, 0.08)",
+				boxShadow: "0 8px 40px rgba(0,0,0,0.25), 0 0 60px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.06)",
+			}}>
 			<ul id="sidebar" className="flex flex-col justify-evenly items-center h-full">
 				{navItems.map((item) => (
 					<li key={item.anchor} data-menuanchor={item.anchor}>
@@ -46,20 +53,29 @@ const Sidebar = () => {
 							{activeAnchor === item.anchor && (
 								<motion.div
 									layoutId="sidebar-active"
-									className="absolute inset-0 rounded-xl"
+									className="absolute inset-0 rounded-[14px]"
 									style={{
-										background: "rgba(255, 255, 255, 0.08)",
-										border: "1px solid rgba(255, 255, 255, 0.15)",
+										background: "rgba(255, 255, 255, 0.06)",
+										border: "1px solid rgba(255, 255, 255, 0.08)",
 									}}
 									transition={{ type: "spring", stiffness: 350, damping: 30 }}
 								/>
 							)}
+							<motion.div
+								className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
+								animate={{
+									opacity: activeAnchor === item.anchor ? 1 : 0,
+									scale: activeAnchor === item.anchor ? 1 : 0.3,
+									background: activeAnchor === item.anchor ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0)",
+								}}
+								transition={{ duration: 0.2 }}
+							/>
 							<FontAwesomeIcon
 								icon={item.icon}
-								className={`relative z-10 text-xl transition-all duration-300 ${
+								className={`relative z-10 text-lg transition-all duration-300 ${
 									activeAnchor === item.anchor
-										? "scale-110 text-white"
-										: "scale-100 text-white/50 hover:text-white/80"
+										? "text-white"
+										: "text-white/50 hover:text-white/80"
 								}`}
 							/>
 						</a>

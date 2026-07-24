@@ -1,7 +1,6 @@
 "use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faUser, faFolderOpen, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const navItems = [
@@ -35,8 +34,9 @@ const Sidebar = () => {
 	}, []);
 
 	return (
-		<nav className="hidden md:flex fixed z-40 left-4 inset-y-0 items-center pointer-events-none">
-			<div className="flex flex-col items-center gap-5 py-5 px-3 rounded-full pointer-events-auto shadow-2xl"
+		<div className="hidden md:block fixed z-40 left-4"
+			style={{ top: "50%", transform: "translateY(-50%)" }}>
+			<div className="flex flex-col items-center gap-5 py-8 px-3 rounded-full shadow-2xl"
 				style={{
 					background: "rgba(255, 255, 255, 0.04)",
 					backdropFilter: "blur(24px)",
@@ -74,7 +74,7 @@ const Sidebar = () => {
 					))}
 				</ul>
 			</div>
-		</nav>
+		</div>
 	);
 };
 

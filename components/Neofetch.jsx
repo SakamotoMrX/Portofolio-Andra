@@ -6,18 +6,24 @@ import { neofetchData } from "@/data/neofetch";
 function FastfetchAsciiLogo() {
 	return (
 		<div className="flex flex-col items-center justify-center select-none font-mono">
-			<pre className="font-bold leading-tight tracking-tight text-[11px] sm:text-xs text-left text-cyan-400">
-{`         ./o.
-        ./sssso-
-       \`:ossssss:\`
-     \`:+sssssssss+:\`
-    \`-/osssssssssss/
-  \`:+ssssssssssssssss+
- \`-ssyhhhhhhdhhhhhhys+
-   .osyyhhyyyyyyyyso.
-     .osyyyyyyysso.
-       .-/osssso/-.
-          \`-\`-\``}
+			<pre className="font-bold leading-tight tracking-tight text-[10px] sm:text-[11px] text-left text-cyan-400">
+{`                     ..'
+                 ,xNMM.
+               .OMMMMo
+               lMM"
+     .;loddo:.  .olloddol;.
+   cKMMMMMMMMMMNWMMMMMMMMMM0:
+ .KMMMMMMMMMMMMMMMMMMMMMMMWd.
+ XMMMMMMMMMMMMMMMMMMMMMMMX.
+;MMMMMMMMMMMMMMMMMMMMMMMM:
+:MMMMMMMMMMMMMMMMMMMMMMMM:
+.MMMMMMMMMMMMMMMMMMMMMMMMX.
+ kMMMMMMMMMMMMMMMMMMMMMMMMWd.
+ 'XMMMMMMMMMMMMMMMMMMMMMMMMMMk
+  'XMMMMMMMMMMMMMMMMMMMMMMMMK.
+    kMMMMMMMMMMMMMMMMMMMMMMd
+     ;KMMMMMMMWXXWMMMMMMMk.
+       "cooc*"    "*coo'"`}
 			</pre>
 		</div>
 	);
@@ -72,17 +78,17 @@ export default function Neofetch() {
 				<div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
 					{/* Left: ASCII Logo */}
 					<motion.div
-						className="md:col-span-4 flex flex-col items-center justify-center p-4 rounded-lg"
+						className="md:col-span-5 flex flex-col items-center justify-center p-4 rounded-lg"
 						style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
 						variants={itemVariants}>
 						<FastfetchAsciiLogo />
 						<div className="mt-4 text-[11px] text-white/30 font-mono tracking-widest uppercase">
-							Linux DevOps Host
+							MacBook Air (M1, 2020)
 						</div>
 					</motion.div>
 
 					{/* Right: Spec Output */}
-					<motion.div className="md:col-span-8 flex flex-col space-y-1" variants={itemVariants}>
+					<motion.div className="md:col-span-7 flex flex-col space-y-1" variants={itemVariants}>
 						<div className="font-mono text-sm sm:text-base font-bold pb-1">
 							<span className="text-cyan-400">{data.user}</span>
 							<span className="text-white/80">@</span>

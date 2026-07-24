@@ -34,7 +34,7 @@ const Sidebar = () => {
 	}, []);
 
 	return (
-		<div className="hidden md:block fixed z-40 left-4"
+		<div className="fixed z-40 left-4 max-md:hidden"
 			style={{ top: "50%", transform: "translateY(-50%)" }}>
 			<div className="flex flex-col items-center gap-5 py-8 px-3 rounded-full shadow-2xl"
 				style={{

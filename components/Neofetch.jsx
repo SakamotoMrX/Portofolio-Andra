@@ -6,24 +6,24 @@ import { neofetchData } from "@/data/neofetch";
 function FastfetchAsciiLogo() {
 	return (
 		<div className="flex flex-col items-center justify-center select-none font-mono">
-			<pre className="font-bold leading-tight tracking-tight text-[10px] sm:text-[11px] text-left text-cyan-400">
-{`                     ..'
-                 ,xNMM.
-               .OMMMMo
-               lMM"
-     .;loddo:.  .olloddol;.
-   cKMMMMMMMMMMNWMMMMMMMMMM0:
- .KMMMMMMMMMMMMMMMMMMMMMMMWd.
- XMMMMMMMMMMMMMMMMMMMMMMMX.
-;MMMMMMMMMMMMMMMMMMMMMMMM:
-:MMMMMMMMMMMMMMMMMMMMMMMM:
-.MMMMMMMMMMMMMMMMMMMMMMMMX.
- kMMMMMMMMMMMMMMMMMMMMMMMMWd.
- 'XMMMMMMMMMMMMMMMMMMMMMMMMMMk
-  'XMMMMMMMMMMMMMMMMMMMMMMMMK.
-    kMMMMMMMMMMMMMMMMMMMMMMd
-     ;KMMMMMMMWXXWMMMMMMMk.
-       "cooc*"    "*coo'"`}
+			<pre className="font-bold leading-tight tracking-tight text-[10px] sm:text-[11px] text-left">
+				<span className="text-amber-400">{`                     ..\n`}</span>
+				<span className="text-yellow-400">{`                 ,xNMM.\n`}</span>
+				<span className="text-yellow-300">{`               .OMMMMo\n`}</span>
+				<span className="text-lime-400">{`               lMM"\n`}</span>
+				<span className="text-green-400">{`     .;loddo:.  .olloddol;.\n`}</span>
+				<span className="text-teal-400">{`   cKMMMMMMMMMMNWMMMMMMMMMM0:\n`}</span>
+				<span className="text-cyan-400">{` .KMMMMMMMMMMMMMMMMMMMMMMMWd.\n`}</span>
+				<span className="text-sky-400">{` XMMMMMMMMMMMMMMMMMMMMMMMX.\n`}</span>
+				<span className="text-blue-400">{`;MMMMMMMMMMMMMMMMMMMMMMMM:\n`}</span>
+				<span className="text-blue-300">{`:MMMMMMMMMMMMMMMMMMMMMMMM:\n`}</span>
+				<span className="text-indigo-400">{`.MMMMMMMMMMMMMMMMMMMMMMMMX.\n`}</span>
+				<span className="text-indigo-300">{` kMMMMMMMMMMMMMMMMMMMMMMMMWd.\n`}</span>
+				<span className="text-purple-400">{` 'XMMMMMMMMMMMMMMMMMMMMMMMMMMk\n`}</span>
+				<span className="text-purple-300">{`  'XMMMMMMMMMMMMMMMMMMMMMMMMK.\n`}</span>
+				<span className="text-fuchsia-400">{`    kMMMMMMMMMMMMMMMMMMMMMMd\n`}</span>
+				<span className="text-pink-400">{`     ;KMMMMMMMWXXWMMMMMMMk.\n`}</span>
+				<span className="text-rose-400">{`       "cooc*"    "*coo'"`}</span>
 			</pre>
 		</div>
 	);
@@ -32,7 +32,7 @@ function FastfetchAsciiLogo() {
 function FastfetchRow({ label, value }) {
 	return (
 		<div className="flex flex-col sm:flex-row sm:items-baseline w-full font-mono text-xs sm:text-sm py-0.5 gap-0.5 sm:gap-0 overflow-hidden">
-			<span className="font-bold shrink-0 text-cyan-400/90">{label}</span>
+			<span className="font-bold shrink-0 text-yellow-400/90">{label}</span>
 			<span className="hidden sm:inline-block flex-1 border-b border-dotted border-white/10 mx-1.5 min-w-[8px] translate-y-[-3px]"></span>
 			<span className="shrink sm:shrink-0 font-medium text-white/80 sm:text-right break-words min-w-0">{value}</span>
 		</div>
@@ -53,7 +53,7 @@ export default function Neofetch() {
 	};
 
 	return (
-		<section className="w-full py-12 px-4 sm:px-8 max-w-5xl mx-auto font-['Fira_Code',monospace]">
+		<section className="w-full py-12 px-4 sm:px-8 max-w-5xl mx-auto font-['SFMonoTerminal-Regular','SFMono-Regular','Menlo',monospace]">
 			<motion.div
 				className="glass-static relative font-mono scanline p-5 sm:p-8"
 				variants={containerVariants}
@@ -90,9 +90,9 @@ export default function Neofetch() {
 					{/* Right: Spec Output */}
 					<motion.div className="md:col-span-7 flex flex-col space-y-1" variants={itemVariants}>
 						<div className="font-mono text-sm sm:text-base font-bold pb-1">
-							<span className="text-cyan-400">{data.user}</span>
+							<span className="text-yellow-400">{data.user}</span>
 							<span className="text-white/80">@</span>
-							<span className="text-cyan-400">{data.host}</span>
+							<span className="text-yellow-400">{data.host}</span>
 						</div>
 
 						<div className="text-white/20 font-mono text-xs sm:text-sm tracking-tighter pb-2 border-b border-white/10 mb-2">

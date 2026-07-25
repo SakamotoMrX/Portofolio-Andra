@@ -78,8 +78,15 @@ const MyPage = () => {
 						transition={{ type: "spring" }}>
 						{/* Mobile avatar */}
 						<div className="block md:hidden col-span-1 mx-auto my-10">
-							<div className="glass-static rounded-full h-72 w-72 overflow-hidden shadow-xl">
-								<Image src={Me} width={600} height={600} className="rounded-full w-full h-full object-cover" alt="Andra" />
+							<div className="relative w-[180px] h-[180px]">
+								<div className="glass-static rounded-full h-full w-full overflow-hidden shadow-lg border border-white/10">
+									<Image src={Me} width={600} height={600} className="rounded-full w-full h-full object-cover" alt="Andra" priority />
+									<div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/15 via-transparent to-blue-400/15" />
+								</div>
+								<div className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-center">
+									<p className="text-white/60 text-[10px]">Andra (SakamotoMrX)</p>
+									<p className="text-cyan-300 text-[9px]">Junior DevOps</p>
+								</div>
 							</div>
 						</div>
 						<motion.h3
@@ -118,9 +125,16 @@ const MyPage = () => {
 							initial={{ x: 100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{ delay: 0.7, type: "spring" }}>
-							<div className="glass-static rounded-full aspect-square w-[24vw] max-w-[280px] shadow-xl flex items-center justify-center p-1">
-								<div className="rounded-full w-full h-full overflow-hidden">
-									<Image src={Me} width={600} height={750} alt="Andra" className="w-full h-full object-cover" priority />
+							<div className="relative w-[36vw] max-w-[420px] h-auto">
+								<div className="glass-static rounded-full aspect-square shadow-2xl flex items-center justify-center p-3 border-2 border-white/15">
+									<div className="rounded-full w-full h-full overflow-hidden relative">
+										<Image src={Me} width={600} height={750} alt="Andra" className="w-full h-full object-cover" priority />
+										<div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/25 via-transparent to-blue-400/25" />
+									</div>
+								</div>
+								<div className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-center">
+									<p className="text-white/60 text-sm">Andra (SakamotoMrX)</p>
+									<p className="text-cyan-300 text-xs">Junior DevOps</p>
 								</div>
 							</div>
 						</motion.div>
@@ -154,13 +168,18 @@ const MyPage = () => {
 							<Button variation="primary" href="/about">Learn More & Fastfetch</Button>
 						</motion.div>
 					</div>
-					<div className="col-span-1 flex justify-center items-center">
+<div className="col-span-1 flex justify-center items-center">
 						<motion.div
-							className="relative glass-static rounded-2xl overflow-hidden h-[340px] md:h-[520px] w-full max-w-[500px] shadow-2xl"
+							className="relative glass-static rounded-3xl overflow-hidden h-[560px] md:h-[800px] w-full max-w-[720px] shadow-2xl border-2 border-white/10"
 							initial={{ x: 100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{ delay: 0.4, type: "spring" }}>
-							<Image src={MeAbout} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Andra DevOps" />
+							<Image src={MeAbout} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Andra DevOps" priority />
+							<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+							<div className="absolute bottom-0 left-0 p-12">
+								<h3 className="text-white text-4xl font-bold mb-4">About Me</h3>
+								<p className="text-white/80 text-2xl">Linux SysAdmin & DevOps Specialist</p>
+							</div>
 						</motion.div>
 					</div>
 				</div>
@@ -195,11 +214,16 @@ const MyPage = () => {
 					</div>
 					<div className="col-span-1 flex justify-center items-center w-full">
 						<motion.div
-							className="relative aspect-[16/9] w-full max-w-[760px] glass-static rounded-2xl overflow-hidden shadow-2xl"
+							className="relative aspect-[16/9] w-full max-w-[1600px] glass-static rounded-3xl overflow-hidden shadow-2xl border-2 border-white/10"
 							initial={{ x: 100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{ delay: 0.4, type: "spring" }}>
-							<Image src={ProjectAll} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Projects" />
+							<Image src={ProjectAll} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Projects" priority />
+							<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+							<div className="absolute bottom-0 left-0 p-14">
+								<h3 className="text-white text-5xl font-bold mb-4">My Projects</h3>
+								<p className="text-white/80 text-2xl">Server automation & Linux tools</p>
+							</div>
 						</motion.div>
 					</div>
 				</div>
@@ -255,16 +279,21 @@ const MyPage = () => {
 								</motion.a>
 							))}
 						</div>
-					</div>
-					<div className="col-span-1 flex justify-center items-center w-full">
-						<motion.div
-							className="relative aspect-[16/9] w-full max-w-[760px] glass-static rounded-2xl overflow-hidden shadow-2xl"
-							initial={{ x: 100, opacity: 0 }}
-							whileInView={{ x: 0, opacity: 1 }}
-							transition={{ delay: 0.4, type: "spring" }}>
-							<Image src={Setup} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Andra Workspace Setup" />
-						</motion.div>
-					</div>
+						</div>
+						<div className="col-span-1 flex justify-center items-center w-full">
+							<motion.div
+								className="relative aspect-[16/9] w-full max-w-[1080px] glass-static rounded-3xl overflow-hidden shadow-2xl border-2 border-white/10"
+								initial={{ x: 100, opacity: 0 }}
+								whileInView={{ x: 0, opacity: 1 }}
+								transition={{ delay: 0.4, type: "spring" }}>
+									<Image src={Setup} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Andra Workspace Setup" priority />
+									<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+									<div className="absolute bottom-0 left-0 p-10">
+										<h3 className="text-white text-3xl font-bold mb-3">Workspace Setup</h3>
+										<p className="text-white/80 text-xl">Linux environment & development tools</p>
+									</div>
+								</motion.div>
+						</div>
 				</div>
 			</Section>
 		</div>

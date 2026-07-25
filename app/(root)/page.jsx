@@ -113,17 +113,17 @@ const MyPage = () => {
 							<Button variation="secondary" href="#contact">Contact Me</Button>
 						</motion.div>
 					</motion.div>
-					<motion.div
-						className="hidden md:flex col-span-1 mx-auto justify-center items-center"
-						initial={{ x: 100, opacity: 0 }}
-						whileInView={{ x: 0, opacity: 1 }}
-						transition={{ delay: 0.7, type: "spring" }}>
-						<div className="glass-static rounded-full aspect-square w-[28vw] max-w-[340px] shadow-2xl flex items-center justify-center p-1">
-							<div className="rounded-full w-full h-full overflow-hidden">
-								<Image src={Me} width={600} height={750} alt="Andra" className="w-full h-full object-cover" />
+						<motion.div
+							className="hidden md:flex col-span-1 mx-auto justify-center items-center"
+							initial={{ x: 100, opacity: 0 }}
+							whileInView={{ x: 0, opacity: 1 }}
+							transition={{ delay: 0.7, type: "spring" }}>
+							<div className="glass-static rounded-full aspect-square w-[24vw] max-w-[280px] shadow-xl flex items-center justify-center p-1">
+								<div className="rounded-full w-full h-full overflow-hidden">
+									<Image src={Me} width={600} height={750} alt="Andra" className="w-full h-full object-cover" priority />
+								</div>
 							</div>
-						</div>
-					</motion.div>
+						</motion.div>
 				</div>
 			</Section>
 

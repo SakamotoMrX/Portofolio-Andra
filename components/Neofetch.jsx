@@ -53,49 +53,49 @@ export default function Neofetch() {
 	};
 
 	return (
-		<section className="w-full py-12 px-4 sm:px-8 max-w-5xl mx-auto font-['JetBrainsMonoNL_Nerd_Font','JetBrainsMono_Nerd_Font','MesloLGS_Nerd_Font','FiraCode_Nerd_Font',monospace]">
+		<section className="w-full py-10 md:py-12 px-3 sm:px-8 max-w-5xl mx-auto font-['JetBrainsMonoNL_Nerd_Font','JetBrainsMono_Nerd_Font','MesloLGS_Nerd_Font','FiraCode_Nerd_Font',monospace]">
 			<motion.div
-				className="glass-static relative scanline p-5 sm:p-8"
+				className="glass-static relative scanline p-4 sm:p-8"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"
 				viewport={{ once: true, amount: 0.2 }}>
 
 				{/* Terminal Window Titlebar */}
-				<div className="flex items-center justify-between border-b border-white/10 pb-3 mb-6">
-					<div className="flex items-center space-x-2">
-						<span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-						<span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-						<span className="w-3 h-3 rounded-full bg-[#27c93f]" />
+				<div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4 md:mb-6">
+					<div className="flex items-center space-x-1.5 md:space-x-2">
+						<span className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ff5f56]" />
+						<span className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ffbd2e]" />
+						<span className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#27c93f]" />
 					</div>
-					<div className="text-xs text-white/40 tracking-wide">
+					<div className="text-[10px] md:text-xs text-white/40 tracking-wide">
 						fastfetch — andra@SakamotoMrX
 					</div>
-					<div className="w-12" />
+					<div className="w-8 md:w-12" />
 				</div>
 
 				{/* Main Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+				<div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start">
 					{/* Left: ASCII Logo */}
 					<motion.div
-						className="md:col-span-5 flex flex-col items-center justify-center p-4 rounded-lg"
+						className="md:col-span-5 flex flex-col items-center justify-center p-3 md:p-4 rounded-lg"
 						style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
 						variants={itemVariants}>
 						<FastfetchAsciiLogo />
-						<div className="mt-4 text-[11px] text-white/30 tracking-widest uppercase">
+						<div className="mt-3 md:mt-4 text-[10px] md:text-[11px] text-white/30 tracking-widest uppercase">
 							MacBook Air (M1, 2020)
 						</div>
 					</motion.div>
 
 					{/* Right: Spec Output */}
 					<motion.div className="md:col-span-7 flex flex-col space-y-1" variants={itemVariants}>
-						<div className="text-sm sm:text-base font-bold pb-1">
+						<div className="text-xs sm:text-sm md:text-base font-bold pb-1">
 							<span className="text-yellow-400">{data.user}</span>
 							<span className="text-white/80">@</span>
 							<span className="text-yellow-400">{data.host}</span>
 						</div>
 
-						<div className="text-white/20 text-xs sm:text-sm tracking-tighter pb-2 border-b border-white/10 mb-2">
+						<div className="text-white/20 text-[10px] sm:text-xs md:text-sm tracking-tighter pb-2 border-b border-white/10 mb-2">
 							----------------------------------------
 						</div>
 

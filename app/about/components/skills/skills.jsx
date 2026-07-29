@@ -128,11 +128,11 @@ function SkillDetails({ selectedSkill }) {
 			transition={{ duration: 0.5 }}
 			className="mt-12 space-y-8">
 			<motion.div
-				className="glass-static p-8"
+				className="glass-static p-6 md:p-8"
 				initial={{ opacity: 0, x: -50 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.2 }}>
-				<h3 className="text-2xl font-semibold text-white mb-6 text-center">
+				<h3 className="text-xl md:text-2xl font-semibold text-white mb-6 text-center">
 					Skill Matrix & Competencies
 				</h3>
 				<motion.div
@@ -158,11 +158,11 @@ function SkillDetails({ selectedSkill }) {
 			</motion.div>
 
 			<motion.div
-				className="glass-static p-8"
+				className="glass-static p-6 md:p-8"
 				initial={{ opacity: 0, x: 50 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.4 }}>
-				<h3 className="text-xl font-medium text-white/50 mb-6 text-center uppercase tracking-wider">
+				<h3 className="text-base md:text-xl font-medium text-white/50 mb-6 text-center uppercase tracking-wider">
 					IDEs, Operating Systems & Tools
 				</h3>
 				<motion.div
@@ -189,21 +189,21 @@ export default function Skills() {
 	const [selectedCategory, setSelectedCategory] = useState("system");
 	return (
 		<div className="relative">
-			<div className="mx-auto container px-6 py-20">
+			<div className="mx-auto container px-4 sm:px-6 py-12 md:py-20">
 				<motion.div
 					initial={{ opacity: 0, y: -20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}
-					className="text-center space-y-4 mb-16">
-					<h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+					className="text-center space-y-4 mb-12 md:mb-16">
+					<h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
 						Skills & Technical Matrix
 					</h2>
-					<p className="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed">
+					<p className="text-white/50 max-w-2xl mx-auto text-base md:text-lg leading-relaxed px-4">
 						Explore my technical skills in Linux SysAdmin, Virtualization, Containerization, and DevOps workflows.
 					</p>
 				</motion.div>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
 					{Object.entries(skillCategories).map(([key, skill], index) => (
 						<motion.div
 							key={key}

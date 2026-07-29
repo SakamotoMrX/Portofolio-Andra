@@ -27,15 +27,15 @@ export default function Page() {
 	return (
 		<main className="overflow-hidden">
 			<FixedButton href="/#projects">
-				<FontAwesomeIcon icon={faChevronLeft} className="text-white pr-10" />
+				<FontAwesomeIcon icon={faChevronLeft} className="text-white" />
 			</FixedButton>
-			<div className="relative h-screen w-screen gap-4 p-10 flex justify-center items-center flex-col mb-10 overflow-hidden">
+			<div className="relative h-screen w-screen gap-4 p-6 md:p-10 flex justify-center items-center flex-col mb-10 overflow-hidden">
 				<div className="z-0 mb-48 md:mb-0 md:absolute top-1/4 md:right-[10%] md:-translate-y-16">
 					<motion.div
 						initial={{ scale: 1 }}
 						animate={{ scale: 1.6 }}
 						transition={{ duration: 1, ease: "circOut" }}
-						className="glass-static rounded-sm h-[400px] md:h-[600px] w-[80vw] md:w-[30vw] overflow-hidden">
+						className="glass-static rounded-sm h-[300px] sm:h-[400px] md:h-[600px] w-[85vw] sm:w-[80vw] md:w-[30vw] overflow-hidden">
 						<Image
 							src={ProjectAll}
 							alt="Projects Showcase"
@@ -45,12 +45,12 @@ export default function Page() {
 						/>
 					</motion.div>
 				</div>
-				<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[60%] md:top-1/3 flex flex-col justify-center items-start text-start px-10 pt-4 md:pt-0">
-					<h1 className="text-5xl md:text-8xl font-bold text-white">
+				<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[55%] md:top-1/3 flex flex-col justify-center items-center md:items-start text-center md:text-start px-6 md:px-10 pt-4 md:pt-0">
+					<h1 className="text-4xl sm:text-5xl md:text-8xl font-bold text-white">
 						My Projects
 					</h1>
 					<Hr />
-					<p className="title text-xl mt-4 tracking-wider text-white/60 leading-[1.7rem] mb-5">
+					<p className="title text-base sm:text-xl mt-4 tracking-wider text-white/60 leading-[1.6rem] md:leading-[1.7rem] mb-5 max-w-xl">
 						Automated scripts, Linux server deployments, and hardware projects.
 					</p>
 					<motion.div
@@ -75,11 +75,11 @@ export default function Page() {
 				initial={{ opacity: 0, x: 200 }}
 				whileInView={{ opacity: 1, x: 0 }}
 				transition={{ type: "spring" }}
-				className="flex flex-row justify-center items-start flex-wrap gap-3 md:gap-5 my-5">
+				className="flex flex-row justify-center items-start flex-wrap gap-2 md:gap-5 my-5 px-4 md:px-0">
 				{Object.keys(category).map((key) => (
 					<button
 						key={key}
-						className={`px-4 py-2 rounded-lg cursor-pointer transition-all duration-300 ${
+						className={`px-4 py-2.5 rounded-lg cursor-pointer transition-all duration-300 text-sm md:text-base ${
 							activeCategory === key
 								? "glass-btn text-white"
 								: "glass-btn-outline text-white/60"
@@ -90,9 +90,11 @@ export default function Page() {
 				))}
 			</motion.div>
 
-			<div className="w-screen mx-auto container gap-4 px-10 grid grid-cols-1 md:grid-cols-2 mb-10 cursor-pointer">
-				{projects.map((project, index) => (
-					<ProjectCard project={project} key={index} activeCategory={activeCategory} />
+			<div className="w-full mx-auto container gap-4 px-4 md:px-10 grid grid-cols-1 md:grid-cols-2 mb-10 cursor-pointer">
+				{projects
+					.filter((project) => project.category.includes(parseInt(activeCategory)))
+					.map((project, index) => (
+					<ProjectCard project={project} key={index} />
 				))}
 			</div>
 		</main>

@@ -15,10 +15,10 @@ export default function Page() {
 		<>
 			<main className="overflow-hidden">
 				<FixedButon href="/projects">
-					<FontAwesomeIcon icon={faChevronLeft} className="text-black pr-10" />
+					<FontAwesomeIcon icon={faChevronLeft} className="text-white" />
 				</FixedButon>
-				<div className="min-h-screen w-screen mt-10 md:mt-0  p-10 flex justify-center items-center flex-col mb-10">
-					<div className="flex justify-center items-center flex-col my-5 self-start ">
+				<div className="min-h-screen w-full mt-10 md:mt-0 px-4 sm:px-6 md:p-10 flex justify-center items-center flex-col mb-10">
+					<div className="flex justify-center items-center flex-col my-5 self-start">
 						<motion.div
 							className="bg-gray-700 w-28 h-1 rounded-full mb-3 self-start"
 							initial={{
@@ -68,55 +68,49 @@ export default function Page() {
 						</motion.h1>
 					</div>
 
-					<div className="mx-auto container md:px-10 grid grid-cols-1 mb-">
-						{/* invisible table */}
-						<table className="space-y-3">
-							<thead>
-								<tr className=" hover:shadow-md  transition-all ease duration-500">
-									<th className="text-start">Year</th>
-									<th className="text-start">Title</th>
-									<th className="text-start">Technology</th>
-									<th className="text-start">Link</th>
-								</tr>
-							</thead>
-							<tbody>
-								{projects.map((project, index) => (
-									<tr
-										key={index}
-										className="hover:shadow-md transition-all ease duration-500">
-										<td>{project.year}</td>
-										<td>
-											<Link href={`/projects/${project.slug}`}>
-												{project.title}
-											</Link>
-										</td>
-										<td>{project.tech.map((t) => `${t}, `)}</td>
-										<td>
-											<div className="flex flex-row justify-center items-center">
-												{project.code && (
-													<a href={project.code} title="Link to GitHub">
-														<FontAwesomeIcon
-															icon={faGithub}
-															className="text-xl mr-2"
-														/>
-													</a>
-												)}
-												{project.preview && (
-													<a
-														href={project.preview}
-														title="Link to project preview">
-														<FontAwesomeIcon
-															icon={faArrowUpRightFromSquare}
-															className="text-xl"
-														/>
-													</a>
-												)}
-											</div>
-										</td>
+					<div className="w-full max-w-6xl mx-auto px-0 md:px-10">
+						{/* Archive table — responsive with scroll on mobile */}
+						<div className="overflow-x-auto">
+							<table className="w-full glass-static" style={{ borderRadius: '12px', overflow: 'hidden' }}>
+								<thead>
+									<tr className="border-b border-white/10">
+										<th className="text-start text-white/60 text-xs md:text-sm uppercase tracking-wider py-3 px-3 md:px-4">Year</th>
+										<th className="text-start text-white/60 text-xs md:text-sm uppercase tracking-wider py-3 px-3 md:px-4">Title</th>
+										<th className="text-start text-white/60 text-xs md:text-sm uppercase tracking-wider py-3 px-3 md:px-4 hidden md:table-cell">Technology</th>
+										<th className="text-start text-white/60 text-xs md:text-sm uppercase tracking-wider py-3 px-3 md:px-4">Link</th>
 									</tr>
-								))}
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									{projects.map((project, index) => (
+										<tr
+											key={index}
+											className="border-b border-white/5 hover:bg-white/[0.02] transition-all duration-300">
+											<td className="text-white/80 text-sm md:text-base py-3 px-3 md:px-4 whitespace-nowrap">{project.year}</td>
+											<td className="py-3 px-3 md:px-4">
+												<Link href={`/projects/${project.slug}`} className="text-white hover:text-teal-400 transition-colors text-sm md:text-base font-medium">
+													{project.title}
+												</Link>
+											</td>
+											<td className="text-white/60 text-xs md:text-sm py-3 px-3 md:px-4 hidden md:table-cell max-w-xs truncate">{project.tech.join(", ")}</td>
+											<td className="py-3 px-3 md:px-4">
+												<div className="flex flex-row items-center gap-2">
+													{project.code && (
+														<a href={project.code} title="Link to GitHub" className="glass-icon w-9 h-9 md:w-10 md:h-10 flex items-center justify-center text-white/60 hover:text-teal-400">
+															<FontAwesomeIcon icon={faGithub} className="text-sm md:text-base" />
+														</a>
+													)}
+													{project.preview && (
+														<a href={project.preview} title="Link to project preview" className="glass-icon w-9 h-9 md:w-10 md:h-10 flex items-center justify-center text-white/60 hover:text-teal-400">
+															<FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-sm md:text-base" />
+														</a>
+													)}
+												</div>
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</main>

@@ -96,9 +96,9 @@ export default function RootLayout({ children }) {
 				</div>
 				<ClientTopProgressBar />
 				<Navbar />
-				<div className="relative z-10">
-					{children}
-				</div>
+			<div>
+				{children}
+			</div>
 				<ChatConditional />
 				<Analytics />
 			</body>

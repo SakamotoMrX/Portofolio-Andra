@@ -50,12 +50,12 @@ const Sidebar = () => {
 							<a
 								href={`/#${item.anchor}`}
 								aria-label={item.label}
-								className="relative flex items-center justify-center w-10 h-10">
+								className="relative flex items-center justify-center w-11 h-11 rounded-xl transition-all duration-200 hover:bg-white/[0.06]">
 								{activeAnchor === item.anchor && (
 									<div className="absolute inset-0 rounded-xl bg-white/10" />
 								)}
 								<div
-									className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full transition-all duration-200 ${
+									className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full transition-all duration-200 ${
 										activeAnchor === item.anchor
 											? "opacity-100 scale-100 bg-white/60"
 											: "opacity-0 scale-0"

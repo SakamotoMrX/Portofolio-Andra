@@ -1,31 +1,27 @@
 "use client"
 import React from "react";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 const NotFound = () => (
-	<div>
-		<div className="relative min-h-screen w-full  gap-4 p-10 flex justify-center items-center flex-col mb-10 ">
-			<div className="min-h-screen flex justify-center items-center">
-				<div className="mx-auto grid grid-cols-1   ">
-					<div className="flex justify-center items-center flex-col mb-5 space-y-10">
-						<div>
-							<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400 text-center">
-								Page not found
-							</h2>
-							<h1 className="text-4xl font-medium text-neutral-900 text-center">
-								404
-							</h1>
-						</div>
-						<div>
-							<button
-								onClick={() => window.history.back()}
-								className="text-lg text-neutral-900 hover:text-neutral-800 text-center border-2 border-gray-800 rounded-xl p-3 py-2 mt-2">
-								Go Back
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
+	<div className="min-h-screen flex items-center justify-center p-6">
+		<div className="glass-static max-w-md w-full p-10 md:p-14 text-center">
+			<h2 className="uppercase text-xs tracking-[8px] text-white/40 mb-4">
+				Page not found
+			</h2>
+			<h1 className="text-7xl md:text-8xl font-bold text-white mb-6 font-jost">
+				404
+			</h1>
+			<p className="text-white/50 text-sm mb-10 max-w-xs mx-auto">
+				The page you&rsquo;re looking for doesn&rsquo;t exist or has been moved.
+			</p>
+			<Link
+				href="/"
+				className="glass-btn inline-flex items-center gap-2 px-6 py-3 text-sm">
+				<FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
+				Back to Home
+			</Link>
 		</div>
 	</div>
 );

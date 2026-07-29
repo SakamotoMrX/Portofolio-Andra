@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -41,17 +41,17 @@ const NavItems = ({ isNavOpen, setIsNavOpen }) => {
 			variants={navVariant}
 			animate={isNavOpen ? "open" : "closed"}
 			initial={false}>
-			<div className="relative opacity-95 flex flex-col items-center min-h-[100vh] min-w-[100vw] bg-[#0a0e27]/95 backdrop-blur-xl">
-				<div className="flex flex-col items-center space-y-8 my-auto z-50">
+			<div className="relative flex flex-col items-center min-h-[100vh] min-w-[100vw] glass-nav" style={{ borderRadius: 0, borderBottom: "none", boxShadow: "none" }}>
+				<div className="flex flex-col items-center space-y-10 my-auto z-50 px-6">
 					<motion.h1
 						variants={itemVariants}
 						animate={isNavOpen ? "open" : "closed"}
-						className="text-6xl font-bold text-white">
+						className="text-5xl md:text-6xl font-bold text-white">
 						Menu
 					</motion.h1>
 					{links.map((link, i) => (
 						<Link key={link.href} href={link.href}>
-							<div onClick={handleItemClick} className="text-2xl font-bold">
+							<div onClick={handleItemClick} className="text-xl md:text-2xl font-bold py-3 min-h-[48px] flex items-center">
 								<motion.h2
 									className="text-white hover:text-teal-400 transition-colors"
 									variants={itemVariants}
@@ -73,19 +73,56 @@ const Navbar = () => {
 	const [isNavOpen, setIsNavOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
 
+	// Scroll-direction-aware scroll handler with rAF throttling
 	useEffect(() => {
-		const handleScroll = () => setScrolled(window.scrollY > 20);
-		window.addEventListener("scroll", handleScroll, { passive: true });
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+		const THRESHOLD = 15;
 
-	const toggleNav = () => setIsNavOpen(!isNavOpen);
+		const onScroll = () => {
+			const currentScrollY = window.scrollY;
+			setScrolled(currentScrollY > 20);
+
+			if (!ticking) {
+				requestAnimationFrame(() => {
+					const delta = currentScrollY - lastScrollY;
+					if (Math.abs(delta) > THRESHOLD) {
+						const dir = delta > 0 ? "down" : "up";
+						document.documentElement.dataset.scrollDir = dir;
+						lastScrollY = currentScrollY;
+					}
+					ticking = false;
+				});
+				ticking = true;
+			}
+		};
+
+		// Close menu on scroll start
+		const onScrollStart = () => {
+			if (isNavOpen) {
+				setIsNavOpen(false);
+			}
+		};
+
+		window.addEventListener("scroll", onScroll, { passive: true });
+		window.addEventListener("scroll", onScrollStart, { passive: true, once: true });
+		return () => {
+			window.removeEventListener("scroll", onScroll);
+			window.removeEventListener("scroll", onScrollStart);
+		};
+	}, [isNavOpen]);
+
+	const toggleNav = useCallback(() => {
+		setIsNavOpen((prev) => !prev);
+	}, []);
 
 	return (
 		<>
 			<nav
 				ref={navRef}
-				className={`navbar px-5 md:px-24 w-screen fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+				className={`navbar px-4 md:px-24 w-screen fixed top-0 left-0 right-0 z-50 ${
+					isNavOpen ? "navbar-menu-open " : ""
+				}${
 					scrolled || isNavOpen
 						? "glass-nav"
 						: "bg-transparent"
@@ -97,17 +134,17 @@ const Navbar = () => {
 							alt="Andra logo"
 							width={42}
 							height={42}
-							className="h-10 w-10 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+							className="h-9 w-9 md:h-10 md:w-10 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
 						/>
 					</Link>
 					<button
 						aria-label={isNavOpen ? "Close menu" : "Open menu"}
 						className="glass-icon w-12 h-12 flex flex-col justify-center items-center space-y-1.5"
 						onClick={toggleNav}>
-						<div className={`w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${
+						<div className={`w-5 md:w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${
 							isNavOpen ? "rotate-45 translate-y-[3px]" : ""
 						}`} />
-						<div className={`w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${
+						<div className={`w-5 md:w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${
 							isNavOpen ? "-rotate-45 -translate-y-[3px]" : ""
 						}`} />
 					</button>

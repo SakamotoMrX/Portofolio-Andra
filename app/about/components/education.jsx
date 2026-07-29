@@ -14,10 +14,10 @@ import Hr from "@/components/Hr";
 
 function Title() {
 	return (
-		<div className="mt-10 flex flex-col justify-start items-center w-full pl-10 md:pl-32">
+		<div className="mt-10 flex flex-col justify-start items-center w-full pl-6 md:pl-32">
 			<div className="flex justify-center items-center flex-col my-5 self-start">
 				<Hr variant="long" />
-				<h1 className="text-3xl font-bold mt-3">Education & Milestones</h1>
+				<h1 className="text-2xl md:text-3xl font-bold mt-3">Education & Milestones</h1>
 			</div>
 		</div>
 	);
@@ -27,8 +27,8 @@ export default function Education() {
 	return (
 		<>
 			<Title />
-			<div className="mx-auto container px-10 mb-20">
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+			<div className="mx-auto container px-4 sm:px-6 md:px-10 mb-20">
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}

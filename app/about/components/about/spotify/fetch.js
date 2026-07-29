@@ -1,22 +1,26 @@
-import querystring from "querystring";
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
 const client_id = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
 const client_secret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
 const refresh_token = process.env.NEXT_PUBLIC_SPOTIFY_REFRESH_TOKEN;
 
-const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
+const basic = typeof btoa !== "undefined"
+	? btoa(`${client_id}:${client_secret}`)
+	: Buffer.from(`${client_id}:${client_secret}`).toString("base64");
+
 const getAccessToken = async () => {
+	const body = new URLSearchParams({
+		grant_type: "refresh_token",
+		refresh_token: refresh_token || "",
+	});
+
 	const response = await fetch(TOKEN_ENDPOINT, {
 		method: "POST",
 		headers: {
 			Authorization: `Basic ${basic}`,
 			"Content-Type": "application/x-www-form-urlencoded",
 		},
-		body: querystring.stringify({
-			grant_type: "refresh_token",
-			refresh_token,
-		}),
+		body: body.toString(),
 	});
 
 	return response.json();

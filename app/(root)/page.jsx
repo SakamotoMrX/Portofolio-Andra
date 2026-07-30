@@ -90,10 +90,6 @@ const MyPage = () => {
 										<div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/25 via-transparent to-blue-400/25" />
 									</div>
 								</div>
-								<div className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-center">
-									<p className="text-white/60 text-sm">Andra (SakamotoMrX)</p>
-									<p className="text-cyan-300 text-xs">Junior DevOps</p>
-								</div>
 							</div>
 						</motion.div>
 				</div>
@@ -133,11 +129,6 @@ const MyPage = () => {
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{ delay: 0.4, type: "spring" }}>
 							<Image src={MeAbout} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Andra DevOps" priority />
-							<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-							<div className="absolute bottom-0 left-0 p-12">
-								<h3 className="text-white text-4xl font-bold mb-4">About Me</h3>
-								<p className="text-white/80 text-2xl">Linux SysAdmin & DevOps Specialist</p>
-							</div>
 						</motion.div>
 					</div>
 				</div>
@@ -145,8 +136,8 @@ const MyPage = () => {
 
 			{/* Section 3: Projects Preview */}
 			<Section id="projects">
-				<div className="mx-auto w-[88%] md:w-[94%] max-w-[1800px] grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 p-6 md:p-10 overflow-hidden relative z-20 items-center">
-					<div className="col-span-1 flex flex-col justify-center items-center md:items-start text-center md:text-start">
+				<div className="mx-auto w-[88%] md:w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 p-6 md:p-10 overflow-hidden relative z-20 items-center">
+					<div className="col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start">
 						<motion.h1
 							className="text-4xl sm:text-5xl md:text-8xl font-bold my-2 md:my-5"
 							initial={{ x: -100, opacity: 0 }}
@@ -170,18 +161,13 @@ const MyPage = () => {
 							<Button variation="primary" href="/projects">Explore Projects</Button>
 						</motion.div>
 					</div>
-					<div className="col-span-1 flex justify-center items-center w-full mt-4 md:mt-0">
+					<div className="col-span-2 flex justify-center items-center w-full mt-4 md:mt-0">
 						<motion.div
 							className="relative aspect-[16/9] w-full max-w-[1600px] glass-static rounded-3xl overflow-hidden shadow-2xl border-2 border-white/10"
 							initial={{ x: 100, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{ delay: 0.4, type: "spring" }}>
 							<Image src={ProjectAll} fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" alt="Projects" priority />
-							<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-							<div className="absolute bottom-0 left-0 p-14">
-								<h3 className="text-white text-5xl font-bold mb-4">My Projects</h3>
-								<p className="text-white/80 text-2xl">Server automation & Linux tools</p>
-							</div>
 						</motion.div>
 					</div>
 				</div>
@@ -189,8 +175,8 @@ const MyPage = () => {
 
 			{/* Section 4: Contact */}
 			<Section id="contact">
-				<div className="mx-auto w-[88%] md:w-[94%] max-w-[1800px] grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 p-6 md:p-10 overflow-hidden relative z-20 items-center">
-					<div className="col-span-1 flex flex-col justify-center items-center md:items-start text-center md:text-start">
+				<div className="mx-auto w-[88%] md:w-[82%] max-w-screen-2xl grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 p-6 md:p-10 overflow-hidden relative z-20 items-center">
+					<div className="col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start">
 						<motion.h1
 							className="text-4xl sm:text-5xl md:text-8xl font-bold my-2 md:my-5"
 							initial={{ x: -100, opacity: 0 }}
@@ -240,7 +226,7 @@ const MyPage = () => {
 							))}
 						</div>
 					</div>
-					<div className="col-span-1 flex justify-center items-center w-full mt-4 md:mt-0">
+					<div className="col-span-2 flex justify-center items-center w-full mt-4 md:mt-0">
 						<motion.div
 							className="relative aspect-[16/9] w-full max-w-[760px] glass-static rounded-2xl overflow-hidden shadow-2xl"
 							initial={{ x: 100, opacity: 0 }}

@@ -128,7 +128,7 @@ const Navbar = () => {
 						: "bg-transparent"
 				}`}>
 				<div className="flex flex-row justify-between items-center h-16">
-					<Link href="/#home" aria-label="Andra home">
+					<Link href="/#home" aria-label="Andra home" className="ml-12 md:ml-0">
 						<Image
 							src="/image/andra-logo.png"
 							alt="Andra logo"

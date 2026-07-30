@@ -24,13 +24,18 @@ export default function Page() {
 				<FontAwesomeIcon icon={faChevronLeft} className="text-white" />
 			</FixedButton>
 			<div className="relative h-screen gap-4 p-6 md:p-10 flex justify-center items-center flex-col mb-10 overflow-hidden">
-				<div className="z-0 mb-48 md:mb-0 md:absolute top-1/4 md:right-[10%] md:-translate-y-16">
+				<div className="z-0 mb-48 md:mb-0 md:absolute top-1/4 md:right-[10%] md:translate-y-4">
 					<motion.div
-						initial={{ scale: 1 }}
-						animate={{ scale: 1.6 }}
-						transition={{ ease: "circOut", duration: 1 }}
-						className="glass-static rounded-sm h-[300px] sm:h-[400px] md:h-[600px] w-[85vw] sm:w-[80vw] md:w-[30vw] overflow-hidden">
-						<Image src={Hero} alt="Andra Junior DevOps" fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover opacity-60" />
+						initial={{ scale: 0.8, opacity: 0 }}
+						animate={{ scale: 1, opacity: 1 }}
+						transition={{ duration: 0.8, ease: "circOut" }}
+						className="relative w-[72vw] sm:w-[45vw] md:w-[40vw] max-w-[676px] h-auto mx-auto">
+						<div className="glass-static rounded-2xl aspect-[3/2] shadow-2xl flex items-center justify-center p-3 border-2 border-white/15">
+							<div className="rounded-2xl w-full h-full overflow-hidden relative">
+								<Image src={Hero} alt="Andra Junior DevOps" fill sizes="(max-width: 768px) 80vw, 30vw" className="object-cover" priority />
+								<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-400/25 via-transparent to-blue-400/25" />
+							</div>
+						</div>
 					</motion.div>
 				</div>
 				<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[55%] md:top-1/3 flex flex-col justify-center items-center md:items-start text-center md:text-start px-6 md:px-10 pt-4 md:pt-0">

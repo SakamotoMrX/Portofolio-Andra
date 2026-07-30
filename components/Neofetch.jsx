@@ -6,15 +6,15 @@ import { neofetchData } from "@/data/neofetch";
 function FastfetchAsciiLogo() {
 	return (
 		<div className="flex flex-col items-center justify-center select-none">
-			<pre className="font-bold leading-tight tracking-tight text-[11px] sm:text-xs text-left text-cyan-400">
+			<pre className="font-mono font-bold leading-tight tracking-tight text-[11px] sm:text-xs text-left text-cyan-400 drop-shadow-[0_0_6px_rgba(34,211,238,0.3)]">
 {`                     ..'
-                 ,xNMM.
-               .OMMMMo
-               lMM"
-     .;loddo:.  .olloddol;.
-   cKMMMMMMMMMMNWMMMMMMMMMM0:
- .KMMMMMMMMMMMMMMMMMMMMMMMWd.
- XMMMMMMMMMMMMMMMMMMMMMMMX.
+                  ,xNMM.
+                .OMMMMo
+                lMM"
+      .;loddo:.  .olloddol;.
+    cKMMMMMMMMMMNWMMMMMMMMMM0:
+  .KMMMMMMMMMMMMMMMMMMMMMMMWd.
+  XMMMMMMMMMMMMMMMMMMMMMMMX.
 ;MMMMMMMMMMMMMMMMMMMMMMMM:
 :MMMMMMMMMMMMMMMMMMMMMMMM:
 .MMMMMMMMMMMMMMMMMMMMMMMMX.
@@ -31,12 +31,15 @@ function FastfetchAsciiLogo() {
 
 function FastfetchRow({ label, value }) {
 	return (
-		<div className="flex flex-col sm:flex-row sm:items-baseline w-full text-xs sm:text-sm py-0.5 gap-0.5 sm:gap-0 overflow-hidden">
-			<span className="font-bold shrink-0 text-yellow-400/90">{label}</span>
-			<span className="hidden sm:inline-block flex-1 border-b border-dotted border-white/10 mx-1.5 min-w-[8px] translate-y-[-3px]"></span>
-			<span className="shrink sm:shrink-0 font-medium text-white/80 sm:text-right break-words min-w-0">{value}</span>
+		<div className="flex justify-between items-baseline w-full text-xs sm:text-sm py-0.5">
+			<span className="font-medium shrink-0 text-yellow-400/90">{label}</span>
+			<span className="text-white/80 text-right ml-4 break-words max-w-[60%]">{value}</span>
 		</div>
 	);
+}
+
+function SectionDivider() {
+	return <div className="border-t border-white/5 my-2" />;
 }
 
 export default function Neofetch() {
@@ -53,7 +56,7 @@ export default function Neofetch() {
 	};
 
 	return (
-		<section className="w-full py-10 md:py-12 px-3 sm:px-8 max-w-5xl mx-auto font-['JetBrainsMonoNL_Nerd_Font','JetBrainsMono_Nerd_Font','MesloLGS_Nerd_Font','FiraCode_Nerd_Font',monospace]">
+		<section className="w-full py-10 md:py-12 px-3 sm:px-8 max-w-5xl mx-auto font-['-apple-system','BlinkMacSystemFont','SF Pro Display','Helvetica Neue','Helvetica','Arial',sans-serif]">
 			<motion.div
 				className="glass-static relative scanline p-4 sm:p-8"
 				variants={containerVariants}
@@ -68,7 +71,7 @@ export default function Neofetch() {
 						<span className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ffbd2e]" />
 						<span className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#27c93f]" />
 					</div>
-					<div className="text-[10px] md:text-xs text-white/40 tracking-wide">
+					<div className="text-[10px] md:text-xs text-white/40 tracking-wide font-mono">
 						fastfetch — andra@SakamotoMrX
 					</div>
 					<div className="w-8 md:w-12" />
@@ -82,21 +85,17 @@ export default function Neofetch() {
 						style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
 						variants={itemVariants}>
 						<FastfetchAsciiLogo />
-						<div className="mt-3 md:mt-4 text-[10px] md:text-[11px] text-white/30 tracking-widest uppercase">
+						<div className="mt-3 md:mt-4 text-[10px] md:text-[11px] text-white/30 tracking-widest uppercase font-['Helvetica Neue','Helvetica',sans-serif]">
 							MacBook Air (M1, 2020)
 						</div>
 					</motion.div>
 
 					{/* Right: Spec Output */}
-					<motion.div className="md:col-span-7 flex flex-col space-y-1" variants={itemVariants}>
-						<div className="text-xs sm:text-sm md:text-base font-bold pb-1">
-							<span className="text-yellow-400">{data.user}</span>
-							<span className="text-white/80">@</span>
-							<span className="text-yellow-400">{data.host}</span>
-						</div>
-
-						<div className="text-white/20 text-[10px] sm:text-xs md:text-sm tracking-tighter pb-2 border-b border-white/10 mb-2">
-							----------------------------------------
+					<motion.div className="md:col-span-7 flex flex-col" variants={itemVariants}>
+						<div className="text-xs sm:text-sm md:text-base font-bold pb-2">
+							<span className="text-yellow-400 font-['Helvetica Neue','Helvetica',sans-serif]">{data.user}</span>
+							<span className="text-white/80 font-['Helvetica Neue','Helvetica',sans-serif]">@</span>
+							<span className="text-yellow-400 font-['Helvetica Neue','Helvetica',sans-serif]">{data.host}</span>
 						</div>
 
 						<FastfetchRow label="OS" value={data.os} />
@@ -105,19 +104,19 @@ export default function Neofetch() {
 						<FastfetchRow label="Shell" value={data.shell} />
 						<FastfetchRow label="IDE" value={data.ide.join(", ")} />
 
-						<div className="pt-2" />
+						<SectionDivider />
 						<FastfetchRow label="Languages.Scripting" value={data.languages.scripting.join(", ")} />
 						<FastfetchRow label="Languages.Human" value={data.languages.human.join(", ")} />
 
-						<div className="pt-2" />
+						<SectionDivider />
 						<FastfetchRow label="Skills.System" value={data.skills.system.join(", ")} />
 						<FastfetchRow label="Skills.WebDev" value={data.skills.webdev.join(", ")} />
 						<FastfetchRow label="Skills.Process" value={data.skills.process.join(", ")} />
 
-						<div className="pt-2" />
+						<SectionDivider />
 						<FastfetchRow label="Hobbies" value={data.hobbies.join(" • ")} />
 
-						<div className="pt-2" />
+						<SectionDivider />
 						<FastfetchRow label="Contact.Email" value={data.contact.email} />
 						<FastfetchRow label="Contact.Discord" value={data.contact.discord} />
 						<FastfetchRow label="Contact.Instagram" value={data.contact.instagram} />

@@ -1,0 +1,392 @@
+{
+  "communities": {
+    "0": [
+      "eslint",
+      "eslint_config_next",
+      "fortawesome_fontawesome_svg_core",
+      "fortawesome_free_brands_svg_icons",
+      "fortawesome_free_regular_svg_icons",
+      "fortawesome_free_solid_svg_icons",
+      "fortawesome_react_fontawesome",
+      "framer_motion",
+      "next",
+      "next_sitemap",
+      "package_dependencies",
+      "package_dependencies_eslint",
+      "package_dependencies_eslint_config_next",
+      "package_dependencies_fortawesome_fontawesome_svg_core",
+      "package_dependencies_fortawesome_free_brands_svg_icons",
+      "package_dependencies_fortawesome_free_regular_svg_icons",
+      "package_dependencies_fortawesome_free_solid_svg_icons",
+      "package_dependencies_fortawesome_react_fontawesome",
+      "package_dependencies_framer_motion",
+      "package_dependencies_next",
+      "package_dependencies_next_sitemap",
+      "package_dependencies_postcss",
+      "package_dependencies_prop_types",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_sharp",
+      "package_dependencies_sitemap",
+      "package_dependencies_swr",
+      "package_dependencies_tailwindcss",
+      "package_dependencies_tailwindcss_postcss",
+      "package_dependencies_vercel_analytics",
+      "postcss",
+      "prop_types",
+      "react",
+      "react_dom",
+      "sharp",
+      "sitemap",
+      "swr",
+      "tailwindcss",
+      "tailwindcss_postcss",
+      "vercel_analytics"
+    ],
+    "1": [
+      "app_about_components_education",
+      "app_about_components_education_education",
+      "app_about_components_education_title",
+      "app_about_components_experience",
+      "app_about_components_experience_experience",
+      "app_about_components_experience_experiences",
+      "app_about_components_experience_formatdaterange",
+      "app_about_components_experience_title",
+      "app_about_page",
+      "app_about_page_page",
+      "app_projects_archive_page",
+      "app_projects_archive_page_page",
+      "app_projects_components_projectcard",
+      "app_projects_components_projectcard_projectcard",
+      "app_projects_page",
+      "app_projects_page_category",
+      "app_projects_page_page",
+      "app_root_page",
+      "app_root_page_mypage",
+      "app_root_page_section",
+      "app_root_page_sociallinks",
+      "components_button",
+      "components_button_button",
+      "components_fixedbutton",
+      "components_fixedbutton_fixedbutton",
+      "components_hr",
+      "components_hr_hr",
+      "components_neofetch",
+      "components_neofetch_fastfetchasciilogo",
+      "components_neofetch_fastfetchrow",
+      "components_neofetch_neofetch",
+      "components_neofetch_sectiondivider",
+      "data_neofetch",
+      "data_neofetch_neofetchdata"
+    ],
+    "2": [
+      "cross_env",
+      "next_bundle_analyzer",
+      "package",
+      "package_author",
+      "package_author_email",
+      "package_author_name",
+      "package_author_url",
+      "package_devdependencies",
+      "package_devdependencies_cross_env",
+      "package_devdependencies_next_bundle_analyzer",
+      "package_devdependencies_types_react",
+      "package_license",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_generate_sitemap",
+      "package_scripts_lint",
+      "package_scripts_postbuild",
+      "package_scripts_start",
+      "package_version",
+      "types_react"
+    ],
+    "3": [
+      "app_layout",
+      "app_layout_firacode",
+      "app_layout_jost",
+      "app_layout_jsonld",
+      "app_layout_metadata",
+      "app_layout_poppins",
+      "app_layout_rootlayout",
+      "components_chatconditional",
+      "components_chatconditional_chat",
+      "components_chatconditional_chatconditional",
+      "components_clienttopprogressbar",
+      "components_clienttopprogressbar_clienttopprogressbar",
+      "components_clienttopprogressbar_topprogressbar",
+      "components_navbar",
+      "components_navbar_itemvariants",
+      "components_navbar_navbar",
+      "components_navbar_navitems",
+      "components_navbar_navvariant"
+    ],
+    "4": [
+      "app_about_components_about_about",
+      "app_about_components_about_about_about",
+      "app_about_components_about_about_title",
+      "app_about_components_about_spotify_animation",
+      "app_about_components_about_spotify_animation_playinganimation",
+      "app_about_components_about_spotify_card",
+      "app_about_components_about_spotify_card_card",
+      "app_about_components_about_spotify_fetch",
+      "app_about_components_about_spotify_fetch_getaccesstoken",
+      "app_about_components_about_spotify_fetch_getnowplaying",
+      "app_about_components_about_spotify_fetch_getnowplayingitem"
+    ],
+    "5": [
+      "app_about_components_skills_icons",
+      "app_about_components_skills_icons_activityicon",
+      "app_about_components_skills_icons_codepenicon",
+      "app_about_components_skills_icons_mobileicon",
+      "app_about_components_skills_icons_webhookicon",
+      "app_about_components_skills_skills",
+      "app_about_components_skills_skills_skillcard",
+      "app_about_components_skills_skills_skillcategories",
+      "app_about_components_skills_skills_skilldetails",
+      "app_about_components_skills_skills_skills",
+      "app_about_components_skills_skills_tagvariants"
+    ],
+    "6": [
+      "app_not_found",
+      "app_not_found_notfound",
+      "app_projects_slug_page",
+      "app_projects_slug_page_page",
+      "app_projects_slug_page_projectimage",
+      "app_projects_slug_page_scrolldownbutton"
+    ],
+    "7": [
+      "app_about_components_quote_quote",
+      "app_about_components_quote_quote_quote",
+      "app_about_components_quote_quote_wrapper",
+      "app_about_components_quote_useintersectionobserver",
+      "app_about_components_quote_useintersectionobserver_useintersectionobserver"
+    ],
+    "8": [
+      "app_root_layout",
+      "app_root_layout_rootlayout",
+      "components_sidebar",
+      "components_sidebar_navitems",
+      "components_sidebar_sidebar"
+    ],
+    "9": [
+      "components_topprogressbar",
+      "components_topprogressbar_topprogressbar",
+      "nprogress",
+      "package_dependencies_nprogress"
+    ],
+    "10": [
+      "app_about_layout",
+      "app_about_layout_layout",
+      "app_about_layout_metadata"
+    ],
+    "11": [
+      "app_projects_layout",
+      "app_projects_layout_layout",
+      "app_projects_layout_metadata"
+    ],
+    "12": [
+      "app_projects_slug_layout",
+      "app_projects_slug_layout_generatemetadata",
+      "app_projects_slug_layout_projectdetaillayout"
+    ],
+    "13": [
+      "eslintrc",
+      "eslintrc_extends",
+      "ref_next_core_web_vitals"
+    ],
+    "14": [
+      "jsconfig",
+      "jsconfig_compileroptions",
+      "jsconfig_compileroptions_paths"
+    ],
+    "15": [
+      "next_config",
+      "next_config_headers",
+      "next_config_withbundleanalyzer"
+    ],
+    "16": [
+      "app_about_loading",
+      "app_about_loading_loading"
+    ],
+    "17": [
+      "app_projects_loading",
+      "app_projects_loading_loading"
+    ],
+    "18": [
+      "app_root_loading",
+      "app_root_loading_loading"
+    ],
+    "19": [
+      "components_blobparallax",
+      "components_blobparallax_blobparallax"
+    ],
+    "20": [
+      "components_chat",
+      "components_chat_chat"
+    ],
+    "21": [
+      "components_footer",
+      "components_footer_footer"
+    ],
+    "22": [
+      "next_sitemap_config",
+      "next_sitemap_config_projects"
+    ],
+    "23": [
+      "postcss_config"
+    ],
+    "24": [
+      "tailwind_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.04878048780487805,
+    "1": 0.09803921568627451,
+    "2": 0.08695652173913043,
+    "3": 0.13071895424836602,
+    "4": 0.2909090909090909,
+    "5": 0.2545454545454545,
+    "6": 0.4,
+    "7": 0.6,
+    "8": 0.5,
+    "9": 0.5,
+    "10": 0.6666666666666666,
+    "11": 0.6666666666666666,
+    "12": 0.6666666666666666,
+    "13": 0.6666666666666666,
+    "14": 0.6666666666666666,
+    "15": 0.6666666666666666,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0
+  },
+  "gods": [
+    {
+      "id": "components_hr_hr",
+      "label": "Hr()",
+      "degree": 7
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 7
+    },
+    {
+      "id": "app_about_components_about_spotify_fetch_getnowplayingitem",
+      "label": "getNowPlayingItem()",
+      "degree": 4
+    },
+    {
+      "id": "components_button_button",
+      "label": "Button()",
+      "degree": 4
+    },
+    {
+      "id": "components_fixedbutton_fixedbutton",
+      "label": "FixedButton()",
+      "degree": 4
+    },
+    {
+      "id": "package_author",
+      "label": "author",
+      "degree": 4
+    },
+    {
+      "id": "app_about_components_about_spotify_card_card",
+      "label": "Card()",
+      "degree": 3
+    },
+    {
+      "id": "app_about_components_about_spotify_fetch_getnowplaying",
+      "label": "getNowPlaying()",
+      "degree": 3
+    },
+    {
+      "id": "app_about_components_experience_experience",
+      "label": "Experience()",
+      "degree": 3
+    },
+    {
+      "id": "app_about_components_quote_useintersectionobserver_useintersectionobserver",
+      "label": "useIntersectionObserver()",
+      "degree": 3
+    }
+  ],
+  "surprises": [
+    {
+      "source": "TopProgressbar()",
+      "target": "nprogress",
+      "source_files": [
+        "components/TopProgressbar.jsx",
+        "package.json"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "Card()",
+      "target": "getNowPlayingItem()",
+      "source_files": [
+        "app/about/components/about/spotify/card.jsx",
+        "app/about/components/about/spotify/fetch.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "Quote()",
+      "target": "useIntersectionObserver()",
+      "source_files": [
+        "app/about/components/quote/quote.jsx",
+        "app/about/components/quote/useIntersectionObserver.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `dependencies` connect `dependencies` to `nprogress`, `package.json`?",
+      "why": "High betweenness centrality (0.106) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `extends`, `next/core-web-vitals`, `socialLinks` to the rest of the system?",
+      "why": "59 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `dependencies` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `about/page.jsx` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09803921568627451 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `package.json` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08695652173913043 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `app/layout.jsx` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13071895424836602 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

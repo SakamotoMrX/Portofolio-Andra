@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Button from "@/components/Button";
 import Image from "next/image";
 
-import ProjectAll from "@/public/image/projects-showcase.png";
+import ProjectAll from "@/public/image/projects-showcase.jpg";
 import Hr from "@/components/Hr";
 import ProjectCard from "./components/ProjectCard";
 import Projects from "@/json/data.json";
@@ -13,9 +13,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 const category = {
+	9: "Software & Website",
 	1: "DevOps & SysAdmin",
 	2: "Hardware & IoT",
-	9: "Other",
 };
 
 export default function Page() {
@@ -82,7 +82,7 @@ export default function Page() {
 				whileInView={{ opacity: 1, x: 0 }}
 				transition={{ type: "spring" }}
 				className="flex flex-row justify-center items-start flex-wrap gap-2 md:gap-5 my-5 px-4 md:px-0">
-				{Object.keys(category).map((key) => (
+				{["9", "1", "2"].map((key) => (
 					<button
 						key={key}
 						className={`px-4 py-2.5 rounded-lg cursor-pointer transition-all duration-300 text-sm md:text-base ${

@@ -86,7 +86,7 @@ function SkillCard({ skill, isSelected, onClick }) {
 		<motion.div
 			onClick={onClick}
 			className={`relative cursor-pointer group p-6 rounded-2xl transition-all duration-300 ${
-				isSelected ? "glass !border-cyan-400/50 !shadow-cyan-500/20" : "glass hover:!border-white/20"
+				isSelected ? "glass !border-white/60 !shadow-white/10" : "glass hover:!border-white/20"
 			}`}
 			whileHover={{ scale: 1.03 }}
 			whileTap={{ scale: 0.97 }}
@@ -95,7 +95,7 @@ function SkillCard({ skill, isSelected, onClick }) {
 			transition={{ duration: 0.3 }}>
 			<div className="relative z-10 flex flex-col items-center text-center space-y-4">
 				<div className={`p-4 rounded-xl transition-all duration-300 ${
-					isSelected ? "bg-cyan-400/20" : "bg-white/10"
+					isSelected ? "bg-white/15" : "bg-white/10"
 				}`}>
 					<Icon className="w-8 h-8 text-white" />
 				</div>
@@ -146,7 +146,7 @@ function SkillDetails({ selectedSkill }) {
 							key={skill.name}
 							variants={tagVariants}
 							className={`glass-tag transition-all duration-300 cursor-default flex items-center gap-2 ${
-								skill.highlight ? "!bg-cyan-500/20 !border-cyan-400/40 !text-cyan-300" : "!text-white/70"
+								skill.highlight ? "!bg-white/15 !border-white/40 !text-white/80" : "!text-white/70"
 							}`}>
 							{skill.highlight && (
 								<span className="text-cyan-300 text-[10px] animate-pulse">✦</span>

@@ -8,6 +8,8 @@ export default function BlobParallax() {
 	const dirtyRef = useRef(false);
 
 	useEffect(() => {
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
 		const onMouse = (e) => {
 			mouseRef.current = {
 				x: e.clientX / window.innerWidth,
@@ -24,7 +26,7 @@ export default function BlobParallax() {
 			if (!dirtyRef.current) return;
 			dirtyRef.current = false;
 
-			const wrappers = document.querySelectorAll(".bg-blob-orb-wrapper");
+			const wrappers = document.querySelectorAll(".bg-blob-purple, .bg-blob-teal");
 			const mx = (mouseRef.current.x - 0.5) * 2;
 			const my = (mouseRef.current.y - 0.5) * 2;
 			wrappers.forEach((w, i) => {

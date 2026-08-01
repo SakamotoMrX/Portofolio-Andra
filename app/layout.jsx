@@ -7,6 +7,9 @@ config.autoAddCss = false;
 import { Analytics } from "@vercel/analytics/react";
 import ClientTopProgressBar from "@/components/ClientTopProgressBar";
 import ChatConditional from "@/components/ChatConditional";
+import CursorFollower from "@/components/CursorFollower";
+import ReducedMotionProvider from "@/components/ReducedMotionProvider";
+import BlobParallax from "@/components/BlobParallax";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -94,11 +97,15 @@ export default function RootLayout({ children }) {
 					<div className="bg-blob-purple" />
 					<div className="bg-blob-teal" />
 				</div>
+				<BlobParallax />
 				<ClientTopProgressBar />
 				<Navbar />
-			<div>
-				{children}
-			</div>
+				<CursorFollower />
+				<ReducedMotionProvider>
+					<div>
+						{children}
+					</div>
+				</ReducedMotionProvider>
 				<ChatConditional />
 				<Analytics />
 			</body>

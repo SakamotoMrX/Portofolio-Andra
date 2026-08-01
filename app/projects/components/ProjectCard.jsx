@@ -10,6 +10,7 @@ export default function ProjectCard({ project, index }) {
 				className="glass relative flex justify-center items-start flex-col mb-5 w-full h-auto py-8 md:py-12 px-6 md:px-10 aspect-video overflow-hidden group"
 				initial={{ opacity: 0, x: -200 }}
 				whileInView={{ opacity: 1, x: 0 }}
+				viewport={{ once: true }}
 				transition={{ type: "spring", stiffness: 80, damping: 20 }}>
 				<Image
 					src={project.thumbnail}

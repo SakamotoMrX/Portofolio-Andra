@@ -44,7 +44,7 @@ export default function Education() {
 							<div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e]/80 via-transparent to-transparent" />
 						</div>
 						<div className="p-6 space-y-3">
-							<div className="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 flex items-center justify-center">
+							<div className="w-10 h-10 rounded-full bg-white/10 border border-white/25 text-cyan-300 flex items-center justify-center">
 								<FontAwesomeIcon icon={faGraduationCap} />
 							</div>
 							<h3 className="text-xl font-bold text-white">Linux System Administration</h3>
@@ -70,7 +70,7 @@ export default function Education() {
 							<div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e]/80 via-transparent to-transparent" />
 						</div>
 						<div className="p-6 space-y-3">
-							<div className="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 flex items-center justify-center">
+							<div className="w-10 h-10 rounded-full bg-white/10 border border-white/25 text-cyan-300 flex items-center justify-center">
 								<FontAwesomeIcon icon={faTerminal} />
 							</div>
 							<h3 className="text-xl font-bold text-white">Docker & Containerization</h3>
@@ -96,7 +96,7 @@ export default function Education() {
 							<div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e]/80 via-transparent to-transparent" />
 						</div>
 						<div className="p-6 space-y-3">
-							<div className="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 flex items-center justify-center">
+							<div className="w-10 h-10 rounded-full bg-white/10 border border-white/25 text-cyan-300 flex items-center justify-center">
 								<FontAwesomeIcon icon={faAward} />
 							</div>
 							<h3 className="text-xl font-bold text-white">Arduino & Microcontrollers</h3>

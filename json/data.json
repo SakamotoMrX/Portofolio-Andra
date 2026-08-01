@@ -10,9 +10,9 @@
       "year": "2026",
       "preview": "",
       "code": "https://github.com/SakamotoMrX",
-      "thumbnail": "/image/linux-server-lab.png",
+      "thumbnail": "/image/linux-server-lab.jpg",
       "images": [
-        "/image/linux-server-lab.png"
+        "/image/linux-server-lab.jpg"
       ],
       "tech": [
         "Linux",
@@ -26,6 +26,104 @@
     },
     {
       "show": true,
+      "title": "MacBar Monitor",
+      "desc": [
+        "A lightweight macOS menu bar system monitor that displays real-time system metrics directly in your menu bar."
+      ],
+      "year": "2026",
+      "preview": "",
+      "code": "https://github.com/pinoezz/macbar-monitor",
+      "thumbnail": "/image/projects/other/macbar-monitor/macbar-monitor-thumbnail.png",
+      "images": [
+        "/image/projects/other/macbar-monitor/macbar-monitor-thumbnail.png"
+      ],
+      "tech": [
+        "Swift",
+        "SwiftUI"
+      ],
+      "slug": "macbar-monitor",
+      "category": [9]
+    },
+    {
+      "show": true,
+      "title": "Termifore",
+      "desc": [
+        "Web application deployed at t-app.enama.my.id."
+      ],
+      "year": "2026",
+      "preview": "https://t-app.enama.my.id",
+      "code": "https://github.com/SakamotoMrX/termifore",
+      "thumbnail": "/image/projects-showcase.jpg",
+      "images": [
+        "/image/projects-showcase.jpg"
+      ],
+      "tech": [
+        "Web"
+      ],
+      "slug": "termifore",
+      "category": [9]
+    },
+    {
+      "show": true,
+      "title": "Invoice App",
+      "desc": [
+        "Invoice generator web application for PT ASA PANCA CIPTA OPTIMA (Bogor) — create invoices with customer, property, billing, and payment details, deployed at invoice-app-mauve-alpha.vercel.app."
+      ],
+      "year": "2026",
+      "preview": "https://invoice-app-mauve-alpha.vercel.app",
+      "code": "",
+      "thumbnail": "/image/projects-showcase.jpg",
+      "images": [
+        "/image/projects-showcase.jpg"
+      ],
+      "tech": [
+        "Web"
+      ],
+      "slug": "invoice-app",
+      "category": [9]
+    },
+    {
+      "show": true,
+      "title": "Portofolio Andra",
+      "desc": [
+        "Personal portfolio website for Andra, a Junior DevOps based in Bogor, Indonesia — built with Next.js, Tailwind CSS, and Framer Motion, deployed at my-portofolio-andra.vercel.app."
+      ],
+      "year": "2026",
+      "preview": "https://my-portofolio-andra.vercel.app",
+      "code": "https://github.com/SakamotoMrX/Portofolio-Andra",
+      "thumbnail": "/image/projects-showcase.jpg",
+      "images": [
+        "/image/projects-showcase.jpg"
+      ],
+      "tech": [
+        "Next.js",
+        "TailwindCSS",
+        "Framer Motion"
+      ],
+      "slug": "portofolio-andra",
+      "category": [9]
+    },
+    {
+      "show": true,
+      "title": "MODULin",
+      "desc": [
+        "Web platform for creating teaching modules (modul ajar) easily — 'bikin modul ajar jadi gampang', deployed at modulin.enama.my.id."
+      ],
+      "year": "2026",
+      "preview": "https://modulin.enama.my.id",
+      "code": "https://github.com/SakamotoMrX/modulin",
+      "thumbnail": "/image/projects-showcase.jpg",
+      "images": [
+        "/image/projects-showcase.jpg"
+      ],
+      "tech": [
+        "Web"
+      ],
+      "slug": "modulin",
+      "category": [9]
+    },
+    {
+      "show": true,
       "title": "Calistung App",
       "desc": [
         "Educational web platform deployed on Vercel (calistung.enama.my.id) designed for early learning and interactive literacy practice."
@@ -33,9 +131,9 @@
       "year": "2026",
       "preview": "https://calistung.enama.my.id",
       "code": "https://github.com/SakamotoMrX/calistung",
-      "thumbnail": "/image/projects-showcase.png",
+      "thumbnail": "/image/projects-showcase.jpg",
       "images": [
-        "/image/projects-showcase.png"
+        "/image/projects-showcase.jpg"
       ],
       "tech": [
         "Next.js",
@@ -55,9 +153,9 @@
       "year": "2026",
       "preview": "https://nexotech.enama.my.id",
       "code": "https://github.com/SakamotoMrX/nexotech-enama",
-      "thumbnail": "/image/projects-showcase.png",
+      "thumbnail": "/image/projects-showcase.jpg",
       "images": [
-        "/image/projects-showcase.png"
+        "/image/projects-showcase.jpg"
       ],
       "tech": [
         "React",
@@ -75,10 +173,10 @@
       ],
       "year": "2026",
       "preview": "https://nexotech-assistant.enama.my.id",
-      "code": "https://github.com/SakamotoMrX/Nexotech-solutions-ai",
-      "thumbnail": "/image/projects-showcase.png",
+      "code": "https://github.com/SakamotoMrX/Nexotech-Solutions-AI",
+      "thumbnail": "/image/projects-showcase.jpg",
       "images": [
-        "/image/projects-showcase.png"
+        "/image/projects-showcase.jpg"
       ],
       "tech": [
         "AI Chat",
@@ -98,9 +196,9 @@
       "year": "2026",
       "preview": "https://kbn.enama.my.id",
       "code": "https://github.com/SakamotoMrX/kbn-enama-my-id",
-      "thumbnail": "/image/projects-showcase.png",
+      "thumbnail": "/image/projects-showcase.jpg",
       "images": [
-        "/image/projects-showcase.png"
+        "/image/projects-showcase.jpg"
       ],
       "tech": [
         "Next.js",
@@ -119,9 +217,9 @@
       "year": "2026",
       "preview": "https://nur-quran.enama.my.id",
       "code": "https://github.com/SakamotoMrX/nur-quran",
-      "thumbnail": "/image/projects-showcase.png",
+      "thumbnail": "/image/projects-showcase.jpg",
       "images": [
-        "/image/projects-showcase.png"
+        "/image/projects-showcase.jpg"
       ],
       "tech": [
         "React",
@@ -140,9 +238,9 @@
       "year": "2026",
       "preview": "https://laundry.enama.my.id",
       "code": "https://github.com/SakamotoMrX/Enama-laundry",
-      "thumbnail": "/image/projects-showcase.png",
+      "thumbnail": "/image/projects-showcase.jpg",
       "images": [
-        "/image/projects-showcase.png"
+        "/image/projects-showcase.jpg"
       ],
       "tech": [
         "Next.js",
@@ -162,9 +260,9 @@
       "year": "2025",
       "preview": "",
       "code": "https://github.com/SakamotoMrX",
-      "thumbnail": "/image/projects-showcase.png",
+      "thumbnail": "/image/projects-showcase.jpg",
       "images": [
-        "/image/projects-showcase.png"
+        "/image/projects-showcase.jpg"
       ],
       "tech": [
         "Arduino IDE",

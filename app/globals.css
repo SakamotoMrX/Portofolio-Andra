@@ -7,9 +7,9 @@
   --glass-bg: rgba(255, 255, 255, 0.04);
   --glass-bg-hover: rgba(255, 255, 255, 0.08);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-hover: rgba(20, 184, 166, 0.2);
+  --glass-border-hover: rgba(255, 255, 255, 0.25);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  --glass-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.35), 0 0 30px rgba(20, 184, 166, 0.08);
+  --glass-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.35), 0 0 30px rgba(255, 255, 255, 0.06);
   --glass-blur: blur(16px);
   --glass-blur-strong: blur(24px);
   --glass-shine: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%, rgba(255,255,255,0.02) 100%);
@@ -19,6 +19,7 @@
   --accent-glow: rgba(20, 184, 166, 0.15);
   --accent-glow-strong: rgba(20, 184, 166, 0.25);
   --accent-dim: rgba(20, 184, 166, 0.6);
+  --cursor-brown: #b08968;
   --blue: #3b82f6;
   --text-primary: rgba(255, 255, 255, 0.92);
   --text-secondary: rgba(255, 255, 255, 0.55);
@@ -219,7 +220,7 @@ a[title]:hover:after {
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 1px 0 rgba(20, 184, 166, 0.06);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* Fallback: browsers without backdrop-filter */
@@ -279,8 +280,8 @@ a[title]:hover:after {
 
 .glass-btn:hover {
   background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(20, 184, 166, 0.3);
-  box-shadow: 0 0 30px rgba(20, 184, 166, 0.12), var(--glass-shadow);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.08), var(--glass-shadow);
   transform: translateY(-2px);
 }
 
@@ -301,9 +302,9 @@ a[title]:hover:after {
 
 .glass-btn-outline:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(20, 184, 166, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
   color: #fff;
-  box-shadow: 0 0 20px rgba(20, 184, 166, 0.06);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.06);
   transform: translateY(-2px);
 }
 
@@ -321,9 +322,9 @@ a[title]:hover:after {
 }
 
 .glass-icon:hover {
-  background: rgba(20, 184, 166, 0.18);
-  border-color: rgba(20, 184, 166, 0.3);
-  box-shadow: 0 0 20px rgba(20, 184, 166, 0.12);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
   transform: translateY(-2px);
 }
 
@@ -392,6 +393,13 @@ a[title]:hover:after {
   animation-delay: -2s;
 }
 
+/* Mouse parallax offset (set by BlobParallax) — independent transform,
+   composes with the blob-float animation */
+.bg-blob-purple,
+.bg-blob-teal {
+  translate: var(--parallax-x, 0px) var(--parallax-y, 0px);
+}
+
 @keyframes blob-float {
   0% { transform: translate(0, 0) scale(1); }
   33% { transform: translate(2%, -3%) scale(1.05); }
@@ -452,12 +460,12 @@ a[title]:hover:after {
 /* ===== GLASSMORPHISM TAG BADGE ===== */
 
 .glass-tag {
-  background: rgba(20, 184, 166, 0.08);
-  border: 1px solid rgba(20, 184, 166, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
-  color: var(--accent);
+  color: rgba(255, 255, 255, 0.7);
   font-family: var(--font-fira-code), monospace;
 }
 
@@ -495,5 +503,61 @@ a[title]:hover:after {
 @media (max-width: 480px) {
   .glass, .glass-static, .glass-static-strong {
     border-radius: 14px;
+  }
+}
+
+/* ===== CURSOR FOLLOWER (minimalist) ===== */
+
+.cursor-follower {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+/* Small dot — solid accent, tracks the cursor tightly */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 9999px;
+  background: var(--cursor-brown);
+}
+
+/* Larger ring — 1px accent border, trails with spring lag */
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border-radius: 9999px;
+  border: 1px solid var(--cursor-brown);
+}
+
+/* Touch devices: the native cursor is absent — hide entirely */
+@media (pointer: coarse) {
+  .cursor-follower {
+    display: none;
+  }
+}
+
+/* Reduced motion: keep the native cursor, drop the follower */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-follower {
+    display: none;
+  }
+}
+
+/* Reduced transparency: solid border instead of alpha */
+@media (prefers-reduced-transparency: reduce) {
+  .cursor-ring {
+    border-color: var(--cursor-brown);
   }
 }

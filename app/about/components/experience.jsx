@@ -70,7 +70,7 @@ export default function Experience() {
 							onClick={() => setActiveTab(exp.id)}
 							className={`text-left p-4 rounded-xl transition-all duration-300 ${
 								activeTab === exp.id
-									? "glass !border-cyan-400/40 !shadow-cyan-500/10 translate-x-2"
+									? "glass !border-white/50 !shadow-white/10 translate-x-2"
 									: "glass hover:!border-white/20"
 							}`}>
 							<div className="text-xs text-white/50 font-mono">
@@ -117,7 +117,7 @@ export default function Experience() {
 											{exp.skills.map((skill) => (
 												<span
 													key={skill}
-													className="glass-tag !bg-cyan-500/15 !border-cyan-400/30 !text-cyan-300 !text-xs">
+													className="glass-tag !bg-white/10 !border-white/30 !text-white/70 !text-xs">
 													{skill}
 												</span>
 											))}

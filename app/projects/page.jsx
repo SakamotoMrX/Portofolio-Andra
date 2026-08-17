@@ -9,6 +9,7 @@ import Hr from "@/components/Hr";
 import ProjectCard from "./components/ProjectCard";
 import Projects from "@/json/data.json";
 import FixedButton from "@/components/FixedButton";
+import Reveal from "@/components/Reveal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -51,6 +52,7 @@ export default function Page() {
 						</div>
 					</motion.div>
 				</div>
+<Reveal>
 				<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[55%] md:top-1/3 flex flex-col justify-center items-center md:items-start text-center md:text-start px-6 md:px-10 pt-4 md:pt-0">
 					<h1 className="text-4xl sm:text-5xl md:text-8xl font-bold text-white">
 						My Projects
@@ -68,14 +70,17 @@ export default function Page() {
 						<Button variation="primary">Scroll Down</Button>
 					</motion.div>
 				</div>
-			</div>
+			</Reveal>
+		</div>
 
 			<div className="mt-10 flex flex-col justify-start items-center w-full pl-10 md:pl-32">
+<Reveal>
 				<div className="flex justify-center items-center flex-col my-5 self-start">
 					<Hr variant="long" />
 					<h1 className="text-3xl font-bold mt-3">Projects Showcase</h1>
 				</div>
-			</div>
+			</Reveal>
+		</div>
 
 			<motion.div
 				initial={{ opacity: 0, x: 200 }}

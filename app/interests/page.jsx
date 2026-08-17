@@ -13,6 +13,7 @@ import { ReadingGrid } from "@/components/reading";
 import { music } from "@/data/music";
 import { reading } from "@/data/reading";
 import EqStrip from "@/components/setup/EqStrip";
+import Reveal from "@/components/Reveal";
 
 export default function Page() {
   useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -25,6 +26,7 @@ export default function Page() {
 
       {/* Hero section */}
       <section className="relative h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden">
+        <Reveal>
         <div className="z-10 max-w-4xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold text-white mb-6">
             Interests & Media
@@ -37,20 +39,24 @@ export default function Page() {
               Scroll Down
             </Button>
           </div>
-        </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* Spotify Now Playing */}
       <section className="py-10 px-4 md:px-8 max-w-4xl mx-auto">
+        <Reveal>
         <div className="mb-6 flex items-center gap-2 text-accent font-mono">
           <span>$</span>
           <span>now-playing</span>
         </div>
         <Card />
+        </Reveal>
       </section>
 
       {/* Rhythm Section */}
       <section className="py-10 px-4 md:px-8 max-w-5xl mx-auto">
+        <Reveal>
         <div className="mb-8">
           <div className="flex items-center gap-2 text-accent-2 font-mono">
             <span>$</span>
@@ -79,11 +85,13 @@ export default function Page() {
               <p>{music.habits.weeklyHours} hours/week • {music.habits.playlists} playlists</p>
             </div>
           </div>
-        </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* Genres */}
       <section className="py-10 px-4 md:px-8 max-w-4xl mx-auto border-t border-white/5">
+        <Reveal>
         <div className="mb-6">
           <h3 className="text-xl font-bold text-white mb-4">Genres</h3>
           <div className="flex flex-wrap gap-2">
@@ -99,11 +107,13 @@ export default function Page() {
               </div>
             ))}
           </div>
-        </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* Reading List */}
       <section className="py-10 px-4 md:px-8 max-w-6xl mx-auto border-t border-white/5">
+        <Reveal>
         <div className="mb-8">
           <div className="flex items-center gap-2 text-accent font-mono mb-2">
             <span>$</span>
@@ -112,10 +122,12 @@ export default function Page() {
           <h2 className="text-2xl md:text-3xl font-bold text-white">Currently Reading</h2>
         </div>
         <ReadingGrid items={reading} />
+        </Reveal>
       </section>
 
       {/* Habits Summary */}
       <section className="py-10 px-4 md:px-8 max-w-4xl mx-auto border-t border-white/5">
+        <Reveal>
         <div className="mb-6">
           <h3 className="text-xl font-bold text-white mb-4">Listening Habits</h3>
           <div className="glass-static p-6 rounded-xl">
@@ -133,12 +145,14 @@ export default function Page() {
                 <div className="text-sm text-white/40">hours archived</div>
               </div>
             </div>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* EQ Setup */}
       <section className="py-10 px-4 md:px-8 max-w-4xl mx-auto border-t border-white/5">
+        <Reveal>
         <div className="mb-8">
           <div className="flex items-center gap-2 text-accent font-mono">
             <span>$</span>
@@ -156,6 +170,7 @@ export default function Page() {
             { freq: 8000, gain: -0.5 }, { freq: 12000, gain: 0 }
           ]}
         />
+        </Reveal>
       </section>
     </main>
   );

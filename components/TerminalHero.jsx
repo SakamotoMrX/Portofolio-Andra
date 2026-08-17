@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Button from "@/components/Button";
 import TerminalTitlebar from "./TerminalTitlebar";
 import RepoRow from "./RepoRow";
+import Reveal from "./Reveal";
 
 export default function TerminalHero({ repos, os, wm, editor }) {
   const prefersReducedMotion = useReducedMotion();
@@ -106,7 +107,7 @@ export default function TerminalHero({ repos, os, wm, editor }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 w-full max-w-screen-2xl p-6 md:p-10">
       {/* Left: Heading + Copy + CTAs */}
-      <div className="col-span-1 md:col-span-5 flex flex-col justify-center">
+      <Reveal className="col-span-1 md:col-span-5 flex flex-col justify-center">
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,10 +137,10 @@ export default function TerminalHero({ repos, os, wm, editor }) {
           <Button variation="primary" href="/about">About Me</Button>
           <Button variation="secondary" href="#contact">Contact Me</Button>
         </motion.div>
-      </div>
+      </Reveal>
 
       {/* Right: Terminal Window */}
-      <div className="col-span-1 md:col-span-7">
+      <Reveal className="col-span-1 md:col-span-7">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -171,7 +172,7 @@ export default function TerminalHero({ repos, os, wm, editor }) {
             </div>
           </div>
         </motion.div>
-      </div>
+      </Reveal>
     </div>
   );
 }

@@ -1,0 +1,85 @@
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-blobs::before,
+.bg-blobs::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+  animation: blob-float 12s ease-in-out infinite alternate;
+}
+
+.bg-blobs::before {
+  top: -15%;
+  left: -10%;
+  width: min(600px, 70vw);
+  height: min(600px, 70vw);
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.2) 0%, transparent 70%);
+  animation-duration: 14s;
+}
+
+.bg-blobs::after {
+  bottom: -10%;
+  right: -5%;
+  width: min(500px, 60vw);
+  height: min(500px, 60vw);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, transparent 70%);
+  animation-duration: 10s;
+  animation-delay: -3s;
+}
+
+.bg-blob-purple {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: min(400px, 50vw);
+  height: min(400px, 50vw);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.14) 0%, transparent 70%);
+  filter: blur(100px);
+  animation: blob-float 16s ease-in-out infinite alternate;
+  animation-delay: -6s;
+}
+
+.bg-blob-teal {
+  position: absolute;
+  top: 20%;
+  right: 15%;
+  width: min(350px, 45vw);
+  height: min(350px, 45vw);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.12) 0%, transparent 70%);
+  filter: blur(90px);
+  animation: blob-float 11s ease-in-out infinite alternate;
+  animation-delay: -2s;
+}
+
+/* Mouse parallax offset (set by BlobParallax) */
+.bg-blob-purple,
+.bg-blob-teal {
+  translate: var(--parallax-x, 0px) var(--parallax-y, 0px);
+}
+
+@keyframes blob-float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(2%, -3%) scale(1.05); }
+  66% { transform: translate(-1%, 2%) scale(0.95); }
+  100% { transform: translate(1%, -1%) scale(1.02); }
+}
+
+/* Pause bg-blob animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bg-blobs::before,
+  .bg-blobs::after,
+  .bg-blob-purple,
+  .bg-blob-teal {
+    animation: none;
+  }
+}

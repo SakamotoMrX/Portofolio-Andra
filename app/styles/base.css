@@ -1,0 +1,102 @@
+html {
+  font-size: clamp(14px, 0.8vw, 16px);
+  scroll-behavior: smooth;
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+/* Scroll-direction-aware navbar */
+[data-scroll-dir="down"] .navbar:not(.navbar-menu-open) {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+[data-scroll-dir="up"] .navbar,
+:root:not([data-scroll-dir]) .navbar {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.navbar {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.6, 1), opacity 0.35s cubic-bezier(0.4, 0, 0.6, 1);
+  will-change: transform, opacity;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #0a0e27 0%, #0f1225 40%, #0a1628 70%, #0d1a2d 100%);
+  min-height: 100vh;
+  line-height: 1.75;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-jost), sans-serif;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: -0.01em;
+}
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+h4 {
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+}
+
+/* Long copy gets max-w-prose for readability */
+p, .prose {
+  max-width: 65ch;
+}
+
+::selection {
+  background: rgba(20, 184, 166, 0.3);
+  color: #fff;
+}
+
+.section {
+  height: 100dvh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+}
+
+/* Scroll snap (homepage only) */
+html.home-snap {
+  scroll-snap-type: y mandatory;
+}
+html.home-snap .section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.home-snap {
+    scroll-behavior: auto;
+  }
+}
+
+/* Table styles */
+td, th {
+  @apply py-2 px-3;
+}
+
+/* Focus states for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

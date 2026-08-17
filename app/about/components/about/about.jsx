@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Card from "./spotify/card";
 import { motion } from "framer-motion";
 import Me1 from "@/public/image/about-1.jpg";
 import Me2 from "@/public/image/about-2.jpg";
@@ -78,7 +77,7 @@ export default function About() {
 					<h2 className="text-xl md:text-2xl font-bold tracking-wider mb-3 text-white">
 						Andra (SakamotoMrX)
 					</h2>
-					<p className="text-white/70 text-justify title text-base md:text-lg leading-relaxed">
+					<p className="text-white/70 text-justify text-base md:text-lg leading-relaxed max-w-prose">
 						I am a{" "}
 						<span className="text-cyan-300 font-medium">
 							Junior DevOps practitioner & Linux enthusiast{" "}
@@ -100,7 +99,6 @@ export default function About() {
 						</span>
 						. When I&rsquo;m not crafting Bash scripts or YAML environment configurations, I spend my time Larping Linux (software) and working with Arduino microcontrollers (hardware).
 					</p>
-					<Card />
 				</motion.div>
 			</div>
 		</>

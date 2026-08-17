@@ -1,12 +1,14 @@
 "use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUser, faFolderOpen, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faUser, faServer, faFolderOpen, faBook, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 const navItems = [
 	{ icon: faHome, label: "Go to Home section", anchor: "home" },
 	{ icon: faUser, label: "Go to About section", anchor: "about" },
+	{ icon: faServer, label: "Go to Setup section", anchor: "setup" },
 	{ icon: faFolderOpen, label: "Go to Projects section", anchor: "projects" },
+	{ icon: faBook, label: "Go to Interests section", anchor: "interests" },
 	{ icon: faEnvelope, label: "Go to Contact section", anchor: "contact" },
 ];
 

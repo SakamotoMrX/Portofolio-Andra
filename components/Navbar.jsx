@@ -27,9 +27,10 @@ const NavItems = ({ isNavOpen, setIsNavOpen }) => {
 	const handleItemClick = () => setIsNavOpen(false);
 
 	const links = [
-		{ href: "/#home", label: "Home" },
 		{ href: "/about", label: "About" },
+		{ href: "/setup", label: "Setup" },
 		{ href: "/projects", label: "Projects" },
+		{ href: "/interests", label: "Interests" },
 		{ href: "/#contact", label: "Contact" },
 	];
 

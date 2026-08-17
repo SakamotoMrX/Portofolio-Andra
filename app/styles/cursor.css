@@ -1,0 +1,54 @@
+/* Cursor follower (minimalist) */
+.cursor-follower {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+/* Small dot — solid accent, tracks the cursor tightly */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 9999px;
+  background: var(--cursor-brown);
+}
+
+/* Larger ring — 1px accent border, trails with spring lag */
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border-radius: 9999px;
+  border: 1px solid var(--cursor-brown);
+}
+
+/* Touch devices: the native cursor is absent — hide entirely */
+@media (pointer: coarse) {
+  .cursor-follower {
+    display: none;
+  }
+}
+
+/* Reduced motion: keep the native cursor, drop the follower */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-follower {
+    display: none;
+  }
+}
+
+/* Reduced transparency: solid border instead of alpha */
+@media (prefers-reduced-transparency: reduce) {
+  .cursor-ring {
+    border-color: var(--cursor-brown);
+  }
+}

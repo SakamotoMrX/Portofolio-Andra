@@ -1,0 +1,30 @@
+@theme {
+  --color-accent: #14b8a6;
+  --color-accent-2: #ff6ec7;
+  --radius-panel: 12px;
+  --font-inter: var(--font-inter);
+  --font-jost: var(--font-jost);
+  --font-mono: var(--font-fira-code);
+}
+
+:root {
+  /* Flat dark panels */
+  --glass-bg: rgba(13, 18, 38, 0.92);
+  --glass-bg-hover: rgba(20, 184, 166, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-border-hover: rgba(20, 184, 166, 0.55);
+  --glass-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+  --glass-shadow-hover: 0 0 0 1px rgba(20, 184, 166, 0.25), 0 12px 40px rgba(0, 0, 0, 0.4);
+
+  /* Colors */
+  --accent: #14b8a6;
+  --accent-2: #ff6ec7;
+  --accent-glow: rgba(20, 184, 166, 0.15);
+  --accent-glow-strong: rgba(20, 184, 166, 0.25);
+  --accent-dim: rgba(20, 184, 166, 0.6);
+  --cursor-brown: #b08968;
+  --blue: #3b82f6;
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-dim: rgba(255, 255, 255, 0.3);
+}

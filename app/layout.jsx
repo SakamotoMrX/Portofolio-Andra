@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Poppins, Jost, Fira_Code } from "next/font/google";
+import { Inter, Jost, Fira_Code } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -11,12 +11,12 @@ import CursorFollower from "@/components/CursorFollower";
 import ReducedMotionProvider from "@/components/ReducedMotionProvider";
 import BlobParallax from "@/components/BlobParallax";
 
-const poppins = Poppins({
+const inter = Inter({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700"],
 	style: ["normal", "italic"],
 	display: "swap",
-	variable: "--font-poppins",
+	variable: "--font-inter",
 });
 
 const jost = Jost({
@@ -85,8 +85,8 @@ const jsonLd = {
 };
 
 export default function RootLayout({ children }) {
-	return (
-		<html lang="en" className={`${poppins.variable} ${jost.variable} ${firaCode.variable}`}>
+  return (
+    <html lang="en" className={`${inter.variable} ${jost.variable} ${firaCode.variable}`}>
 			<body className="relative">
 				<script
 					type="application/ld+json"

@@ -127,7 +127,7 @@ export default function TerminalHero({ repos, os, wm, editor }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-sm sm:text-md 2xl:text-xl mt-4 tracking-wider leading-[1.6rem] md:leading-[1.7rem] max-w-2xl text-white/55">
-          Hi! I&rsquo;m Andra, a Junior DevOps based in Bogor, Indonesia with over 15 years 5 months of hands-on technology exploration. Specialized in Linux SysAdmin, Virtual Machines, Containerization, Bash scripting, and open-source systems.
+          Linux SysAdmin, containerization, and hardware tinkering — Bogor, Indonesia.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -1,6 +1,6 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef, useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
 import Button from "@/components/Button";
@@ -70,11 +70,6 @@ const MyPage = () => {
 
   const projectsScroll = useScroll({ target: projectsRef, offset: ["start end", "end start"] });
   const projectsY = useTransform(projectsScroll.scrollYProgress, [0, 1], prefersReducedMotion ? ["0%", "0%"] : ["8%", "-8%"]);
-
-  useEffect(() => {
-    document.documentElement.classList.add("home-snap");
-    return () => document.documentElement.classList.remove("home-snap");
-  }, []);
 
   // Prepare repos data for TerminalHero
   const repos = Projects.Projects.filter(p => p.show === true)

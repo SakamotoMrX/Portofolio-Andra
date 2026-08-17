@@ -61,29 +61,13 @@ p, .prose {
   color: #fff;
 }
 
+/* Content-driven height; min-height keeps full-viewport rhythm, no snap */
 .section {
-  height: 100dvh;
   min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   position: relative;
-}
-
-/* Scroll snap (homepage only) */
-html.home-snap {
-  scroll-snap-type: y mandatory;
-}
-html.home-snap .section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-@media (prefers-reduced-motion: reduce) {
-  html.home-snap {
-    scroll-behavior: auto;
-  }
 }
 
 /* Table styles */

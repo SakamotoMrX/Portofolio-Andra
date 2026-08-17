@@ -96,7 +96,7 @@ const MyPage = () => {
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.2 }}>
+          viewport={{ once: true, amount: 0.2 }}>
           <div className="col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start">
             <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl md:text-8xl font-bold">
               About Me
@@ -116,7 +116,7 @@ const MyPage = () => {
               className="relative glass-static rounded-2xl overflow-hidden h-[300px] sm:h-[340px] md:h-[520px] w-full max-w-[400px] md:max-w-[500px] shadow-2xl"
               initial={{ x: 100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ amount: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ type: "spring", stiffness: 200, damping: 24, delay: 0.2 }}>
               <motion.div style={{ y: aboutY }} className="absolute inset-x-0 -inset-y-[10%]">
                 <div className="w-full h-full bg-gradient-to-br from-teal-500/10 to-blue-500/10" />
@@ -138,7 +138,7 @@ const MyPage = () => {
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.2 }}>
+          viewport={{ once: true, amount: 0.2 }}>
           <div className="col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start">
             <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl md:text-8xl font-bold my-2 md:my-5">
               My Projects
@@ -172,7 +172,7 @@ const MyPage = () => {
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.2 }}>
+          viewport={{ once: true, amount: 0.2 }}>
           <div className="col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start">
             <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl md:text-8xl font-bold my-2 md:my-5">
               Get In Touch
@@ -192,7 +192,7 @@ const MyPage = () => {
                   className="absolute left-0 -bottom-1 h-[2px] w-full origin-left bg-white/60 group-hover:bg-white transition-colors"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
-                  viewport={{ amount: 0.8 }}
+                  viewport={{ once: true, amount: 0.8 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
                 />
               </a>

@@ -11,14 +11,15 @@ import Edu1 from "@/public/image/education-1.jpg";
 import Edu2 from "@/public/image/education-2.jpg";
 import Edu3 from "@/public/image/education-3.jpg";
 import Hr from "@/components/Hr";
+import Reveal from "@/components/Reveal";
 
 function Title() {
 	return (
 		<div className="mt-10 flex flex-col justify-start items-center w-full pl-6 md:pl-32">
-			<div className="flex justify-center items-center flex-col my-5 self-start">
+			<Reveal className="flex justify-center items-center flex-col my-5 self-start">
 				<Hr variant="long" />
 				<h1 className="text-2xl md:text-3xl font-bold mt-3">Education & Milestones</h1>
-			</div>
+			</Reveal>
 		</div>
 	);
 }

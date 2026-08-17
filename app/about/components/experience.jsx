@@ -1,5 +1,6 @@
 "use client";
 import Hr from "@/components/Hr";
+import Reveal from "@/components/Reveal";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
@@ -48,10 +49,10 @@ const formatDateRange = ({ startDate, endDate }) =>
 function Title() {
 	return (
 		<div className="mt-10 flex flex-col justify-start items-center w-full pl-6 md:pl-32">
-			<div className="flex justify-center items-center flex-col my-5 self-start">
+			<Reveal className="flex justify-center items-center flex-col my-5 self-start">
 				<Hr variant="long" />
 				<h1 className="text-2xl md:text-3xl font-bold mt-3">DevOps & Tech Experience</h1>
-			</div>
+			</Reveal>
 		</div>
 	);
 }
@@ -62,7 +63,7 @@ export default function Experience() {
 	return (
 		<>
 			<Title />
-			<div className="relative mx-auto container gap-4 px-4 sm:px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 mb-20">
+			<Reveal className="relative mx-auto container gap-4 px-4 sm:px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 mb-20">
 				<div className="md:col-span-4 flex flex-col space-y-2 mb-6 md:mb-0">
 					{experiences.map((exp) => (
 						<button
@@ -127,7 +128,7 @@ export default function Experience() {
 							))}
 					</AnimatePresence>
 				</div>
-			</div>
+			</Reveal>
 		</>
 	);
 }

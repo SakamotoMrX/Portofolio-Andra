@@ -14,6 +14,7 @@ import Neofetch from "@/components/Neofetch.jsx";
 import Hero from "@/public/image/about-4.jpg";
 import Hr from "@/components/Hr";
 import About from "./components/about/about.jsx";
+import Reveal from "@/components/Reveal";
 
 export default function Page() {
 	useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -38,7 +39,7 @@ export default function Page() {
 						</div>
 					</motion.div>
 				</div>
-				<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[55%] md:top-1/3 flex flex-col justify-center items-center md:items-start text-center md:text-start px-6 md:px-10 pt-4 md:pt-0">
+				<Reveal className="z-10 w-full absolute md:w-auto md:left-[10%] top-[55%] md:top-1/3 flex flex-col justify-center items-center md:items-start text-center md:text-start px-6 md:px-10 pt-4 md:pt-0">
 					<h1 className="text-4xl sm:text-5xl md:text-8xl font-bold text-white">
 						About Me
 					</h1>
@@ -54,7 +55,7 @@ export default function Page() {
 						className="mb-3">
 						<Button variation="primary">Scroll Down</Button>
 					</motion.div>
-				</div>
+				</Reveal>
 			</div>
 
 			<About />

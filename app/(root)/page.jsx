@@ -12,7 +12,7 @@ import SetupGrid from "@/components/setup/SetupGrid";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faInstagram, faFacebook, faDiscord } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faServer, faCubes, faRobot } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 // Import data
 import { neofetchData } from "@/data/neofetch";
@@ -108,26 +108,8 @@ const MyPage = () => {
               Linux SysAdmin, Containerization, and hardware tinkering (Arduino). Check out my Fastfetch specs.
             </motion.p>
             <motion.div variants={fadeUp}>
-              <Button variation="primary" href="/about">Learn More & Fastfetch</Button>
+              <Button variation="primary" href="/about">About Me</Button>
             </motion.div>
-            <motion.h2 variants={fadeUp} className="text-base sm:text-lg font-bold uppercase tracking-[.3rem] text-teal-400 mt-10 mb-5">What I Do</motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
-              <motion.div variants={fadeUp} className="glass p-5 sm:p-6 h-full">
-                <FontAwesomeIcon icon={faServer} className="text-3xl text-teal-400 mb-3" />
-                <h3 className="font-bold text-white text-base sm:text-lg mb-2">Linux SysAdmin</h3>
-                <p className="text-sm leading-relaxed text-white/55">Server administration, hardening, and everyday Linux operations, done right.</p>
-              </motion.div>
-              <motion.div variants={fadeUp} className="glass p-5 sm:p-6 h-full">
-                <FontAwesomeIcon icon={faCubes} className="text-3xl text-teal-400 mb-3" />
-                <h3 className="font-bold text-white text-base sm:text-lg mb-2">Containerization</h3>
-                <p className="text-sm leading-relaxed text-white/55">Docker packaging and container workflows for repeatable deployments.</p>
-              </motion.div>
-              <motion.div variants={fadeUp} className="glass p-5 sm:p-6 h-full">
-                <FontAwesomeIcon icon={faRobot} className="text-3xl text-teal-400 mb-3" />
-                <h3 className="font-bold text-white text-base sm:text-lg mb-2">Automation</h3>
-                <p className="text-sm leading-relaxed text-white/55">Bash scripts and tooling that turn repetitive chores into one command.</p>
-              </motion.div>
-            </div>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4 md:mt-0">
             <motion.div

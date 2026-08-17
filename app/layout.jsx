@@ -9,7 +9,6 @@ import ClientTopProgressBar from "@/components/ClientTopProgressBar";
 import ChatConditional from "@/components/ChatConditional";
 import CursorFollower from "@/components/CursorFollower";
 import ReducedMotionProvider from "@/components/ReducedMotionProvider";
-import BlobParallax from "@/components/BlobParallax";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -92,12 +91,6 @@ export default function RootLayout({ children }) {
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				/>
-				{/* Background blobs for glassmorphism light sources */}
-				<div className="bg-blobs" aria-hidden="true">
-					<div className="bg-blob-purple" />
-					<div className="bg-blob-teal" />
-				</div>
-				<BlobParallax />
 				<ClientTopProgressBar />
 				<Navbar />
 				<CursorFollower />

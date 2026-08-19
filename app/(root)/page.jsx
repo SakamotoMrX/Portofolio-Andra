@@ -60,10 +60,10 @@ export default function Page() {
 			{/* Hero */}
 			<section id="home" className="flex min-h-screen items-center">
 				<div className="mx-auto w-full max-w-6xl px-6 pt-24 md:px-10">
-					<Reveal className="flex w-full justify-center">
+					<Reveal className="flex w-full justify-center overflow-x-clip">
 						<DistressedLogo
 							text="ANDRA"
-							className="h-auto w-[min(96vw,1920px)] text-[#121212]"
+							className="h-auto w-[min(192vw,3840px)] text-[#121212]"
 						/>
 					</Reveal>
 					<Reveal delay={0.1}>

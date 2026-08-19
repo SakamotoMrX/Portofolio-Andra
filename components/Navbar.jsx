@@ -34,14 +34,6 @@ export default function Navbar() {
 			}`}
 		>
 			<nav className="flex h-16 w-full items-center justify-between px-5 md:px-10">
-				<Link
-					href="/"
-					aria-label="Andra — home"
-					className="text-sm font-bold uppercase tracking-[0.35em] text-[#121212] transition-opacity hover:opacity-60"
-				>
-					Andra
-				</Link>
-
 				<div className="hidden items-center gap-8 md:flex">
 					{links.map((link) => (
 						<Link

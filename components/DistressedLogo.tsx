@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 
 type DistressedLogoProps = {
@@ -19,8 +22,32 @@ export default function DistressedLogo({
   animate = true,
   duration = 15,
 }: DistressedLogoProps) {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    if (!animate || !svgRef.current) return;
+    const svg = svgRef.current;
+
+    // Pause immediately — will resume when in view
+    try { svg.pauseAnimations(); } catch {}
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        try {
+          if (entry.isIntersecting) svg.unpauseAnimations();
+          else svg.pauseAnimations();
+        } catch {}
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, [animate]);
+
   return (
     <svg
+      ref={svgRef}
       viewBox="0 0 680 200"
       className={className}
       style={style}

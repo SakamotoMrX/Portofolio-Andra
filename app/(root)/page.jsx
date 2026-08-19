@@ -62,7 +62,7 @@ export default function Page() {
 				<Reveal className="flex w-full justify-center overflow-x-clip">
 					<DistressedLogo
 						text="ANDRA"
-						className="w-[min(120vw,1440px)] shrink-0 text-[#121212]"
+						className="w-[min(180vw,2160px)] shrink-0 text-[#121212]"
 					/>
 				</Reveal>
 				<div className="mx-auto w-full max-w-6xl px-6 pt-8 md:px-10">

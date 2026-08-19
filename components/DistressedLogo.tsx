@@ -28,11 +28,11 @@ export default function DistressedLogo({
       aria-label={text}
     >
       <defs>
-        <filter id="erode" x="-20%" y="-20%" width="140%" height="140%">
+        <filter id="erode" x="-5%" y="-10%" width="110%" height="120%" filterRes="512">
           <feTurbulence
             type="fractalNoise"
             baseFrequency="0.018 0.009"
-            numOctaves={3}
+            numOctaves={2}
             seed={seed}
             result="noise"
           >

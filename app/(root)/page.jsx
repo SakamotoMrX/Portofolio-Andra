@@ -59,7 +59,7 @@ export default function Page() {
 		<div>
 			{/* Hero */}
 			<section id="home" className="flex min-h-screen flex-col items-center justify-center">
-				<Reveal className="flex w-full justify-center overflow-x-clip">
+				<Reveal className="flex w-full justify-center overflow-x-clip contain-paint">
 					<DistressedLogo
 						text="ANDRA"
 						className="w-[min(180vw,2160px)] shrink-0 text-[#121212]"

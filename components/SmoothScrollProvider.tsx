@@ -20,15 +20,9 @@ export default function SmoothScrollProvider({
     });
     lenisRef.current = lenis;
 
-    let rafId: number;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    };
-    rafId = requestAnimationFrame(raf);
+    lenis.start();
 
     return () => {
-      cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
     };

@@ -11,8 +11,8 @@ export default function Neofetch() {
         The machine behind the work.
       </h2>
 
-      {/* Typographic Grid */}
-      <div className="mt-16 grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2">
+      {/* Typographic Grid — always 2 columns */}
+      <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-8 md:gap-x-16 md:gap-y-10">
         <div className="space-y-8">
           <Block
             label="Identity"
@@ -59,7 +59,7 @@ function Block({ label, lines }) {
       </p>
       <div className="space-y-0.5">
         {lines.map((line, i) => (
-          <p key={i} className="text-base text-black md:text-lg">
+          <p key={i} className="text-sm text-black md:text-lg">
             {line}
           </p>
         ))}

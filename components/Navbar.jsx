@@ -33,7 +33,7 @@ export default function Navbar() {
 					: "bg-transparent border-b border-transparent"
 			}`}
 		>
-			<nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6 md:px-10">
+			<nav className="flex h-16 w-full items-center justify-between px-5 md:px-10">
 				<Link
 					href="/"
 					aria-label="Andra — home"

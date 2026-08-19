@@ -45,11 +45,6 @@ export default function Neofetch() {
               "Arduino & Hardware",
             ]}
           />
-          <Block label="Contact" lines={[
-            <a key="email" href="mailto:andrahijati@gmail.com" className="underline decoration-neutral-300 underline-offset-4 transition-colors hover:text-black hover:decoration-black">andrahijati@gmail.com</a>,
-            <span key="discord">Discord — legacyy5030</span>,
-            <a key="ig" href="https://instagram.com/andrahijati" target="_blank" rel="noopener noreferrer" className="underline decoration-neutral-300 underline-offset-4 transition-colors hover:text-black hover:decoration-black">@andrahijati</a>,
-          ]} />
         </div>
       </div>
     </div>

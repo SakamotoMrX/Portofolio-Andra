@@ -2,7 +2,7 @@
 
 export default function Neofetch() {
   return (
-    <div className="w-full max-w-5xl mx-auto">
+    <div className="w-full max-w-5xl mx-auto px-6 md:px-10">
       {/* Section Header */}
       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
         03 — System

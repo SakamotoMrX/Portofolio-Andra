@@ -42,8 +42,8 @@ export const metadata = {
 	siteUrl: SITE_URL,
 	applicationName: "Andra | Portfolio",
 	icons: {
-		icon: "/icon.png",
-		shortcut: "/icon.png",
+		icon: "/icon.svg",
+		shortcut: "/icon.svg",
 	},
 	keywords: [
 		"andra", "sakamotomrx", "junior devops", "linux sysadmin",

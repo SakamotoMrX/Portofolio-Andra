@@ -10,10 +10,10 @@ type DistressedLogoProps = {
 export default function DistressedLogo({
   text = "ANDRA",
   className = "",
-  scale = 18,
-  seed = 7,
+  scale = 26,
+  seed = 5,
   animate = true,
-  duration = 10,
+  duration = 15,
 }: DistressedLogoProps) {
   return (
     <svg
@@ -23,10 +23,10 @@ export default function DistressedLogo({
       aria-label={text}
     >
       <defs>
-        <filter id="distressed-edge" x="-20%" y="-20%" width="140%" height="140%">
+        <filter id="erode" x="-20%" y="-20%" width="140%" height="140%">
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="0.015 0.025"
+            baseFrequency="0.018 0.009"
             numOctaves={3}
             seed={seed}
             result="noise"
@@ -35,7 +35,7 @@ export default function DistressedLogo({
               <animate
                 attributeName="baseFrequency"
                 dur={`${duration}s`}
-                values="0.015 0.025;0.035 0.045;0.015 0.025"
+                values="0.018 0.009;0.038 0.029;0.018 0.009"
                 repeatCount="indefinite"
               />
             )}
@@ -56,7 +56,7 @@ export default function DistressedLogo({
         fontSize="90"
         fontWeight="800"
         fill="currentColor"
-        filter="url(#distressed-edge)"
+        filter="url(#erode)"
       >
         {text}
       </text>

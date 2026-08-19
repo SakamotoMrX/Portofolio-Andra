@@ -28,7 +28,7 @@ export default function DistressedLogo({
       aria-label={text}
     >
       <defs>
-        <filter id="erode" x="-5%" y="-10%" width="110%" height="120%" filterRes="512">
+        <filter id="erode" x="-5%" y="-10%" width="110%" height="120%">
           <feTurbulence
             type="fractalNoise"
             baseFrequency="0.018 0.009"

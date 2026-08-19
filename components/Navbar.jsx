@@ -29,8 +29,8 @@ export default function Navbar() {
 		<header
 			className={`fixed inset-x-0 top-0 z-50 pt-24 transition-all duration-300 ${
 				frosted
-					? "backdrop-blur-[12px] bg-[#f6f5f0]/85 border-b border-black/5"
-					: "bg-transparent border-b border-transparent"
+					? "backdrop-blur-[12px] bg-[#f6f5f0]/85"
+					: "bg-transparent"
 			}`}
 		>
 			<nav className="flex h-16 w-full items-center justify-end gap-8 px-5 md:px-10">

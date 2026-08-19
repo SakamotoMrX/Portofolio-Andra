@@ -27,7 +27,7 @@ export default function Navbar() {
 
 	return (
 		<header
-			className={`fixed inset-x-0 top-0 z-50 pt-24 transition-all duration-300 ${
+			className={`fixed inset-x-0 top-0 z-50 pt-20 transition-all duration-300 ${
 				frosted
 					? "backdrop-blur-[12px] bg-[#f6f5f0]/85"
 					: "bg-transparent"

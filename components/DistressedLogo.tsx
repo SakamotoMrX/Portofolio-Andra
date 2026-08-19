@@ -1,6 +1,9 @@
+import type { CSSProperties } from "react";
+
 type DistressedLogoProps = {
   text?: string;
   className?: string;
+  style?: CSSProperties;
   scale?: number;
   seed?: number;
   animate?: boolean;
@@ -10,6 +13,7 @@ type DistressedLogoProps = {
 export default function DistressedLogo({
   text = "ANDRA",
   className = "",
+  style = {},
   scale = 26,
   seed = 5,
   animate = true,
@@ -19,6 +23,7 @@ export default function DistressedLogo({
     <svg
       viewBox="0 0 680 200"
       className={className}
+      style={style}
       role="img"
       aria-label={text}
     >

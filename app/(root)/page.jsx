@@ -63,7 +63,8 @@ export default function Page() {
 					<Reveal className="flex w-full justify-center overflow-x-clip">
 						<DistressedLogo
 							text="ANDRA"
-							className="h-auto w-[min(384vw,7680px)] text-[#121212]"
+							className="text-[#121212]"
+							style={{ width: "min(384vw, 7680px)", height: "auto" }}
 						/>
 					</Reveal>
 					<Reveal delay={0.1}>

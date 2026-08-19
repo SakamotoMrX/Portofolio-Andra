@@ -15,6 +15,7 @@ export default function SmoothScrollProvider({
       lerp: 0.07,
       duration: 1.5,
       smoothWheel: true,
+      syncTouch: true,
       anchors: { offset: -64 },
     });
     lenisRef.current = lenis;

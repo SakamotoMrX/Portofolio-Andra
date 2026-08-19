@@ -209,19 +209,9 @@ export default function Page() {
 
 			{/* System / Neofetch */}
 			<section id="system" className="py-28 md:py-40">
-				<div className="mx-auto w-full max-w-6xl px-6 md:px-10">
-					<Reveal>
-						<SectionLabel>03 — System</SectionLabel>
-					</Reveal>
-					<Reveal delay={0.1}>
-						<h2 className="mt-6 text-4xl font-bold leading-[1.05] md:text-6xl">
-							The machine behind the work.
-						</h2>
-					</Reveal>
-					<Reveal delay={0.2}>
-						<Neofetch />
-					</Reveal>
-				</div>
+				<Reveal>
+					<Neofetch />
+				</Reveal>
 			</section>
 
 			{/* Contact / Footer */}

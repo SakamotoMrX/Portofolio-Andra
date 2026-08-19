@@ -58,7 +58,7 @@ export default function Neofetch() {
 	return (
 		<section className="w-full py-10 md:py-12 px-3 sm:px-8 max-w-5xl mx-auto font-['-apple-system','BlinkMacSystemFont','SF Pro Display','Helvetica Neue','Helvetica','Arial',sans-serif]">
 			<motion.div
-				className="glass-static relative scanline p-4 sm:p-8"
+				className="relative rounded-2xl bg-[#0d0d0d] border border-white/10 p-4 sm:p-8 shadow-2xl"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"

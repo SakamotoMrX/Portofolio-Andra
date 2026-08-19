@@ -5,11 +5,8 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 import { Analytics } from "@vercel/analytics/react";
-import ClientTopProgressBar from "@/components/ClientTopProgressBar";
-import ChatConditional from "@/components/ChatConditional";
-import CursorFollower from "@/components/CursorFollower";
 import ReducedMotionProvider from "@/components/ReducedMotionProvider";
-import BlobParallax from "@/components/BlobParallax";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -87,27 +84,18 @@ const jsonLd = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className={`${poppins.variable} ${jost.variable} ${firaCode.variable}`}>
-			<body className="relative">
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				/>
-				{/* Background blobs for glassmorphism light sources */}
-				<div className="bg-blobs" aria-hidden="true">
-					<div className="bg-blob-purple" />
-					<div className="bg-blob-teal" />
-				</div>
-				<BlobParallax />
-				<ClientTopProgressBar />
-				<Navbar />
-				<CursorFollower />
-				<ReducedMotionProvider>
-					<div>
-						{children}
-					</div>
-				</ReducedMotionProvider>
-				<ChatConditional />
-				<Analytics />
+			<body className="relative bg-[#f6f5f0] text-[#121212]">
+				<SmoothScrollProvider>
+					<script
+						type="application/ld+json"
+						dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+					/>
+					<Navbar />
+					<ReducedMotionProvider>
+						<main>{children}</main>
+					</ReducedMotionProvider>
+					<Analytics />
+				</SmoothScrollProvider>
 			</body>
 		</html>
 	);

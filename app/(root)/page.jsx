@@ -1,6 +1,5 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 import DistressedLogo from "@/components/DistressedLogo";
@@ -48,11 +47,6 @@ const focusAreas = [
 		desc: "VMs, Vercel deploys, and infrastructure that ships itself.",
 	},
 ];
-
-const HAS_REAL_IMAGE = (thumb) =>
-	Boolean(thumb) &&
-	thumb !== "/image/projects-showcase.jpg" &&
-	thumb !== "/image/projects-showcase-home.png";
 
 export default function Page() {
 	return (
@@ -189,15 +183,6 @@ export default function Page() {
 											>
 												Preview →
 											</a>
-										)}
-										{HAS_REAL_IMAGE(p.thumbnail) && (
-											<Image
-												src={p.thumbnail}
-												alt={p.title}
-												width={640}
-												height={400}
-												className="mt-4 w-full max-w-[420px] border border-black/10 object-cover"
-											/>
 										)}
 									</div>
 								</article>

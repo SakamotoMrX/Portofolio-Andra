@@ -63,7 +63,7 @@ export default function Page() {
 					<Reveal>
 						<DistressedLogo
 							text="ANDRA"
-							className="h-auto w-[min(90vw,640px)] text-[#121212]"
+							className="mx-auto block h-auto w-[min(92vw,960px)] text-[#121212]"
 						/>
 					</Reveal>
 					<Reveal delay={0.1}>

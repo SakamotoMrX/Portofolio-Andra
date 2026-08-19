@@ -27,13 +27,13 @@ export default function Navbar() {
 
 	return (
 		<header
-			className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+			className={`fixed inset-x-0 top-24 z-50 transition-all duration-300 ${
 				frosted
 					? "backdrop-blur-[12px] bg-[#f6f5f0]/85 border-b border-black/5"
 					: "bg-transparent border-b border-transparent"
 			}`}
 		>
-			<nav className="flex h-16 w-full items-center justify-between px-5 md:px-10">
+			<nav className="flex h-16 w-full items-center justify-end gap-8 px-5 md:px-10">
 				<div className="hidden items-center gap-8 md:flex">
 					{links.map((link) => (
 						<Link

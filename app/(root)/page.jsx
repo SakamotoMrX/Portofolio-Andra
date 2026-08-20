@@ -99,7 +99,7 @@ export default function Page() {
 					<Reveal>
 						<SectionLabel>01 — About</SectionLabel>
 					</Reveal>
-					<div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
+					<div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-[1fr_auto] md:items-center">
 						<div>
 							<Reveal delay={0.1}>
 								<h2 className="text-4xl font-bold leading-[1.05] md:text-6xl">
@@ -115,15 +115,13 @@ export default function Page() {
 							</Reveal>
 						</div>
 						<Reveal delay={0.15}>
-							<div className="flex justify-start md:justify-end">
-								<Image
-									src="/image/hero.jpg"
-									alt="Andra"
-									width={200}
-									height={260}
-									className="rounded-2xl border border-black/15 object-cover grayscale"
-								/>
-							</div>
+							<Image
+								src="/image/hero.jpg"
+								alt="Andra"
+								width={320}
+								height={420}
+								className="rounded-2xl border border-black/15 object-cover grayscale"
+							/>
 						</Reveal>
 					</div>
 					<div className="mt-14">

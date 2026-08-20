@@ -115,13 +115,15 @@ export default function Page() {
 							</Reveal>
 						</div>
 						<Reveal delay={0.15}>
-							<Image
-								src="/image/hero.jpg"
-								alt="Andra"
-								width={600}
-								height={800}
-								className="w-full object-cover grayscale"
-							/>
+							<div className="flex justify-start md:justify-end">
+								<Image
+									src="/image/hero.jpg"
+									alt="Andra"
+									width={200}
+									height={260}
+									className="rounded-2xl border border-black/15 object-cover grayscale"
+								/>
+							</div>
 						</Reveal>
 					</div>
 					<div className="mt-14">

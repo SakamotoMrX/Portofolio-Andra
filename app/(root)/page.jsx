@@ -111,7 +111,7 @@ export default function Page() {
 									<p className="mt-4 max-w-xl text-lg text-black/70">
 										Junior DevOps from Bogor, Indonesia.{" "}
 										<strong className="font-bold text-black">15yrs old</strong>,
-										currently at SMK BOASH, condensed into servers that stay up
+										Vocational High School in boAsh, condensed into servers that stay up
 										and deploys that don&rsquo;t need babysitting.
 									</p>
 								</Reveal>

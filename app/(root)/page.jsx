@@ -1,6 +1,7 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 import DistressedLogo from "@/components/DistressedLogo";
 import Neofetch from "@/components/Neofetch";
@@ -98,18 +99,31 @@ export default function Page() {
 					<Reveal>
 						<SectionLabel>01 — About</SectionLabel>
 					</Reveal>
-					<Reveal delay={0.1}>
-						<h2 className="mt-6 max-w-3xl text-4xl font-bold leading-[1.05] md:text-6xl">
-							Linux first. Automation always.
-						</h2>
-					</Reveal>
-					<Reveal delay={0.2}>
-						<p className="mt-6 max-w-xl text-lg text-black/70">
-							Junior DevOps from Bogor, Indonesia. Fifteen years of tinkering,
-							condensed into servers that stay up and deploys that don&rsquo;t
-							need babysitting.
-						</p>
-					</Reveal>
+					<div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
+						<div>
+							<Reveal delay={0.1}>
+								<h2 className="text-4xl font-bold leading-[1.05] md:text-6xl">
+									Linux first. Automation always.
+								</h2>
+							</Reveal>
+							<Reveal delay={0.2}>
+								<p className="mt-6 max-w-xl text-lg text-black/70">
+									Junior DevOps from Bogor, Indonesia. Fifteen years of tinkering,
+									condensed into servers that stay up and deploys that don&rsquo;t
+									need babysitting.
+								</p>
+							</Reveal>
+						</div>
+						<Reveal delay={0.15}>
+							<Image
+								src="/image/hero.jpg"
+								alt="Andra"
+								width={600}
+								height={800}
+								className="w-full object-cover grayscale"
+							/>
+						</Reveal>
+					</div>
 					<div className="mt-14">
 						{focusAreas.map((area, i) => (
 							<Reveal key={area.title} delay={i * 0.05}>

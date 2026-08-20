@@ -103,30 +103,28 @@ export default function Page() {
 						<div className="grid grid-cols-1 items-start gap-10 md:grid-cols-[1fr_auto]">
 							<div>
 								<Reveal delay={0.1}>
-									<div className="flex items-start gap-4">
-										<h2 className="text-4xl font-bold leading-[1.05] md:text-6xl">
-											Linux first.<br />Automation always.
-										</h2>
-										<Reveal delay={0.15}>
-											<Image
-												src="/image/hero.jpg"
-												alt="Andra"
-												width={320}
-												height={420}
-												className="w-16 h-20 rounded-lg border border-black/15 object-cover grayscale md:w-80 md:h-auto md:rounded-2xl"
-											/>
-										</Reveal>
-									</div>
+									<h2 className="text-4xl font-bold leading-[1.05] md:text-6xl">
+										Linux first.<br />Automation always.
+									</h2>
 								</Reveal>
 								<Reveal delay={0.2}>
 									<p className="mt-4 max-w-xl text-lg text-black/70">
 										Junior DevOps from Bogor, Indonesia.{" "}
-										<strong className="font-bold text-black whitespace-nowrap">15yrs old</strong>,
+										<strong className="font-bold text-black">15yrs old</strong>,
 										currently at SMK BOASH, condensed into servers that stay up
 										and deploys that don&rsquo;t need babysitting.
 									</p>
 								</Reveal>
 							</div>
+							<Reveal delay={0.15}>
+								<Image
+									src="/image/hero.jpg"
+									alt="Andra"
+									width={320}
+									height={420}
+									className="rounded-2xl border border-black/15 object-cover grayscale"
+								/>
+							</Reveal>
 						</div>
 					</div>
 					<div className="mt-14">

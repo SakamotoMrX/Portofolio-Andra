@@ -119,7 +119,7 @@ export default function Page() {
 							</Reveal>
 						</div>
 						<Reveal delay={0.2}>
-							<p className="mt-8 max-w-2xl text-lg text-black/70">
+							<p className="mt-4 max-w-2xl text-lg text-black/70">
 								Junior DevOps from Bogor, Indonesia. Fifteen years of tinkering,
 								condensed into servers that stay up and deploys that don&rsquo;t
 								need babysitting.

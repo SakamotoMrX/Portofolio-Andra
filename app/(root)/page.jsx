@@ -99,21 +99,21 @@ export default function Page() {
 					<Reveal>
 						<SectionLabel>01 — About</SectionLabel>
 					</Reveal>
-					<div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-[1fr_auto] md:items-start">
-						<div className="flex flex-col md:flex-row md:gap-8 md:items-end">
+					<div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-[auto_1fr_auto] md:items-start">
+						<div>
 							<Reveal delay={0.1}>
 								<h2 className="text-4xl font-bold leading-[1.05] md:text-6xl">
 									Linux first.<br />Automation always.
 								</h2>
 							</Reveal>
-							<Reveal delay={0.2}>
-								<p className="mt-6 max-w-xl text-lg text-black/70 md:mt-0">
-									Junior DevOps from Bogor, Indonesia. Fifteen years of tinkering,
-									condensed into servers that stay up and deploys that don&rsquo;t
-									need babysitting.
-								</p>
-							</Reveal>
 						</div>
+						<Reveal delay={0.2}>
+							<p className="mt-6 max-w-xl text-lg text-black/70 md:mt-1">
+								Junior DevOps from Bogor, Indonesia. Fifteen years of tinkering,
+								condensed into servers that stay up and deploys that don&rsquo;t
+								need babysitting.
+							</p>
+						</Reveal>
 						<Reveal delay={0.15}>
 							<Image
 								src="/image/hero.jpg"

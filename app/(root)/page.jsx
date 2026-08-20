@@ -100,31 +100,32 @@ export default function Page() {
 						<SectionLabel>01 — About</SectionLabel>
 					</Reveal>
 					<div className="mt-6">
-						<div className="grid grid-cols-1 items-start gap-10 md:grid-cols-[auto_1fr]">
-							<Reveal delay={0.1}>
-								<h2 className="text-4xl font-bold leading-[1.05] md:text-6xl">
-									Linux first.<br />Automation always.
-								</h2>
-							</Reveal>
+						<div className="grid grid-cols-1 items-start gap-10 md:grid-cols-[1fr_auto]">
+							<div>
+								<Reveal delay={0.1}>
+									<h2 className="text-4xl font-bold leading-[1.05] md:text-6xl">
+										Linux first.<br />Automation always.
+									</h2>
+								</Reveal>
+								<Reveal delay={0.2}>
+									<p className="mt-4 max-w-xl text-lg text-black/70">
+										Junior DevOps from Bogor, Indonesia.{" "}
+										<strong className="font-bold text-black">15yrs old</strong>,
+										currently at SMK BOASH, condensed into servers that stay up
+										and deploys that don&rsquo;t need babysitting.
+									</p>
+								</Reveal>
+							</div>
 							<Reveal delay={0.15}>
-								<div className="flex justify-start md:justify-end">
-									<Image
-										src="/image/hero.jpg"
-										alt="Andra"
-										width={320}
-										height={420}
-										className="rounded-2xl border border-black/15 object-cover grayscale"
-									/>
-								</div>
+								<Image
+									src="/image/hero.jpg"
+									alt="Andra"
+									width={320}
+									height={420}
+									className="rounded-2xl border border-black/15 object-cover grayscale"
+								/>
 							</Reveal>
 						</div>
-						<Reveal delay={0.2}>
-							<p className="mt-4 max-w-2xl text-lg text-black/70">
-								Junior DevOps from Bogor, Indonesia. Fifteen years of tinkering,
-								condensed into servers that stay up and deploys that don&rsquo;t
-								need babysitting.
-							</p>
-						</Reveal>
 					</div>
 					<div className="mt-14">
 						{focusAreas.map((area, i) => (

@@ -81,27 +81,6 @@
     },
     {
       "show": true,
-      "title": "Portofolio Andra",
-      "desc": [
-        "Personal portfolio website for Andra, a Junior DevOps based in Bogor, Indonesia — built with Next.js, Tailwind CSS, and Framer Motion, deployed at my-portofolio-andra.vercel.app."
-      ],
-      "year": "2026",
-      "preview": "https://my-portofolio-andra.vercel.app",
-      "code": "https://github.com/SakamotoMrX/Portofolio-Andra",
-      "thumbnail": "/image/projects-showcase.jpg",
-      "images": [
-        "/image/projects-showcase.jpg"
-      ],
-      "tech": [
-        "Next.js",
-        "TailwindCSS",
-        "Framer Motion"
-      ],
-      "slug": "portofolio-andra",
-      "category": [9]
-    },
-    {
-      "show": true,
       "title": "MODULin",
       "desc": [
         "Web platform for creating teaching modules (modul ajar) easily — 'bikin modul ajar jadi gampang', deployed at modulin.enama.my.id."

@@ -10,8 +10,14 @@ import data from "@/json/data.json";
 const projects = data.Projects.filter((p) => p.show);
 
 const CATEGORY_MAP = { 1: "Infrastructure", 2: "Hardware", 9: "Website" };
+const CATEGORY_OVERRIDE = {
+	greenfog: "SaaS · Website",
+	"macbar-monitor": "Software · macOS",
+	"invoice-app": "SaaS · Website",
+	"nexotech-enama": "Company Profile",
+};
 const getCategory = (p) => {
-	if (p.slug === "greenfog") return "SaaS · Website";
+	if (CATEGORY_OVERRIDE[p.slug]) return CATEGORY_OVERRIDE[p.slug];
 	if (!p.category?.length) return null;
 	return p.category.map((id) => CATEGORY_MAP[id]).filter(Boolean).join(" · ");
 };

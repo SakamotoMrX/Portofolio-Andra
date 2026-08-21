@@ -9,6 +9,13 @@ import data from "@/json/data.json";
 
 const projects = data.Projects.filter((p) => p.show);
 
+const CATEGORY_MAP = { 1: "Infrastructure", 2: "Hardware", 9: "Website" };
+const getCategory = (p) => {
+	if (p.slug === "greenfog") return "SaaS · Website";
+	if (!p.category?.length) return null;
+	return p.category.map((id) => CATEGORY_MAP[id]).filter(Boolean).join(" · ");
+};
+
 /* Section entrance — fade/slide on first view, once */
 function Reveal({ children, className = "", delay = 0 }) {
 	return (
@@ -162,6 +169,11 @@ export default function Page() {
 										{String(i + 1).padStart(2, "0")}
 									</span>
 									<div className="md:col-span-5">
+										{getCategory(p) && (
+											<p className="font-mono text-[11px] uppercase tracking-widest text-black/40">
+												{getCategory(p)}
+											</p>
+										)}
 										<h3 className="text-2xl font-bold md:text-3xl">{p.title}</h3>
 										<p className="mt-3 text-sm leading-relaxed text-black/60">
 											{p.desc[0]}

@@ -2,6 +2,27 @@
   "Projects": [
     {
       "show": true,
+      "title": "GreenFog",
+      "desc": [
+        "SaaS web platform deployed at greenfog-dev.enama.my.id — modern SaaS solution built for scalable web workflows and streamlined user experience."
+      ],
+      "year": "2026",
+      "preview": "https://greenfog-dev.enama.my.id",
+      "code": "",
+      "thumbnail": "/image/projects-showcase.jpg",
+      "images": [
+        "/image/projects-showcase.jpg"
+      ],
+      "tech": [
+        "Next.js",
+        "SaaS",
+        "TailwindCSS"
+      ],
+      "slug": "greenfog",
+      "category": [9]
+    },
+    {
+      "show": true,
       "title": "Linux Server Lab Automation",
       "desc": [
         "Infrastructure automation script repository for quick deployment of Linux virtual machines, Docker container environments, and system administration tooling.",

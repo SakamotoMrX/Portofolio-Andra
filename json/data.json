@@ -23,30 +23,6 @@
     },
     {
       "show": true,
-      "title": "Linux Server Lab Automation",
-      "desc": [
-        "Infrastructure automation script repository for quick deployment of Linux virtual machines, Docker container environments, and system administration tooling.",
-        "Built for streamlined SysAdmin workflows and automated configuration management using Bash scripts and YAML configuration files."
-      ],
-      "year": "2026",
-      "preview": "",
-      "code": "https://github.com/SakamotoMrX",
-      "thumbnail": "/image/linux-server-lab.jpg",
-      "images": [
-        "/image/linux-server-lab.jpg"
-      ],
-      "tech": [
-        "Linux",
-        "Bash",
-        "Docker",
-        "YAML",
-        "Git"
-      ],
-      "slug": "linux-server-lab",
-      "category": [1]
-    },
-    {
-      "show": true,
       "title": "MacBar Monitor",
       "desc": [
         "A lightweight macOS menu bar system monitor that displays real-time system metrics directly in your menu bar."
@@ -293,6 +269,30 @@
       ],
       "slug": "arduino-iot-project",
       "category": [2]
+    },
+    {
+      "show": true,
+      "title": "Linux Server Lab Automation",
+      "desc": [
+        "Infrastructure automation script repository for quick deployment of Linux virtual machines, Docker container environments, and system administration tooling.",
+        "Built for streamlined SysAdmin workflows and automated configuration management using Bash scripts and YAML configuration files."
+      ],
+      "year": "2026",
+      "preview": "",
+      "code": "https://github.com/SakamotoMrX",
+      "thumbnail": "/image/linux-server-lab.jpg",
+      "images": [
+        "/image/linux-server-lab.jpg"
+      ],
+      "tech": [
+        "Linux",
+        "Bash",
+        "Docker",
+        "YAML",
+        "Git"
+      ],
+      "slug": "linux-server-lab",
+      "category": [1]
     }
   ]
 }

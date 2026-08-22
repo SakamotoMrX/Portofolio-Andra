@@ -199,7 +199,17 @@ export default function Page() {
 										</div>
 									</div>
 									<div className="flex flex-col items-start gap-2 md:col-span-3 md:items-end">
-										{p.preview && (
+										{p.slug === "macbar-monitor" && p.code && (
+										<a
+											href={p.code}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-xs font-semibold uppercase tracking-widest underline-offset-4 transition-colors hover:underline"
+										>
+											Code →
+										</a>
+									)}
+									{p.preview && (
 											<a
 												href={p.preview}
 												target="_blank"

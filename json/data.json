@@ -165,27 +165,6 @@
     },
     {
       "show": true,
-      "title": "KBN Enama Portal",
-      "desc": [
-        "Web application platform deployed at kbn.enama.my.id."
-      ],
-      "year": "2026",
-      "preview": "https://kbn.enama.my.id",
-      "code": "https://github.com/SakamotoMrX/kbn-enama-my-id",
-      "thumbnail": "/image/projects-showcase.jpg",
-      "images": [
-        "/image/projects-showcase.jpg"
-      ],
-      "tech": [
-        "Next.js",
-        "Vercel",
-        "TailwindCSS"
-      ],
-      "slug": "kbn-enama",
-      "category": [9]
-    },
-    {
-      "show": true,
       "title": "Nur Quran Platform",
       "desc": [
         "Islamic web application platform providing digital Quran access deployed at nur-quran.enama.my.id."
@@ -225,53 +204,6 @@
       ],
       "slug": "enama-laundry",
       "category": [9]
-    },
-    {
-      "show": true,
-      "title": "Arduino Hardware IoT Project",
-      "desc": [
-        "Embedded software project combining Arduino microcontrollers, hardware sensors, and serial telemetry logging.",
-        "Monitors system environmental parameters and sends telemetry data over serial interfaces."
-      ],
-      "year": "2025",
-      "preview": "",
-      "code": "https://github.com/SakamotoMrX",
-      "thumbnail": "/image/projects-showcase.jpg",
-      "images": [
-        "/image/projects-showcase.jpg"
-      ],
-      "tech": [
-        "Arduino IDE",
-        "C++",
-        "Hardware",
-        "Sensors"
-      ],
-      "slug": "arduino-iot-project",
-      "category": [2]
-    },
-    {
-      "show": true,
-      "title": "Linux Server Lab Automation",
-      "desc": [
-        "Infrastructure automation script repository for quick deployment of Linux virtual machines, Docker container environments, and system administration tooling.",
-        "Built for streamlined SysAdmin workflows and automated configuration management using Bash scripts and YAML configuration files."
-      ],
-      "year": "2026",
-      "preview": "",
-      "code": "https://github.com/SakamotoMrX",
-      "thumbnail": "/image/linux-server-lab.jpg",
-      "images": [
-        "/image/linux-server-lab.jpg"
-      ],
-      "tech": [
-        "Linux",
-        "Bash",
-        "Docker",
-        "YAML",
-        "Git"
-      ],
-      "slug": "linux-server-lab",
-      "category": [1]
     }
   ]
 }

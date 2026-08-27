@@ -9,6 +9,12 @@ export default function BlobParallax() {
 
 	useEffect(() => {
 		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+		if (window.matchMedia("(pointer: coarse)").matches) return;
+
+		let cached = null;
+		const onResize = () => {
+			cached = null;
+		};
 
 		const onMouse = (e) => {
 			mouseRef.current = {
@@ -26,10 +32,10 @@ export default function BlobParallax() {
 			if (!dirtyRef.current) return;
 			dirtyRef.current = false;
 
-			const wrappers = document.querySelectorAll(".bg-blob-purple, .bg-blob-teal");
+			if (!cached) cached = document.querySelectorAll(".bg-blob-purple, .bg-blob-teal");
 			const mx = (mouseRef.current.x - 0.5) * 2;
 			const my = (mouseRef.current.y - 0.5) * 2;
-			wrappers.forEach((w, i) => {
+			cached.forEach((w, i) => {
 				const factor = 12 + i * 6;
 				w.style.setProperty("--parallax-x", `${mx * factor}px`);
 				w.style.setProperty("--parallax-y", `${my * factor}px`);
@@ -37,9 +43,11 @@ export default function BlobParallax() {
 		};
 
 		window.addEventListener("mousemove", onMouse, { passive: true });
+		window.addEventListener("resize", onResize, { passive: true });
 
 		return () => {
 			window.removeEventListener("mousemove", onMouse);
+			window.removeEventListener("resize", onResize);
 			if (rafRef.current) cancelAnimationFrame(rafRef.current);
 		};
 	}, []);

@@ -7,6 +7,7 @@ config.autoAddCss = false;
 import { Analytics } from "@vercel/analytics/react";
 import ReducedMotionProvider from "@/components/ReducedMotionProvider";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import BlobParallax from "@/components/BlobParallax";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -38,8 +39,7 @@ export const metadata = {
 	title: "Andra | Junior DevOps",
 	description:
 		"Andra (SakamotoMrX) — Junior DevOps based in Bogor, Indonesia. Linux SysAdmin, Containerization, Git & GitHub enthusiast, and open-source tinkerer.",
-	author: "Andra",
-	siteUrl: SITE_URL,
+	authors: [{ name: "Andra" }],
 	applicationName: "Andra | Portfolio",
 	icons: {
 		icon: "/icon.svg",
@@ -91,6 +91,7 @@ export default function RootLayout({ children }) {
 						dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 					/>
 					<Navbar />
+					<BlobParallax />
 					<ReducedMotionProvider>
 						<main>{children}</main>
 					</ReducedMotionProvider>

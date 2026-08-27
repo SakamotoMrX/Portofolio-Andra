@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import Lenis from "lenis";
 
 export default function SmoothScrollProvider({
@@ -8,8 +8,6 @@ export default function SmoothScrollProvider({
 }: {
   children: ReactNode;
 }) {
-  const lenisRef = useRef<Lenis | null>(null);
-
   useEffect(() => {
     const lenis = new Lenis({
       lerp: 0.07,
@@ -18,8 +16,8 @@ export default function SmoothScrollProvider({
       syncTouch: true,
       anchors: { offset: -64 },
     });
-    lenisRef.current = lenis;
 
+    // ponytail: single RAF — tune lerp 0.07/duration 1.5 if jank
     let rafId: number;
     const raf = (time: number) => {
       lenis.raf(time);
@@ -30,7 +28,6 @@ export default function SmoothScrollProvider({
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
-      lenisRef.current = null;
     };
   }, []);
 

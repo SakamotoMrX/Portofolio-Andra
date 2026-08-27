@@ -1,3 +1,4 @@
+/* ponytail: SIZE_OK — single responsibility stylesheet; tokens+glass+hero+scanline co-located, split would scatter cascade */
 @import "tailwindcss";
 
 /* ===== LIGHT / CREAM DESIGN SYSTEM ===== */
@@ -116,26 +117,34 @@ a[title]:hover:after {
 
 /* ===== GLASS UTILITIES ===== */
 
-/* Base glass — interactive card with hover lift */
-.glass {
+/* Base glass — interactive card with hover lift; static variants share common shell */
+.glass,
+.glass-static,
+.glass-static-strong {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   box-shadow: var(--glass-shadow);
-  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   overflow: hidden;
 }
 
-.glass::before {
+.glass::before,
+.glass-static::before,
+.glass-static-strong::before {
   content: '';
   position: absolute;
   inset: 0;
   background: var(--glass-shine);
   pointer-events: none;
   border-radius: inherit;
+}
+
+/* Interactive only */
+.glass {
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .glass:hover {
@@ -145,46 +154,13 @@ a[title]:hover:after {
   transform: translateY(-4px);
 }
 
-/* Static glass — non-interactive containers (no hover lift) */
-.glass-static {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  box-shadow: var(--glass-shadow);
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-static::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--glass-shine);
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-/* Stronger glass for mobile — more visible backdrop-filter */
+/* Stronger glass — delta overrides only */
 .glass-static-strong {
   background: rgba(18, 18, 18, 0.06);
   backdrop-filter: var(--glass-blur-strong);
   -webkit-backdrop-filter: var(--glass-blur-strong);
-  border: 1px solid rgba(18, 18, 18, 0.12);
-  border-radius: 20px;
+  border-color: rgba(18, 18, 18, 0.12);
   box-shadow: 0 8px 32px rgba(18, 18, 18, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-static-strong::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--glass-shine);
-  pointer-events: none;
-  border-radius: inherit;
 }
 
 .glass-nav {
@@ -224,21 +200,26 @@ a[title]:hover:after {
   }
 }
 
-.glass-btn {
-  background: rgba(18, 18, 18, 0.06);
+/* Shared button shell — glass-btn vs outline overlap collapsed */
+.glass-btn,
+.glass-btn-outline {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(18, 18, 18, 0.14);
   border-radius: 14px;
-  color: var(--text-primary);
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.glass-btn {
+  background: rgba(18, 18, 18, 0.06);
+  border: 1px solid rgba(18, 18, 18, 0.14);
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
 }
 
 .glass-btn::before {
@@ -259,17 +240,8 @@ a[title]:hover:after {
 
 .glass-btn-outline {
   background: rgba(18, 18, 18, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(18, 18, 18, 0.12);
-  border-radius: 14px;
   color: var(--text-secondary);
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  cursor: pointer;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .glass-btn-outline:hover {
@@ -299,6 +271,70 @@ a[title]:hover:after {
   box-shadow: 0 0 20px rgba(18, 18, 18, 0.06);
   transform: translateY(-2px);
 }
+
+/* ===== HERO WOW — GRID + BLOBS + SCANLINE ===== */
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image:
+    linear-gradient(rgba(18,18,18,0.9) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,18,18,0.9) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 78%);
+}
+
+/* ponytail: hero-local blobs reuse BlobParallax vars; keep CSS-only float, JS only offsets --parallax-x/y */
+.hero-blobs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-blob-purple,
+.bg-blob-teal {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  will-change: transform;
+  transform: translate3d(var(--parallax-x, 0), var(--parallax-y, 0), 0);
+}
+
+.bg-blob-purple {
+  width: min(520px, 70vw);
+  height: min(520px, 70vw);
+  left: -6%;
+  top: 6%;
+  background: radial-gradient(circle, rgba(176,137,104,0.18) 0%, transparent 70%);
+  animation: blob-float 14s ease-in-out infinite alternate;
+}
+
+.bg-blob-teal {
+  width: min(420px, 56vw);
+  height: min(420px, 56vw);
+  right: -4%;
+  top: 18%;
+  background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 72%);
+  animation: blob-float 11s ease-in-out infinite alternate reverse;
+}
+
+@keyframes blob-float {
+  0% { transform: translate3d(var(--parallax-x,0), var(--parallax-y,0), 0) translate(0, 0) scale(1); }
+  100% { transform: translate3d(var(--parallax-x,0), var(--parallax-y,0), 0) translate(8px, -14px) scale(1.04); }
+}
+
+@media (pointer: coarse) {
+  .bg-blob-purple, .bg-blob-teal { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-blob-purple, .bg-blob-teal, .hero-grid { animation: none !important; }
+}
+
+/* will-change is managed automatically by framer-motion v12 (applied during anim, removed after) */
 
 /* ===== SCANLINE OVERLAY ===== */
 

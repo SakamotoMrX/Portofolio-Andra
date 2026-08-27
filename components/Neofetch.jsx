@@ -57,13 +57,18 @@ export default function Neofetch() {
             <Block label="Identity" lines={["andra@SakamotoMrX", "MacBook Air (M1, 2020)"]} />
             <Block label="Location" lines={["Bogor, Indonesia"]} />
             <Block label="Environment" lines={["OS — Linux / macOS / Windows", "Shell — zsh / bash"]} />
-            <Block label="Tooling" lines={["Neovim, Antigravity IDE, Vim, Lazygit"]} />
           </div>
           <div className="space-y-8">
-            <Block label="Stack" lines={["Next.js, Git, Vercel, Docker", "Bash, YAML"]} />
+            <Block label="Stack" lines={["Next.js, Git, Vercel, Docker", "Prometheus, Grafana, Bash, YAML"]} />
             <Block
               label="Skills"
-              lines={["Linux SysAdmin, Virtual Machines", "SDLC & Agile", "Arduino & Hardware"]}
+              lines={[
+                "Linux SysAdmin, Virtual Machines",
+                "SDLC & Agile",
+                "Arduino & Hardware",
+                "Networking, Kubernetes",
+                "Agentic AI Power User",
+              ]}
             />
           </div>
         </div>

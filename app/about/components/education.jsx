@@ -7,9 +7,6 @@ import {
 	faTerminal,
 } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
-import Edu1 from "@/public/image/education-1.jpg";
-import Edu2 from "@/public/image/education-2.jpg";
-import Edu3 from "@/public/image/education-3.jpg";
 import Hr from "@/components/Hr";
 
 function Title() {
@@ -36,7 +33,7 @@ export default function Education() {
 						className="glass overflow-hidden">
 						<div className="relative h-64 sm:h-72 w-full">
 							<Image
-								src={Edu1}
+								src="/image/education-1.jpg"
 								alt="Education 1"
 								fill
 								className="object-cover opacity-80"
@@ -62,7 +59,7 @@ export default function Education() {
 						className="glass overflow-hidden">
 						<div className="relative h-64 sm:h-72 w-full">
 							<Image
-								src={Edu2}
+								src="/image/education-2.jpg"
 								alt="Docker & Containerization"
 								fill
 								className="object-cover opacity-80"
@@ -88,7 +85,7 @@ export default function Education() {
 						className="glass overflow-hidden">
 						<div className="relative h-64 sm:h-72 w-full">
 							<Image
-								src={Edu3}
+								src="/image/education-3.jpg"
 								alt="Arduino & Microcontrollers"
 								fill
 								className="object-cover opacity-80"

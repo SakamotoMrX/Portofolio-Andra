@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 const Button = ({ children, variation, href, onClick, className = "", ...props }) => {

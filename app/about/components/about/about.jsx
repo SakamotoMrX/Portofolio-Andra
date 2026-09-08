@@ -1,9 +1,6 @@
 import Image from "next/image";
 import Card from "./spotify/card";
 import { motion } from "framer-motion";
-import Me1 from "@/public/image/about-1.jpg";
-import Me2 from "@/public/image/about-2.jpg";
-import Me3 from "@/public/image/about-3.jpg";
 import Hr from "@/components/Hr";
 
 function Title() {
@@ -11,7 +8,7 @@ function Title() {
 		<div className="mt-10 flex flex-col justify-start items-center w-full pl-6 md:pl-32">
 			<div className="flex justify-center items-center flex-col my-5 self-start">
 				<Hr variant="long"></Hr>
-				<h1 className="text-2xl md:text-3xl font-bold mt-3">Who Am I?</h1>
+				<h1 className="text-2xl md:text-3xl font-bold mt-3 text-neutral-900 dark:text-white">Who Am I?</h1>
 			</div>
 		</div>
 	);
@@ -30,7 +27,7 @@ export default function About() {
 								whileInView={{ opacity: 1, scale: 1, y: 0 }}
 								className="glass-static relative w-full h-full">
 								<Image
-									src={Me1}
+									src="/image/about-1.jpg"
 									alt="Andra photo 1"
 									fill
 									sizes="(max-width: 768px) 50vw, 25vw"
@@ -45,7 +42,7 @@ export default function About() {
 								transition={{ delay: 0.2 }}
 								className="glass-static relative w-full h-full">
 								<Image
-									src={Me2}
+									src="/image/about-2.jpg"
 									alt="Andra photo 2"
 									fill
 									sizes="(max-width: 768px) 40vw, 20vw"
@@ -60,7 +57,7 @@ export default function About() {
 								transition={{ delay: 0.4 }}
 								className="glass-static relative w-full h-full">
 								<Image
-									src={Me3}
+									src="/image/about-3.jpg"
 									alt="Andra photo 3"
 									fill
 									sizes="(max-width: 768px) 45vw, 22vw"
@@ -75,27 +72,27 @@ export default function About() {
 					initial={{ opacity: 0, x: 200 }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.5, type: "spring" }}>
-					<h2 className="text-xl md:text-2xl font-bold tracking-wider mb-3 text-white">
+					<h2 className="text-xl md:text-2xl font-bold tracking-wider mb-3 text-neutral-900 dark:text-white">
 						Andra (SakamotoMrX)
 					</h2>
-					<p className="text-white/70 text-justify title text-base md:text-lg leading-relaxed">
+					<p className="text-neutral-700 dark:text-neutral-300 text-justify title text-base md:text-lg leading-relaxed">
 						I am a{" "}
-						<span className="text-cyan-300 font-medium">
+						<span className="text-cyan-600 dark:text-cyan-300 font-medium">
 							Junior DevOps practitioner & Linux enthusiast{" "}
 						</span>
 						based in{" "}
-						<span className="text-cyan-300 font-medium">
+						<span className="text-cyan-600 dark:text-cyan-300 font-medium">
 							Bogor, Indonesia
 						</span>
 						. Over the course of 15 years and 5 months of hands-on technological exploration, my core focus has centered on{" "}
-						<span className="text-cyan-300 font-medium">
+						<span className="text-cyan-600 dark:text-cyan-300 font-medium">
 							Linux System Administration, Virtualization, and Containerization
 						</span>
 						.
 						<br />
 						<br />
 						My daily toolkit revolves around{" "}
-						<span className="text-cyan-300 font-medium">
+						<span className="text-cyan-600 dark:text-cyan-300 font-medium">
 							Antigravity IDE, Vim, Nvim, Lazygit, and Arduino IDE
 						</span>
 						. When I&rsquo;m not crafting Bash scripts or YAML environment configurations, I spend my time Larping Linux (software) and working with Arduino microcontrollers (hardware).

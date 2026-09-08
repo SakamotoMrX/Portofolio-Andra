@@ -7,6 +7,7 @@ config.autoAddCss = false;
 import { Analytics } from "@vercel/analytics/react";
 import ReducedMotionProvider from "@/components/ReducedMotionProvider";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import { LoadingProvider } from "@/components/LoadingProvider";
 import BlobParallax from "@/components/BlobParallax";
 
 const poppins = Poppins({
@@ -86,16 +87,18 @@ export default function RootLayout({ children }) {
 		<html lang="en" className={`${poppins.variable} ${jost.variable} ${firaCode.variable}`}>
 			<body className="relative bg-[#f6f5f0] text-[#121212]">
 				<SmoothScrollProvider>
-					<script
-						type="application/ld+json"
-						dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-					/>
-					<Navbar />
-					<BlobParallax />
-					<ReducedMotionProvider>
-						<main>{children}</main>
-					</ReducedMotionProvider>
-					<Analytics />
+					<LoadingProvider>
+						<script
+							type="application/ld+json"
+							dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+						/>
+						<Navbar />
+						<BlobParallax />
+						<ReducedMotionProvider>
+							<main>{children}</main>
+						</ReducedMotionProvider>
+						<Analytics />
+					</LoadingProvider>
 				</SmoothScrollProvider>
 			</body>
 		</html>

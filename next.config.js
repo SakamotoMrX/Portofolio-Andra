@@ -10,6 +10,10 @@ module.exports = withBundleAnalyzer({
 				protocol: "https",
 				hostname: "i.scdn.co",
 			},
+			{
+				protocol: "https",
+				hostname: "images.unsplash.com",
+			},
 		],
 		// Add image optimization settings
 		formats: ["image/avif", "image/webp"],
@@ -55,7 +59,7 @@ module.exports = withBundleAnalyzer({
 					{
 						key: "Content-Security-Policy",
 						value:
-							"default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://cdn-v1.intelliticks.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://i.scdn.co; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com https://api.spotify.com https://accounts.spotify.com https://*.intelliticks.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
+							"default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://cdn-v1.intelliticks.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://i.scdn.co https://images.unsplash.com https://plus.unsplash.com; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com https://api.spotify.com https://accounts.spotify.com https://*.intelliticks.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
 					},
 				],
 			},

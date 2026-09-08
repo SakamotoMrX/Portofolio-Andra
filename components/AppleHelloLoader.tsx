@@ -1,0 +1,119 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+
+interface AppleHelloLoaderProps {
+  isLoading: boolean;
+  onFinish?: () => void;
+  onComplete?: () => void;
+  onExitComplete?: () => void;
+}
+
+export default function AppleHelloLoader({
+  isLoading,
+  onFinish,
+  onComplete,
+  onExitComplete,
+}: AppleHelloLoaderProps) {
+  const shouldReduceMotion = useReducedMotion();
+  const [visible, setVisible] = useState(isLoading);
+
+  const handleFinish = () => {
+    if (onComplete) onComplete();
+    if (onFinish) onFinish();
+  };
+
+  useEffect(() => {
+    if (!isLoading) {
+      setVisible(false);
+      return;
+    }
+
+    setVisible(true);
+    // 1.4s stroke drawing + 0.4s dwell hold
+    const durationMs = shouldReduceMotion ? 150 : 1800;
+    const timer = setTimeout(() => {
+      handleFinish();
+    }, durationMs);
+
+    return () => clearTimeout(timer);
+  }, [isLoading, shouldReduceMotion]);
+
+  return (
+    <AnimatePresence
+      mode="wait"
+      onExitComplete={() => {
+        if (typeof document !== "undefined") {
+          document.body.style.overflow = "unset";
+        }
+        if (onExitComplete) onExitComplete();
+      }}
+    >
+      {visible && (
+        <motion.div
+          key="apple-hello-loader"
+          data-testid="loading-screen"
+          initial={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          exit={{
+            opacity: 0,
+            scale: 0.985,
+            filter: "blur(4px)",
+            transition: { duration: 0.65, ease: [0.25, 0.1, 0.25, 1] },
+          }}
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#f6f5f0] text-[#121212] dark:bg-[#0c0c0d] dark:text-[#f5f5f7] select-none touch-none overscroll-none pointer-events-auto"
+        >
+          <div className="relative flex flex-col items-center justify-center px-6">
+            <svg
+              data-testid="hello-svg"
+              viewBox="0 0 500 500"
+              className="w-[260px] sm:w-[340px] md:w-[420px] lg:w-[460px] h-auto overflow-visible"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g transform="matrix(1.087,0,0,1.087,-21.135,-19.235)" id="i1">
+                <g id="i2" transform="matrix(1,0,0,1,252,245.918)">
+                  <motion.path
+                    data-testid="hello-path"
+                    d="M-145.66,43.747C-145.66,43.747,-86.107,10.264,-81.851,-26.162C-79.424,-46.943,-98.573,-44.137,-101.426,-23.013C-103.757,-5.755,-109.596,40.561,-109.596,40.561C-109.596,40.561,-103.979,-0.034,-85.851,1.753C-65.936,4.083,-91.979,40.05,-69,40.305C-48.573,40.532,-27.639,22.688,-26.873,10.943C-25.99,-2.599,-44.362,-4.886,-50.022,11.966C-55.226,27.461,-43.584,44.902,-23.54,40.581C7.341,33.922,22.483,-10.827,23.936,-26.077C25.467,-42.162,13.723,-43.694,6.574,-29.397C-0.104,-16.04,-11.245,37.085,12.958,41.583C41.809,46.944,64.277,-5.906,67.086,-23.779C69.802,-41.066,58.656,-45.952,50.234,-30.673C41.166,-14.223,27.843,44.077,59.937,41.326C86.746,39.028,76.916,2.264,102.898,-0.05C114.562,-1.088,119.386,9.92,118.532,21.029C117.638,32.646,106.66,42.475,95.809,40.943C85.898,39.544,80.838,25.973,83.425,17.072C86.617,6.094,96.662,0.12,102.898,-0.05C111.766,-0.29,116.234,5.327,124.149,5.199C131.179,5.086,138.27,-2.922,138.27,-2.922"
+                    stroke="currentColor"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={
+                      shouldReduceMotion
+                        ? { pathLength: 1, opacity: 1 }
+                        : { pathLength: 0, opacity: 0 }
+                    }
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{
+                      pathLength: {
+                        duration: shouldReduceMotion ? 0.05 : 1.4,
+                        ease: [0.65, 0, 0.35, 1],
+                      },
+                      opacity: { duration: 0.2 },
+                    }}
+                  />
+                </g>
+              </g>
+            </svg>
+
+            <motion.p
+              data-testid="hello-caption"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 0.5, y: 0 }}
+              transition={{
+                delay: shouldReduceMotion ? 0 : 0.9,
+                duration: shouldReduceMotion ? 0.05 : 0.5,
+              }}
+              className="mt-6 font-mono text-[11px] tracking-[0.25em] uppercase text-neutral-600 dark:text-neutral-400"
+            >
+              Andra · Junior DevOps
+            </motion.p>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+

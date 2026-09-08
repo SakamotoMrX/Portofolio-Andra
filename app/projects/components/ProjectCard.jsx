@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import BlurImage from "@/public/image/placeholder/blur.jpg";
 
 export default function ProjectCard({ project, index }) {
 	return (
@@ -18,7 +17,7 @@ export default function ProjectCard({ project, index }) {
 					fill
 					placeholder="blur"
 					className="opacity-20 group-hover:opacity-40 transition-all duration-500 object-cover"
-					blurDataURL={BlurImage.src}
+					blurDataURL="/image/placeholder/blur.jpg"
 				/>
 				<div className="absolute top-0 left-0 px-3 md:px-4 py-1.5 md:py-2 glass-tag rounded-none">
 					<h4 className="text-white text-xs md:text-sm">{project.year}</h4>

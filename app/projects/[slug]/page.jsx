@@ -9,7 +9,6 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import NotFound from "@/app/not-found";
 import Image from "next/image";
-import BlurImage from "@/public/image/placeholder/blur.jpg";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -30,7 +29,7 @@ function ProjectImage({ src, alt, index }) {
 				height={1080}
 				className={`h-auto w-full object-contain transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
 				placeholder="blur"
-				blurDataURL={BlurImage.src}
+				blurDataURL="/image/placeholder/blur.jpg"
 				loading={index === 0 ? "eager" : "lazy"}
 				onLoad={handleLoad}
 			/>

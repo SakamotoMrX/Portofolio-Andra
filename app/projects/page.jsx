@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Button from "@/components/Button";
 import Image from "next/image";
 
-import ProjectAll from "@/public/image/projects-showcase.jpg";
 import Hr from "@/components/Hr";
 import ProjectCard from "./components/ProjectCard";
 import Projects from "@/json/data.json";
@@ -19,7 +18,7 @@ const category = {
 };
 
 export default function Page() {
-	const [activeCategory, setActiveCategory] = useState("1");
+	const [activeCategory, setActiveCategory] = useState("9");
 	const projects = Projects.Projects.filter((item) => item.show === true);
 
 	useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -27,7 +26,7 @@ export default function Page() {
 	return (
 		<main className="overflow-hidden">
 			<FixedButton href="/#projects">
-				<FontAwesomeIcon icon={faChevronLeft} className="text-white" />
+				<FontAwesomeIcon icon={faChevronLeft} className="text-neutral-900 dark:text-white" />
 			</FixedButton>
 			<div className="relative h-screen w-screen gap-4 p-6 md:p-10 flex justify-center items-center flex-col mb-10 overflow-hidden">
 				<div className="z-0 mb-48 md:mb-0 md:absolute top-1/4 md:right-[10%] md:translate-y-4">
@@ -39,7 +38,7 @@ export default function Page() {
 						<div className="glass-static rounded-2xl aspect-video shadow-2xl flex items-center justify-center p-3 border-2 border-white/15">
 							<div className="rounded-2xl w-full h-full overflow-hidden relative">
 								<Image
-									src={ProjectAll}
+									src="/image/projects-showcase.jpg"
 									alt="Projects Showcase"
 									fill
 									sizes="(max-width: 768px) 80vw, 30vw"
@@ -52,11 +51,11 @@ export default function Page() {
 					</motion.div>
 				</div>
 				<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[55%] md:top-1/3 flex flex-col justify-center items-center md:items-start text-center md:text-start px-6 md:px-10 pt-4 md:pt-0">
-					<h1 className="text-4xl sm:text-5xl md:text-8xl font-bold text-white">
+					<h1 className="text-4xl sm:text-5xl md:text-8xl font-bold text-neutral-900 dark:text-white">
 						My Projects
 					</h1>
 					<Hr />
-					<p className="title text-base sm:text-xl mt-4 tracking-wider text-white/60 leading-[1.6rem] md:leading-[1.7rem] mb-5 max-w-xl">
+					<p className="title text-base sm:text-xl mt-4 tracking-wider text-neutral-600 dark:text-neutral-400 leading-[1.6rem] md:leading-[1.7rem] mb-5 max-w-xl">
 						Automated scripts, Linux server deployments, and hardware projects.
 					</p>
 					<motion.div
@@ -73,7 +72,7 @@ export default function Page() {
 			<div className="mt-10 flex flex-col justify-start items-center w-full pl-10 md:pl-32">
 				<div className="flex justify-center items-center flex-col my-5 self-start">
 					<Hr variant="long" />
-					<h1 className="text-3xl font-bold mt-3">Projects Showcase</h1>
+					<h1 className="text-3xl font-bold mt-3 text-neutral-900 dark:text-white">Projects Showcase</h1>
 				</div>
 			</div>
 
@@ -87,8 +86,8 @@ export default function Page() {
 						key={key}
 						className={`px-4 py-2.5 rounded-lg cursor-pointer transition-all duration-300 text-sm md:text-base ${
 							activeCategory === key
-								? "glass-btn text-white"
-								: "glass-btn-outline text-white/60"
+								? "glass-btn text-neutral-900 dark:text-white font-semibold"
+								: "glass-btn-outline text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
 						}`}
 						onClick={() => setActiveCategory(key)}>
 						{category[key]}

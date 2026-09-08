@@ -60,6 +60,7 @@ export default function AppleHelloLoader({
             opacity: 0,
             scale: 0.985,
             filter: "blur(4px)",
+            pointerEvents: "none",
             transition: { duration: 0.65, ease: [0.25, 0.1, 0.25, 1] },
           }}
           className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#f6f5f0] text-[#121212] dark:bg-[#0c0c0d] dark:text-[#f5f5f7] select-none touch-none overscroll-none pointer-events-auto"

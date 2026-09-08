@@ -271,6 +271,7 @@ export default function Page() {
                   alt="Andra"
                   width={320}
                   height={420}
+                  style={{ width: "auto", height: "auto" }}
                   className="object-cover grayscale transition-[filter,transform] duration-700 hover:grayscale-0"
                 />
               </motion.div>

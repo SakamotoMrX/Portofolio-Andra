@@ -16,20 +16,20 @@ interface LoadingContextValue {
   isMounted: boolean;
   finishLoading: () => void;
   resetLoading: () => void;
+  replayLoading: () => void;
 }
 
 const LoadingContext = createContext<LoadingContextValue>({
-  isLoading: false,
+  isLoading: true,
   isMounted: false,
   finishLoading: () => {},
   resetLoading: () => {},
+  replayLoading: () => {},
 });
-
-const SESSION_KEY = "andra_intro_seen";
 
 export function LoadingProvider({ children }: { children: ReactNode }) {
   const [isMounted, setIsMounted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const scrollLockedRef = useRef(false);
 
   const lockScroll = useCallback(() => {
@@ -50,31 +50,15 @@ export function LoadingProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setIsMounted(true);
-    let hasSeen = false;
-    try {
-      hasSeen = sessionStorage.getItem(SESSION_KEY) === "true";
-    } catch {
-      hasSeen = false;
-    }
-
-    if (!hasSeen) {
-      setIsLoading(true);
+    if (isLoading) {
       lockScroll();
-    } else {
-      setIsLoading(false);
     }
-
     return () => {
       unlockScroll();
     };
-  }, [lockScroll, unlockScroll]);
+  }, [isLoading, lockScroll, unlockScroll]);
 
   const finishLoading = useCallback(() => {
-    try {
-      sessionStorage.setItem(SESSION_KEY, "true");
-    } catch {
-      // Ignore storage errors in restricted contexts
-    }
     setIsLoading(false);
   }, []);
 
@@ -83,26 +67,25 @@ export function LoadingProvider({ children }: { children: ReactNode }) {
   }, [unlockScroll]);
 
   const resetLoading = useCallback(() => {
-    try {
-      sessionStorage.removeItem(SESSION_KEY);
-    } catch {
-      // Ignore
-    }
     setIsLoading(true);
     lockScroll();
   }, [lockScroll]);
 
   return (
     <LoadingContext.Provider
-      value={{ isLoading, isMounted, finishLoading, resetLoading }}
+      value={{
+        isLoading,
+        isMounted: true,
+        finishLoading,
+        resetLoading,
+        replayLoading: resetLoading,
+      }}
     >
-      {isMounted && (
-        <AppleHelloLoader
-          isLoading={isLoading}
-          onFinish={finishLoading}
-          onExitComplete={handleExitComplete}
-        />
-      )}
+      <AppleHelloLoader
+        isLoading={isLoading}
+        onFinish={finishLoading}
+        onExitComplete={handleExitComplete}
+      />
       {children}
     </LoadingContext.Provider>
   );

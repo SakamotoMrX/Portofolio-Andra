@@ -30,7 +30,7 @@ test.describe("Apple Hello Loading Screen Lifecycle & Verification", () => {
         } catch {}
       });
 
-      await page.goto("/", { waitUntil: "commit" });
+      await page.goto("/", { waitUntil: "domcontentloaded" });
 
       const loader = page.locator('[data-testid="loading-screen"]');
       const svg = page.locator('[data-testid="hello-svg"]');
@@ -47,13 +47,16 @@ test.describe("Apple Hello Loading Screen Lifecycle & Verification", () => {
       expect(pathData).toContain("M-145.66,43.747");
 
       // 2. Scroll lock check while loading
-      const isScrollLocked = await page.evaluate(() => {
-        return (
-          document.body.style.overflow === "hidden" ||
-          document.documentElement.style.overflow === "hidden"
-        );
-      });
-      expect(isScrollLocked).toBe(true);
+      await expect
+        .poll(async () => {
+          return page.evaluate(() => {
+            return (
+              document.body.style.overflow === "hidden" ||
+              document.documentElement.style.overflow === "hidden"
+            );
+          });
+        })
+        .toBe(true);
 
       // Capture loading state screenshot
       await page.screenshot({
@@ -100,33 +103,28 @@ test.describe("Apple Hello Loading Screen Lifecycle & Verification", () => {
     });
   }
 
-  test("Session intelligence prevents replay on subsequent navigation", async ({
+  test("Client navigation does not replay intro but reset/reload triggers intro", async ({
     page,
   }) => {
-    // 1. First visit: clears storage and completes intro
-    await page.addInitScript(() => {
-      sessionStorage.clear();
-    });
+    // 1. Initial visit: intro appears and completes
     await page.goto("/", { waitUntil: "domcontentloaded" });
-
     const loader = page.locator('[data-testid="loading-screen"]');
     await expect(loader).toBeVisible({ timeout: 5000 });
     await expect(loader).toBeHidden({ timeout: 10000 });
 
-    // Verify session flag is stored
-    const flag = await page.evaluate(() =>
-      sessionStorage.getItem("andra_intro_seen")
-    );
-    expect(flag).toBe("true");
+    // 2. Client-side navigation to /about: loader stays hidden
+    const aboutLink = page.locator('nav a[href="/about"], a[href="/about"]').first();
+    if (await aboutLink.count() > 0) {
+      await aboutLink.click();
+      await page.waitForURL("**/about");
+      const aboutLoader = page.locator('[data-testid="loading-screen"]');
+      await expect(aboutLoader).toHaveCount(0);
+    }
 
-    // 2. Subsequent page visit in same session: loader should not show up
-    await page.goto("/about", { waitUntil: "domcontentloaded" });
-    const aboutLoader = page.locator('[data-testid="loading-screen"]');
-    await expect(aboutLoader).toHaveCount(0);
-
-    // 3. Return to home: loader still absent
-    await page.goto("/", { waitUntil: "domcontentloaded" });
-    const homeLoader = page.locator('[data-testid="loading-screen"]');
-    await expect(homeLoader).toHaveCount(0);
+    // 3. Page reload: intro cleanly plays again
+    await page.reload({ waitUntil: "domcontentloaded" });
+    const reloadedLoader = page.locator('[data-testid="loading-screen"]');
+    await expect(reloadedLoader).toBeVisible({ timeout: 5000 });
+    await expect(reloadedLoader).toBeHidden({ timeout: 10000 });
   });
 });

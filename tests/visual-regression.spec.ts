@@ -38,7 +38,7 @@ test.describe("Visual Regression & Animation Lifecycle Suite", () => {
         } catch {}
       });
 
-      await page.goto("/", { waitUntil: "commit" });
+      await page.goto("/", { waitUntil: "domcontentloaded" });
 
       const loader = page.locator('[data-testid="loading-screen"]');
       const svg = page.locator('[data-testid="hello-svg"]');
@@ -50,13 +50,16 @@ test.describe("Visual Regression & Animation Lifecycle Suite", () => {
       await expect(helloPath).toBeVisible();
 
       // Scroll locked during loading
-      const isLocked = await page.evaluate(() => {
-        return (
-          document.body.style.overflow === "hidden" ||
-          document.documentElement.style.overflow === "hidden"
-        );
-      });
-      expect(isLocked).toBe(true);
+      await expect
+        .poll(async () => {
+          return page.evaluate(() => {
+            return (
+              document.body.style.overflow === "hidden" ||
+              document.documentElement.style.overflow === "hidden"
+            );
+          });
+        })
+        .toBe(true);
 
       // Capture active SVG writing animation screenshot
       const activeAnimPath = path.join(

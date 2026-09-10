@@ -1,0 +1,270 @@
+{
+  "audit_version": "2.0.0",
+  "auditor": "@observer",
+  "timestamp": "2026-09-09T07:30:00Z",
+  "project": "andra-portfolio",
+  "viewport_tested": ["1440x900 (desktop)", "768x1024 (tablet)", "375x812 (mobile)"],
+
+  "screenshots_requested": [
+    "screenshots/desktop-hero.png",
+    "screenshots/desktop-tablet-animated.png",
+    "screenshots/desktop-tab-switched-projects.png",
+    "screenshots/desktop-tab-switched-system.png",
+    "screenshots/mobile-tablet-animated.png"
+  ],
+  "screenshots_found": [
+    "screenshots/desktop-settled-page.png",
+    "screenshots/desktop-active-animation.png",
+    "screenshots/desktop-projects.png",
+    "screenshots/desktop-about.png",
+    "screenshots/tablet-active-animation.png",
+    "screenshots/tablet-about.png",
+    "screenshots/tablet-projects.png",
+    "screenshots/tablet-settled-page.png",
+    "screenshots/mobile-active-animation.png",
+    "screenshots/mobile-about.png",
+    "screenshots/mobile-projects.png",
+    "screenshots/mobile-settled-page.png",
+    "screenshots/loading-desktop.png",
+    "screenshots/loading-tablet.png",
+    "screenshots/loading-mobile.png",
+    "screenshots/fade-out-desktop.png",
+    "screenshots/fade-out-tablet.png",
+    "screenshots/fade-out-mobile.png",
+    "screenshots/content-visible-desktop.png",
+    "screenshots/content-visible-tablet.png",
+    "screenshots/content-visible-mobile.png"
+  ],
+  "screenshots_missing": [
+    "screenshots/desktop-hero.png",
+    "screenshots/desktop-tablet-animated.png",
+    "screenshots/desktop-tab-switched-projects.png",
+    "screenshots/desktop-tab-switched-system.png",
+    "screenshots/mobile-tablet-animated.png"
+  ],
+
+  "criteria": {
+    "tablet_scale": {
+      "status": "PASS",
+      "code_verified": true,
+      "details": {
+        "max_width_class": "max-w-6xl xl:max-w-7xl (1152px / 1280px)",
+        "container_padded": "px-3 sm:px-6 md:px-8",
+        "device_frame_dimensions": {
+          "mobile": "h-[650px] max-h-[85vh]",
+          "tablet": "h-[780px] max-h-[85vh]",
+          "desktop": "h-[860px] lg:h-[900px] max-h-[85vh]"
+        },
+        "immersive_screen_height": true,
+        "perspective_container": "[perspective:1200px]",
+        "min_h_scroll_area": "min-h-[160vh] md:min-h-[190vh]"
+      }
+    },
+
+    "hardware_craft": {
+      "status": "PASS",
+      "code_verified": true,
+      "details": {
+        "chassis_color": "#0c0c0e (obsidian)",
+        "chassis_border": "border border-neutral-700/60 ring-1 ring-white/10 ring-inset",
+        "chassis_rounded": "rounded-[28px] sm:rounded-[36px] md:rounded-[44px]",
+        "chassis_shadow": "multi-layer: outer glow rgba(176,137,104,0.12), inset highlights, deep shadow",
+        "power_button": {
+          "present": true,
+          "position": "top edge, right side",
+          "class": "absolute -top-[4px] right-24 md:right-36 w-16 md:w-20 h-[4px] rounded-t-sm bg-[#1e1e24] border-t border-x border-neutral-600/80",
+          "responsive": "hidden sm:block"
+        },
+        "volume_rockers": {
+          "present": true,
+          "count": 2,
+          "position": "left edge",
+          "class": "absolute -left-[4px] top-28/top-42 w-[4px] h-11 rounded-l-sm bg-[#1e1e24]",
+          "responsive": "hidden sm:block"
+        },
+        "camera_lens": {
+          "present": true,
+          "position": "top bezel center-right",
+          "class": "h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-[#08080a] with indigo-950 inner + ring-blue-400/40 specular coating",
+          "lens_reflection": true
+        },
+        "ambient_sensor": {
+          "present": true,
+          "position": "top bezel center-left",
+          "class": "h-1.5 w-1.5 rounded-full bg-[#16161d] border border-neutral-800/90 shadow-inner"
+        },
+        "speaker_grille": {
+          "present": true,
+          "position": "top bezel center",
+          "class": "h-1 w-10 sm:w-14 md:w-16 rounded-full bg-[#08080a] border border-neutral-800/80"
+        },
+        "bottom_home_indicator": {
+          "present": true,
+          "position": "sticky bottom-2 inside scrollable viewport",
+          "class": "w-32 sm:w-36 h-1 bg-neutral-400/50 rounded-full backdrop-blur-sm"
+        }
+      }
+    },
+
+    "dynamic_animation_and_interactivity": {
+      "status": "PASS",
+      "code_verified": true,
+      "details": {
+        "glare_sweep_sheen": {
+          "present": true,
+          "implementation": "motion.div with x/y driven by scrollYProgress [0, 0.7] → ['-120%', '140%']",
+          "gradient": "linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.03) 42%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.05) 58%, transparent 68%)",
+          "blend_mode": "mix-blend-overlay",
+          "opacity": 0.4,
+          "responsive": true
+        },
+        "glass_navigation_bar": {
+          "present": true,
+          "background": "bg-[#f6f5f0]/85 backdrop-blur-md",
+          "border": "border-b border-black/10",
+          "live_clock": {
+            "present": true,
+            "implementation": "useState + setInterval(10000ms) → HH:MM format",
+            "font": "font-mono text-xs font-semibold"
+          },
+          "window_dots": {
+            "present": true,
+            "count": 3,
+            "colors": ["#ff5f56 (red)", "#ffbd2e (yellow)", "#27c93f (green)"],
+            "style": "w-2.5 h-2.5 rounded-full with border + shadow"
+          },
+          "battery_icon": {
+            "present": true,
+            "implementation": "div-based battery shape with fill level"
+          },
+          "wifi_icon": {
+            "present": true,
+            "implementation": "SVG wifi arcs with dot"
+          }
+        },
+        "interactive_tabs": {
+          "present": true,
+          "sections": ["01 About", "02 Projects", "03 System", "04 Contact"],
+          "sliding_pill": {
+            "present": true,
+            "implementation": "motion.span with layoutId='activeDeviceTab'",
+            "spring_config": { "stiffness": 380, "damping": 30 },
+            "pill_style": "bg-white rounded-full shadow + border"
+          },
+          "scroll_spy": {
+            "present": true,
+            "implementation": "handleInnerScroll callback on scroll event, threshold 160px from section offsetTop",
+            "reverse_search": true
+          },
+          "smooth_scroll_linking": {
+            "present": true,
+            "implementation": "scrollToSection → screen.scrollTo({ top: offset - 56, behavior: 'smooth' })"
+          }
+        }
+      }
+    },
+
+    "theme_fidelity": {
+      "status": "PASS",
+      "code_verified": true,
+      "details": {
+        "inner_screen_bg": "#f6f5f0 (cream)",
+        "text_primary": "#121212",
+        "accent_brown": "#b08968",
+        "light_theme_preserved": true,
+        "golden_yellow_accent_used": true,
+        "dark_chassis_contrast": "#0c0c0e outer frame provides contrast to inner cream screen",
+        "glass_nav_bar_theme": "cream/85 with blur, consistent with inner screen",
+        "no_dark_mode_leak": true
+      }
+    },
+
+    "layout_overflow_and_animation_stacking": {
+      "status": "PASS",
+      "code_verified": true,
+      "details": {
+        "outer_overflow_clip": "overflow-hidden on hero section, contain-paint on logo wrapper",
+        "inner_overflow_clip": "overflow-hidden on screen container, overflow-y-auto + overscroll-contain on scroll viewport",
+        "no_horizontal_overflow": true,
+        "animation_properties_used": ["transform", "opacity", "filter", "x", "y"],
+        "no_layout_animations": true,
+        "no_width_height_animations": true,
+        "gpu_only_transforms": true,
+        "reduced_motion_support": {
+          "present": true,
+          "implementation": "useReducedMotion() → all transform ranges set to identity [val, val]",
+          "mouse_tilt_disabled": true
+        },
+        "spring_configs": [
+          { "component": "sheen", "type": "scroll-driven" },
+          { "component": "mouse_tilt", "damping": 25, "stiffness": 180 },
+          { "component": "tab_pill", "stiffness": 380, "damping": 30 }
+        ],
+        "animation_stacking_detected": false,
+        "layout_overflow_detected": false
+      }
+    }
+  },
+
+  "flaws": [
+    {
+      "id": "FLAW-004",
+      "severity": "critical",
+      "category": "SCREENSHOT_MISSING",
+      "title": "Requested screenshot filenames do not exist on disk",
+      "description": "All 5 requested screenshots (desktop-hero.png, desktop-tablet-animated.png, desktop-tab-switched-projects.png, desktop-tab-switched-system.png, mobile-tablet-animated.png) are absent from the screenshots/ directory. The directory contains 21 different filenames from a prior capture session. Visual pixel-level verification is impossible without the correct captures.",
+      "affected_screenshots": [
+        "screenshots/desktop-hero.png",
+        "screenshots/desktop-tablet-animated.png",
+        "screenshots/desktop-tab-switched-projects.png",
+        "screenshots/desktop-tab-switched-system.png",
+        "screenshots/mobile-tablet-animated.png"
+      ],
+      "existing_alternatives": [
+        "screenshots/desktop-active-animation.png",
+        "screenshots/desktop-settled-page.png",
+        "screenshots/tablet-active-animation.png",
+        "screenshots/mobile-active-animation.png"
+      ],
+      "recommendation": "Re-run Playwright capture with correct filenames targeting the specific states: hero initial, tablet animated rotation, tab-switched to projects, tab-switched to system, mobile tablet animated."
+    }
+  ],
+
+  "invariants": {
+    "wcag_contrast_passed": false,
+    "animation_stacking_detected": false,
+    "layout_overflow_detected": false,
+    "unmounted_elements_cleaned": true,
+    "horizontal_overflow_detected": false,
+    "inner_scroll_functional": true,
+    "device_frame_complete": true,
+    "3d_perspective_working": true,
+    "reduced_motion_respected": true,
+    "reduced_transparency_respected": true,
+    "tablet_scale_enlarged": true,
+    "hardware_craft_complete": true,
+    "glare_sweep_present": true,
+    "glass_nav_bar_present": true,
+    "interactive_tabs_present": true,
+    "sliding_pill_present": true,
+    "scroll_spy_working": true,
+    "theme_fidelity_confirmed": true,
+    "screenshots_captured": false
+  },
+
+  "summary": {
+    "total_criteria": 5,
+    "passed": 5,
+    "partial_pass": 0,
+    "failed": 0,
+    "total_flaws": 1,
+    "flaw_breakdown": {
+      "critical": 1,
+      "major": 0,
+      "minor": 0,
+      "info": 0
+    },
+    "verdict": "BLOCKED",
+    "notes": "All 5 audit criteria PASS on code inspection: tablet scale enlarged (max-w-6xl/7xl), hardware craft complete (obsidian chassis, power button, volume rockers, camera lens, ambient sensor, speaker grille, home indicator), dynamic animation verified (glare sweep, glass nav bar with live clock/window dots/battery/wifi, interactive tabs with sliding pill and scroll spy), theme fidelity confirmed (cream #f6f5f0 inner screen, light theme), zero layout overflow and zero animation stacking. CRITICAL BLOCKER: The 5 requested screenshot files do not exist on disk — visual pixel-level QA cannot proceed. The existing 21 screenshots are from a prior capture session with different filenames. Must re-capture with correct filenames before visual audit can confirm pixel-level rendering matches code intent."
+  }
+}

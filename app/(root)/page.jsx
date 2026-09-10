@@ -14,7 +14,6 @@ import Image from "next/image";
 
 import DistressedLogo from "@/components/DistressedLogo";
 import Neofetch from "@/components/Neofetch";
-import { HeroScrollDemo } from "@/components/ui/container-scroll-demo";
 import data from "@/json/data.json";
 
 const projects = data.Projects.filter((p) => p.show);
@@ -230,10 +229,6 @@ export default function Page() {
             scroll — parallax engages on fine pointer only
           </motion.div>
         </div>
-      </section>
-
-      <section id="container-scroll-demo" className="relative">
-        <HeroScrollDemo />
       </section>
 
       <section id="about" className="py-28 md:py-40">

@@ -1,0 +1,166 @@
+{
+  "project": "andra-portfolio",
+  "author": "Andra (SakamotoMrX)",
+  "repo_path": "/Users/telkom_760047/Github/andra-portfolio",
+  "triage_tier": "STANDARD",
+  "timestamp": "2026-09-09T00:00:00Z",
+
+  "dependencies": {
+    "next": "15.2.8",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "framer-motion": "^12.5.0",
+    "tailwindcss": "^4.0.14",
+    "@tailwindcss/postcss": "^4.0.14",
+    "postcss": "^8.5.3",
+    "lenis": "^1.3.26",
+    "nprogress": "^0.2.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.6.0",
+    "swr": "^2.3.3",
+    "@vercel/analytics": "^1.5.0",
+    "sharp": "^0.33.5",
+    "prop-types": "^15.8.1",
+    "eslint": "9.22.0",
+    "eslint-config-next": "15.2.9",
+    "next-sitemap": "4.2.3",
+    "sitemap": "^8.0.1",
+    "@playwright/test": "^1.62.1",
+    "typescript": "implicit (tsconfig present)",
+    "package_manager": "pnpm"
+  },
+
+  "project_structure": {
+    "app_dir": {
+      "root": "app/(root)/",
+      "pages": [
+        "app/(root)/page.jsx — home page with ALL sections inline",
+        "app/(root)/layout.jsx — empty shell (just renders children)",
+        "app/(root)/loading.jsx",
+        "app/layout.jsx — root layout with fonts, Navbar, BlobParallax, Analytics",
+        "app/about/page.jsx — separate about page with About, Skills, Experience, Education, Neofetch",
+        "app/projects/page.jsx — separate projects page with category filter and ProjectCard grid",
+        "app/projects/[slug]/page.jsx — project detail",
+        "app/projects/archive/page.jsx",
+        "app/scroll-demo/page.jsx"
+      ]
+    },
+    "components_dir": {
+      "path": "components/",
+      "files": [
+        "Navbar.jsx — fixed header with scroll-frosted glass, mobile menu, AnimatePresence",
+        "Footer.jsx — standalone CTA + copyright component (NOT imported in any page)",
+        "Button.jsx",
+        "FixedButton.jsx",
+        "DistressedLogo.tsx — animated text logo for hero",
+        "Neofetch.tsx — terminal-style system info component",
+        "BlobParallax.jsx — mouse-driven blob parallax background",
+        "CursorFollower.jsx",
+        "TopProgressbar.jsx",
+        "ClientTopProgressBar.jsx",
+        "LoadingProvider.tsx",
+        "SmoothScrollProvider.tsx",
+        "ReducedMotionProvider.jsx",
+        "AppleHelloLoader.tsx",
+        "Hr.jsx",
+        "Sidebar.jsx",
+        "AndraLogo.jsx",
+        "Chat.jsx / ChatConditional.jsx",
+        "ui/container-scroll-animation.tsx — ContainerScroll, Header, Card with framer-motion parallax",
+        "ui/container-scroll-demo.tsx — HeroScrollDemo wrapper"
+      ]
+    },
+    "data_dir": {
+      "path": "json/data.json",
+      "content": "Projects array (10 projects, all show:true, year:2026)"
+    },
+    "styles": {
+      "app/globals.css": "476 lines — CSS variables, glass utilities, hero grid/blobs/scanline, cursor follower, skill bars, responsive overrides",
+      "tailwind.config.js": "Tailwind CSS v4 config with content paths, future purge options",
+      "components.json": "shadcn/ui config, new-york style, rsc:true, tsx:true, neutral baseColor, iconLibrary: lucide"
+    }
+  },
+
+  "component_hierarchy": {
+    "root_layout": "app/layout.jsx",
+    "home_page": "app/(root)/page.jsx",
+    "sections_in_home_page": [
+      "Hero (inline, id='home') — DistressedLogo + BlurText + MagneticLink + HeroScrollDemo",
+      "ContainerScrollDemo (id='container-scroll-demo') — scroll animation showcase",
+      "About (inline, id='about') — h2 + image + focusAreas grid",
+      "Projects (inline, id='projects') — project list from json/data.json",
+      "System (inline, id='system') — <Neofetch /> component",
+      "Contact (inline, id='contact') — email link + social links + copyright"
+    ]
+  },
+
+  "page_tsx_analysis": {
+    "actual_path": "app/(root)/page.jsx",
+    "not_found_at": "app/page.tsx (does not exist; home is app/(root)/page.jsx)",
+    "structure": "Single-file multi-section page. Uses 'use client'. Imports framer-motion for scroll-based animations.",
+    "key_patterns": [
+      "Reveal() — motion.div with opacity/y animation using whileInView",
+      "BlurText() — word-by-word blur stagger animation",
+      "MagneticLink() — 3D mouse-follow link with spring physics",
+      "useScroll/useTransform/useSpring for hero logo parallax on scroll",
+      "useReducedMotion() for accessibility",
+      "All sections (About, Projects, System, Contact) are inline in single file",
+      "Hero section has parallax logo, blob backgrounds, grid overlay, scanline effects",
+      "Projects rendered from json/data.json with category mapping",
+      "No separate Hero.tsx, About.tsx, Projects.tsx, Contact.tsx components exist"
+    ],
+    "styling_approach": "Tailwind CSS v4 + CSS custom properties (--glass-*, --accent, --text-*, --bg-*) + inline className utilities. No CSS modules."
+  },
+
+  "hero_tsx_analysis": {
+    "actual_path": "components/ui/container-scroll-demo.tsx",
+    "not_found_at": "components/Hero.tsx (does not exist)",
+    "structure": "HeroScrollDemo renders ContainerScroll with title 'Scroll Animations' and an Image showcase",
+    "container_scroll": "components/ui/container-scroll-animation.tsx — 3D parallax card with rotateX, scale, translate based on scrollYProgress",
+    "home_page_hero": "Inline in page.jsx: DistressedLogo text 'ANDRA' + BlurText subtitle + MagneticLink CTA buttons, not using ContainerScroll component",
+    "animation_library": "framer-motion v12.5.0",
+    "visual_effects": [
+      "hero-grid overlay (CSS grid with radial gradient mask)",
+      "hero-blobs (CSS radial-gradient circles with float animation)",
+      "scanline overlay (repeating-linear-gradient)",
+      "distressed text logo",
+      "cursor-follower (JS-driven dot + ring)",
+      "magnetic link hover (spring physics)",
+      "glass morphism buttons"
+    ]
+  },
+
+  "design_system": {
+    "color_scheme": "Light/cream (#f6f5f0 background, #121212 text, #b08968 accent)",
+    "fonts": [
+      "Poppins (variable, weights 300-700) — body",
+      "Jost (variable, weights 400-700) — headings",
+      "Fira Code (variable) — mono/code"
+    ],
+    "glass_morphism": "Custom CSS glass utilities (.glass, .glass-static, .glass-static-strong, .glass-btn, .glass-btn-outline)",
+    "animation": "framer-motion v12 + Lenis smooth scroll + NProgress top bar",
+    "responsive": "Tailwind breakpoints (md: 768px), mobile hamburger menu in Navbar"
+  },
+
+  "triage_level": "STANDARD",
+  "triage_reasoning": "Multi-section portfolio with framer-motion scroll animations, glass morphism design system, smooth scroll providers, blob parallax, magnetic link physics, and 10 projects from JSON data. Not MICRO (has real state management, scroll-driven animations, multiple interactive components). Not COMPLEX (single-page composition, no micro-frontends, no complex routing).",
+
+  "files_of_interest": {
+    "home_page": "/Users/telkom_760047/Github/andra-portfolio/app/(root)/page.jsx",
+    "hero_component": "/Users/telkom_760047/Github/andra-portfolio/components/ui/container-scroll-demo.tsx",
+    "container_scroll_animation": "/Users/telkom_760047/Github/andra-portfolio/components/ui/container-scroll-animation.tsx",
+    "navigator": "/Users/telkom_760047/Github/andra-portfolio/components/Navbar.jsx",
+    "footer": "/Users/telkom_760047/Github/andra-portfolio/components/Footer.jsx (unused in pages)",
+    "root_layout": "/Users/telkom_760047/Github/andra-portfolio/app/layout.jsx",
+    "globals_css": "/Users/telkom_760047/Github/andra-portfolio/app/globals.css",
+    "project_data": "/Users/telkom_760047/Github/andra-portfolio/json/data.json",
+    "package_json": "/Users/telkom_760047/Github/andra-portfolio/package.json",
+    "tsconfig": "/Users/telkom_760047/Github/andra-portfolio/tsconfig.json",
+    "tailwind_config": "/Users/telkom_760047/Github/andra-portfolio/tailwind.config.js"
+  }
+}

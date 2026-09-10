@@ -1,0 +1,125 @@
+{
+  "phase": 1,
+  "barrier": "barrier-1",
+  "status": "LOCKED",
+  "timestamp": "2026-09-09T00:00:00Z",
+  "architecture_summary": "Restructure page.jsx into a clean two-tier layout: static Hero outside 3D wrapper, and interactive Device Frame containing internal sections (01 About, 02 Projects, 03 System, 04 Contact, Footer) rendered directly in React with native scroll container and Framer Motion 3D transforms.",
+  "tradeoff_analysis": {
+    "choice": "DIRECT_REACT_COMPONENT",
+    "rejected_alternative": "IFRAME",
+    "rationale": {
+      "state_and_context": "Direct React components share Next.js context, theme variables, fonts, SWR cache, and React 19 hooks seamlessly without postMessage serialization.",
+      "performance_and_bundle": "Zero bundle duplication. An iframe would reload the entire Next.js runtime, Tailwind CSS, font assets, and Lenis engine (~500KB+ duplicate transfer).",
+      "visual_rendering": "Eliminates iframe white flashes, layout shifts (CLS), and 3D transform scroll jitter/compositing bugs in Chromium/Safari.",
+      "accessibility_and_seo": "DOM remains natively traversable by screen readers (WCAG 2.1 AA) and search engine crawlers without iframe boundary blocking."
+    }
+  },
+  "component_structure": {
+    "hero_static": {
+      "location": "app/(root)/page.jsx (top-level outside device container)",
+      "elements": [
+        "hero-grid & hero-blobs background overlays",
+        "DistressedLogo ('ANDRA')",
+        "BlurText subtitle ('Junior DevOps & Infrastructure Automation')",
+        "BlurText description ('I automate the boring parts...')",
+        "MagneticLink CTA buttons ('GitHub →', 'View Projects')"
+      ]
+    },
+    "container_scroll_device": {
+      "location": "components/ContainerScrollDevice.tsx",
+      "wrapper_styling": "relative isolate min-h-screen py-10 md:py-20 flex items-center justify-center",
+      "perspective_container": "perspective-[1000px] w-full max-w-6xl mx-auto px-4",
+      "bezel_styling": "rounded-[32px] md:rounded-[44px] border-4 border-[#2a2a2a] bg-[#1a1a1a] shadow-[0_20px_70px_rgba(0,0,0,0.35)] p-3 md:p-5",
+      "screen_container": "h-[620px] md:h-[780px] w-full rounded-[24px] md:rounded-[36px] bg-[#f6f5f0] text-[#121212] overflow-y-auto overscroll-contain scroll-smooth"
+    },
+    "inner_device_sections": [
+      {
+        "id": "about",
+        "title": "01 — About",
+        "content": "Linux first / Automation always + Profile Image + Focus Areas"
+      },
+      {
+        "id": "projects",
+        "title": "02 — Projects",
+        "content": "Project showcase list from json/data.json with tags and links"
+      },
+      {
+        "id": "system",
+        "title": "03 — System",
+        "content": "<Neofetch /> terminal component"
+      },
+      {
+        "id": "contact",
+        "title": "04 — Contact",
+        "content": "Email link + Socials + Footer copyright"
+      }
+    ]
+  },
+  "motion_specifications": {
+    "target": "containerRef (ContainerScrollDevice outer div)",
+    "offset": [
+      "start end",
+      "end start"
+    ],
+    "transforms": {
+      "rotateX": {
+        "input": [
+          0,
+          1
+        ],
+        "desktop": [
+          20,
+          0
+        ],
+        "mobile": [
+          12,
+          0
+        ],
+        "unit": "deg"
+      },
+      "scale": {
+        "input": [
+          0,
+          1
+        ],
+        "desktop": [
+          0.85,
+          1.0
+        ],
+        "mobile": [
+          0.75,
+          0.95
+        ]
+      },
+      "translateY": {
+        "input": [
+          0,
+          1
+        ],
+        "desktop": [
+          40,
+          0
+        ],
+        "mobile": [
+          20,
+          0
+        ],
+        "unit": "px"
+      }
+    },
+    "reduced_motion": {
+      "hook": "useReducedMotion()",
+      "fallback": "scale: 1, rotateX: 0, translateY: 0 (bypasses 3D transforms)"
+    },
+    "lifecycle_and_cleanup": {
+      "listener_cleanup": "Framer Motion automatically detaches RAF and scroll listeners on component unmount.",
+      "resize_cleanup": "window.removeEventListener('resize') in useEffect return cleanup."
+    }
+  },
+  "deliverables": [
+    ".antigravity/artifacts/phase-1-contracts.ts",
+    ".antigravity/artifacts/phase-1-blueprint.json",
+    "components/ContainerScrollDevice.tsx",
+    "app/(root)/page.jsx"
+  ]
+}

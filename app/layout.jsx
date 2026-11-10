@@ -1,5 +1,6 @@
 import "./globals.css";
-import { Inter, Fira_Code } from "next/font/google";
+import { Fira_Code } from "next/font/google";
+import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -7,11 +8,15 @@ config.autoAddCss = false;
 import { Analytics } from "@vercel/analytics/react";
 import ReducedMotionProvider from "@/components/ReducedMotionProvider";
 
-// SF on Apple devices (see --font-sans); Inter is the fallback everywhere else
-const inter = Inter({
-	subsets: ["latin"],
+// General Sans (Indian Type Foundry, via Fontshare), self-hosted so the CSP stays closed
+const generalSans = localFont({
+	src: [
+		{ path: "../public/fonts/GeneralSans-400.woff2", weight: "400" },
+		{ path: "../public/fonts/GeneralSans-500.woff2", weight: "500" },
+		{ path: "../public/fonts/GeneralSans-700.woff2", weight: "700" },
+	],
 	display: "swap",
-	variable: "--font-inter",
+	variable: "--font-general",
 });
 
 const firaCode = Fira_Code({
@@ -73,7 +78,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
+		<html lang="en" className={`${generalSans.variable} ${firaCode.variable}`}>
 			<body className="relative">
 				<script
 					type="application/ld+json"

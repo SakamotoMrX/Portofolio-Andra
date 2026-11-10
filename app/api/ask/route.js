@@ -5,7 +5,9 @@ import { CONTACT_REPLY, LIMITS, REFUSAL, blocked, buildSystem, clean, mentionsCo
 
 export const runtime = "nodejs";
 
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash-lite";
+// Cheapest lite model open to new keys. Google retires models for new users (2.5 Flash-Lite answered 404),
+// so a retired name falls back once to the alias that always points at the current lite model.
+const MODELS = [process.env.GEMINI_MODEL || "gemini-3.1-flash-lite", "gemini-flash-lite-latest"];
 const SYSTEM = buildSystem(data.Projects.filter((p) => p.show), tools);
 
 // shortcut: counts live in this instance's memory, so they reset on a cold start and are not shared between
@@ -46,18 +48,23 @@ export async function POST(req) {
 	if (!key) return say({ error: "off" }, 503);
 
 	try {
-		const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
-			method: "POST",
-			headers: { "content-type": "application/json", "x-goog-api-key": key },
-			signal: AbortSignal.timeout(15000),
-			body: JSON.stringify({
-				systemInstruction: { parts: [{ text: SYSTEM }] },
-				contents: turns.map((t) => ({ role: t.role, parts: [{ text: t.text }] })),
-				generationConfig: { maxOutputTokens: LIMITS.maxOutput, temperature: 0.2 },
-			}),
-		});
+		let r;
+		for (const model of MODELS) {
+			r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+				method: "POST",
+				headers: { "content-type": "application/json", "x-goog-api-key": key },
+				signal: AbortSignal.timeout(15000),
+				body: JSON.stringify({
+					systemInstruction: { parts: [{ text: SYSTEM }] },
+					contents: turns.map((t) => ({ role: t.role, parts: [{ text: t.text }] })),
+					// minimal thinking: thought tokens are billed as output and would eat the small answer budget
+					generationConfig: { maxOutputTokens: LIMITS.maxOutput, temperature: 0.2, thinkingConfig: { thinkingLevel: "minimal" } },
+				}),
+			});
+			if (r.status !== 404) break;
+		}
 		if (!r.ok) {
-			console.error("assistant upstream", r.status);
+			console.error("assistant upstream", r.status, (await r.text()).slice(0, 300));
 			return say({ error: "upstream" }, 502);
 		}
 		const j = await r.json();

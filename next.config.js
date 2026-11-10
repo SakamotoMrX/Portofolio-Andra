@@ -1,3 +1,9 @@
+// the home page pings each listed project from the browser, so CSP must allow exactly those origins
+const projectOrigins = require("./json/data.json")
+	.Projects.filter((p) => p.show && p.preview)
+	.map((p) => new URL(p.preview).origin)
+	.join(" ");
+
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
 });
@@ -51,7 +57,7 @@ module.exports = withBundleAnalyzer({
 					{
 						key: "Content-Security-Policy",
 						value:
-							"default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://cdn-v1.intelliticks.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://i.scdn.co https://images.unsplash.com https://plus.unsplash.com; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com https://api.spotify.com https://accounts.spotify.com https://*.intelliticks.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
+							`default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://cdn-v1.intelliticks.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://i.scdn.co https://images.unsplash.com https://plus.unsplash.com; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com https://api.spotify.com https://accounts.spotify.com https://*.intelliticks.com ${projectOrigins}; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'`,
 					},
 				],
 			},

@@ -2,208 +2,180 @@
   "Projects": [
     {
       "show": true,
-      "title": "GreenFog",
+      "title": "PT. KBN",
       "desc": [
-        "SaaS web platform deployed at greenfog-dev.enama.my.id — modern SaaS solution built for scalable web workflows and streamlined user experience."
+        "Company website for PT Karya Bersama Nugroho in Bogor, covering its software, catering and laundry businesses."
       ],
       "year": "2026",
-      "preview": "https://greenfog-dev.enama.my.id",
+      "preview": "https://kbn.enama.my.id",
       "code": "",
-      "thumbnail": "/image/projects-showcase.jpg",
+      "thumbnail": "/image/projects/2026/kbn.jpg",
       "images": [
-        "/image/projects-showcase.jpg"
+        "/image/projects/2026/kbn.jpg"
       ],
       "tech": [
-        "Next.js",
-        "SaaS",
-        "TailwindCSS"
+        "HTML",
+        "JavaScript"
       ],
-      "slug": "greenfog",
-      "category": [9]
+      "slug": "kbn",
+      "category": [
+        9
+      ]
     },
     {
       "show": true,
-      "title": "MacBar Monitor",
+      "title": "NexoTech Solutions",
       "desc": [
-        "A lightweight macOS menu bar system monitor that displays real-time system metrics directly in your menu bar."
-      ],
-      "year": "2026",
-      "preview": "",
-      "code": "https://github.com/pinoezz/macbar-monitor",
-      "thumbnail": "/image/projects/other/macbar-monitor/macbar-monitor-thumbnail.png",
-      "images": [
-        "/image/projects/other/macbar-monitor/macbar-monitor-thumbnail.png"
-      ],
-      "tech": [
-        "Swift",
-        "SwiftUI"
-      ],
-      "slug": "macbar-monitor",
-      "category": [9]
-    },
-    {
-      "show": true,
-      "title": "Termifore",
-      "desc": [
-        "Web application deployed at t-app.enama.my.id."
-      ],
-      "year": "2026",
-      "preview": "https://t-app.enama.my.id",
-      "code": "https://github.com/SakamotoMrX/termifore",
-      "thumbnail": "/image/projects-showcase.jpg",
-      "images": [
-        "/image/projects-showcase.jpg"
-      ],
-      "tech": [
-        "Web"
-      ],
-      "slug": "termifore",
-      "category": [9]
-    },
-    {
-      "show": true,
-      "title": "Invoice App",
-      "desc": [
-        "Invoice generator web application for PT ASA PANCA CIPTA OPTIMA (Bogor) — create invoices with customer, property, billing, and payment details, deployed at invoice-app-mauve-alpha.vercel.app."
-      ],
-      "year": "2026",
-      "preview": "https://invoice-app-mauve-alpha.vercel.app",
-      "code": "",
-      "thumbnail": "/image/projects-showcase.jpg",
-      "images": [
-        "/image/projects-showcase.jpg"
-      ],
-      "tech": [
-        "Web"
-      ],
-      "slug": "invoice-app",
-      "category": [9]
-    },
-    {
-      "show": true,
-      "title": "MODULin",
-      "desc": [
-        "Web platform for creating teaching modules (modul ajar) easily — 'bikin modul ajar jadi gampang', deployed at modulin.enama.my.id."
-      ],
-      "year": "2026",
-      "preview": "https://modulin.enama.my.id",
-      "code": "https://github.com/SakamotoMrX/modulin",
-      "thumbnail": "/image/projects-showcase.jpg",
-      "images": [
-        "/image/projects-showcase.jpg"
-      ],
-      "tech": [
-        "Web"
-      ],
-      "slug": "modulin",
-      "category": [9]
-    },
-    {
-      "show": true,
-      "title": "Calistung App",
-      "desc": [
-        "Educational web platform deployed on Vercel (calistung.enama.my.id) designed for early learning and interactive literacy practice."
-      ],
-      "year": "2026",
-      "preview": "https://calistung.enama.my.id",
-      "code": "https://github.com/SakamotoMrX/calistung",
-      "thumbnail": "/image/projects-showcase.jpg",
-      "images": [
-        "/image/projects-showcase.jpg"
-      ],
-      "tech": [
-        "Next.js",
-        "Vercel",
-        "JavaScript",
-        "TailwindCSS"
-      ],
-      "slug": "calistung",
-      "category": [9]
-    },
-    {
-      "show": true,
-      "title": "Nexotech Enama",
-      "desc": [
-        "Official company landing page and portal deployed at nexotech.enama.my.id."
+        "Website for NexoTech Solutions, the software development arm of KBN."
       ],
       "year": "2026",
       "preview": "https://nexotech.enama.my.id",
-      "code": "https://github.com/SakamotoMrX/nexotech-enama",
-      "thumbnail": "/image/projects-showcase.jpg",
+      "code": "",
+      "thumbnail": "/image/projects/2026/nexotech.jpg",
       "images": [
-        "/image/projects-showcase.jpg"
+        "/image/projects/2026/nexotech.jpg"
       ],
       "tech": [
-        "React",
-        "Vercel",
-        "TailwindCSS"
+        "Astro",
+        "TypeScript"
       ],
-      "slug": "nexotech-enama",
-      "category": [9]
+      "slug": "nexotech",
+      "category": [
+        9
+      ]
     },
     {
       "show": true,
-      "title": "Nexotech Solutions AI",
+      "title": "Docker Fundamental",
       "desc": [
-        "AI Assistant and chat widget integration suite deployed at nexotech-assistant.enama.my.id."
+        "Docker course for beginners: 16 modules with theory and practical labs."
       ],
       "year": "2026",
-      "preview": "https://nexotech-assistant.enama.my.id",
-      "code": "https://github.com/SakamotoMrX/Nexotech-Solutions-AI",
-      "thumbnail": "/image/projects-showcase.jpg",
+      "preview": "https://my-docker-nine.vercel.app",
+      "code": "",
+      "thumbnail": "/image/projects/2026/docker.jpg",
       "images": [
-        "/image/projects-showcase.jpg"
+        "/image/projects/2026/docker.jpg"
       ],
       "tech": [
-        "AI Chat",
-        "Vercel",
-        "Next.js",
-        "OpenAI API"
+        "HTML",
+        "CSS"
       ],
-      "slug": "nexotech-solutions-ai",
-      "category": [9]
+      "slug": "docker",
+      "category": [
+        9
+      ]
     },
     {
       "show": true,
-      "title": "Nur Quran Platform",
+      "title": "ASCII Studio",
       "desc": [
-        "Islamic web application platform providing digital Quran access deployed at nur-quran.enama.my.id."
+        "Browser tool that renders 3D scenes and media as ASCII art using WebGL."
+      ],
+      "year": "2026",
+      "preview": "https://asciidashboard.vercel.app",
+      "code": "",
+      "thumbnail": "/image/projects/2026/ascii.jpg",
+      "images": [
+        "/image/projects/2026/ascii.jpg"
+      ],
+      "tech": [
+        "TypeScript",
+        "React",
+        "WebGL"
+      ],
+      "slug": "ascii",
+      "category": [
+        9
+      ]
+    },
+    {
+      "show": true,
+      "title": "Nur Qur'an",
+      "desc": [
+        "Quran reading app with tajweed guidance and audio."
       ],
       "year": "2026",
       "preview": "https://nur-quran.enama.my.id",
-      "code": "https://github.com/SakamotoMrX/nur-quran",
-      "thumbnail": "/image/projects-showcase.jpg",
+      "code": "",
+      "thumbnail": "/image/projects/2026/nur-quran.jpg",
       "images": [
-        "/image/projects-showcase.jpg"
+        "/image/projects/2026/nur-quran.jpg"
       ],
       "tech": [
-        "React",
-        "Vercel",
-        "API Integration"
+        "TypeScript",
+        "React"
       ],
       "slug": "nur-quran",
-      "category": [9]
+      "category": [
+        9
+      ]
     },
     {
       "show": true,
-      "title": "Enama Laundry Management",
+      "title": "Materi TKJ",
       "desc": [
-        "Business management and online presence web portal for laundry service deployed at laundry.enama.my.id."
+        "Learning material for the SMK Computer and Network Engineering programme: 6 modules with labs."
       ],
       "year": "2026",
-      "preview": "https://laundry.enama.my.id",
-      "code": "https://github.com/SakamotoMrX/Enama-laundry",
-      "thumbnail": "/image/projects-showcase.jpg",
+      "preview": "https://tkj-materi-web.vercel.app",
+      "code": "",
+      "thumbnail": "/image/projects/2026/tkj.jpg",
       "images": [
-        "/image/projects-showcase.jpg"
+        "/image/projects/2026/tkj.jpg"
       ],
       "tech": [
-        "Next.js",
-        "Vercel",
-        "TailwindCSS"
+        "HTML",
+        "CSS"
       ],
-      "slug": "enama-laundry",
-      "category": [9]
+      "slug": "tkj",
+      "category": [
+        9
+      ]
+    },
+    {
+      "show": true,
+      "title": "Bash Scripting",
+      "desc": [
+        "Shell scripting course for beginners: 12 modules with theory and practical labs."
+      ],
+      "year": "2026",
+      "preview": "https://my-bash.vercel.app",
+      "code": "",
+      "thumbnail": "/image/projects/2026/bash.jpg",
+      "images": [
+        "/image/projects/2026/bash.jpg"
+      ],
+      "tech": [
+        "HTML",
+        "CSS"
+      ],
+      "slug": "bash",
+      "category": [
+        9
+      ]
+    },
+    {
+      "show": true,
+      "title": "Gedung Haji Bate",
+      "desc": [
+        "Reservation and operations system for two event venues, Gedung Haji Bate and De' Bollo."
+      ],
+      "year": "2026",
+      "preview": "https://gedunghajibate.vercel.app",
+      "code": "",
+      "thumbnail": "/image/projects/2026/gedung.jpg",
+      "images": [
+        "/image/projects/2026/gedung.jpg"
+      ],
+      "tech": [
+        "TypeScript",
+        "React"
+      ],
+      "slug": "gedung",
+      "category": [
+        9
+      ]
     }
   ]
 }

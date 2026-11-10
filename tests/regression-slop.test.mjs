@@ -6,50 +6,42 @@ const ok = (file, needle, label) => {
   assert.ok(read(file).includes(needle), `${label} missing in ${file}`);
   console.log(`PASS ${label}`);
 };
-const any = (file, needles, label) => {
-  const c = read(file);
-  assert.ok(needles.some((n) => c.includes(n)), `${label} missing in ${file}`);
+const none = (file, needle, label) => {
+  assert.ok(!read(file).includes(needle), `${label} found in ${file}`);
   console.log(`PASS ${label}`);
 };
 
-// page.jsx — 7 invariants
-ok("app/(root)/page.jsx", "DistressedLogo", "page: DistressedLogo");
-ok("app/(root)/page.jsx", "ANDRA", "page: ANDRA");
-ok("app/(root)/page.jsx", "glass-btn", "page: glass-btn");
-ok("app/(root)/page.jsx", "useScroll", "page: useScroll");
-ok("app/(root)/page.jsx", "BlurText", "page: BlurText");
-ok("app/(root)/page.jsx", "View Projects", "page: View Projects");
-ok("app/(root)/page.jsx", "useTransform", "page: useTransform");
+const page = "app/(root)/page.jsx";
+const css = "app/globals.css";
 
-// loading — 3 files share bg
-ok("app/(root)/loading.jsx", "bg-[#f6f5f0]", "loading root: bg cream");
-ok("app/about/loading.jsx", "bg-[#f6f5f0]", "loading about: bg cream");
-ok("app/projects/loading.jsx", "bg-[#f6f5f0]", "loading projects: bg cream");
+// page: the composition and the live thing
+ok(page, "<motion.h1", "page: one h1, the scaling wordmark");
+ok(page, "Selected work", "page: work heading");
+ok(page, 'role="switch"', "page: working switches");
+ok(page, "ping(", "page: live reachability check");
+ok(page, "<noscript>", "page: content shows without script");
+none(page, "font-mono", "page: no monospace");
+none(page, "padStart", "page: no index numbering");
 
-// not-found — 2
-ok("app/not-found.jsx", "glass-static", "not-found: glass-static");
-ok("app/not-found.jsx", "text-[#121212]", "not-found: text #121212");
+// every listed project has its screenshot and a destination
+const projects = JSON.parse(read("json/data.json")).Projects.filter((p) => p.show);
+assert.ok(projects.length >= 4, "at least four projects");
+for (const p of projects) {
+  assert.ok(p.preview.startsWith("https://"), `${p.slug}: preview url`);
+  assert.ok(fs.existsSync(`public${p.thumbnail}`), `${p.slug}: thumbnail file`);
+}
+console.log(`PASS data: ${projects.length} projects with preview and thumbnail`);
 
-// layout — 4
-ok("app/layout.jsx", "SmoothScrollProvider", "layout: SmoothScrollProvider");
-ok("app/layout.jsx", "BlobParallax", "layout: BlobParallax");
+// layout: nothing between the visitor and the page
 ok("app/layout.jsx", "ReducedMotionProvider", "layout: ReducedMotionProvider");
-ok("app/layout.jsx", "Navbar", "layout: Navbar");
+none("app/layout.jsx", "LoadingProvider", "layout: no blocking loader");
+none("app/layout.jsx", "SmoothScrollProvider", "layout: native scrolling");
 
-// Neofetch — scanline or system grid
-any("components/Neofetch.jsx", ["scanline", "system grid", "System"], "Neofetch: scanline/system");
+// globals: tokens and accessibility queries
+ok(css, "--font-sans", "globals: system type stack");
+ok(css, "prefers-reduced-motion", "globals: reduced motion");
+ok(css, "prefers-reduced-transparency", "globals: reduced transparency");
+ok(css, "prefers-contrast", "globals: more contrast");
+none(css, "linear-gradient(135deg, #", "globals: no decorative gradients added");
 
-// BlobParallax — 2
-ok("components/BlobParallax.jsx", "--parallax-x", "BlobParallax: --parallax-x");
-any("components/BlobParallax.jsx", ["pointer: coarse", "coarse"], "BlobParallax: coarse pointer");
-
-// SmoothScrollProvider — 2
-ok("components/SmoothScrollProvider.tsx", "lerp: 0.07", "SmoothScroll: lerp 0.07");
-ok("components/SmoothScrollProvider.tsx", "lenis.raf", "SmoothScroll: lenis.raf");
-
-// globals.css — 3
-ok("app/globals.css", "--accent", "globals: --accent");
-ok("app/globals.css", "glass-btn", "globals: glass-btn");
-ok("app/globals.css", "hero-grid", "globals: hero-grid");
-
-console.log("\nAll regression invariants PASS (23 checks)");
+console.log("\nAll regression invariants PASS");

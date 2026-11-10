@@ -1,413 +1,335 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
-// ponytail: SIZE_OK — single-page composition of 4 static sections; split into _sections/* when section gains state/logic
 "use client";
-import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValue,
-  useSpring,
-  useReducedMotion,
-} from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
-import DistressedLogo from "@/components/DistressedLogo";
-import Neofetch from "@/components/Neofetch";
 import data from "@/json/data.json";
 
 const projects = data.Projects.filter((p) => p.show);
 
-const CATEGORY_MAP = { 1: "Infrastructure", 2: "Hardware", 9: "Website" };
-const CATEGORY_OVERRIDE = {
-  greenfog: "SaaS · Website",
-  "macbar-monitor": "Software · macOS",
-  "invoice-app": "SaaS · Website",
-  "nexotech-enama": "Company Profile",
-};
-const getCategory = (p) => {
-  if (CATEGORY_OVERRIDE[p.slug]) return CATEGORY_OVERRIDE[p.slug];
-  if (!p.category?.length) return null;
-  return p.category.map((id) => CATEGORY_MAP[id]).filter(Boolean).join(" · ");
-};
+// Critically damped: nothing here follows a flick, so nothing overshoots.
+const SPRING = { type: "spring", bounce: 0, duration: 0.6 };
 
-const YEAR = new Date().getFullYear();
+const facts = [
+  ["Based in", "Bogor, Indonesia"],
+  ["Age", "15"],
+  ["School", "Vocational high school"],
+  ["Machine", "MacBook Air (M1, 2020)"],
+];
 
-function Reveal({ children, className = "", delay = 0 }) {
+const stack = [
+  [
+    "Infrastructure",
+    [
+      ["Linux", "sysadmin, hardening"],
+      ["Docker", "containers"],
+      ["Kubernetes", "orchestration"],
+      ["Virtual machines", "labs"],
+      ["Networking", "routing, services"],
+      ["Prometheus", "metrics"],
+      ["Grafana", "dashboards"],
+      ["Bash", "glue"],
+      ["YAML", "pipelines"],
+    ],
+  ],
+  [
+    "Development",
+    [
+      ["Git", "version control"],
+      ["GitHub Actions", "CI/CD"],
+      ["Vercel", "preview deploys"],
+      ["Next.js", "web apps"],
+      ["React", "interfaces"],
+      ["TypeScript", "typed JavaScript"],
+      ["Astro", "static sites"],
+      ["Swift", "macOS apps"],
+      ["Arduino", "hardware"],
+    ],
+  ],
+];
+
+const habits = [
+  ["Linux on every server I manage.", "Certified in Linux System Administration by Btech Academy."],
+  ["Containers keep every deploy repeatable.", "I wrote a 16-module Docker course on the subject."],
+  ["Repeated work gets a script.", "12 modules of shell scripting, published as a course."],
+  ["Monitoring tells me before a client does.", "Prometheus collects the metrics, Grafana shows them."],
+  ["Every change is previewed before it goes live.", `${projects.length} sites running on Vercel and enama.my.id.`],
+];
+
+function Reveal({ children, i = 0, className, as = "div" }) {
+  const Tag = motion[as];
   return (
-    <motion.div
+    <Tag
+      data-reveal
       className={className}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ ...SPRING, delay: i * 0.08 }}
     >
       {children}
-    </motion.div>
+    </Tag>
   );
 }
 
-function SectionLabel({ children }) {
+// shortcut: a no-cors fetch only proves the host answered, not that it returned 200; upgrade to a server-side check if a real status code is needed.
+async function ping(url) {
+  const t = performance.now();
+  try {
+    await fetch(url, { mode: "no-cors", cache: "no-store", signal: AbortSignal.timeout(8000) });
+    return { state: "up", ms: Math.round(performance.now() - t) };
+  } catch {
+    return { state: "down" };
+  }
+}
+
+function Work() {
+  const [sel, setSel] = useState(0);
+  const [status, setStatus] = useState({});
+  const p = projects[sel];
+  const s = status[p.slug];
+
+  useEffect(() => {
+    projects.forEach((x) => ping(x.preview).then((r) => setStatus((m) => ({ ...m, [x.slug]: r }))));
+  }, []);
+
   return (
-    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black/50">{children}</p>
+    <section id="work">
+      <Reveal className="names">
+        <h2>Selected work: </h2>
+        <ul>
+          {projects.map((x, i) => (
+            <li key={x.slug}>
+              <a
+                href={x.preview}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-current={i === sel}
+                onMouseEnter={() => setSel(i)}
+                onFocus={() => setSel(i)}
+                // first tap chooses, the second one visits
+                onClick={(e) => {
+                  if (i !== sel) {
+                    e.preventDefault();
+                    setSel(i);
+                  }
+                }}
+              >
+                {x.title}
+                <span className="frame" aria-hidden="true">
+                  <Image src={x.thumbnail} alt="" width={96} height={60} />
+                </span>
+              </a>
+              {i < projects.length - 1 ? ", " : "."}
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+
+      <div className="chosen">
+        <Reveal className="shot" i={1}>
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={p.slug}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              <Image
+                src={p.thumbnail}
+                alt={`${p.title}, first screen of the live site`}
+                fill
+                sizes="(max-width: 760px) 100vw, 58vw"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </Reveal>
+        <Reveal i={2}>
+          <h3>{p.title}</h3>
+          <p className="desc">{p.desc[0]}</p>
+          <div className="meta small">
+            <span className="soft">{p.tech.join(", ")}</span>
+            <span className="status" data-state={s?.state} aria-live="polite">
+              <i aria-hidden="true" />
+              {!s
+                ? "Checking availability"
+                : s.state === "up"
+                  ? `Online, responded in ${s.ms} ms`
+                  : "Not responding right now"}
+            </span>
+          </div>
+          <a className="btn" href={p.preview} target="_blank" rel="noopener noreferrer">
+            Visit {p.preview.replace("https://", "")}
+          </a>
+        </Reveal>
+      </div>
+
+      <Reveal as="p" className="work-note small soft" i={3}>
+        {projects.length} projects, {p.year}. Availability is checked from your browser when this page loads.
+      </Reveal>
+    </section>
   );
 }
 
-function BlurText({ text, className = "", delay = 0, stagger = 0.07 }) {
-  const words = text.split(" ");
+function How() {
+  const [on, setOn] = useState([false, true, false, false, true]);
   return (
-    <motion.p
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.4 }}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: stagger, delayChildren: delay } },
-      }}
-    >
-      {words.map((w, i) => (
-        <motion.span
-          key={i}
-          variants={{
-            hidden: { opacity: 0, filter: "blur(8px)", y: 12 },
-            visible: {
-              opacity: 1,
-              filter: "blur(0px)",
-              y: 0,
-              transition: { duration: 0.6, ease: "easeOut" },
-            },
-          }}
-          style={{ display: "inline-block", marginRight: "0.32em" }}
-        >
-          {w}
-        </motion.span>
+    <section id="how" className="how">
+      <Reveal as="h2">How I work.</Reveal>
+      {habits.map(([line, then], i) => (
+        <Reveal key={line} i={i}>
+          <div className="band" data-on={on[i]} onClick={() => setOn((a) => a.map((v, j) => (j === i ? !v : v)))}>
+            <div>
+              <p className="line" id={`habit-${i}`}>
+                {line}
+              </p>
+              <p className="then">{then}</p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              data-ui
+              aria-checked={on[i]}
+              aria-labelledby={`habit-${i}`}
+              className="switch"
+            >
+              <motion.span layout transition={{ type: "spring", bounce: 0, duration: 0.3 }} />
+            </button>
+          </div>
+        </Reveal>
       ))}
-    </motion.p>
+    </section>
   );
 }
-
-function MagneticLink({ href, children, variant = "primary", target, rel }) {
-  const ref = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 100, damping: 15, mass: 0.5 });
-  const sy = useSpring(y, { stiffness: 100, damping: 15, mass: 0.5 });
-
-  const onMove = (e) => {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const r = ref.current?.getBoundingClientRect();
-    if (!r) return;
-    x.set((e.clientX - (r.left + r.width / 2)) * 0.28);
-    y.set((e.clientY - (r.top + r.height / 2)) * 0.32);
-  };
-  const onLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  const cls =
-    variant === "primary"
-      ? "glass-btn px-7 py-3 text-xs font-semibold uppercase tracking-widest"
-      : "glass-btn-outline px-7 py-3 text-xs font-semibold uppercase tracking-widest";
-
-  return (
-    <motion.a
-      ref={ref}
-      href={href}
-      target={target}
-      rel={rel}
-      style={{ x: sx, y: sy }}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      whileTap={{ scale: 0.98 }}
-      className={cls}
-    >
-      {children}
-    </motion.a>
-  );
-}
-
-const focusAreas = [
-  {
-    title: "Linux",
-    desc: "SysAdmin, hardening, and servers that stay up without ceremony.",
-  },
-  {
-    title: "Docker",
-    desc: "Container workflows for repeatable, portable deployments.",
-  },
-  {
-    title: "Automation",
-    desc: "Bash, YAML, and tooling that turn ten steps into one command.",
-  },
-  {
-    title: "Cloud tooling",
-    desc: "VMs, Vercel deploys, and infrastructure that ships itself.",
-  },
-];
 
 export default function Page() {
+  const reduce = useReducedMotion();
   const heroRef = useRef(null);
-  const shouldReduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  // GPU-only: transform + opacity only — never width/height/margin
-  const yLogo = useTransform(scrollYProgress, [0, 1], [0, shouldReduce ? 0 : 72]);
-  const scaleLogo = useTransform(scrollYProgress, [0, 1], [1, shouldReduce ? 1 : 0.92]);
-  const opacityLogo = useTransform(scrollYProgress, [0, 1], [1, shouldReduce ? 1 : 0.45]);
-
-  // ponytail: hero blob parallax lives in BlobParallax.jsx (mounted in layout) — single mousemove listener
+  const photosRef = useRef(null);
+  const { scrollYProgress: heroP } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const { scrollYProgress: photoP } = useScroll({ target: photosRef, offset: ["start end", "end start"] });
+  // the wordmark is heavy: it gives a few percent as the first screen leaves
+  const wordScale = useTransform(heroP, [0, 1], [1, reduce ? 1 : 0.94]);
+  const photoScale = useTransform(photoP, [0, 1], [reduce ? 1 : 1.12, 1]);
 
   return (
-    <div>
-      <section
-        id="home"
-        ref={heroRef}
-        className="relative isolate flex min-h-screen flex-col items-center justify-center overflow-hidden py-20"
-      >
-        <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-blobs" aria-hidden="true">
-          <div className="bg-blob-purple" />
-          <div className="bg-blob-teal" />
-        </div>
+    <div className="home">
+      <noscript>
+        <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+      </noscript>
 
-        <motion.div
-          style={
-            shouldReduce ? undefined : { y: yLogo, scale: scaleLogo, opacity: opacityLogo }
-          }
-          className="relative z-10 flex w-full justify-center overflow-x-clip contain-paint"
-        >
-          <DistressedLogo text="ANDRA" className="w-[min(180vw,2160px)] shrink-0 text-[#121212]" />
-        </motion.div>
-
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10">
-          <BlurText
-            text="Junior DevOps & Infrastructure Automation"
-            delay={0.12}
-            stagger={0.07}
-            className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-black/60"
-          />
-          <BlurText
-            text="I automate the boring parts so the servers stay boring — the way infrastructure should be."
-            delay={0.42}
-            stagger={0.06}
-            className="mt-4 max-w-xl text-lg leading-relaxed text-black/70 md:text-xl"
-          />
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
-            className="mt-10 flex flex-wrap gap-4"
-          >
-            <MagneticLink
-              href="https://github.com/SakamotoMrX"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="primary"
-            >
-              GitHub →
-            </MagneticLink>
-            <MagneticLink href="#projects" variant="outline">
-              View Projects
-            </MagneticLink>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1.1, duration: 0.6 }}
-            className="mt-14 hidden items-center gap-2 font-mono text-[11px] tracking-widest text-black/30 md:flex"
-          >
-            <span className="h-6 w-px bg-black/15" />
-            scroll — parallax engages on fine pointer only
-          </motion.div>
-        </div>
-      </section>
-
-      <section id="about" className="py-28 md:py-40">
-        <div className="mx-auto w-full max-w-6xl px-6 md:px-10">
-          <Reveal>
-            <SectionLabel>01 — About</SectionLabel>
+      <section ref={heroRef} className="hero">
+        <div className="hero-copy">
+          <Reveal as="p">
+            Junior DevOps from Bogor, Indonesia. I take websites from first commit to live server, and keep them running after launch.
           </Reveal>
-          <div className="mt-6">
-            <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-[1fr_auto]">
-              <div>
-                <Reveal delay={0.1}>
-                  <h2 className="text-4xl font-bold leading-[1.05] md:text-6xl">
-                    Linux first.<br />Automation always.
-                  </h2>
-                </Reveal>
-                <Reveal delay={0.2}>
-                  <p className="mt-4 max-w-xl text-lg text-black/70">
-                    Junior DevOps from Bogor, Indonesia.{" "}
-                    <strong className="font-bold text-black">15yrs old</strong>, Vocational High
-                    School in boAsh, condensed into servers that stay up and deploys that don&rsquo;t
-                    need babysitting.
-                  </p>
-                </Reveal>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
-                whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                whileHover={{ scale: 1.02 }}
-                className="overflow-hidden rounded-2xl border border-black/15"
-              >
-                <Image
-                  src="/image/hero.jpg"
-                  alt="Andra"
-                  width={320}
-                  height={420}
-                  style={{ width: "auto", height: "auto" }}
-                  className="object-cover grayscale transition-[filter,transform] duration-700 hover:grayscale-0"
-                />
-              </motion.div>
-            </div>
-          </div>
-          <div className="mt-14">
-            {focusAreas.map((area, i) => (
-              <Reveal key={area.title} delay={Math.min(i * 0.05, 0.18)}>
-                <div className="grid grid-cols-1 gap-2 border-t border-black/10 py-6 md:grid-cols-12 md:items-baseline">
-                  <span className="font-mono text-xs text-black/40 md:col-span-2">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-2xl font-bold md:col-span-4">{area.title}</h3>
-                  <p className="text-black/60 md:col-span-6">{area.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" className="py-28 md:py-40">
-        <div className="mx-auto w-full max-w-6xl px-6 md:px-10">
-          <Reveal>
-            <SectionLabel>02 — Projects</SectionLabel>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="mt-6 text-4xl font-bold leading-[1.05] md:text-6xl">
-              Ship it, then automate it.
-            </h2>
-          </Reveal>
-          <div className="mt-14">
-            {projects.map((p, i) => {
-              const cat = getCategory(p);
-              return (
-                <Reveal key={p.slug} delay={Math.min(i * 0.03, 0.36)}>
-                  <article className="group grid grid-cols-1 gap-6 border-t border-black/10 py-10 md:grid-cols-12">
-                    <span className="font-mono text-xs text-black/40 md:col-span-1">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="md:col-span-5">
-                      {cat && (
-                        <p className="font-mono text-[11px] uppercase tracking-widest text-black/40">
-                          {cat}
-                        </p>
-                      )}
-                      <h3 className="text-2xl font-bold md:text-3xl">{p.title}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-black/60">{p.desc[0]}</p>
-                    </div>
-                    <div className="md:col-span-3">
-                      <p className="font-mono text-xs text-black/40">{p.year}</p>
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {p.tech.map((t) => (
-                          <span
-                            key={t}
-                            className="border border-black/15 px-2 py-0.5 font-mono text-[11px] text-black/60"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-start gap-2 md:col-span-3 md:items-end">
-                      {p.slug === "macbar-monitor" && p.code && (
-                        <a
-                          href={p.code}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-semibold uppercase tracking-widest underline-offset-4 transition-colors hover:underline"
-                        >
-                          Code →
-                        </a>
-                      )}
-                      {p.preview && (
-                        <a
-                          href={p.preview}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-semibold uppercase tracking-widest underline-offset-4 transition-colors hover:underline"
-                        >
-                          Preview →
-                        </a>
-                      )}
-                    </div>
-                  </article>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section id="system" className="py-28 md:py-40">
-        <Neofetch />
-      </section>
-
-      <section id="contact" className="py-28 md:py-40">
-        <div className="mx-auto w-full max-w-6xl px-6 md:px-10">
-          <Reveal>
-            <SectionLabel>04 — Contact</SectionLabel>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <a
-              href="mailto:andrahijati@gmail.com?subject=Hello%20Andra"
-              className="mt-6 block break-words text-3xl font-bold leading-tight underline-offset-8 transition-colors hover:underline md:text-6xl"
-            >
-              andrahijati@gmail.com
+          <Reveal i={1}>
+            <a className="btn" href="#work">
+              See the work
             </a>
           </Reveal>
-          <div className="mt-16 flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-black/10 pt-8">
-            <span className="text-xl font-bold uppercase tracking-[0.35em]">Andra</span>
-            <div className="flex flex-wrap gap-x-10 gap-y-3">
-              <a
-                href="https://github.com/SakamotoMrX"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-semibold uppercase tracking-widest text-black/60 transition-colors hover:text-[#121212]"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://www.instagram.com/andrahijati"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-semibold uppercase tracking-widest text-black/60 transition-colors hover:text-[#121212]"
-              >
-                Instagram
-              </a>
-              <a
-                href="mailto:andrahijati@gmail.com"
-                className="text-xs font-semibold uppercase tracking-widest text-black/60 transition-colors hover:text-[#121212]"
-              >
-                Email
-              </a>
+        </div>
+        <motion.h1 style={{ scale: wordScale }}>ANDRA</motion.h1>
+      </section>
+
+      <section id="about" className="about">
+        <Reveal as="dl" className="facts small">
+          {facts.map(([k, v]) => (
+            <div key={k}>
+              <dt>{k}</dt>
+              <dd>{v}</dd>
             </div>
-          </div>
-          <Reveal delay={0.1}>
-            <p className="mt-16 text-xs text-black/40">© {YEAR} Andra — built with Next.js. All rights reserved.</p>
+          ))}
+          <Image src="/image/hero.jpg" alt="Andra, in a white shirt among rubber trees" width={600} height={800} />
+        </Reveal>
+        <div className="lede">
+          <Reveal as="h2" i={1}>
+            From first commit
+            <br />
+            to live server.
+          </Reveal>
+          <Reveal as="p" i={2}>
+            I&rsquo;m 15 and study at a vocational high school in Bogor. Outside class I build websites
+            for local businesses and look after the servers and deployments behind them. Most of my time
+            goes to Linux, Docker and the scripts that turn a release into a routine job.
           </Reveal>
         </div>
+        <Reveal as="p" className="small spacer">
+          Stack
+        </Reveal>
+        <div className="stack small">
+          {stack.map(([title, items], c) => (
+            <Reveal key={title} i={c + 1}>
+              <h3>{title}</h3>
+              <ul>
+                {items.map(([name, note]) => (
+                  <li key={name}>
+                    <span>{name}</span>
+                    <span className="soft">{note}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          ))}
+        </div>
+      <div ref={photosRef} className="photos">
+        <Reveal as="figure">
+          <div>
+            <motion.div style={{ scale: photoScale, height: "100%" }}>
+              <Image src="/image/setup.jpg" alt="Laptop beside a monitor running Fedora in a terminal" width={1024} height={559} />
+            </motion.div>
+          </div>
+          <figcaption className="small soft">
+            My desk: Fedora on the monitor, and my Linux System Administration certificate from Btech
+            Academy on the laptop.
+          </figcaption>
+        </Reveal>
+        <Reveal as="figure" i={1}>
+          <div>
+            <motion.div style={{ scale: photoScale, height: "100%" }}>
+              <Image src="/image/education-3.jpg" alt="Arduino board wired with jumper cables next to a laptop" width={1024} height={576} />
+            </motion.div>
+          </div>
+          <figcaption className="small soft">An Arduino project on the bench, wired up next to the laptop.</figcaption>
+        </Reveal>
+      </div>
       </section>
+
+
+      <Work />
+      <How />
+
+      <footer id="contact" className="close">
+        <div className="top small">
+          <h2>Say hello</h2>
+          <p>Andra. Junior DevOps and infrastructure automation.</p>
+          <p>Bogor, Indonesia. UTC+7.</p>
+          <a href="#top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+            Back to top
+          </a>
+        </div>
+        <div>
+          <Reveal>
+            <a className="mail" href="mailto:andrahijati@gmail.com?subject=Hello%20Andra">
+              andrahijati
+              <br />
+              @gmail.com
+            </a>
+          </Reveal>
+          <div className="bottom small">
+            <ul>
+              <li><a href="https://github.com/SakamotoMrX" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li><a href="https://www.instagram.com/andrahijati" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://web.facebook.com/andra.nugroho.921" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+              <li><a href="/docs/cv.pdf">CV (PDF)</a></li>
+            </ul>
+            <span>Discord: legacyy5030</span>
+            <span>Bogor, {new Date().getFullYear()}</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

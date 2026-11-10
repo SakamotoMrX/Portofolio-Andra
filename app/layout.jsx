@@ -1,31 +1,20 @@
 import "./globals.css";
-import { Poppins, Jost, Fira_Code } from "next/font/google";
+import { Inter, Fira_Code } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 import { Analytics } from "@vercel/analytics/react";
 import ReducedMotionProvider from "@/components/ReducedMotionProvider";
-import SmoothScrollProvider from "@/components/SmoothScrollProvider";
-import { LoadingProvider } from "@/components/LoadingProvider";
-import BlobParallax from "@/components/BlobParallax";
 
-const poppins = Poppins({
+// SF on Apple devices (see --font-sans); Inter is the fallback everywhere else
+const inter = Inter({
 	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700"],
-	style: ["normal", "italic"],
 	display: "swap",
-	variable: "--font-poppins",
+	variable: "--font-inter",
 });
 
-const jost = Jost({
-	subsets: ["latin"],
-	weight: ["400", "500", "600", "700"],
-	display: "swap",
-	variable: "--font-jost",
-});
-
-export const firaCode = Fira_Code({
+const firaCode = Fira_Code({
 	subsets: ["latin"],
 	weight: ["400", "500", "600", "700"],
 	display: "swap",
@@ -84,22 +73,17 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en" className={`${poppins.variable} ${jost.variable} ${firaCode.variable}`}>
-			<body className="relative bg-[#f6f5f0] text-[#121212]">
-				<SmoothScrollProvider>
-					<LoadingProvider>
-						<script
-							type="application/ld+json"
-							dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-						/>
-						<Navbar />
-						<BlobParallax />
-						<ReducedMotionProvider>
-							<main>{children}</main>
-						</ReducedMotionProvider>
-						<Analytics />
-					</LoadingProvider>
-				</SmoothScrollProvider>
+		<html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
+			<body className="relative">
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+				/>
+				<Navbar />
+				<ReducedMotionProvider>
+					<main>{children}</main>
+				</ReducedMotionProvider>
+				<Analytics />
 			</body>
 		</html>
 	);

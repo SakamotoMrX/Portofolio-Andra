@@ -15,10 +15,13 @@ const page = "app/(root)/page.jsx";
 const css = "app/globals.css";
 
 // page: the composition and the live thing
-ok(page, 'className="window"', "page: the opening window hero");
+ok(page, 'className="hero field"', "page: the sheet-on-field hero");
 ok(page, "Selected work", "page: work heading");
-ok(page, "onViewportEnter", "page: scroll-driven deploy");
-ok(page, "ping(", "page: live reachability check");
+ok(page, 'className="board"', "page: the running pipeline");
+ok(page, "certs/", "page: certificates shown");
+ok("components/site.jsx", "ping(", "shared: live reachability check");
+ok(page, 'href="/projects"', "page: the way to the work page");
+ok("app/projects/page.jsx", 'className="grid deck"', "work: every site, one swipeable row on a phone");
 ok(page, "<noscript>", "page: content shows without script");
 none(page, "font-mono", "page: no monospace");
 none(page, "padStart", "page: no index numbering");
@@ -43,5 +46,6 @@ ok(css, "prefers-reduced-motion", "globals: reduced motion");
 ok(css, "prefers-reduced-transparency", "globals: reduced transparency");
 ok(css, "prefers-contrast", "globals: more contrast");
 none(css, "linear-gradient(135deg, #", "globals: no decorative gradients added");
+ok(css, "in oklch", "globals: the field interpolates in oklch");
 
 console.log("\nAll regression invariants PASS");

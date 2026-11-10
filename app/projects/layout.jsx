@@ -1,6 +1,6 @@
 export const metadata = {
-	title: "Projects | Andra",
-	description: "Explore Linux SysAdmin scripts, containerization labs, and IoT projects by Andra (SakamotoMrX).",
+	title: "Work | Andra",
+	description: "Eight live websites shipped by Andra: company sites, a booking system, a Quran reader and three courses.",
 };
 
 export default function Layout({ children }) {

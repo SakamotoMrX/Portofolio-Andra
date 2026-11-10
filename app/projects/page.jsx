@@ -1,107 +1,82 @@
+// Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import Button from "@/components/Button";
-import Image from "next/image";
+import { useRef, useState } from "react";
 
-import Hr from "@/components/Hr";
-import ProjectCard from "./components/ProjectCard";
-import Projects from "@/json/data.json";
-import FixedButton from "@/components/FixedButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import Assistant from "@/components/Assistant";
+import { Card, Close, MAIL, Reveal, Words, projects, useStatus } from "@/components/site";
 
-const category = {
-	9: "Software & Website",
-	1: "DevOps & SysAdmin",
-	2: "Hardware & IoT",
-};
+const last = projects.length - 1;
+
+// a grid on a wide screen; on a phone one swipeable row, so eight sites take one screen instead of eight
+function Deck({ status }) {
+  const ref = useRef(null);
+  const [at, setAt] = useState(0);
+  const onScroll = () => {
+    const el = ref.current;
+    const mid = el.scrollLeft + el.clientWidth / 2;
+    const dist = [...el.children].map((k) => Math.abs(k.offsetLeft + k.offsetWidth / 2 - mid));
+    setAt(dist.indexOf(Math.min(...dist)));
+  };
+  const go = (n) => ref.current.children[at + n]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+
+  return (
+    <>
+      <div className="grid deck" ref={ref} onScroll={onScroll}>
+        {projects.map((p, i) => (
+          <Card key={p.slug} p={p} s={status[p.slug]} feature={i === 0 || i === last} active={i === at} />
+        ))}
+      </div>
+      <div className="deck-nav">
+        <button type="button" aria-label="Previous site" onClick={() => go(-1)} disabled={at === 0}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M19 12H5M11 6l-6 6 6 6" />
+          </svg>
+        </button>
+        <span className="rail" style={{ "--f": (at + 1) / projects.length }} />
+        <span className="small">
+          {at + 1} / {projects.length}
+        </span>
+        <button type="button" aria-label="Next site" onClick={() => go(1)} disabled={at === last}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </button>
+      </div>
+    </>
+  );
+}
 
 export default function Page() {
-	const [activeCategory, setActiveCategory] = useState("9");
-	const projects = Projects.Projects.filter((item) => item.show === true);
+  const { status, online } = useStatus();
+  return (
+    <div className="home">
+      <noscript>
+        <style>{`[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}`}</style>
+      </noscript>
 
-	useEffect(() => { window.scrollTo(0, 0); }, []);
+      <section className="work-top">
+        <Words as="h1" text={`${projects.length} sites shipped.`} mount delay={0.1} />
+        <div>
+          <Reveal as="p" className="lead" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.35 }}>
+            All from {projects[0].year}: company sites, a booking system, a Quran reader and three courses I wrote. Each one opens the live site.
+          </Reveal>
+          <div className="actions">
+            <a className="btn" href={MAIL}>
+              Email Andra
+            </a>
+            <span className="chip" data-ui aria-live="polite">
+              {online}
+            </span>
+          </div>
+        </div>
+      </section>
 
-	return (
-		<main className="overflow-hidden">
-			<FixedButton href="/#projects">
-				<FontAwesomeIcon icon={faChevronLeft} className="text-neutral-900 dark:text-white" />
-			</FixedButton>
-			<div className="relative h-screen w-screen gap-4 p-6 md:p-10 flex justify-center items-center flex-col mb-10 overflow-hidden">
-				<div className="z-0 mb-48 md:mb-0 md:absolute top-1/4 md:right-[10%] md:translate-y-4">
-					<motion.div
-						initial={{ scale: 0.8, opacity: 0 }}
-						animate={{ scale: 1, opacity: 1 }}
-						transition={{ duration: 0.8, ease: "circOut" }}
-						className="relative w-[72vw] sm:w-[45vw] md:w-[40vw] max-w-[728px] h-auto mx-auto">
-						<div className="glass-static rounded-2xl aspect-video shadow-2xl flex items-center justify-center p-3 border-2 border-white/15">
-							<div className="rounded-2xl w-full h-full overflow-hidden relative">
-								<Image
-									src="/image/projects-showcase.jpg"
-									alt="Projects Showcase"
-									fill
-									sizes="(max-width: 768px) 80vw, 30vw"
-									className="object-cover"
-									priority
-								/>
-								<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-400/25 via-transparent to-blue-400/25" />
-							</div>
-						</div>
-					</motion.div>
-				</div>
-				<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[55%] md:top-1/3 flex flex-col justify-center items-center md:items-start text-center md:text-start px-6 md:px-10 pt-4 md:pt-0">
-					<h1 className="text-4xl sm:text-5xl md:text-8xl font-bold text-neutral-900 dark:text-white">
-						My Projects
-					</h1>
-					<Hr />
-					<p className="title text-base sm:text-xl mt-4 tracking-wider text-neutral-600 dark:text-neutral-400 leading-[1.6rem] md:leading-[1.7rem] mb-5 max-w-xl">
-						Automated scripts, Linux server deployments, and hardware projects.
-					</p>
-					<motion.div
-						initial={{ opacity: 0, y: 100 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, ease: "circOut" }}
-						onClick={() => window.scrollTo({ top: 600, behavior: "smooth" })}
-						className="mb-3">
-						<Button variation="primary">Scroll Down</Button>
-					</motion.div>
-				</div>
-			</div>
+      <section id="work">
+        <Deck status={status} />
+      </section>
 
-			<div className="mt-10 flex flex-col justify-start items-center w-full pl-10 md:pl-32">
-				<div className="flex justify-center items-center flex-col my-5 self-start">
-					<Hr variant="long" />
-					<h1 className="text-3xl font-bold mt-3 text-neutral-900 dark:text-white">Projects Showcase</h1>
-				</div>
-			</div>
-
-			<motion.div
-				initial={{ opacity: 0, x: 200 }}
-				whileInView={{ opacity: 1, x: 0 }}
-				transition={{ type: "spring" }}
-				className="flex flex-row justify-center items-start flex-wrap gap-2 md:gap-5 my-5 px-4 md:px-0">
-				{["9", "1", "2"].map((key) => (
-					<button
-						key={key}
-						className={`px-4 py-2.5 rounded-lg cursor-pointer transition-all duration-300 text-sm md:text-base ${
-							activeCategory === key
-								? "glass-btn text-neutral-900 dark:text-white font-semibold"
-								: "glass-btn-outline text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
-						}`}
-						onClick={() => setActiveCategory(key)}>
-						{category[key]}
-					</button>
-				))}
-			</motion.div>
-
-			<div className="w-full mx-auto container gap-4 px-4 md:px-10 grid grid-cols-1 md:grid-cols-2 mb-10 cursor-pointer">
-				{projects
-					.filter((project) => project.category.includes(parseInt(activeCategory)))
-					.map((project, index) => (
-					<ProjectCard project={project} key={index} />
-				))}
-			</div>
-		</main>
-	);
+      <Close />
+      <Assistant />
+    </div>
+  );
 }

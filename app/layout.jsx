@@ -36,10 +36,6 @@ export const metadata = {
 		"Andra (SakamotoMrX) — Junior DevOps based in Bogor, Indonesia. Linux SysAdmin, Containerization, Git & GitHub enthusiast, and open-source tinkerer.",
 	authors: [{ name: "Andra" }],
 	applicationName: "Andra | Portfolio",
-	icons: {
-		icon: "/icon.svg",
-		shortcut: "/icon.svg",
-	},
 	keywords: [
 		"andra", "sakamotomrx", "junior devops", "linux sysadmin",
 		"devops", "containerization", "bogor", "indonesia",

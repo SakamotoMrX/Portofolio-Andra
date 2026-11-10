@@ -84,11 +84,19 @@ async function ping(url) {
   }
 }
 
+function Status({ s }) {
+  return (
+    <span className="status" data-state={s?.state}>
+      <i aria-hidden="true" />
+      {!s ? "Checking" : s.state === "up" ? `Online, ${s.ms} ms` : "Not responding"}
+    </span>
+  );
+}
+
 function Work() {
   const [sel, setSel] = useState(0);
   const [status, setStatus] = useState({});
   const p = projects[sel];
-  const s = status[p.slug];
 
   useEffect(() => {
     projects.forEach((x) => ping(x.preview).then((r) => setStatus((m) => ({ ...m, [x.slug]: r }))));
@@ -96,85 +104,61 @@ function Work() {
 
   return (
     <section id="work">
-      <Reveal className="names">
-        <h2>Selected work: </h2>
-        <ul>
+      <Reveal as="h2">Selected work</Reveal>
+      <Reveal as="p" className="work-intro" i={1}>
+        {projects.length} projects from {p.year}. Each site is checked from your browser when this page
+        loads.
+      </Reveal>
+      <div className="work-grid">
+        <ul className="rows">
           {projects.map((x, i) => (
-            <li key={x.slug}>
+            <Reveal as="li" key={x.slug} i={Math.min(i, 4)}>
               <a
+                className="row"
                 href={x.preview}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-current={i === sel}
                 onMouseEnter={() => setSel(i)}
                 onFocus={() => setSel(i)}
-                // first tap chooses, the second one visits
-                onClick={(e) => {
-                  if (i !== sel) {
-                    e.preventDefault();
-                    setSel(i);
-                  }
-                }}
               >
-                {x.title}
-                <span className="frame" aria-hidden="true">
-                  <Image src={x.thumbnail} alt="" width={96} height={60} />
+                <span className="row-shot">
+                  <Image src={x.thumbnail} alt="" width={640} height={400} sizes="100vw" />
+                </span>
+                <h3>{x.title}</h3>
+                <p>{x.desc[0]}</p>
+                <span className="meta small soft">
+                  <span>{x.preview.replace("https://", "")}</span>
+                  <Status s={status[x.slug]} />
                 </span>
               </a>
-              {i < projects.length - 1 ? ", " : "."}
-            </li>
+            </Reveal>
           ))}
         </ul>
-      </Reveal>
-
-      <div className="chosen">
-        <Reveal className="shot" i={1}>
-          <AnimatePresence initial={false}>
-            <motion.div
-              key={p.slug}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-            >
-              <Image
-                src={p.thumbnail}
-                alt={`${p.title}, first screen of the live site`}
-                fill
-                sizes="(max-width: 760px) 100vw, 58vw"
-              />
-            </motion.div>
-          </AnimatePresence>
-        </Reveal>
-        {/* hover can swap this many times a second: opacity only, no travel */}
-        <motion.div
-          key={p.slug}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
-        >
-          <h3>{p.title}</h3>
-          <p className="desc">{p.desc[0]}</p>
-          <div className="meta small">
-            <span className="soft">{p.tech.join(", ")}</span>
-            <span className="status" data-state={s?.state} aria-live="polite">
-              <i aria-hidden="true" />
-              {!s
-                ? "Checking availability"
-                : s.state === "up"
-                  ? `Online, responded in ${s.ms} ms`
-                  : "Not responding right now"}
-            </span>
+        <Reveal as="figure" className="preview" i={1}>
+          <div className="shot">
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={p.slug}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+              >
+                <Image
+                  src={p.thumbnail}
+                  alt={`${p.title}, first screen of the live site`}
+                  fill
+                  sizes="(max-width: 760px) 100vw, 700px"
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
-          <a className="btn" href={p.preview} target="_blank" rel="noopener noreferrer">
-            Visit {p.preview.replace("https://", "")}
-          </a>
-        </motion.div>
+          <figcaption className="small soft">
+            {p.title}. Built with {p.tech.join(", ")}.
+          </figcaption>
+        </Reveal>
       </div>
-
-      <Reveal as="p" className="work-note small soft" i={3}>
-        {projects.length} projects, {p.year}. Availability is checked from your browser when this page loads.
-      </Reveal>
     </section>
   );
 }
@@ -183,7 +167,7 @@ function How() {
   const [on, setOn] = useState([false, true, false, false, true]);
   return (
     <section id="how" className="how">
-      <Reveal as="h2">How I work.</Reveal>
+      <h2>How I work</h2>
       {habits.map(([line, then], i) => (
         <Reveal key={line} i={i}>
           <div className="band" data-on={on[i]} onClick={() => setOn((a) => a.map((v, j) => (j === i ? !v : v)))}>
@@ -244,75 +228,73 @@ export default function Page() {
         <motion.h1 style={{ scale: wordScale }}>ANDRA</motion.h1>
       </section>
 
-      <section id="about" className="about">
-        <Reveal as="dl" className="facts small">
-          {facts.map(([k, v]) => (
-            <div key={k}>
-              <dt>{k}</dt>
-              <dd>{v}</dd>
-            </div>
-          ))}
-          <Image src="/image/hero.jpg" alt="Andra, in a white shirt among rubber trees" width={600} height={800} />
+      <section id="about">
+        <Reveal as="h2">
+          From first commit
+          <br />
+          to live server.
         </Reveal>
-        <div className="lede">
-          <Reveal as="h2" i={1}>
-            From first commit
-            <br />
-            to live server.
-          </Reveal>
-          <Reveal as="p" i={2}>
-            I&rsquo;m 15 and study at a vocational high school in Bogor. Outside class I build websites
-            for local businesses and look after the servers and deployments behind them. Most of my time
-            goes to Linux, Docker and the scripts that turn a release into a routine job.
-          </Reveal>
-        </div>
-        <Reveal as="p" className="small spacer">
-          Stack
-        </Reveal>
-        <div className="stack small">
-          {stack.map(([title, items], c) => (
-            <Reveal key={title} i={c + 1}>
-              <h3>{title}</h3>
-              <ul>
-                {items.map(([name, note]) => (
-                  <li key={name}>
-                    <span>{name}</span>
-                    <span className="soft">{note}</span>
-                  </li>
-                ))}
-              </ul>
+        <div className="about-grid">
+          <Image src="/image/hero.jpg" alt="Andra, in a white shirt among rubber trees" width={800} height={1000} />
+          <div>
+            <Reveal as="p" className="lead">
+              I&rsquo;m 15 and study at a vocational high school in Bogor. Outside class I build websites
+              for local businesses and look after the servers and deployments behind them. Most of my time
+              goes to Linux, Docker and the scripts that turn a release into a routine job.
             </Reveal>
-          ))}
+            <Reveal as="dl" className="facts" i={1}>
+              {facts.map(([k, v]) => (
+                <div key={k}>
+                  <dt>{k}</dt>
+                  <dd>{v}</dd>
+                </div>
+              ))}
+            </Reveal>
+            <div className="stack">
+              {stack.map(([title, items], c) => (
+                <Reveal key={title} i={c + 2}>
+                  <h3>{title}</h3>
+                  <ul>
+                    {items.map(([name, note]) => (
+                      <li key={name}>
+                        <span>{name}</span>
+                        <span className="soft">{note}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </div>
-      <div ref={photosRef} className="photos">
-        <Reveal as="figure">
-          <div>
-            <motion.div style={{ scale: photoScale, height: "100%" }}>
-              <Image src="/image/setup.jpg" alt="Laptop beside a monitor running Fedora in a terminal" width={1024} height={559} />
-            </motion.div>
-          </div>
-          <figcaption className="small soft">
-            My desk: Fedora on the monitor, and my Linux System Administration certificate from Btech
-            Academy on the laptop.
-          </figcaption>
-        </Reveal>
-        <Reveal as="figure" i={1}>
-          <div>
-            <motion.div style={{ scale: photoScale, height: "100%" }}>
-              <Image src="/image/education-3.jpg" alt="Arduino board wired with jumper cables next to a laptop" width={1024} height={576} />
-            </motion.div>
-          </div>
-          <figcaption className="small soft">An Arduino project on the bench, wired up next to the laptop.</figcaption>
-        </Reveal>
-      </div>
+        <div ref={photosRef} className="photos">
+          <Reveal as="figure">
+            <div>
+              <motion.div style={{ scale: photoScale, height: "100%" }}>
+                <Image src="/image/setup.jpg" alt="Laptop beside a monitor running Fedora in a terminal" width={1024} height={559} />
+              </motion.div>
+            </div>
+            <figcaption className="small soft">
+              My desk: Fedora on the monitor, and my Linux System Administration certificate from Btech
+              Academy on the laptop.
+            </figcaption>
+          </Reveal>
+          <Reveal as="figure" i={1}>
+            <div>
+              <motion.div style={{ scale: photoScale, height: "100%" }}>
+                <Image src="/image/education-3.jpg" alt="Arduino board wired with jumper cables next to a laptop" width={1024} height={576} />
+              </motion.div>
+            </div>
+            <figcaption className="small soft">An Arduino project on the bench, wired up next to the laptop.</figcaption>
+          </Reveal>
+        </div>
       </section>
-
 
       <Work />
       <How />
 
       <footer ref={closeRef} id="contact" className="close">
-        <div className="top small">
+        <div className="top">
           <h2>Say hello</h2>
           <p>Andra. Junior DevOps and infrastructure automation.</p>
           <p>Bogor, Indonesia. UTC+7.</p>
@@ -328,7 +310,7 @@ export default function Page() {
               @gmail.com
             </motion.a>
           </Reveal>
-          <div className="bottom small">
+          <div className="bottom">
             <ul>
               <li><a href="https://github.com/SakamotoMrX" target="_blank" rel="noopener noreferrer">GitHub</a></li>
               <li><a href="https://www.instagram.com/andrahijati" target="_blank" rel="noopener noreferrer">Instagram</a></li>

@@ -17,6 +17,7 @@ const css = "app/globals.css";
 // page: the composition and the live thing
 ok(page, "<motion.h1", "page: one h1, the scaling wordmark");
 ok(page, "Selected work", "page: work heading");
+ok(page, "aria-current", "page: chosen project marked");
 ok(page, 'role="switch"', "page: working switches");
 ok(page, "ping(", "page: live reachability check");
 ok(page, "<noscript>", "page: content shows without script");

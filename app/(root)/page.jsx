@@ -146,7 +146,13 @@ function Work() {
             </motion.div>
           </AnimatePresence>
         </Reveal>
-        <Reveal i={2}>
+        {/* hover can swap this many times a second: opacity only, no travel */}
+        <motion.div
+          key={p.slug}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
+        >
           <h3>{p.title}</h3>
           <p className="desc">{p.desc[0]}</p>
           <div className="meta small">
@@ -163,7 +169,7 @@ function Work() {
           <a className="btn" href={p.preview} target="_blank" rel="noopener noreferrer">
             Visit {p.preview.replace("https://", "")}
           </a>
-        </Reveal>
+        </motion.div>
       </div>
 
       <Reveal as="p" className="work-note small soft" i={3}>
@@ -208,10 +214,14 @@ export default function Page() {
   const reduce = useReducedMotion();
   const heroRef = useRef(null);
   const photosRef = useRef(null);
+  const closeRef = useRef(null);
   const { scrollYProgress: heroP } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const { scrollYProgress: photoP } = useScroll({ target: photosRef, offset: ["start end", "end start"] });
   // the wordmark is heavy: it gives a few percent as the first screen leaves
   const wordScale = useTransform(heroP, [0, 1], [1, reduce ? 1 : 0.94]);
+  const { scrollYProgress: closeP } = useScroll({ target: closeRef, offset: ["start end", "end end"] });
+  // the address answers the wordmark: it grows to full size as the page ends
+  const mailScale = useTransform(closeP, [0, 1], [reduce ? 1 : 0.94, 1]);
   const photoScale = useTransform(photoP, [0, 1], [reduce ? 1 : 1.12, 1]);
 
   return (
@@ -301,7 +311,7 @@ export default function Page() {
       <Work />
       <How />
 
-      <footer id="contact" className="close">
+      <footer ref={closeRef} id="contact" className="close">
         <div className="top small">
           <h2>Say hello</h2>
           <p>Andra. Junior DevOps and infrastructure automation.</p>
@@ -312,11 +322,11 @@ export default function Page() {
         </div>
         <div>
           <Reveal>
-            <a className="mail" href="mailto:andrahijati@gmail.com?subject=Hello%20Andra">
+            <motion.a className="mail" style={{ scale: mailScale }} href="mailto:andrahijati@gmail.com?subject=Hello%20Andra">
               andrahijati
               <br />
               @gmail.com
-            </a>
+            </motion.a>
           </Reveal>
           <div className="bottom small">
             <ul>

@@ -492,7 +492,7 @@ a[title]:hover:after {
   --t-sub: clamp(1.625rem, 3.4vw, 3.5rem);
   --t-head: clamp(2.25rem, 5.2vw, 4.875rem);
   --t-display: clamp(9rem, 34vw, 44rem);
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .home { color: var(--ink); font-size: var(--t-text); line-height: 1.4; }
@@ -511,9 +511,8 @@ a[title]:hover:after {
   display: inline-flex; align-items: center; gap: 0.5em;
   padding: 0.7em 1.35em; border-radius: 999px;
   background: var(--accent); color: #fff; font-size: var(--t-small); font-weight: 500;
-  transition: transform 100ms ease-out, background-color 150ms ease-out;
+  transition: transform 140ms var(--ease-out), background-color 150ms ease;
 }
-.btn:hover { background: #0077ed; }
 .btn:active { transform: scale(0.97); background: #006edb; }
 
 /* translucent bar: content scrolls under the material */
@@ -525,8 +524,7 @@ a[title]:hover:after {
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
 }
-.nav a { padding: 0.5em 0; transition: opacity 150ms ease-out; }
-.nav a:hover { opacity: 0.6; }
+.nav a { padding: 0.5em 0; transition: opacity 150ms ease; }
 .nav a:active { opacity: 0.4; }
 .nav ul { display: flex; gap: clamp(18px, 2.4vw, 36px); }
 .nav .wordmark { font-weight: 600; }
@@ -539,6 +537,22 @@ a[title]:hover:after {
   position: absolute; left: -6vw; bottom: -6%;
   font-size: var(--t-display); font-weight: 700; line-height: 0.8; letter-spacing: -0.055em;
   white-space: nowrap; transform-origin: 0 100%; user-select: none;
+}
+/* first visit only: the word stands up. CSS so it stays smooth while the page loads;
+   `translate` leaves the scroll-linked `transform` alone */
+.hero h1 { animation: rise 700ms var(--ease-out) 80ms backwards; }
+@keyframes rise { from { opacity: 0; translate: 0 8%; } }
+.status:not([data-state]) i { animation: checking 700ms ease-in-out infinite alternate; }
+@keyframes checking { from { opacity: 0.25; } }
+
+/* touch fires false hovers on tap */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { background: #0077ed; }
+  .nav a:hover { opacity: 0.6; }
+  .names a:hover { color: var(--ink); }
+  .names a:hover .frame { transform: scale(1.35); }
+  .close .mail:hover { opacity: 0.82; }
+  .close a:not(.mail):hover { text-decoration: underline; text-underline-offset: 0.2em; }
 }
 
 /* about: facts at the margin, paragraph on the 34% line */
@@ -563,13 +577,13 @@ a[title]:hover:after {
 .names h2, .names ul, .names li { display: inline; }
 .names h2 { font: inherit; letter-spacing: inherit; }
 .names a { color: var(--soft); transition: color 150ms ease-out; }
-.names a:hover, .names a[aria-current="true"] { color: var(--ink); }
+.names a[aria-current="true"] { color: var(--ink); }
 .names .frame {
   display: inline-block; width: 1.2em; height: 0.75em; margin-inline: 0.18em 0.1em;
   overflow: hidden; border-radius: 0.12em; vertical-align: -0.02em;
   transform-origin: 0 100%; transition: transform 300ms var(--ease-out);
 }
-.names a:hover .frame, .names a[aria-current="true"] .frame { transform: scale(1.35); }
+.names a[aria-current="true"] .frame { transform: scale(1.35); }
 .names .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 0 0; }
 .chosen { display: grid; grid-template-columns: 7fr 5fr; gap: clamp(24px, 4vw, 64px); margin-top: clamp(40px, 5vw, 72px); align-items: end; }
 .chosen .shot { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: var(--r); background: var(--surface); }
@@ -606,7 +620,8 @@ a[title]:hover:after {
 }
 .switch[aria-checked="true"] { background: var(--accent); justify-content: flex-end; }
 .switch span { width: 0.9em; height: 0.9em; border-radius: 50%; background: #fff; }
-.switch:active span { transform: scale(0.94); }
+.switch span { transition: scale 140ms var(--ease-out); }
+.band:active .switch span { scale: 0.9; }
 
 /* close: the address is the headline */
 .close {
@@ -621,13 +636,11 @@ a[title]:hover:after {
 .close .mail {
   display: block; width: fit-content; font-size: clamp(3rem, 11.6vw, 13rem); font-weight: 700;
   line-height: 0.92; letter-spacing: -0.05em; transform-origin: 0 100%;
-  transition: opacity 150ms ease-out;
+  transition: opacity 150ms ease;
 }
-.close .mail:hover { opacity: 0.82; }
 .close .mail:active { opacity: 0.65; }
 .close .bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; margin-top: 32px; }
 .close .bottom ul { display: flex; flex-wrap: wrap; gap: 6px 28px; }
-.close a:not(.mail):hover { text-decoration: underline; text-underline-offset: 0.2em; }
 .close ::selection { background: #fff; color: var(--accent); }
 
 @media (max-width: 760px) {
@@ -657,8 +670,12 @@ a[title]:hover:after {
   .close .mail { font-size: 15.5vw; }
 }
 
+@keyframes fade { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .hero h1 { animation: fade 200ms ease backwards; }
+  .status i { animation: none !important; }
+  .switch span { scale: 1 !important; }
   .btn, .switch span, .names .frame, .band .then { transition: none; transform: none !important; }
 }
 @media (prefers-reduced-transparency: reduce) {

@@ -855,3 +855,4 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
   .field::before { display: none; }
   .field { background-color: var(--tone); }
 }
+.foot .credits { max-width: 72em; }

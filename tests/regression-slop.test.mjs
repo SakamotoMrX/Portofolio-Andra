@@ -48,4 +48,17 @@ ok(css, "prefers-contrast", "globals: more contrast");
 none(css, "linear-gradient(135deg, #", "globals: no decorative gradients added");
 ok(css, "in oklch", "globals: the field interpolates in oklch");
 
+
+// media: every found picture and clip is on disk and credited
+const credits = JSON.parse(read("public/media/credits.json"));
+for (const c of credits) {
+  assert.ok(fs.existsSync(`public/media/${c.file.split("/").pop()}`), `${c.title}: file on disk`);
+  assert.ok(c.license && c.page, `${c.title}: licence and source page`);
+}
+for (const f of ["cape-town-port.jpg", "emma-maersk.jpg", "kebun-raya-bogor.jpg", "container-ship.webm", "container-ship.mp4", "container-ship-poster.jpg", "krl-bogor.webm", "krl-bogor.mp4", "krl-bogor-poster.jpg"])
+  assert.ok(fs.existsSync(`public/media/${f}`), `media: ${f}`);
+console.log(`PASS media: ${credits.length} credited files`);
+ok("components/site.jsx", "credits.json", "footer: credits rendered from credits.json");
+assert.ok(!fs.existsSync("public/image/place/gunung-salak.jpg"), "rejected Mount Salak photo removed");
+
 console.log("\nAll regression invariants PASS");

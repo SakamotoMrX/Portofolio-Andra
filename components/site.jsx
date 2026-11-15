@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 import data from "@/json/data.json";
+import credits from "@/public/media/credits.json";
 
 export const projects = data.Projects.filter((p) => p.show);
 export const MAIL = "mailto:andrahijati@gmail.com?subject=Internship%20for%20Andra";
@@ -151,6 +152,18 @@ export function Close() {
           <span>Junior DevOps</span>
           <span>Bogor, {new Date().getFullYear()}</span>
         </div>
+        <p className="small credits">
+          Photos and footage:{" "}
+          {credits.map((c, i) => (
+            <Fragment key={c.file}>
+              <a href={c.page} target="_blank" rel="noopener noreferrer">
+                {c.title}
+              </a>{" "}
+              by {c.creator}, {c.license}
+              {i < credits.length - 1 ? "; " : "."}
+            </Fragment>
+          ))}
+        </p>
       </footer>
     </>
   );

@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { buildLine, latencyBars } from "@/lib/build.mjs";
-import { Reveal, Shot, Status, projects } from "@/components/site";
+import { Loop, Reveal, Shot, Status, projects } from "@/components/site";
 
 export const STAGES = ["Commit", "Build", "Test", "Preview", "Live"];
 // 16 Docker + 12 Bash + 6 TKJ modules, as listed on the three course sites
@@ -127,24 +127,6 @@ export function WorkList({ status }) {
         <Status s={status[projects[at].slug]} />
       </div>
     </div>
-  );
-}
-
-// a muted loop; with reduced motion it stays on its poster frame
-export function Loop({ name, w, h, label, className }) {
-  const ref = useRef(null);
-  const reduce = useReducedMotion();
-  useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
-    if (reduce) v.pause();
-    else v.play().catch(() => {});
-  }, [reduce]);
-  return (
-    <video ref={ref} className={className} muted loop playsInline autoPlay={!reduce} preload="metadata" poster={`/media/${name}-poster.jpg`} width={w} height={h} aria-label={label}>
-      <source src={`/media/${name}.webm`} type="video/webm" />
-      <source src={`/media/${name}.mp4`} type="video/mp4" />
-    </video>
   );
 }
 

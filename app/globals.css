@@ -767,8 +767,14 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 
 /* close: the ask on the field, then the lime ground */
 .cta .field { border-radius: var(--r); padding: clamp(14px, 2vw, 28px); }
-.cta .sheet { border-radius: calc(var(--r) - 6px); padding: clamp(24px, 4vw, 64px); display: grid; grid-template-columns: 7fr 5fr; gap: 24px var(--m); align-items: end; }
-.cta h2 { font-size: var(--t-display); line-height: 0.98; }
+.cta .field { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 28px); align-items: stretch; }
+.cta .place { margin: 0; display: grid; gap: 10px; align-content: center; }
+.cta .place figcaption { color: var(--ink); }
+.cta .sheet { border-radius: calc(var(--r) - 6px); padding: clamp(24px, 4vw, 48px); display: grid; gap: 24px; align-content: space-between; }
+.cta .clock { margin-top: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.cta .commute { margin: 16px 0 0; display: grid; gap: 8px; }
+.cta .commute video { display: block; width: 100%; height: auto; border-radius: 14px; background: var(--tone); }
+.cta h2 { font-size: var(--t-head); line-height: 0.98; }
 .foot { margin-top: var(--m); background: var(--lime); padding: clamp(32px, 4vw, 64px) var(--m) 24px; display: grid; gap: clamp(32px, 5vw, 72px); overflow: hidden; }
 .foot .links { display: flex; flex-wrap: wrap; gap: 8px clamp(20px, 3vw, 48px); font-weight: 500; }
 .foot .name { font-size: 27vw; font-weight: 700; line-height: 0.8; letter-spacing: -0.06em; display: flex; padding-top: 0.06em; overflow: hidden; }
@@ -807,7 +813,7 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
   .chip { left: 8px; bottom: 8px; }
   .trio > :not(:nth-child(2)) .chip { display: none; }
   .btn { padding-inline: 1.1em; }
-  .proof, .head, .about, .certs .pair, .lists, .board, .cta .sheet { grid-template-columns: 1fr; }
+  .proof, .head, .about, .certs .pair, .lists, .board, .cta .sheet, .cta .field { grid-template-columns: 1fr; }
   .tickets { grid-template-columns: 1fr 1fr; gap: 8px; }
   .ticket + .ticket::before { display: none; }
   .grid { grid-template-columns: 1fr; }
@@ -940,4 +946,19 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .latency .bar::after { transition: none; }
+}
+
+/* archive: a contact sheet, one text size, frames at their natural width */
+.home .archive-top { padding-top: clamp(112px, 12vw, 176px); display: grid; grid-template-columns: 5fr 7fr; gap: 24px var(--m); align-items: end; }
+.archive-top p { max-width: 36em; }
+.archive-top a, .run-row p a { text-decoration: underline; text-underline-offset: 0.2em; }
+.sheet-runs { display: grid; gap: clamp(20px, 2vw, 32px); }
+.run-row { display: grid; grid-template-columns: 4fr 8fr; gap: 12px var(--m); align-items: start; }
+.run-row .frames { display: flex; flex-wrap: wrap; gap: 8px; }
+.run-row .frames a { display: block; border-radius: 8px; overflow: hidden; background: var(--tone); transition: transform 300ms var(--ease-out); }
+.run-row .frames img { display: block; height: 180px; width: auto; }
+.run-row .frames a:active { transform: scale(0.97); }
+@media (max-width: 760px) {
+  .home .archive-top, .run-row { grid-template-columns: 1fr; }
+  .run-row .frames img { height: 90px; }
 }

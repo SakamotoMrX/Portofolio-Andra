@@ -72,8 +72,13 @@ ok(page, "<WorkList", "work: title list");
 ok(page, "<Interlude", "home: container interlude");
 ok(page, "<Homelab", "skills: homelab diagram");
 ok(page, "<Latency", "proof: latency panel");
-ok("components/home.jsx", "playsInline", "video: inline on iOS");
-ok("components/home.jsx", "poster=", "video: poster frame");
+ok("components/site.jsx", "playsInline", "video: inline on iOS");
+ok("components/site.jsx", "poster=", "video: poster frame");
 none(css, "object-fit: cover", "pictures shown whole");
+
+ok("components/site.jsx", "kebun-raya-bogor", "contact: Bogor photo");
+ok("components/site.jsx", "wibTime", "contact: WIB clock");
+none("app/projects/archive/page.jsx", "glass", "archive: old glass styles gone");
+ok("app/projects/archive/page.jsx", 'className="sheet-runs"', "archive: contact sheet");
 
 console.log("\nAll regression invariants PASS");

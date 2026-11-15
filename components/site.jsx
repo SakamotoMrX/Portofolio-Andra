@@ -1,12 +1,13 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 // pieces the home page and the work page share
 "use client";
-import { Fragment, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 
 import data from "@/json/data.json";
 import credits from "@/public/media/credits.json";
+import { wibTime } from "@/lib/build.mjs";
 
 export const projects = data.Projects.filter((p) => p.show);
 export const MAIL = "mailto:andrahijati@gmail.com?subject=Internship%20for%20Andra";
@@ -114,12 +115,46 @@ export function useStatus() {
   return { status, up, done, online: done ? `${up} of ${projects.length} sites online now` : "Checking the sites" };
 }
 
+// a muted loop; with reduced motion it stays on its poster frame
+export function Loop({ name, w, h, label, className }) {
+  const ref = useRef(null);
+  const reduce = useReducedMotion();
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    if (reduce) v.pause();
+    else v.play().catch(() => {});
+  }, [reduce]);
+  return (
+    <video ref={ref} className={className} muted loop playsInline autoPlay={!reduce} preload="metadata" poster={`/media/${name}-poster.jpg`} width={w} height={h} aria-label={label}>
+      <source src={`/media/${name}.webm`} type="video/webm" />
+      <source src={`/media/${name}.mp4`} type="video/mp4" />
+    </video>
+  );
+}
+
+// the time in Bogor; rendered after mount so the server and the browser agree
+function Clock() {
+  const [now, setNow] = useState(null);
+  useEffect(() => {
+    const tick = () => setNow(wibTime(new Date()));
+    tick();
+    const t = setInterval(tick, 30000);
+    return () => clearInterval(t);
+  }, []);
+  return <p className="clock">Bogor, {now ? <time>{now}</time> : null} WIB</p>;
+}
+
 // the ask and the lime ground that close both pages
 export function Close() {
   return (
     <>
       <section id="contact" className="cta">
         <div className="field">
+          <figure className="place">
+            <Shot src="/media/kebun-raya-bogor.jpg" alt="Giant water lilies and a fountain in the Bogor Botanical Gardens" w={1920} h={1281} sizes="(max-width: 760px) 100vw, 55vw" />
+            <figcaption className="small">Kebun Raya, the botanical gardens in Bogor.</figcaption>
+          </figure>
           <Reveal className="sheet">
             <Words text="Looking for an intern?" />
             <div>
@@ -129,6 +164,11 @@ export function Close() {
                   Email Andra
                 </a>
               </div>
+              <Clock />
+              <figure className="commute">
+                <Loop name="krl-bogor" w={426} h={240} label="A commuter train leaving Tebet station for Bogor" />
+                <figcaption className="small">Commuter line to Bogor.</figcaption>
+              </figure>
             </div>
           </Reveal>
         </div>

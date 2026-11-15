@@ -9,6 +9,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 module.exports = withBundleAnalyzer({
 	output: "standalone",
+	// the hero's deploy line names the commit Vercel built
+	env: { BUILD_SHA: process.env.VERCEL_GIT_COMMIT_SHA || "", BUILD_AT: new Date().toISOString() },
 	// your Next.js configuration
 	images: {
 		remotePatterns: [

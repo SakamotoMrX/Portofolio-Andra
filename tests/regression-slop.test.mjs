@@ -81,4 +81,11 @@ ok("components/site.jsx", "wibTime", "contact: WIB clock");
 none("app/projects/archive/page.jsx", "glass", "archive: old glass styles gone");
 ok("app/projects/archive/page.jsx", 'className="sheet-runs"', "archive: contact sheet");
 
+// motion ported from the reference sites
+ok("components/home.jsx", "<Decode", "motion: decode line");
+ok(page, "useVelocityMarquee", "motion: marquee follows scroll");
+ok("components/motion.jsx", "useReducedMotion", "motion: reduced motion respected");
+ok("components/motion.jsx", "playbackRate", "marquee: speed follows scroll without a jump");
+ok("components/site.jsx", "useScroll", "motion: closing sheet rises");
+
 console.log("\nAll regression invariants PASS");

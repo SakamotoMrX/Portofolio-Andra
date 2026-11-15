@@ -5,6 +5,7 @@ import { motion, useInView, useReducedMotion, useScroll, useTransform } from "fr
 import Link from "next/link";
 
 import Assistant from "@/components/Assistant";
+import { useVelocityMarquee } from "@/components/motion";
 import { Deploy, Homelab, Interlude, Latency, Receipt, STAGES, WorkList } from "@/components/home";
 import Mark from "@/components/Mark";
 import { tools } from "@/data/site.mjs";
@@ -100,6 +101,8 @@ export default function Page() {
     [featured.thumbnail, `${featured.title}, the live site`, 2880, 1800, online],
     ["/image/certs/btech-linux-sysadmin.jpg", "Certificate of achievement, Linux System Administration, Btech Academy", 2000, 1413, "Linux System Administration"],
   ];
+  const marqueeRef = useRef(null);
+  useVelocityMarquee(marqueeRef);
   const names = tools.flatMap(([, items]) => items.map(([n]) => n));
 
   return (
@@ -192,7 +195,7 @@ export default function Page() {
         </Reveal>
       </section>
 
-      <section className="marquee" aria-hidden="true">
+      <section className="marquee" aria-hidden="true" ref={marqueeRef}>
         {[names, [...names].reverse()].map((row, r) => (
           <div className="row" key={r}>
             {[...row, ...row].map((n, i) => (

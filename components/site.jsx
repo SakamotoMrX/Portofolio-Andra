@@ -2,7 +2,7 @@
 // pieces the home page and the work page share
 "use client";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
 import data from "@/json/data.json";
@@ -147,10 +147,15 @@ function Clock() {
 
 // the ask and the lime ground that close both pages
 export function Close() {
+  const ref = useRef(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "start 0.35"] });
+  const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.94, 1]);
   return (
     <>
-      <section id="contact" className="cta">
-        <div className="field">
+      <section id="contact" className="cta" ref={ref}>
+        <motion.div className="field" style={reduce ? undefined : { y, scale }}>
           <figure className="place">
             <Shot src="/media/kebun-raya-bogor.jpg" alt="Giant water lilies and a fountain in the Bogor Botanical Gardens" w={1920} h={1281} sizes="(max-width: 760px) 100vw, 55vw" />
             <figcaption className="small">Kebun Raya, the botanical gardens in Bogor.</figcaption>
@@ -171,7 +176,7 @@ export function Close() {
               </figure>
             </div>
           </Reveal>
-        </div>
+        </motion.div>
       </section>
 
       <footer className="foot">

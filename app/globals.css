@@ -962,3 +962,10 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
   .home .archive-top, .run-row { grid-template-columns: 1fr; }
   .run-row .frames img { height: 90px; }
 }
+
+/* receipt rows: the leader draws across as each row arrives (after The Content Architecture) */
+.receipt > div i { animation: leader 700ms var(--ease-out) both; animation-timeline: view(); animation-range: entry 10% cover 30%; }
+@keyframes leader { from { transform: scaleX(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .receipt > div i { animation: none; }
+}

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { buildLine, latencyBars } from "@/lib/build.mjs";
+import { Decode } from "@/components/motion";
 import { Loop, Reveal, Shot, Status, projects } from "@/components/site";
 
 export const STAGES = ["Commit", "Build", "Test", "Preview", "Live"];
@@ -52,7 +53,7 @@ export function Deploy() {
         ))}
       </ol>
       <p className="result small" aria-live="polite">
-        {running ? `${STAGES[step].toLowerCase()}…` : BUILT}
+        {running ? `${STAGES[step].toLowerCase()}…` : <Decode key={runs} text={BUILT} />}
       </p>
     </div>
   );

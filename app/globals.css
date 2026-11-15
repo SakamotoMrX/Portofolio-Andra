@@ -856,3 +856,29 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
   .field { background-color: var(--tone); }
 }
 .foot .credits { max-width: 72em; }
+
+/* hero: a deploy the visitor runs */
+.deploy { margin: 28px auto 0; max-width: 46em; display: grid; grid-template-columns: auto 1fr; gap: 12px 20px; align-items: center; background: var(--ink); color: var(--paper); border-radius: 22px; padding: 12px 12px 12px 12px; text-align: left; }
+.deploy .btn { background: var(--lime); color: var(--ink); }
+.deploy .btn:disabled { opacity: 0.7; }
+.deploy .pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.deploy .pills li { padding: 6px 12px; border-radius: 999px; background: #2c4a39; color: #b7c6b3; font-size: var(--t-small); font-weight: 500; transition: background-color 250ms ease, color 250ms ease, transform 300ms var(--ease-out); }
+.deploy .pills li[data-s="run"] { background: var(--paper); color: var(--ink); transform: scale(1.06); }
+.deploy .pills li[data-s="done"] { background: var(--lime); color: var(--ink); }
+.deploy .result { grid-column: 1 / -1; padding: 0 8px 4px; color: var(--lime); overflow-wrap: anywhere; min-height: 1.6em; }
+
+/* proof: two big tickets and the receipt behind them */
+.receipt-wrap { display: grid; gap: 20px; }
+.receipt-wrap .tickets { grid-template-columns: 1fr 1fr; }
+.receipt { display: grid; gap: 2px; font-variant-numeric: tabular-nums; }
+.receipt > div { display: flex; align-items: baseline; gap: 10px; padding: 6px 0; }
+.receipt i { flex: 1; border-bottom: 2px dotted currentColor; opacity: 0.35; transform-origin: 0 50%; }
+.receipt dd { margin: 0; font-weight: 600; }
+.receipt .total { margin-top: 8px; padding-top: 12px; font-weight: 700; border-top: 2px solid var(--ink); }
+@media (max-width: 760px) {
+  .deploy { grid-template-columns: 1fr; }
+  .deploy .pills { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deploy .pills li { transition: none; transform: none !important; }
+}

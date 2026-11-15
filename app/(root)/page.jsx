@@ -1,11 +1,12 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { animate, motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
 import Assistant from "@/components/Assistant";
+import { Deploy, Receipt, STAGES } from "@/components/home";
 import Mark from "@/components/Mark";
 import { tools } from "@/data/site.mjs";
 import { Card, Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, Words, projects, useStatus } from "@/components/site";
@@ -13,26 +14,10 @@ import { Card, Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, Words, pr
 // the moment the intro columns start to lift; the first screen arrives with them
 const T0 = 1.75;
 
-// 16 Docker + 12 Bash + 6 TKJ modules, as listed on the three course sites
-const MODULES = 34;
-
-const STAGES = ["Commit", "Build", "Test", "Preview", "Live"];
 const LOG = ["$ git push origin main", "build    compiled", "test     checks passed", "preview  URL ready"];
 // five stages, then two beats held on the live site before the next one starts
 const BEATS = STAGES.length + 2;
 const hosts = projects.map((p) => new URL(p.preview).host);
-
-function Count({ to }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-  const reduce = useReducedMotion();
-  useEffect(() => {
-    if (!inView || reduce) return;
-    const c = animate(0, to, { duration: 1.2, ease: EASE, onUpdate: (v) => ref.current && (ref.current.textContent = Math.round(v)) });
-    return () => c.stop();
-  }, [inView, to, reduce]);
-  return <span ref={ref}>{to}</span>;
-}
 
 // the same pipeline, deploying each of the eight sites in turn for as long as it is on screen
 function Pipeline({ status }) {
@@ -160,6 +145,9 @@ export default function Page() {
               See the work
             </Link>
           </Reveal>
+          <Reveal initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: EASE, delay: t0 + 0.38 }}>
+            <Deploy />
+          </Reveal>
           <div className="trio">
             {trio.map(([src, alt, w, h, chip], i) => (
               <Reveal key={src} initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: t0 + 0.4 + i * 0.09 }}>
@@ -179,19 +167,7 @@ export default function Page() {
           <Words text="Shipped, and still running." />
           <Reveal as="p">All {projects.length} sites are live. Your browser is checking each one as you read this.</Reveal>
         </div>
-        <div className="tickets">
-          {[
-            ["Sites live", <Count key="c" to={projects.length} />],
-            ["Online now", done ? `${up}/${projects.length}` : "…"],
-            ["Course modules written", <Count key="c" to={MODULES} />],
-            ["Certificates", <Count key="c" to={2} />],
-          ].map(([label, n], i) => (
-            <Reveal className="ticket" key={label} i={i}>
-              <b>{n}</b>
-              <span className="small">{label}</span>
-            </Reveal>
-          ))}
-        </div>
+        <Receipt up={up} done={done} />
       </section>
 
       <section id="work">

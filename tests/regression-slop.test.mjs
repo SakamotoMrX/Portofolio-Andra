@@ -61,4 +61,10 @@ console.log(`PASS media: ${credits.length} credited files`);
 ok("components/site.jsx", "credits.json", "footer: credits rendered from credits.json");
 assert.ok(!fs.existsSync("public/image/place/gunung-salak.jpg"), "rejected Mount Salak photo removed");
 
+// hero deploy and receipt proof
+ok(page, "<Deploy", "hero: runnable deploy");
+ok(page, "<Receipt", "proof: receipt");
+ok("components/home.jsx", "BUILD_SHA", "deploy: real build commit");
+none("components/home.jsx", "padStart", "home: no index numbering");
+
 console.log("\nAll regression invariants PASS");

@@ -69,4 +69,11 @@ none("components/home.jsx", "padStart", "home: no index numbering");
 
 ok(page, "<WorkList", "work: title list");
 
+ok(page, "<Interlude", "home: container interlude");
+ok(page, "<Homelab", "skills: homelab diagram");
+ok(page, "<Latency", "proof: latency panel");
+ok("components/home.jsx", "playsInline", "video: inline on iOS");
+ok("components/home.jsx", "poster=", "video: poster frame");
+none(css, "object-fit: cover", "pictures shown whole");
+
 console.log("\nAll regression invariants PASS");

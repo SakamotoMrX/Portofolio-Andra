@@ -627,7 +627,7 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 @keyframes checking { from { opacity: 0.25; } }
 
 /* proof: lime tickets that count up */
-.proof { display: grid; grid-template-columns: 5fr 7fr; gap: 32px var(--m); align-items: end; }
+.proof { display: grid; grid-template-columns: 5fr 7fr; gap: 32px var(--m); align-items: start; }
 .proof p { margin-top: 1em; max-width: 30em; }
 .tickets { display: grid; grid-template-columns: repeat(4, 1fr); }
 .ticket { position: relative; background: var(--lime); border-radius: 18px; padding: 20px 18px 16px; display: grid; gap: 22px; }
@@ -903,4 +903,41 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .worklist a, .worklist .stage > .shot { transition: none; }
+}
+
+/* proof: receipt and latency side by side under the heading */
+.proof-side { display: grid; grid-template-columns: 1fr 1fr; gap: var(--m); align-items: start; }
+.latency { background: var(--ink); color: var(--paper); border-radius: var(--r); padding: clamp(18px, 2.4vw, 32px); display: grid; gap: 16px; }
+.latency h3 { font-size: var(--t-lead); }
+.latency ul { display: grid; gap: 10px; }
+.latency li { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; }
+.latency .bar { grid-column: 1 / -1; height: 10px; border-radius: 5px; background: #2c4a39; position: relative; overflow: hidden; }
+.latency .bar::after { content: ""; position: absolute; inset: 0; background: var(--lime); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); transition: transform 900ms var(--ease-out); }
+.latency .ms { grid-row: 1; grid-column: 2; font-variant-numeric: tabular-nums; color: var(--lime); }
+.latency .muted { color: #b7c6b3; }
+
+/* interlude: the real containers */
+.interlude .pair { display: grid; grid-template-columns: 8fr 4fr; gap: var(--m); align-items: start; }
+.interlude video { display: block; width: 100%; height: auto; border-radius: var(--r); background: var(--tone); }
+.interlude .stack { display: grid; gap: var(--m); }
+.interlude figure { margin: 0; display: grid; gap: 10px; }
+
+/* skills: the homelab drawn in two inks */
+.lab { grid-column: 1 / -1; overflow: hidden; border-radius: calc(var(--r) - 6px); background: var(--tone); padding: clamp(12px, 2vw, 28px); }
+.lab svg { display: block; width: 100%; height: auto; transform-origin: 50% 50%; }
+.lab-list { display: none; }
+.lab line { stroke: var(--ink); stroke-width: 2.5; opacity: 0.35; }
+.lab line.live { stroke: var(--lime-deep); opacity: 1; stroke-width: 4; }
+.lab rect { fill: var(--paper); stroke: var(--ink); stroke-width: 2.5; }
+.lab text { fill: var(--ink); font: 600 17px var(--font-sans); }
+@media (max-width: 1000px) {
+  .proof-side { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .interlude .pair { grid-template-columns: 1fr; }
+  .lab svg { display: none; }
+  .lab-list { display: grid; gap: 10px; font-weight: 600; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .latency .bar::after { transition: none; }
 }

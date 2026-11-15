@@ -5,7 +5,7 @@ import { motion, useInView, useReducedMotion, useScroll, useTransform } from "fr
 import Link from "next/link";
 
 import Assistant from "@/components/Assistant";
-import { Deploy, Receipt, STAGES, WorkList } from "@/components/home";
+import { Deploy, Homelab, Interlude, Latency, Receipt, STAGES, WorkList } from "@/components/home";
 import Mark from "@/components/Mark";
 import { tools } from "@/data/site.mjs";
 import { Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, Words, projects, useStatus } from "@/components/site";
@@ -166,7 +166,10 @@ export default function Page() {
           <Words text="Shipped, and still running." />
           <Reveal as="p">All {projects.length} sites are live. Your browser is checking each one as you read this.</Reveal>
         </div>
-        <Receipt up={up} done={done} />
+        <div className="proof-side">
+          <Receipt up={up} done={done} />
+          <Latency status={status} />
+        </div>
       </section>
 
       <section id="work">
@@ -199,11 +202,14 @@ export default function Page() {
         ))}
       </section>
 
+      <Interlude />
+
       <Pipeline status={status} />
 
       <section id="skills" className="skills field">
         <div className="sheet">
           <Words text="What I work with" />
+          <Homelab />
           <div className="lists">
             {tools.map(([title, items]) => (
               <div key={title}>

@@ -129,6 +129,22 @@ export function Close() {
   const scale = useTransform(scrollYProgress, [0, 1], [0.94, 1]);
   const footRef = useRef(null);
   const [spread, nameY, cornerFade] = useNameSpread(footRef);
+  // the corner names step aside while a bare section with large type of its own crosses the bottom of the screen
+  const [overText, setOverText] = useState(false);
+  useEffect(() => {
+    const walls = document.querySelectorAll(".stack, .marquee");
+    if (!walls.length) return;
+    const seen = new Set();
+    const io = new IntersectionObserver(
+      (es) => {
+        es.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)));
+        setOverText(seen.size > 0);
+      },
+      { rootMargin: "-80% 0px 0px 0px" },
+    );
+    walls.forEach((w) => io.observe(w));
+    return () => io.disconnect();
+  }, []);
   return (
     <>
       <section id="contact" className="cta" ref={ref}>
@@ -150,7 +166,7 @@ export function Close() {
       </section>
 
       {/* the name split to the two bottom corners, faint, for the length of the page (after bleibtgleich, Dragonfly) */}
-      <p className="corners" aria-hidden="true">
+      <p className="corners" aria-hidden="true" data-hidden={overText}>
         <motion.span style={{ opacity: cornerFade }}>Andra</motion.span>
         <motion.span style={{ opacity: cornerFade }}>DevOps</motion.span>
       </p>

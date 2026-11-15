@@ -17,7 +17,7 @@ const css = "app/globals.css";
 // page: the composition and the live thing
 ok(page, 'className="hero field"', "page: the sheet-on-field hero");
 ok(page, "Selected work", "page: work heading");
-ok(page, 'className="board"', "page: the running pipeline");
+none(page, 'className="board"', "page: pipeline board removed");
 ok(page, "certs/", "page: certificates shown");
 ok("components/site.jsx", "ping(", "shared: live reachability check");
 ok(page, 'href="/projects"', "page: the way to the work page");
@@ -82,7 +82,7 @@ none("components/motion.jsx", '"0123456789".split', "odometer digits drawn by CS
 
 // motion round 3: patterns from the recorded reference sites
 ok(page, "<Fan", "certs: certificates dealt into a fan");
-ok(css, "#pipeline { position: sticky", "skills: sheet rises over the held pipeline");
+none(css, "#pipeline", "pipeline board styles removed");
 ok("components/site.jsx", 'className="corners"', "corners: name split to the two bottom corners");
 ok(css, ".tickets .ticket { position: sticky", "proof: tickets lock under the nav");
 ok(page, "<SkillList", "skills: active item lights while its panel changes");

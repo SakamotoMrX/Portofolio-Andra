@@ -711,37 +711,6 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 .marquee b { font-size: var(--t-head); line-height: 1.15; letter-spacing: -0.03em; white-space: nowrap; padding-right: 0.9em; }
 @keyframes slide { to { transform: translate3d(-50%, 0, 0); } }
 
-/* pipeline: one ink board where the eight sites deploy over and over */
-.board { background: var(--ink); color: var(--paper); border-radius: var(--r); padding: clamp(22px, 4vw, 64px); display: grid; grid-template-columns: 8fr 4fr; gap: clamp(32px, 4vw, 64px) clamp(24px, 4vw, 64px); }
-.board ::selection { background: var(--lime); color: var(--ink); }
-.board .head { grid-column: 1 / -1; margin: 0; }
-.board .muted { color: #b7c6b3; }
-.run { display: grid; gap: clamp(24px, 3vw, 40px); align-content: start; min-width: 0; }
-.stages { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); }
-.stages::before, .stages::after { content: ""; position: absolute; left: 7px; top: 5px; width: 80%; height: 4px; border-radius: 2px; background: #2c4a39; }
-.stages::after { background: var(--lime); transform-origin: 0 50%; transform: scaleX(var(--f, 0)); transition: transform 800ms var(--ease-out); }
-.stages li { display: grid; gap: 4px; justify-items: start; font-weight: 500; }
-.stages i { position: relative; z-index: 1; width: 14px; height: 14px; border-radius: 50%; background: #2c4a39; margin-bottom: 10px; transition: background-color 250ms ease, transform 400ms var(--ease-out); }
-.stages li[data-s="done"] i, .stages li[data-s="run"] i { background: var(--lime); }
-.stages li[data-s="run"] i { transform: scale(1.5); }
-.stages li[data-s="run"] i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--lime); animation: ring 850ms ease-out infinite; }
-@keyframes ring { from { opacity: 0.7; } to { opacity: 0; transform: scale(3.2); } }
-.stages li[data-s="wait"] { color: #b7c6b3; }
-.stages li span + span { font-weight: 400; min-height: 1.45em; }
-.now { font-size: var(--t-head); font-weight: 700; line-height: 1; letter-spacing: -0.03em; overflow-wrap: anywhere; min-height: 2em; }
-.now span { display: block; }
-.log { background: #0b2114; border-radius: 16px; padding: 16px 20px; font-size: var(--t-small); line-height: 1.7; min-height: 11em; overflow: hidden; white-space: pre-wrap; }
-.log span { display: block; animation: rise 350ms var(--ease-out) backwards; }
-.log span[data-run] { color: #b7c6b3; }
-.log span[data-live] { color: var(--lime); }
-@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
-.sites { display: grid; gap: 6px; align-content: start; }
-.sites li { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-radius: 12px; color: #b7c6b3; transition: background-color 300ms ease, color 300ms ease, transform 400ms var(--ease-out); overflow-wrap: anywhere; }
-.sites i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #2c4a39; transition: background-color 300ms ease; }
-.sites li[data-s="done"] { color: var(--paper); }
-.sites li[data-s="done"] i { background: var(--lime); }
-.sites li[data-s="run"] { background: var(--lime); color: var(--ink); font-weight: 500; transform: translateX(8px); }
-.sites li[data-s="run"] i { background: var(--ink); }
 
 /* skills: a sheet on the field */
 .home .skills { margin: clamp(96px, 11vw, 176px) var(--m) 0; padding: clamp(14px, 2vw, 28px); border-radius: var(--r); }
@@ -807,15 +776,13 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
   .chip { left: 8px; bottom: 8px; }
   .trio > :not(:nth-child(2)) .chip { display: none; }
   .btn { padding-inline: 1.1em; }
-  .proof, .head, .about, .certs .pair, .lists, .board, .cta .sheet { grid-template-columns: 1fr; }
+  .proof, .head, .about, .certs .pair, .lists, .cta .sheet { grid-template-columns: 1fr; }
   .tickets { grid-template-columns: 1fr 1fr; gap: 8px; }
   .ticket + .ticket::before { display: none; }
   .grid { grid-template-columns: 1fr; }
   .grid .card, .grid .card:nth-child(n) { grid-column: 1; grid-template-columns: 1fr; }
   .card.field .shot, .card:nth-child(8) .shot { order: -1; }
   .certs figure:nth-child(2) { margin-top: 0; }
-  .stages li span + span { display: none; }
-  .now { font-size: var(--t-lead); }
   .more .thumbs { grid-template-columns: repeat(4, 1fr); }
   .more .thumbs img:nth-child(n + 5) { display: none; }
   .home .work-top { grid-template-columns: 1fr; padding-top: 112px; }
@@ -833,9 +800,6 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
   .deck-nav svg { width: 22px; }
   .deck-nav .rail { position: relative; height: 4px; border-radius: 2px; background: var(--tone); overflow: hidden; }
   .deck-nav .rail::after { content: ""; position: absolute; inset: 0; background: var(--lime-deep); transform-origin: 0 50%; transform: scaleX(var(--f)); transition: transform 450ms var(--ease-out); }
-  .stages li { font-size: var(--t-small); }
-  .sites li { padding: 7px 12px; font-size: var(--t-small); }
-  .sites li[data-s="run"] { transform: none; }
   .cta .actions .btn { flex: 1; }
 }
 
@@ -844,8 +808,8 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
   .intro { display: none; }
   .field::before, .status i { animation: none !important; }
   .btn, .lists li { transition: none; transform: none !important; }
-  .marquee .row, .stages li i::after, .log span, .ask-log p, .ask-actions, .ask-dots i { animation: none !important; }
-  .nav, .nav::before, .nav svg, .card .shot, .stages::after, .stages i, .sites li { transition: none !important; }
+  .marquee .row, .ask-log p, .ask-actions, .ask-dots i { animation: none !important; }
+  .nav, .nav::before, .nav svg, .card .shot { transition: none !important; }
 }
 @media (prefers-reduced-transparency: reduce) {
   .field::before { display: none; }
@@ -906,11 +870,6 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 
 /* motion round 3: patterns from the recorded reference sites */
 
-/* the pipeline holds while the skills sheet rises over it (after Cerebrium, White Desert) */
-/* the board holds for --cover px while the skills sheet slides over its log, then both scroll on; its heading is never covered */
-.hold { --cover: 300px; padding-bottom: var(--cover); }
-#pipeline { position: sticky; top: min(16px, calc(100svh - 860px)); z-index: 1; }
-.home .hold + .skills { margin-top: calc(var(--cover) * -1); }
 .home .skills { position: relative; z-index: 2; overflow: clip; }
 
 
@@ -953,6 +912,8 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 /* behind the page: the words show only on bare ground and never lie on top of content (after bleibtgleich) */
 .corners { position: fixed; inset: auto 0 0; z-index: -1; display: flex; justify-content: space-between; padding: 0 var(--m) 8px; pointer-events: none; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em; color: var(--ink); }
 .corners span { opacity: 0.12; }
+/* bare-ground sections with large type of their own hide the corner names while they are on screen */
+.corners[data-hidden="true"] { visibility: hidden; }
 .corners span:last-child { margin-right: calc(64px + var(--m)); }
 
 /* footer name printed in layers, offset like a misregistered print (after PX PUSH) */
@@ -970,9 +931,6 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
   .fan-card { rotate: none !important; transform: none !important; }
 }
 @media (max-width: 760px) {
-  #pipeline { position: static; }
-  .hold { padding-bottom: 0; }
-  .home .hold + .skills { margin-top: clamp(96px, 11vw, 176px); }
   .fan, .skill-list { grid-template-columns: 1fr; }
   .fan-card:nth-child(2) { margin-top: 0; }
   .skill-list ol { display: none; }

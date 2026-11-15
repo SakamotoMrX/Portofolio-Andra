@@ -1,7 +1,7 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +10,7 @@ import Homelab, { Fan, SkillList, Spotlight } from "@/components/home";
 import { InkFill, Magnet, Roll, SplitTitle, useCalm, useSkew, useVelocityMarquee } from "@/components/motion";
 import Mark from "@/components/Mark";
 import { tools } from "@/data/site.mjs";
-import { Card, Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, Words, projects, useStatus } from "@/components/site";
+import { Card, Close, EASE, MAIL, Reveal, Shot, Status, Words, projects, useStatus } from "@/components/site";
 
 // the moment the intro columns start to lift; the first screen arrives with them
 const T0 = 1.75;
@@ -18,77 +18,8 @@ const T0 = 1.75;
 // 16 Docker + 12 Bash + 6 TKJ modules, as listed on the three course sites
 const MODULES = 34;
 
+// the words the intro plays through
 const STAGES = ["Commit", "Build", "Test", "Preview", "Live"];
-const LOG = ["$ git push origin main", "build    compiled", "test     checks passed", "preview  URL ready"];
-// five stages, then two beats held on the live site before the next one starts
-const BEATS = STAGES.length + 2;
-const hosts = projects.map((p) => new URL(p.preview).host);
-
-// the same pipeline, deploying each of the eight sites in turn for as long as it is on screen
-function Pipeline({ status }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.25 });
-  const reduce = useCalm();
-  const [tick, setTick] = useState(0);
-  useEffect(() => {
-    if (!inView || reduce) return;
-    const t = setInterval(() => setTick((n) => n + 1), 850);
-    return () => clearInterval(t);
-  }, [inView, reduce]);
-
-  const beat = reduce ? BEATS - 1 : tick % BEATS;
-  const site = reduce ? hosts.length - 1 : Math.floor(tick / BEATS) % hosts.length;
-  const s = status[projects[site].slug];
-  const state = (i) => (i < beat ? "done" : i === beat ? "run" : "wait");
-
-  return (
-    <section id="pipeline" ref={ref}>
-      <div className="board">
-        <div className="head">
-          <Words text="Every push ships itself." />
-          <Reveal as="p" className="muted">
-            Commit, build, test, preview, live. One pipeline behind all {projects.length} sites, with nobody copying files to a server by hand.
-          </Reveal>
-        </div>
-        <div className="run" data-ui role="img" aria-label={`Deploy pipeline running for each of the ${projects.length} sites in turn`}>
-          <ol className="stages" style={{ "--f": Math.min(beat, STAGES.length - 1) / (STAGES.length - 1) }}>
-            {STAGES.map((name, i) => (
-              <li key={name} data-s={state(i)}>
-                <i />
-                <span>{name}</span>
-                <span className="small muted">{state(i) === "run" ? "running" : state(i) === "done" ? "done" : ""}</span>
-              </li>
-            ))}
-          </ol>
-          <p className="now">
-            <motion.span key={site} initial={HIDDEN} animate={SHOWN} transition={{ duration: 0.5, ease: EASE }}>
-              {hosts[site]}
-            </motion.span>
-          </p>
-          <pre className="log">
-            <code key={site}>
-              {LOG.map((line, i) => i <= beat && <span key={i} data-run={i === beat || undefined}>{line}</span>)}
-              {beat >= STAGES.length - 1 && (
-                <span data-live>
-                  live     https://{hosts[site]}
-                  {s?.state === "up" ? `  answered in ${s.ms} ms` : ""}
-                </span>
-              )}
-            </code>
-          </pre>
-        </div>
-        <ul className="sites" aria-hidden="true">
-          {hosts.map((h, i) => (
-            <li key={h} data-s={i < site ? "done" : i === site ? (beat >= STAGES.length ? "done" : "run") : "wait"}>
-              <i />
-              {h}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
 
 export default function Page() {
   const { status, up, done, online } = useStatus();
@@ -240,10 +171,6 @@ export default function Page() {
         <Spotlight names={names} />
       </section>
 
-      {/* the pipeline holds only until the skills sheet has passed over it */}
-      <div className="hold">
-        <Pipeline status={status} />
-      </div>
 
       <section id="skills" className="skills field">
         <div className="sheet">

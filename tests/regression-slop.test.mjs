@@ -80,4 +80,14 @@ ok("components/motion.jsx", "export function useCalm", "motion: mount-safe reduc
 for (const f of [page, "components/site.jsx", "components/home.jsx"]) none(f, "useReducedMotion()", `${f}: no first-render reduced-motion branch`);
 none("components/motion.jsx", '"0123456789".split', "odometer digits drawn by CSS, not text");
 
+// motion round 3: patterns from the recorded reference sites
+ok(page, "<Fan", "certs: certificates dealt into a fan");
+ok(css, "#pipeline { position: sticky", "skills: sheet rises over the held pipeline");
+ok("components/site.jsx", 'className="corners"', "corners: name split to the two bottom corners");
+ok(css, ".tickets .ticket { position: sticky", "proof: tickets lock under the nav");
+ok(page, "<SkillList", "skills: active item lights while its panel changes");
+ok(page, "<Spotlight", "stack: one tool lit at a time");
+ok(css, ".deck .card:hover", "work: row lights lime when pointed at");
+ok(css, ".foot .name::before", "footer: name printed in layers");
+
 console.log("\nAll regression invariants PASS");

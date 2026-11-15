@@ -117,7 +117,7 @@ export function useStatus() {
 // the footer name's letters start spread apart and gather as the footer arrives (after Marina Rachello, bleibtgleich)
 function useNameSpread(ref) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
-  return [useTransform(scrollYProgress, [0, 1], ["0.12em", "-0.06em"]), useTransform(scrollYProgress, [0, 1], ["30%", "0%"])];
+  return [useTransform(scrollYProgress, [0, 1], ["0.12em", "-0.06em"]), useTransform(scrollYProgress, [0, 1], ["30%", "0%"]), useTransform(scrollYProgress, [0, 0.3], [0.12, 0])];
 }
 
 // the ask and the lime ground that close both pages
@@ -128,7 +128,7 @@ export function Close() {
   const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [0.94, 1]);
   const footRef = useRef(null);
-  const [spread, nameY] = useNameSpread(footRef);
+  const [spread, nameY, cornerFade] = useNameSpread(footRef);
   return (
     <>
       <section id="contact" className="cta" ref={ref}>
@@ -149,6 +149,11 @@ export function Close() {
         </div>
       </section>
 
+      {/* the name split to the two bottom corners, faint, for the length of the page (after bleibtgleich, Dragonfly) */}
+      <p className="corners" aria-hidden="true">
+        <motion.span style={{ opacity: cornerFade }}>Andra</motion.span>
+        <motion.span style={{ opacity: cornerFade }}>DevOps</motion.span>
+      </p>
       <footer className="foot" ref={footRef}>
         <ul className="links">
           <li><a href="mailto:andrahijati@gmail.com">andrahijati@gmail.com</a></li>
@@ -156,7 +161,7 @@ export function Close() {
           <li><a href="https://www.instagram.com/andrahijati" target="_blank" rel="noopener noreferrer">Instagram</a></li>
           <li><a href="https://web.facebook.com/andra.nugroho.921" target="_blank" rel="noopener noreferrer">Facebook</a></li>
         </ul>
-        <motion.p className="name" aria-hidden="true" style={reduce ? undefined : { letterSpacing: spread, y: nameY }} initial="hide" whileInView="show" viewport={{ once: true, amount: 0.4 }}>
+        <motion.p className="name" data-name="Andra" aria-hidden="true" style={reduce ? undefined : { letterSpacing: spread, y: nameY }} initial="hide" whileInView="show" viewport={{ once: true, amount: 0.4 }}>
           {"Andra".split("").map((c, i) => (
             <motion.span key={i} data-reveal variants={{ hide: { y: "100%" }, show: { y: 0 } }} transition={{ duration: 0.8, ease: EASE, delay: i * 0.06 }}>
               {c}

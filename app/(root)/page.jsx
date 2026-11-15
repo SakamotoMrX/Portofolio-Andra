@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Assistant from "@/components/Assistant";
-import Homelab from "@/components/home";
+import Homelab, { Fan, SkillList, Spotlight } from "@/components/home";
 import { InkFill, Magnet, Roll, SplitTitle, useCalm, useSkew, useVelocityMarquee } from "@/components/motion";
 import Mark from "@/components/Mark";
 import { tools } from "@/data/site.mjs";
@@ -235,27 +235,21 @@ export default function Page() {
         ))}
       </section>
 
-      <Pipeline status={status} />
+      <section className="stack">
+        <Words text="The stack, one at a time" />
+        <Spotlight names={names} />
+      </section>
+
+      {/* the pipeline holds only until the skills sheet has passed over it */}
+      <div className="hold">
+        <Pipeline status={status} />
+      </div>
 
       <section id="skills" className="skills field">
         <div className="sheet">
           <Words text="What I work with" />
           <Homelab />
-          <div className="lists">
-            {tools.map(([title, items]) => (
-              <div key={title}>
-                <h3>{title}</h3>
-                <ul>
-                  {items.map(([name, note], i) => (
-                    <Reveal as="li" key={name} i={i * 0.5}>
-                      <span>{name}</span>
-                      <span className="muted small">{note}</span>
-                    </Reveal>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <SkillList groups={tools} />
         </div>
       </section>
 
@@ -264,7 +258,7 @@ export default function Page() {
           <Words text="Certified, and you can check" />
           <Reveal as="p">Two courses finished so far, one on Linux servers and one on cloud computing.</Reveal>
         </div>
-        <div className="pair">
+        <Fan>
           <figure>
             <Shot src="/image/certs/btech-linux-sysadmin.jpg" alt="Certificate of achievement for Andra Hijati, Linux System Administration, Btech Academy" w={2000} h={1413} sizes="(max-width: 760px) 100vw, 58vw" />
             <Reveal as="figcaption">
@@ -284,7 +278,7 @@ export default function Page() {
               </span>
             </Reveal>
           </figure>
-        </div>
+        </Fan>
       </section>
 
       <section id="about" className="about">

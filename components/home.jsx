@@ -79,3 +79,89 @@ export default function Homelab() {
     </div>
   );
 }
+
+// certificates dealt like playing cards: each arrives from below, turned, and settles into a fan (after Made with GSAP)
+export function Fan({ children }) {
+  const ref = useRef(null);
+  const reduce = useCalm();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center 0.6"] });
+  const cards = Array.isArray(children) ? children : [children];
+  return (
+    <div className="fan" ref={ref}>
+      {cards.map((card, i) => (
+        <FanCard key={i} p={scrollYProgress} i={i} n={cards.length} still={reduce}>
+          {card}
+        </FanCard>
+      ))}
+    </div>
+  );
+}
+function FanCard({ p, i, n, still, children }) {
+  const start = i / (n + 1);
+  const end = start + 0.55;
+  const side = i - (n - 1) / 2;
+  const y = useTransform(p, [start, end], [180, 0]);
+  const rotate = useTransform(p, [start, end], [side * 14 + 8, side * 4]);
+  return <motion.div className="fan-card" style={still ? undefined : { y, rotate }}>{children}</motion.div>;
+}
+
+// a sticky list: the item whose panel is in view lights up, the others dim (after Cerebrium)
+export function SkillList({ groups }) {
+  const [at, setAt] = useState(0);
+  return (
+    <div className="skill-list">
+      <ol aria-label="Areas">
+        {groups.map(([title], i) => (
+          <li key={title} data-on={i === at}>
+            <a href={`#area-${i}`}>{title}</a>
+          </li>
+        ))}
+      </ol>
+      <div className="panels">
+        {groups.map(([title, items], i) => (
+          <Panel key={title} id={`area-${i}`} onSeen={() => setAt(i)}>
+            <h3>{title}</h3>
+            <ul>
+              {items.map(([name, note]) => (
+                <li key={name}>
+                  <span>{name}</span>
+                  <span className="muted small">{note}</span>
+                </li>
+              ))}
+            </ul>
+          </Panel>
+        ))}
+      </div>
+    </div>
+  );
+}
+function Panel({ id, onSeen, children }) {
+  const ref = useRef(null);
+  const seen = useInView(ref, { margin: "-45% 0px -45% 0px" });
+  useEffect(() => {
+    if (seen) onSeen();
+  }, [seen, onSeen]);
+  return (
+    <div className="panel" id={id} ref={ref}>
+      {children}
+    </div>
+  );
+}
+
+// a wall of tool names in grey; one lights at a time as the wall crosses the screen (after Revelatio)
+export function Spotlight({ names }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.8", "end 0.2"] });
+  const [lit, setLit] = useState(-1);
+  useEffect(() => scrollYProgress.on("change", (v) => setLit(Math.min(names.length - 1, Math.floor(v * names.length)))), [scrollYProgress, names.length]);
+  return (
+    <p className="spotlight" ref={ref}>
+      {names.map((n, i) => (
+        <span key={n} data-on={i === lit || undefined}>
+          {n}
+          {i < names.length - 1 ? ", " : "."}{" "}
+        </span>
+      ))}
+    </p>
+  );
+}

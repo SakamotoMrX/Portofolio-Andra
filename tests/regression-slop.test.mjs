@@ -56,7 +56,7 @@ ok("components/site.jsx", 'className="sheet" style', "motion: closing sheet rise
 
 // motion round 2: every move from the reference sites
 ok(page, "<SplitTitle", "hero: split headline slides in from both sides");
-ok(page, "<Decode", "headings: decode from random glyphs");
+none(page, "<Decode", "headings: no random-glyph decode");
 ok(page, "useSkew", "hero: screenshots bend with scroll speed");
 ok("components/home.jsx", "pathLength", "homelab: lines draw in");
 ok("components/home.jsx", "animateMotion", "homelab: data flows on live links");
@@ -72,8 +72,8 @@ ok(page, "<Roll", "proof: figures roll like an odometer");
 ok(page, "titleY", "hero: title lifts away as the page moves on");
 ok("components/site.jsx", "nameY", "footer: name rises out of the footer");
 ok(css, ".foot .links a::after", "footer links: underline draws on hover");
-ok("components/site.jsx", '<Decode text="Looking for an intern?"', "close: heading decodes like the others");
-ok(page, '<Decode text="About Andra"', "about: heading decodes like the others");
+none("components/site.jsx", "Decode", "close: no random-glyph decode");
+none("components/motion.jsx", "GLYPHS", "motion: decode removed");
 
 // hydration: reduced motion only takes effect after mount, so server and client render the same first frame
 ok("components/motion.jsx", "export function useCalm", "motion: mount-safe reduced motion");

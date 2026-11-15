@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
 import data from "@/json/data.json";
-import { Decode, Magnet, useCalm } from "@/components/motion";
+import { Magnet, useCalm } from "@/components/motion";
 
 export const projects = data.Projects.filter((p) => p.show);
 export const MAIL = "mailto:andrahijati@gmail.com?subject=Internship%20for%20Andra";
@@ -134,7 +134,7 @@ export function Close() {
       <section id="contact" className="cta" ref={ref}>
         <div className="field">
           <motion.div className="sheet" style={reduce ? undefined : { y, scale }}>
-            <Decode text="Looking for an intern?" />
+            <Words text="Looking for an intern?" />
             <div>
               <p>I&apos;m looking for an internship in DevOps, system administration or web development. Email me and I&apos;ll reply with anything you need.</p>
               <div className="actions">

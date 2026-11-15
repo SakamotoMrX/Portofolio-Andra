@@ -7,10 +7,10 @@ import Link from "next/link";
 
 import Assistant from "@/components/Assistant";
 import Homelab from "@/components/home";
-import { Decode, InkFill, Magnet, Roll, SplitTitle, useCalm, useSkew, useVelocityMarquee } from "@/components/motion";
+import { InkFill, Magnet, Roll, SplitTitle, useCalm, useSkew, useVelocityMarquee } from "@/components/motion";
 import Mark from "@/components/Mark";
 import { tools } from "@/data/site.mjs";
-import { Card, Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, projects, useStatus } from "@/components/site";
+import { Card, Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, Words, projects, useStatus } from "@/components/site";
 
 // the moment the intro columns start to lift; the first screen arrives with them
 const T0 = 1.75;
@@ -45,7 +45,7 @@ function Pipeline({ status }) {
     <section id="pipeline" ref={ref}>
       <div className="board">
         <div className="head">
-          <Decode text="Every push ships itself." />
+          <Words text="Every push ships itself." />
           <Reveal as="p" className="muted">
             Commit, build, test, preview, live. One pipeline behind all {projects.length} sites, with nobody copying files to a server by hand.
           </Reveal>
@@ -180,7 +180,7 @@ export default function Page() {
 
       <section className="proof">
         <div>
-          <Decode text="Shipped, and still running." />
+          <Words text="Shipped, and still running." />
           <Reveal as="p">All {projects.length} sites are live. Your browser is checking each one as you read this.</Reveal>
         </div>
         <div className="tickets">
@@ -200,7 +200,7 @@ export default function Page() {
 
       <section id="work">
         <div className="head">
-          <Decode text="Selected work" />
+          <Words text="Selected work" />
           <Reveal as="p">
             {projects.length} sites shipped in {projects[0].year}: company sites, a booking system, a Quran reader and three courses I wrote.
           </Reveal>
@@ -239,7 +239,7 @@ export default function Page() {
 
       <section id="skills" className="skills field">
         <div className="sheet">
-          <Decode text="What I work with" />
+          <Words text="What I work with" />
           <Homelab />
           <div className="lists">
             {tools.map(([title, items]) => (
@@ -261,7 +261,7 @@ export default function Page() {
 
       <section id="certificates" className="certs">
         <div className="head">
-          <Decode text="Certified, and you can check" />
+          <Words text="Certified, and you can check" />
           <Reveal as="p">Two courses finished so far, one on Linux servers and one on cloud computing.</Reveal>
         </div>
         <div className="pair">
@@ -292,7 +292,7 @@ export default function Page() {
           <Shot src="/image/hero.jpg" alt="Andra in a white shirt among rubber trees" w={1024} h={702} sizes="(max-width: 760px) 100vw, 56vw" />
         </Reveal>
         <div>
-          <Decode text="About Andra" />
+          <Words text="About Andra" />
           <InkFill className="lead" text="I study at a vocational high school in Bogor and build websites for local businesses outside class. I like the part after launch most: the server, the pipeline, the dashboards that say it is still up." />
           <Reveal className="bench">
             <Shot src="/image/education-3.jpg" alt="Arduino board wired with jumper cables next to a laptop" w={1024} h={576} sizes="(max-width: 760px) 50vw, 20vw" />

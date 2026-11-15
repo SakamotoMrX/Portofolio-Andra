@@ -52,35 +52,6 @@ export function SplitTitle({ left, right, delay = 0 }) {
   );
 }
 
-const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const DECODE_MS = 700;
-
-// a heading settles out of random glyphs, left to right, the first time it is seen (after Haoqi Design)
-export function Decode({ text, as: Tag = "h2", ...rest }) {
-  const ref = useRef(null);
-  const seen = useInView(ref, { once: true, amount: 0.6 });
-  const reduce = useCalm();
-  const [shown, setShown] = useState(text);
-  useEffect(() => {
-    if (!seen || reduce) return;
-    const start = performance.now();
-    let raf;
-    const frame = (t) => {
-      const settled = Math.floor(((t - start) / DECODE_MS) * text.length);
-      setShown([...text].map((c, i) => (i < settled || c === " " ? c : GLYPHS[Math.floor(Math.random() * GLYPHS.length)])).join(""));
-      if (settled < text.length) raf = requestAnimationFrame(frame);
-    };
-    raf = requestAnimationFrame(frame);
-    return () => cancelAnimationFrame(raf);
-  }, [seen, reduce, text]);
-  return (
-    <Tag ref={ref} {...rest}>
-      <span className="sr-only">{text}</span>
-      <span aria-hidden="true">{shown}</span>
-    </Tag>
-  );
-}
-
 // a statement fills from grey to full ink word by word as it crosses the screen (after White Desert, ERA Residence)
 export function InkFill({ text, className }) {
   const ref = useRef(null);

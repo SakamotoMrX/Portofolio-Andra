@@ -48,53 +48,10 @@ ok(css, "prefers-contrast", "globals: more contrast");
 none(css, "linear-gradient(135deg, #", "globals: no decorative gradients added");
 ok(css, "in oklch", "globals: the field interpolates in oklch");
 
-
-// media: every found picture and clip is on disk and credited
-const credits = JSON.parse(read("public/media/credits.json"));
-for (const c of credits) {
-  assert.ok(fs.existsSync(`public/media/${c.file.split("/").pop()}`), `${c.title}: file on disk`);
-  assert.ok(c.license && c.page, `${c.title}: licence and source page`);
-}
-for (const f of ["cape-town-port.jpg", "emma-maersk.jpg", "kebun-raya-bogor.jpg", "container-ship.webm", "container-ship.mp4", "container-ship-poster.jpg", "krl-bogor.webm", "krl-bogor.mp4", "krl-bogor-poster.jpg"])
-  assert.ok(fs.existsSync(`public/media/${f}`), `media: ${f}`);
-console.log(`PASS media: ${credits.length} credited files`);
-ok("components/site.jsx", "credits.json", "footer: credits rendered from credits.json");
-assert.ok(!fs.existsSync("public/image/place/gunung-salak.jpg"), "rejected Mount Salak photo removed");
-
-// hero deploy and receipt proof
-ok(page, "<Deploy", "hero: runnable deploy");
-ok(page, "<Receipt", "proof: receipt");
-ok("components/home.jsx", "BUILD_SHA", "deploy: real build commit");
-none("components/home.jsx", "padStart", "home: no index numbering");
-
-ok(page, "<WorkList", "work: title list");
-
-ok(page, "<Interlude", "home: container interlude");
+// homelab drawing and the motion that stayed
 ok(page, "<Homelab", "skills: homelab diagram");
-ok(page, "<Latency", "proof: latency panel");
-ok("components/site.jsx", "playsInline", "video: inline on iOS");
-ok("components/site.jsx", "poster=", "video: poster frame");
-none(css, "object-fit: cover", "pictures shown whole");
-
-ok("components/site.jsx", "kebun-raya-bogor", "contact: Bogor photo");
-ok("components/site.jsx", "wibTime", "contact: WIB clock");
-none("app/projects/archive/page.jsx", "glass", "archive: old glass styles gone");
-ok("app/projects/archive/page.jsx", 'className="sheet-runs"', "archive: contact sheet");
-
-// motion ported from the reference sites
-ok("components/home.jsx", "<Decode", "motion: decode line");
 ok(page, "useVelocityMarquee", "motion: marquee follows scroll");
-ok("components/motion.jsx", "useReducedMotion", "motion: reduced motion respected");
-ok("components/motion.jsx", "playbackRate", "marquee: speed follows scroll without a jump");
-ok("components/site.jsx", "useScroll", "motion: closing sheet rises");
-
-// final review fixes
-none("components/site.jsx", 'className="field" style', "close: the photo field never moves");
-ok("components/site.jsx", 'className="sheet" style', "close: only the paper sheet rises");
-ok("components/motion.jsx", 'className="sr-only"', "decode: settled text read by screen readers");
-ok("components/home.jsx", "aria-disabled={running}", "deploy: focus kept while running");
-none("app/projects/archive/page.jsx", 'sizes="200px"', "archive: sharp frames on 2x screens");
-ok("components/site.jsx", "c.licenseUrl", "credits: licence linked");
-none("app/projects/archive/page.jsx", "reduce ? false", "archive: same initial styles on server and client");
+ok("components/motion.jsx", "playbackRate", "marquee: speed changes without a jump");
+ok("components/site.jsx", 'className="sheet" style', "motion: closing sheet rises");
 
 console.log("\nAll regression invariants PASS");

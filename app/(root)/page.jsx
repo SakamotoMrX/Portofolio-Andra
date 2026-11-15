@@ -1,23 +1,40 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { animate, motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 import Assistant from "@/components/Assistant";
+import Homelab from "@/components/home";
 import { useVelocityMarquee } from "@/components/motion";
-import { Deploy, Homelab, Interlude, Latency, Receipt, STAGES, WorkList } from "@/components/home";
 import Mark from "@/components/Mark";
 import { tools } from "@/data/site.mjs";
-import { Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, Words, projects, useStatus } from "@/components/site";
+import { Card, Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, Words, projects, useStatus } from "@/components/site";
 
 // the moment the intro columns start to lift; the first screen arrives with them
 const T0 = 1.75;
 
+// 16 Docker + 12 Bash + 6 TKJ modules, as listed on the three course sites
+const MODULES = 34;
+
+const STAGES = ["Commit", "Build", "Test", "Preview", "Live"];
 const LOG = ["$ git push origin main", "build    compiled", "test     checks passed", "preview  URL ready"];
 // five stages, then two beats held on the live site before the next one starts
 const BEATS = STAGES.length + 2;
 const hosts = projects.map((p) => new URL(p.preview).host);
+
+function Count({ to }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+  const reduce = useReducedMotion();
+  useEffect(() => {
+    if (!inView || reduce) return;
+    const c = animate(0, to, { duration: 1.2, ease: EASE, onUpdate: (v) => ref.current && (ref.current.textContent = Math.round(v)) });
+    return () => c.stop();
+  }, [inView, to, reduce]);
+  return <span ref={ref}>{to}</span>;
+}
 
 // the same pipeline, deploying each of the eight sites in turn for as long as it is on screen
 function Pipeline({ status }) {
@@ -147,9 +164,6 @@ export default function Page() {
               See the work
             </Link>
           </Reveal>
-          <Reveal initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: EASE, delay: t0 + 0.38 }}>
-            <Deploy />
-          </Reveal>
           <div className="trio">
             {trio.map(([src, alt, w, h, chip], i) => (
               <Reveal key={src} initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: t0 + 0.4 + i * 0.09 }}>
@@ -169,9 +183,18 @@ export default function Page() {
           <Words text="Shipped, and still running." />
           <Reveal as="p">All {projects.length} sites are live. Your browser is checking each one as you read this.</Reveal>
         </div>
-        <div className="proof-side">
-          <Receipt up={up} done={done} />
-          <Latency status={status} />
+        <div className="tickets">
+          {[
+            ["Sites live", <Count key="c" to={projects.length} />],
+            ["Online now", done ? `${up}/${projects.length}` : "…"],
+            ["Course modules written", <Count key="c" to={MODULES} />],
+            ["Certificates", <Count key="c" to={2} />],
+          ].map(([label, n], i) => (
+            <Reveal className="ticket" key={label} i={i}>
+              <b>{n}</b>
+              <span className="small">{label}</span>
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -182,7 +205,9 @@ export default function Page() {
             {projects.length} sites shipped in {projects[0].year}: company sites, a booking system, a Quran reader and three courses I wrote.
           </Reveal>
         </div>
-        <WorkList status={status} />
+        <div className="grid">
+          <Card p={projects[0]} s={status[projects[0].slug]} feature />
+        </div>
         <Reveal>
           <Link className="more" href="/projects">
             <b>See all {projects.length} sites</b>
@@ -191,6 +216,11 @@ export default function Page() {
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
             </i>
+            <span className="thumbs">
+              {projects.slice(1).map((p) => (
+                <Image key={p.slug} src={p.thumbnail} alt={`${p.title}, the live site`} width={2880} height={1800} sizes="(max-width: 760px) 25vw, 13vw" />
+              ))}
+            </span>
           </Link>
         </Reveal>
       </section>
@@ -204,8 +234,6 @@ export default function Page() {
           </div>
         ))}
       </section>
-
-      <Interlude />
 
       <Pipeline status={status} />
 

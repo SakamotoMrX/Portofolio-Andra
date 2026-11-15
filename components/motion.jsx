@@ -1,37 +1,7 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 // moves borrowed from the reference sites; each one has a still version for reduced motion
 "use client";
-import { useEffect, useState } from "react";
 import { useMotionValueEvent, useReducedMotion, useScroll, useSpring, useVelocity } from "framer-motion";
-
-const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const DECODE_MS = 600;
-
-// text settles out of random glyphs, left to right (after Haoqi Design)
-export function Decode({ text }) {
-  const reduce = useReducedMotion();
-  const [shown, setShown] = useState(text);
-  useEffect(() => {
-    if (reduce) return setShown(text);
-    const start = performance.now();
-    let raf;
-    const frame = (t) => {
-      const settled = Math.floor(((t - start) / DECODE_MS) * text.length);
-      setShown(
-        [...text].map((c, i) => (i < settled || c === " " ? c : GLYPHS[Math.floor(Math.random() * GLYPHS.length)])).join(""),
-      );
-      if (settled < text.length) raf = requestAnimationFrame(frame);
-    };
-    raf = requestAnimationFrame(frame);
-    return () => cancelAnimationFrame(raf);
-  }, [text, reduce]);
-  return (
-    <span>
-      <span className="sr-only">{text}</span>
-      <span aria-hidden="true">{shown}</span>
-    </span>
-  );
-}
 
 // the marquee runs faster while the page is scrolled fast (after Made with GSAP)
 export function useVelocityMarquee(ref) {

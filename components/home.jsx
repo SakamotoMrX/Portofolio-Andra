@@ -1,8 +1,9 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 // the homelab drawing on the home page
 "use client";
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useCalm } from "@/components/motion";
 
 // shortcut: the lab layout is drawn from the skills list, not from Andra's real rack; confirm the nodes with him.
 const LAB = {
@@ -27,24 +28,47 @@ const CHAINS = ["Laptop → Linux VM host → Docker → web app, nginx", "Prome
 
 export default function Homelab() {
   const ref = useRef(null);
-  const reduce = useReducedMotion();
+  const reduce = useCalm();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
   const scale = useTransform(scrollYProgress, [0, 1], [1.12, 1]);
+  const seen = useInView(ref, { once: true, amount: 0.35 });
+  // drawn on the server and without JavaScript; hidden only once the page can play the drawing in
+  const [armed, setArmed] = useState(false);
+  useEffect(() => setArmed(!reduce), [reduce]);
+  const drawn = !armed || seen;
   const at = Object.fromEntries(LAB.nodes.map(([id, x, y]) => [id, [x + NODE_W / 2, y + 22]]));
   const chain = "Laptop to a Linux VM host running Docker with a web app and nginx; Prometheus scrapes Docker and feeds Grafana; GitHub pushes run GitHub Actions, which deploy to Vercel.";
   return (
     <div className="lab" ref={ref}>
       <motion.svg viewBox="0 0 820 380" role="img" aria-label={`Homelab: ${chain}`} style={reduce ? undefined : { scale }}>
-        {LAB.links.map(([a, b]) => (
-          <line key={a + b} x1={at[a][0]} y1={at[a][1]} x2={at[b][0]} y2={at[b][1]} className={LAB.live.includes(`${a}-${b}`) ? "live" : ""} />
-        ))}
-        {LAB.nodes.map(([id, x, y, label]) => (
-          <g key={id}>
+        {/* lines draw in one after another, then data runs along the live ones (after Illoca, Heron AI) */}
+        {LAB.links.map(([a, b], i) => {
+          const live = LAB.live.includes(`${a}-${b}`);
+          const d = `M${at[a][0]} ${at[a][1]} L${at[b][0]} ${at[b][1]}`;
+          return (
+            <g key={a + b}>
+              <motion.path
+                d={d}
+                className={live ? "live" : ""}
+                initial={false}
+                animate={{ pathLength: drawn ? 1 : 0 }}
+                transition={{ duration: 0.7, delay: 0.3 + i * 0.12, ease: [0.23, 1, 0.32, 1] }}
+              />
+              {live && armed && seen && (
+                <circle r="6" className="packet">
+                  <animateMotion dur="1.6s" repeatCount="indefinite" begin={`${1.6 + i * 0.12}s`} path={d} />
+                </circle>
+              )}
+            </g>
+          );
+        })}
+        {LAB.nodes.map(([id, x, y, label], i) => (
+          <motion.g key={id} initial={false} animate={drawn ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }} transition={{ duration: 0.5, delay: i * 0.06 }}>
             <rect x={x} y={y} width={NODE_W} height="44" rx="22" />
             <text x={x + NODE_W / 2} y={y + 27} textAnchor="middle">
               {label}
             </text>
-          </g>
+          </motion.g>
         ))}
       </motion.svg>
       <ul className="lab-list">

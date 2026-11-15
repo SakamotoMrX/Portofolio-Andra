@@ -2,10 +2,11 @@
 // pieces the home page and the work page share
 "use client";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
 import data from "@/json/data.json";
+import { Decode, Magnet, useCalm } from "@/components/motion";
 
 export const projects = data.Projects.filter((p) => p.show);
 export const MAIL = "mailto:andrahijati@gmail.com?subject=Internship%20for%20Andra";
@@ -113,39 +114,49 @@ export function useStatus() {
   return { status, up, done, online: done ? `${up} of ${projects.length} sites online now` : "Checking the sites" };
 }
 
+// the footer name's letters start spread apart and gather as the footer arrives (after Marina Rachello, bleibtgleich)
+function useNameSpread(ref) {
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
+  return [useTransform(scrollYProgress, [0, 1], ["0.12em", "-0.06em"]), useTransform(scrollYProgress, [0, 1], ["30%", "0%"])];
+}
+
 // the ask and the lime ground that close both pages
 export function Close() {
   const ref = useRef(null);
-  const reduce = useReducedMotion();
+  const reduce = useCalm();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "start 0.35"] });
   const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [0.94, 1]);
+  const footRef = useRef(null);
+  const [spread, nameY] = useNameSpread(footRef);
   return (
     <>
       <section id="contact" className="cta" ref={ref}>
         <div className="field">
           <motion.div className="sheet" style={reduce ? undefined : { y, scale }}>
-            <Words text="Looking for an intern?" />
+            <Decode text="Looking for an intern?" />
             <div>
               <p>I&apos;m looking for an internship in DevOps, system administration or web development. Email me and I&apos;ll reply with anything you need.</p>
               <div className="actions">
-                <a className="btn" href={MAIL}>
-                  Email Andra
-                </a>
+                <Magnet>
+                  <a className="btn" href={MAIL}>
+                    Email Andra
+                  </a>
+                </Magnet>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <footer className="foot">
+      <footer className="foot" ref={footRef}>
         <ul className="links">
           <li><a href="mailto:andrahijati@gmail.com">andrahijati@gmail.com</a></li>
           <li><a href="https://github.com/SakamotoMrX" target="_blank" rel="noopener noreferrer">GitHub</a></li>
           <li><a href="https://www.instagram.com/andrahijati" target="_blank" rel="noopener noreferrer">Instagram</a></li>
           <li><a href="https://web.facebook.com/andra.nugroho.921" target="_blank" rel="noopener noreferrer">Facebook</a></li>
         </ul>
-        <motion.p className="name" aria-hidden="true" initial="hide" whileInView="show" viewport={{ once: true, amount: 0.4 }}>
+        <motion.p className="name" aria-hidden="true" style={reduce ? undefined : { letterSpacing: spread, y: nameY }} initial="hide" whileInView="show" viewport={{ once: true, amount: 0.4 }}>
           {"Andra".split("").map((c, i) => (
             <motion.span key={i} data-reveal variants={{ hide: { y: "100%" }, show: { y: 0 } }} transition={{ duration: 0.8, ease: EASE, delay: i * 0.06 }}>
               {c}

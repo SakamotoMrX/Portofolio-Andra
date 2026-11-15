@@ -1,16 +1,16 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { animate, motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
 import Assistant from "@/components/Assistant";
 import Homelab from "@/components/home";
-import { useVelocityMarquee } from "@/components/motion";
+import { Decode, InkFill, Magnet, Roll, SplitTitle, useCalm, useSkew, useVelocityMarquee } from "@/components/motion";
 import Mark from "@/components/Mark";
 import { tools } from "@/data/site.mjs";
-import { Card, Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, Words, projects, useStatus } from "@/components/site";
+import { Card, Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, projects, useStatus } from "@/components/site";
 
 // the moment the intro columns start to lift; the first screen arrives with them
 const T0 = 1.75;
@@ -24,23 +24,11 @@ const LOG = ["$ git push origin main", "build    compiled", "test     checks pas
 const BEATS = STAGES.length + 2;
 const hosts = projects.map((p) => new URL(p.preview).host);
 
-function Count({ to }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-  const reduce = useReducedMotion();
-  useEffect(() => {
-    if (!inView || reduce) return;
-    const c = animate(0, to, { duration: 1.2, ease: EASE, onUpdate: (v) => ref.current && (ref.current.textContent = Math.round(v)) });
-    return () => c.stop();
-  }, [inView, to, reduce]);
-  return <span ref={ref}>{to}</span>;
-}
-
 // the same pipeline, deploying each of the eight sites in turn for as long as it is on screen
 function Pipeline({ status }) {
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.25 });
-  const reduce = useReducedMotion();
+  const reduce = useCalm();
   const [tick, setTick] = useState(0);
   useEffect(() => {
     if (!inView || reduce) return;
@@ -57,7 +45,7 @@ function Pipeline({ status }) {
     <section id="pipeline" ref={ref}>
       <div className="board">
         <div className="head">
-          <Words text="Every push ships itself." />
+          <Decode text="Every push ships itself." />
           <Reveal as="p" className="muted">
             Commit, build, test, preview, live. One pipeline behind all {projects.length} sites, with nobody copying files to a server by hand.
           </Reveal>
@@ -73,7 +61,7 @@ function Pipeline({ status }) {
             ))}
           </ol>
           <p className="now">
-            <motion.span key={site} initial={reduce ? false : HIDDEN} animate={SHOWN} transition={{ duration: 0.5, ease: EASE }}>
+            <motion.span key={site} initial={HIDDEN} animate={SHOWN} transition={{ duration: 0.5, ease: EASE }}>
               {hosts[site]}
             </motion.span>
           </p>
@@ -106,11 +94,16 @@ export default function Page() {
   const { status, up, done, online } = useStatus();
 
   // with reduced motion there is no intro to wait for
-  const t0 = useReducedMotion() ? 0 : T0;
+  const reduce = useCalm();
+  // the delay only times the entrance; reading the media query directly avoids a 1.75s wait before useCalm settles
+  const t0 = typeof window !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : T0;
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   // the sheet steps back into the field as the page moves on
   const sheetScale = useTransform(scrollYProgress, [0, 1], [1, 0.93]);
+  // the title lifts away a little faster than the sheet
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const titleFade = useTransform(scrollYProgress, [0, 0.7], [1, 0.2]);
 
   const featured = projects[projects.length - 1];
   const trio = [
@@ -118,6 +111,7 @@ export default function Page() {
     [featured.thumbnail, `${featured.title}, the live site`, 2880, 1800, online],
     ["/image/certs/btech-linux-sysadmin.jpg", "Certificate of achievement, Linux System Administration, Btech Academy", 2000, 1413, "Linux System Administration"],
   ];
+  const skew = useSkew();
   const marqueeRef = useRef(null);
   useVelocityMarquee(marqueeRef);
   const names = tools.flatMap(([, items]) => items.map(([n]) => n));
@@ -152,21 +146,27 @@ export default function Page() {
 
       <section ref={heroRef} className="hero field">
         <motion.div className="sheet" style={{ scale: sheetScale }}>
-          <Words as="h1" text="Junior DevOps, ready to intern." mount delay={t0} />
+          <motion.div style={reduce ? undefined : { y: titleY, opacity: titleFade }}>
+            <SplitTitle left="Junior DevOps," right="ready to intern." delay={t0} />
+          </motion.div>
           <Reveal as="p" className="lead" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: EASE, delay: t0 + 0.25 }}>
             I&apos;m Andra, 15, a vocational student in Bogor. I have shipped {projects.length} live websites and keep them running with Linux, Docker and CI/CD.
           </Reveal>
           <Reveal className="actions" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: EASE, delay: t0 + 0.33 }}>
-            <a className="btn" href={MAIL}>
-              Email Andra
-            </a>
-            <Link className="btn quiet" href="/projects">
-              See the work
-            </Link>
+            <Magnet>
+              <a className="btn" href={MAIL}>
+                Email Andra
+              </a>
+            </Magnet>
+            <Magnet>
+              <Link className="btn quiet" href="/projects">
+                See the work
+              </Link>
+            </Magnet>
           </Reveal>
           <div className="trio">
             {trio.map(([src, alt, w, h, chip], i) => (
-              <Reveal key={src} initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: t0 + 0.4 + i * 0.09 }}>
+              <Reveal key={src} style={{ skewY: skew }} initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: t0 + 0.4 + i * 0.09 }}>
                 <Shot src={src} alt={alt} w={w} h={h} sizes="(max-width: 760px) 100vw, 40vw" priority>
                   <span className="chip" data-ui>
                     {chip}
@@ -180,15 +180,15 @@ export default function Page() {
 
       <section className="proof">
         <div>
-          <Words text="Shipped, and still running." />
+          <Decode text="Shipped, and still running." />
           <Reveal as="p">All {projects.length} sites are live. Your browser is checking each one as you read this.</Reveal>
         </div>
         <div className="tickets">
           {[
-            ["Sites live", <Count key="c" to={projects.length} />],
+            ["Sites live", <Roll key="c" to={projects.length} />],
             ["Online now", done ? `${up}/${projects.length}` : "…"],
-            ["Course modules written", <Count key="c" to={MODULES} />],
-            ["Certificates", <Count key="c" to={2} />],
+            ["Course modules written", <Roll key="c" to={MODULES} />],
+            ["Certificates", <Roll key="c" to={2} />],
           ].map(([label, n], i) => (
             <Reveal className="ticket" key={label} i={i}>
               <b>{n}</b>
@@ -200,7 +200,7 @@ export default function Page() {
 
       <section id="work">
         <div className="head">
-          <Words text="Selected work" />
+          <Decode text="Selected work" />
           <Reveal as="p">
             {projects.length} sites shipped in {projects[0].year}: company sites, a booking system, a Quran reader and three courses I wrote.
           </Reveal>
@@ -239,7 +239,7 @@ export default function Page() {
 
       <section id="skills" className="skills field">
         <div className="sheet">
-          <Words text="What I work with" />
+          <Decode text="What I work with" />
           <Homelab />
           <div className="lists">
             {tools.map(([title, items]) => (
@@ -261,7 +261,7 @@ export default function Page() {
 
       <section id="certificates" className="certs">
         <div className="head">
-          <Words text="Certified, and you can check" />
+          <Decode text="Certified, and you can check" />
           <Reveal as="p">Two courses finished so far, one on Linux servers and one on cloud computing.</Reveal>
         </div>
         <div className="pair">
@@ -292,10 +292,8 @@ export default function Page() {
           <Shot src="/image/hero.jpg" alt="Andra in a white shirt among rubber trees" w={1024} h={702} sizes="(max-width: 760px) 100vw, 56vw" />
         </Reveal>
         <div>
-          <Words text="About Andra" />
-          <Reveal as="p" className="lead">
-            I study at a vocational high school in Bogor and build websites for local businesses outside class. I like the part after launch most: the server, the pipeline, the dashboards that say it is still up.
-          </Reveal>
+          <Decode text="About Andra" />
+          <InkFill className="lead" text="I study at a vocational high school in Bogor and build websites for local businesses outside class. I like the part after launch most: the server, the pipeline, the dashboards that say it is still up." />
           <Reveal className="bench">
             <Shot src="/image/education-3.jpg" alt="Arduino board wired with jumper cables next to a laptop" w={1024} h={576} sizes="(max-width: 760px) 50vw, 20vw" />
             <p>Electronics on the side: Arduino boards, usually wired up right next to the terminal.</p>

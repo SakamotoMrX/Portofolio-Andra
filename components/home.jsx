@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 
 import { buildLine } from "@/lib/build.mjs";
-import { Reveal, projects } from "@/components/site";
+import { Reveal, Shot, Status, projects } from "@/components/site";
 
 export const STAGES = ["Commit", "Build", "Test", "Preview", "Live"];
 // 16 Docker + 12 Bash + 6 TKJ modules, as listed on the three course sites
@@ -96,6 +96,36 @@ export function Receipt({ up, done }) {
           </dd>
         </Reveal>
       </dl>
+    </div>
+  );
+}
+
+// the titles are the navigation; the active one shows its site whole beside the list
+export function WorkList({ status }) {
+  const [at, setAt] = useState(0);
+  return (
+    <div className="worklist">
+      <ul>
+        {projects.map((p, i) => (
+          <li key={p.slug} data-active={i === at}>
+            <a href={p.preview} target="_blank" rel="noopener noreferrer" onMouseEnter={() => setAt(i)} onFocus={() => setAt(i)}>
+              <b>{p.title}</b>
+              <span className="small">
+                {p.year}, {p.tech.slice(0, 2).join(", ")}
+              </span>
+            </a>
+            <div className="inline-shot">
+              <Shot src={p.thumbnail} alt={`${p.title}, the live site`} w={2880} h={1800} sizes="(max-width: 760px) 100vw, 1px" />
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div className="stage" aria-hidden="true">
+        {projects.map((p, i) => (
+          <Shot key={p.slug} src={p.thumbnail} alt="" w={2880} h={1800} sizes="40vw" data-on={i === at} />
+        ))}
+        <Status s={status[projects[at].slug]} />
+      </div>
     </div>
   );
 }

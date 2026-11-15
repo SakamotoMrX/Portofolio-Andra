@@ -67,4 +67,6 @@ ok(page, "<Receipt", "proof: receipt");
 ok("components/home.jsx", "BUILD_SHA", "deploy: real build commit");
 none("components/home.jsx", "padStart", "home: no index numbering");
 
+ok(page, "<WorkList", "work: title list");
+
 console.log("\nAll regression invariants PASS");

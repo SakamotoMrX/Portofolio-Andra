@@ -2,14 +2,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 
 import Assistant from "@/components/Assistant";
-import { Deploy, Receipt, STAGES } from "@/components/home";
+import { Deploy, Receipt, STAGES, WorkList } from "@/components/home";
 import Mark from "@/components/Mark";
 import { tools } from "@/data/site.mjs";
-import { Card, Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, Words, projects, useStatus } from "@/components/site";
+import { Close, EASE, HIDDEN, MAIL, Reveal, SHOWN, Shot, Status, Words, projects, useStatus } from "@/components/site";
 
 // the moment the intro columns start to lift; the first screen arrives with them
 const T0 = 1.75;
@@ -177,9 +176,7 @@ export default function Page() {
             {projects.length} sites shipped in {projects[0].year}: company sites, a booking system, a Quran reader and three courses I wrote.
           </Reveal>
         </div>
-        <div className="grid">
-          <Card p={projects[0]} s={status[projects[0].slug]} feature />
-        </div>
+        <WorkList status={status} />
         <Reveal>
           <Link className="more" href="/projects">
             <b>See all {projects.length} sites</b>
@@ -188,11 +185,6 @@ export default function Page() {
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
             </i>
-            <span className="thumbs">
-              {projects.slice(1).map((p) => (
-                <Image key={p.slug} src={p.thumbnail} alt={`${p.title}, the live site`} width={2880} height={1800} sizes="(max-width: 760px) 25vw, 13vw" />
-              ))}
-            </span>
           </Link>
         </Reveal>
       </section>

@@ -1,6 +1,6 @@
 // Copyright (C) 2025 Andra (SakamotoMrX)
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,7 +14,6 @@ const delay = (i, j) => (((i * 7 + j * 13) % 9) / 9) * 0.4;
 
 // every site as a run of whole screenshots, like a photographer's contact sheet
 export default function Page() {
-  const reduce = useReducedMotion();
   return (
     <div className="home">
       <noscript>
@@ -37,12 +36,12 @@ export default function Page() {
                   href={p.preview}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={reduce ? false : { opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, ease: EASE, delay: delay(i, j) }}
                 >
-                  <Image src={src} alt={`${p.title}, screenshot ${j + 1}`} width={2880} height={1800} sizes="200px" />
+                  <Image src={src} alt={`${p.title}, screenshot ${j + 1}`} width={2880} height={1800} sizes="(max-width: 760px) 100vw, 33vw" />
                 </motion.a>
               ))}
             </div>

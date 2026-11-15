@@ -26,7 +26,8 @@ export function Decode({ text }) {
     return () => cancelAnimationFrame(raf);
   }, [text, reduce]);
   return (
-    <span aria-label={text}>
+    <span>
+      <span className="sr-only">{text}</span>
       <span aria-hidden="true">{shown}</span>
     </span>
   );

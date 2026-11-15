@@ -126,7 +126,7 @@ export function Loop({ name, w, h, label, className }) {
     else v.play().catch(() => {});
   }, [reduce]);
   return (
-    <video ref={ref} className={className} muted loop playsInline autoPlay={!reduce} preload="metadata" poster={`/media/${name}-poster.jpg`} width={w} height={h} aria-label={label}>
+    <video ref={ref} className={className} muted loop playsInline preload="metadata" poster={`/media/${name}-poster.jpg`} width={w} height={h} aria-label={label}>
       <source src={`/media/${name}.webm`} type="video/webm" />
       <source src={`/media/${name}.mp4`} type="video/mp4" />
     </video>
@@ -142,7 +142,7 @@ function Clock() {
     const t = setInterval(tick, 30000);
     return () => clearInterval(t);
   }, []);
-  return <p className="clock">Bogor, {now ? <time>{now}</time> : null} WIB</p>;
+  return <p className="clock">Bogor, {now ? <><time>{now}</time> WIB</> : "UTC+7"}</p>;
 }
 
 // the ask and the lime ground that close both pages
@@ -155,7 +155,7 @@ export function Close() {
   return (
     <>
       <section id="contact" className="cta" ref={ref}>
-        <motion.div className="field" style={reduce ? undefined : { y, scale }}>
+        <div className="field">
           <figure className="place">
             <Shot src="/media/kebun-raya-bogor.jpg" alt="Giant water lilies and a fountain in the Bogor Botanical Gardens" w={1920} h={1281} sizes="(max-width: 760px) 100vw, 55vw" />
             <figcaption className="small">Kebun Raya, the botanical gardens in Bogor.</figcaption>
@@ -164,7 +164,7 @@ export function Close() {
             <figcaption className="small">The commuter line into Bogor.</figcaption>
             <Loop name="krl-bogor" w={426} h={240} label="A commuter train leaving Tebet station for Bogor" />
           </figure>
-          <div className="sheet">
+          <motion.div className="sheet" style={reduce ? undefined : { y, scale }}>
             <Words text="Looking for an intern?" />
             <Clock />
             <div>
@@ -175,8 +175,8 @@ export function Close() {
                 </a>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </section>
 
       <footer className="foot">
@@ -204,7 +204,10 @@ export function Close() {
               <a href={c.page} target="_blank" rel="noopener noreferrer">
                 {c.title}
               </a>{" "}
-              by {c.creator}, {c.license}
+              by {c.creator},{" "}
+              <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer">
+                {c.license}
+              </a>
               {i < credits.length - 1 ? "; " : "."}
             </Fragment>
           ))}

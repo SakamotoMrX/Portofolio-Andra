@@ -27,6 +27,7 @@ export function Deploy() {
 
   const running = step >= 0 && step < STAGES.length;
   const run = () => {
+    if (running) return;
     setRuns((n) => n + 1);
     if (reduce) return setStep(STAGES.length);
     setStep(0);
@@ -42,7 +43,7 @@ export function Deploy() {
 
   return (
     <div className="deploy" data-ui>
-      <button type="button" className="btn" onClick={run} disabled={running}>
+      <button type="button" className="btn" onClick={run} aria-disabled={running}>
         {running ? "Deploying…" : runs ? "Deploy again" : "Deploy this site"}
       </button>
       <ol className="pills" aria-hidden="true">
@@ -85,13 +86,11 @@ export function Receipt({ up, done }) {
         {rows.map(([label, n], i) => (
           <Reveal key={label} i={i * 0.6}>
             <dt>{label}</dt>
-            <i aria-hidden="true" />
             <dd>{n}</dd>
           </Reveal>
         ))}
         <Reveal className="total" i={rows.length * 0.6}>
           <dt>Total</dt>
-          <i aria-hidden="true" />
           <dd>
             {projects.length} sites, {MODULES} modules
           </dd>
@@ -221,7 +220,7 @@ export function Latency({ status }) {
         {bars.map((b, i) => (
           <li key={b.host}>
             <span className="host small">{b.host}</span>
-            <span className="bar" style={{ "--p": b.pct / 100 }} />
+            {b.ms != null && <span className="bar" style={{ "--p": b.pct / 100 }} />}
             <span className="ms small">{b.ms != null ? `${b.ms} ms` : status[projects[i].slug] ? "not responding" : "checking"}</span>
           </li>
         ))}

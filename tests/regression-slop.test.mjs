@@ -88,4 +88,13 @@ ok("components/motion.jsx", "useReducedMotion", "motion: reduced motion respecte
 ok("components/motion.jsx", "playbackRate", "marquee: speed follows scroll without a jump");
 ok("components/site.jsx", "useScroll", "motion: closing sheet rises");
 
+// final review fixes
+none("components/site.jsx", 'className="field" style', "close: the photo field never moves");
+ok("components/site.jsx", 'className="sheet" style', "close: only the paper sheet rises");
+ok("components/motion.jsx", 'className="sr-only"', "decode: settled text read by screen readers");
+ok("components/home.jsx", "aria-disabled={running}", "deploy: focus kept while running");
+none("app/projects/archive/page.jsx", 'sizes="200px"', "archive: sharp frames on 2x screens");
+ok("components/site.jsx", "c.licenseUrl", "credits: licence linked");
+none("app/projects/archive/page.jsx", "reduce ? false", "archive: same initial styles on server and client");
+
 console.log("\nAll regression invariants PASS");

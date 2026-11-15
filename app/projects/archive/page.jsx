@@ -21,20 +21,14 @@ export default function Page() {
         <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
       </noscript>
       <section className="archive-top">
-        <h1>Archive</h1>
+        <h1>Every site, on one sheet</h1>
         <p>
-          Every site Andra has built, each as its screenshots at their natural size. Each frame opens the live site. <Link href="/projects">Back to the work</Link>
+          All {projects.length} sites Andra has shipped, each frame whole and at its natural shape. Each one opens the live site. <Link href="/projects">Back to the work</Link>
         </p>
       </section>
       <section className="sheet-runs">
         {projects.map((p, i) => (
           <div className="run-row" key={p.slug}>
-            <p>
-              <a href={p.preview} target="_blank" rel="noopener noreferrer">
-                {p.title}
-              </a>
-              , {p.year}, {p.tech.join(", ")}
-            </p>
             <div className="frames">
               {p.images.map((src, j) => (
                 <motion.a
@@ -52,6 +46,12 @@ export default function Page() {
                 </motion.a>
               ))}
             </div>
+            <p>
+              <a href={p.preview} target="_blank" rel="noopener noreferrer">
+                {p.title}
+              </a>
+              , {p.year}, {p.tech.join(", ")}
+            </p>
           </div>
         ))}
       </section>

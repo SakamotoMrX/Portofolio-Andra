@@ -767,12 +767,14 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 
 /* close: the ask on the field, then the lime ground */
 .cta .field { border-radius: var(--r); padding: clamp(14px, 2vw, 28px); }
-.cta .field { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 28px); align-items: stretch; }
-.cta .place { margin: 0; display: grid; gap: 10px; align-content: center; }
+.cta .field { display: grid; grid-template-columns: 7fr 5fr; grid-template-rows: auto auto; gap: clamp(14px, 2vw, 28px); align-items: start; }
+.cta .field > .sheet { grid-column: 2; grid-row: 1 / span 2; align-self: stretch; }
+.cta .place { margin: 0; display: grid; gap: 10px; }
 .cta .place figcaption { color: var(--ink); }
 .cta .sheet { border-radius: calc(var(--r) - 6px); padding: clamp(24px, 4vw, 48px); display: grid; gap: 24px; align-content: space-between; }
-.cta .clock { margin-top: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.cta .commute { margin: 16px 0 0; display: grid; gap: 8px; }
+.cta .clock { font-weight: 600; font-variant-numeric: tabular-nums; }
+.cta .commute { margin: 0; display: grid; gap: 8px; }
+.cta .place figcaption, .cta .commute figcaption { color: var(--ink); }
 .cta .commute video { display: block; width: 100%; height: auto; border-radius: 14px; background: var(--tone); }
 .cta h2 { font-size: var(--t-head); line-height: 0.98; }
 .foot { margin-top: var(--m); background: var(--lime); padding: clamp(32px, 4vw, 64px) var(--m) 24px; display: grid; gap: clamp(32px, 5vw, 72px); overflow: hidden; }
@@ -861,7 +863,7 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
   .field::before { display: none; }
   .field { background-color: var(--tone); }
 }
-.foot .credits { max-width: 72em; }
+.foot .credits { max-width: 60ch; }
 
 /* hero: a deploy the visitor runs */
 .deploy { margin: 28px auto 0; max-width: 46em; display: grid; grid-template-columns: auto 1fr; gap: 12px 20px; align-items: center; background: var(--ink); color: var(--paper); border-radius: 22px; padding: 12px 12px 12px 12px; text-align: left; }
@@ -951,16 +953,16 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 /* archive: a contact sheet, one text size, frames at their natural width */
 .home .archive-top { padding-top: clamp(112px, 12vw, 176px); display: grid; grid-template-columns: 5fr 7fr; gap: 24px var(--m); align-items: end; }
 .archive-top p { max-width: 36em; }
+
 .archive-top a, .run-row p a { text-decoration: underline; text-underline-offset: 0.2em; }
-.sheet-runs { display: grid; gap: clamp(20px, 2vw, 32px); }
-.run-row { display: grid; grid-template-columns: 4fr 8fr; gap: 12px var(--m); align-items: start; }
-.run-row .frames { display: flex; flex-wrap: wrap; gap: 8px; }
+.sheet-runs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: clamp(24px, 3vw, 40px) var(--m); }
+.run-row { display: grid; gap: 12px; align-content: start; }
+.run-row .frames { display: grid; gap: 8px; }
 .run-row .frames a { display: block; border-radius: 8px; overflow: hidden; background: var(--tone); transition: transform 300ms var(--ease-out); }
-.run-row .frames img { display: block; height: 180px; width: auto; }
+.run-row .frames img { display: block; width: 100%; height: auto; }
 .run-row .frames a:active { transform: scale(0.97); }
 @media (max-width: 760px) {
-  .home .archive-top, .run-row { grid-template-columns: 1fr; }
-  .run-row .frames img { height: 90px; }
+  .home .archive-top { grid-template-columns: 1fr; }
 }
 
 /* receipt rows: the leader draws across as each row arrives (after The Content Architecture) */
@@ -968,4 +970,8 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 @keyframes leader { from { transform: scaleX(0); } }
 @media (prefers-reduced-motion: reduce) {
   .receipt > div i { animation: none; }
+}
+@media (max-width: 1000px) {
+  .cta .field { grid-template-columns: 1fr; }
+  .cta .field > .sheet { grid-column: 1; grid-row: auto; order: -1; }
 }

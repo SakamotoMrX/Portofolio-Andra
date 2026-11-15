@@ -160,8 +160,13 @@ export function Close() {
             <Shot src="/media/kebun-raya-bogor.jpg" alt="Giant water lilies and a fountain in the Bogor Botanical Gardens" w={1920} h={1281} sizes="(max-width: 760px) 100vw, 55vw" />
             <figcaption className="small">Kebun Raya, the botanical gardens in Bogor.</figcaption>
           </figure>
-          <Reveal className="sheet">
+          <figure className="commute">
+            <figcaption className="small">The commuter line into Bogor.</figcaption>
+            <Loop name="krl-bogor" w={426} h={240} label="A commuter train leaving Tebet station for Bogor" />
+          </figure>
+          <div className="sheet">
             <Words text="Looking for an intern?" />
+            <Clock />
             <div>
               <p>I&apos;m looking for an internship in DevOps, system administration or web development. Email me and I&apos;ll reply with anything you need.</p>
               <div className="actions">
@@ -169,13 +174,8 @@ export function Close() {
                   Email Andra
                 </a>
               </div>
-              <Clock />
-              <figure className="commute">
-                <Loop name="krl-bogor" w={426} h={240} label="A commuter train leaving Tebet station for Bogor" />
-                <figcaption className="small">Commuter line to Bogor.</figcaption>
-              </figure>
             </div>
-          </Reveal>
+          </div>
         </motion.div>
       </section>
 

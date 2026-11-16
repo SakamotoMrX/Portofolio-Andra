@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Assistant from "@/components/Assistant";
-import Homelab, { Fan, SkillList, Spotlight } from "@/components/home";
+import Homelab, { Fan, SkillList } from "@/components/home";
 import { InkFill, Magnet, Roll, SplitTitle, useCalm, useSkew, useVelocityMarquee } from "@/components/motion";
 import Mark from "@/components/Mark";
 import { tools } from "@/data/site.mjs";
@@ -164,11 +164,6 @@ export default function Page() {
             ))}
           </div>
         ))}
-      </section>
-
-      <section className="stack">
-        <Words text="The stack, one at a time" />
-        <Spotlight names={names} />
       </section>
 
 

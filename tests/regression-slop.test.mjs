@@ -86,7 +86,7 @@ none(css, "#pipeline", "pipeline board styles removed");
 ok("components/site.jsx", 'className="corners"', "corners: name split to the two bottom corners");
 ok(css, ".tickets .ticket { position: sticky", "proof: tickets lock under the nav");
 ok(page, "<SkillList", "skills: active item lights while its panel changes");
-ok(page, "<Spotlight", "stack: one tool lit at a time");
+none(page, "<Spotlight", "stack wall removed");
 ok(css, ".deck .card:hover", "work: row lights lime when pointed at");
 ok(css, ".foot .name::before", "footer: name printed in layers");
 

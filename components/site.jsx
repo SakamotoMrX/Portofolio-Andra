@@ -132,7 +132,7 @@ export function Close() {
   // the corner names step aside while a bare section with large type of its own crosses the bottom of the screen
   const [overText, setOverText] = useState(false);
   useEffect(() => {
-    const walls = document.querySelectorAll(".stack, .marquee");
+    const walls = document.querySelectorAll(".marquee");
     if (!walls.length) return;
     const seen = new Set();
     const io = new IntersectionObserver(

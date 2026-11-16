@@ -147,21 +147,3 @@ function Panel({ id, onSeen, children }) {
     </div>
   );
 }
-
-// a wall of tool names in grey; one lights at a time as the wall crosses the screen (after Revelatio)
-export function Spotlight({ names }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.8", "end 0.2"] });
-  const [lit, setLit] = useState(-1);
-  useEffect(() => scrollYProgress.on("change", (v) => setLit(Math.min(names.length - 1, Math.floor(v * names.length)))), [scrollYProgress, names.length]);
-  return (
-    <p className="spotlight" ref={ref}>
-      {names.map((n, i) => (
-        <span key={n} data-on={i === lit || undefined}>
-          {n}
-          {i < names.length - 1 ? ", " : "."}{" "}
-        </span>
-      ))}
-    </p>
-  );
-}

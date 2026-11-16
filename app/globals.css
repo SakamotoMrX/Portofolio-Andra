@@ -896,11 +896,6 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
 .skill-list .panel li:nth-child(odd) { background: var(--tone); }
 .skill-list .panel li span + span { font-weight: 400; text-align: right; }
 
-/* stack wall: one name at full ink, the rest at 40% (after Revelatio) */
-.stack { display: grid; gap: 24px; }
-.spotlight { font-size: var(--t-head); font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; max-width: 22em; }
-.spotlight span { opacity: 0.4; transition: opacity 250ms ease; }
-.spotlight span[data-on] { opacity: 1; }
 
 /* the work rows light lime when pointed at (after Dragonfly) */
 @media (hover: hover) and (pointer: fine) {
@@ -937,5 +932,5 @@ body:has(.home) .nav[data-stuck="true"]::before { opacity: 1; transform: none; }
   .corners { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .skill-list ol a, .spotlight span, .deck .card .meta { transition: none; }
+  .skill-list ol a, .deck .card .meta { transition: none; }
 }
